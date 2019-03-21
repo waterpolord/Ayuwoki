@@ -7,6 +7,9 @@ public class Principal {
 	ArrayList<Empresa> TEmpresas;
 	ArrayList<Empleo> TEmpleos;
 	ArrayList<Vacante> TVacantes;
+
+	
+
 	
 
 }
