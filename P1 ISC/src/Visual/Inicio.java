@@ -20,6 +20,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class Inicio extends JFrame {
 
@@ -31,6 +33,8 @@ public class Inicio extends JFrame {
 	private JPanel PanelLogin;
 	private JPanel PanelUser;
 	private JPanel PanelEmpresa;
+	private JTextField textField;
+	private JPasswordField passwordField;
 
  public Inicio() {
  	addWindowListener(new WindowAdapter() {
@@ -103,6 +107,33 @@ public class Inicio extends JFrame {
 	    PanelLogin = new JPanel();
 		PanelLogin.setBounds(170, 28, 648, 379);
 		PanelPrincipal.add(PanelLogin);
+		PanelLogin.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(0, 0, 648, 73);
+		PanelLogin.add(panel);
+		
+		JLabel label = new JLabel("Usuario:");
+		label.setBounds(20, 21, 147, 14);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("Contrase\u00F1a:");
+		label_1.setBounds(274, 21, 105, 14);
+		panel.add(label_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(68, 40, 191, 20);
+		panel.add(textField);
+		
+		JButton button = new JButton("Login");
+		button.setBounds(549, 39, 89, 23);
+		panel.add(button);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(348, 40, 191, 20);
+		panel.add(passwordField);
 		
 	    PanelUser = new JPanel();
 		PanelUser.setBounds(170, 100, 648, 379);
