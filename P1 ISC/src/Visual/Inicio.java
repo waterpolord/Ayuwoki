@@ -56,6 +56,11 @@ public class Inicio extends JFrame {
 	private JPanel panel_3;
 	private JRadioButton rdbtnEmpleado;
 	private JRadioButton rdbtnDesempleado;
+	private JTextField textNombreE;
+	private JTextField textField_1;
+	private JTextField textUsuarioE;
+	private JPasswordField passwordE;
+	private JPasswordField passwordConfE;
 
  public Inicio() {
  	addWindowListener(new WindowAdapter() {
@@ -131,7 +136,7 @@ public class Inicio extends JFrame {
 		PanelLogin.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 648, 451);
+		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
 		PanelLogin.add(panel);
 		
@@ -159,7 +164,7 @@ public class Inicio extends JFrame {
 	
 		
 	    PanelUser = new JPanel();
-		PanelUser.setBounds(170, 107, 648, 372);
+		PanelUser.setBounds(170, 107, 648, 421);
 		PanelPrincipal.add(PanelUser);
 		PanelUser.setLayout(null);
 		
@@ -251,8 +256,60 @@ public class Inicio extends JFrame {
 		rdbtnDesempleado.setBounds(333, 17, 109, 23);
 		panel_3.add(rdbtnDesempleado);
 		PanelEmpresa = new JPanel();
-		PanelEmpresa.setBounds(170, 190, 648, 379);
+		PanelEmpresa.setBounds(170, 168, 648, 401);
 		PanelPrincipal.add(PanelEmpresa);
+		PanelEmpresa.setLayout(null);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setLayout(null);
+		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4.setBounds(83, 24, 466, 331);
+		PanelEmpresa.add(panel_4);
+		
+		JLabel labelNombreE = new JLabel("Nombre:");
+		labelNombreE.setBounds(10, 67, 97, 14);
+		panel_4.add(labelNombreE);
+		
+		textNombreE = new JTextField();
+		textNombreE.setColumns(10);
+		textNombreE.setBounds(70, 92, 353, 20);
+		panel_4.add(textNombreE);
+		
+		JLabel labelCodigoE = new JLabel("Codigo:");
+		labelCodigoE.setBounds(10, 11, 46, 14);
+		panel_4.add(labelCodigoE);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("         1");
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(70, 36, 65, 20);
+		panel_4.add(textField_1);
+		
+		JLabel labelUsuarioE = new JLabel("Usuario:");
+		labelUsuarioE.setBounds(10, 123, 83, 14);
+		panel_4.add(labelUsuarioE);
+		
+		textUsuarioE = new JTextField();
+		textUsuarioE.setColumns(10);
+		textUsuarioE.setBounds(70, 148, 353, 20);
+		panel_4.add(textUsuarioE);
+		
+		JLabel labelConE = new JLabel("Contrase\u00F1a:");
+		labelConE.setBounds(10, 179, 125, 14);
+		panel_4.add(labelConE);
+		
+		passwordE = new JPasswordField();
+		passwordE.setBounds(70, 205, 353, 20);
+		panel_4.add(passwordE);
+		
+		JLabel labelConfConE = new JLabel("Confirmar Contrase\u00F1a:");
+		labelConfConE.setBounds(10, 247, 186, 14);
+		panel_4.add(labelConfConE);
+		
+		passwordConfE = new JPasswordField();
+		passwordConfE.setBounds(70, 272, 353, 20);
+		panel_4.add(passwordConfE);
 		
 		
 	}
