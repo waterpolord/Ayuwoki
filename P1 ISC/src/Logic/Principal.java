@@ -5,13 +5,20 @@ import java.util.ArrayList;
 import Visual.Inicio;
 
 public class Principal {
-	ArrayList<Persona> Tpersonas;
-	ArrayList<Empresa> TEmpresas;
-	ArrayList<Empleo> TEmpleos;
-	ArrayList<Vacante> TVacantes;
+	private ArrayList<Persona> Tpersonas;
+	private ArrayList<Empresa> TEmpresas;
+	private ArrayList<Empleo> TEmpleos;
+	private ArrayList<Vacante> TVacantes;
+	private static Principal principal;
 
 	public static void main(String args[]) {
 		new Inicio().setVisible(true); 
+	}
+	public Principal getInstance() {
+		if(principal == null) {
+			principal = new Principal();
+		}
+		return principal;
 	}
 
 	
