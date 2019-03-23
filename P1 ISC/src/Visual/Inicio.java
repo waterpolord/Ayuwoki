@@ -32,6 +32,8 @@ import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Inicio extends JFrame {
 
@@ -48,10 +50,9 @@ public class Inicio extends JFrame {
 	private JPanel panel_1;
 	private JLabel labelNombre;
 	private JTextField textNombre;
-	private JLabel labelCodigo;
-	private JTextField textCodigo;
-	private JLabel label_4;
-	private JTextField txtUsuario;
+	private JLabel labelApellido;
+	private JLabel labelCorreo;
+	private JTextField txtCorreo;
 	private JLabel labelContra;
 	private JPasswordField passwordContraseña;
 	private JLabel labelConfContra;
@@ -63,11 +64,13 @@ public class Inicio extends JFrame {
 	private JPanel panel_3;
 	private JRadioButton rdbtnEmpleado;
 	private JRadioButton rdbtnDesempleado;
-	private JTextField textNombreE;
-	private JTextField textField_1;
-	private JTextField textUsuarioE;
+	private JTextField textDescripcionE;
+	private JTextField textCorreoE;
 	private JPasswordField passwordE;
-	private JPasswordField passwordConfE;
+	private JTextField textField;
+	private JTextField textTelefono;
+	private JTextField textEncargado;
+	private JTextField textApellido;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/Logo.ico")));
@@ -199,7 +202,7 @@ public class Inicio extends JFrame {
 	
 		
 	    PanelUser = new JPanel();
-		PanelUser.setBounds(170, 107, 648, 421);
+		PanelUser.setBounds(170, 107, 648, 476);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelUser);
@@ -215,40 +218,33 @@ public class Inicio extends JFrame {
 		PanelUser.add(panel_1);
 		
 		labelNombre = new JLabel("Nombre:");
-		labelNombre.setBounds(10, 67, 97, 14);
+		labelNombre.setBounds(10, 11, 97, 14);
 		panel_1.add(labelNombre);
 		
 		textNombre = new JTextField();
 		textNombre.setColumns(10);
-		textNombre.setBounds(10, 92, 209, 20);
+		textNombre.setBounds(10, 36, 209, 20);
 		panel_1.add(textNombre);
 		
-		labelCodigo = new JLabel("Codigo:");
-		labelCodigo.setBounds(10, 11, 46, 14);
-		panel_1.add(labelCodigo);
+		labelApellido = new JLabel("Apellido:");
+		labelApellido.setBounds(256, 11, 46, 14);
+		panel_1.add(labelApellido);
 		
-		textCodigo = new JTextField();
-		textCodigo.setText("1");
-		textCodigo.setEditable(false);
-		textCodigo.setColumns(10);
-		textCodigo.setBounds(10, 36, 209, 20);
-		panel_1.add(textCodigo);
+		labelCorreo = new JLabel("Correo:");
+		labelCorreo.setBounds(10, 67, 83, 14);
+		panel_1.add(labelCorreo);
 		
-		label_4 = new JLabel("Usuario:");
-		label_4.setBounds(10, 123, 83, 14);
-		panel_1.add(label_4);
-		
-		txtUsuario = new JTextField();
-		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(10, 148, 209, 20);
-		panel_1.add(txtUsuario);
+		txtCorreo = new JTextField();
+		txtCorreo.setColumns(10);
+		txtCorreo.setBounds(10, 92, 347, 20);
+		panel_1.add(txtCorreo);
 		
 		labelContra = new JLabel("Contrase\u00F1a:");
-		labelContra.setBounds(256, 67, 125, 14);
+		labelContra.setBounds(10, 123, 125, 14);
 		panel_1.add(labelContra);
 		
 		passwordContraseña = new JPasswordField();
-		passwordContraseña.setBounds(255, 92, 198, 20);
+		passwordContraseña.setBounds(10, 148, 209, 20);
 		panel_1.add(passwordContraseña);
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
@@ -258,6 +254,11 @@ public class Inicio extends JFrame {
 		passwordConfContra = new JPasswordField();
 		passwordConfContra.setBounds(255, 148, 198, 20);
 		panel_1.add(passwordConfContra);
+		
+		textApellido = new JTextField();
+		textApellido.setColumns(10);
+		textApellido.setBounds(256, 36, 200, 20);
+		panel_1.add(textApellido);
 		
 		panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -299,7 +300,7 @@ public class Inicio extends JFrame {
 		rdbtnDesempleado.setBounds(333, 17, 109, 23);
 		panel_3.add(rdbtnDesempleado);
 		PanelEmpresa = new JPanel();
-		PanelEmpresa.setBounds(170, 168, 648, 401);
+		PanelEmpresa.setBounds(170, 168, 648, 419);
 		PanelEmpresa.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelEmpresa);
 		PanelEmpresa.setLayout(null);
@@ -307,54 +308,72 @@ public class Inicio extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_4.setBounds(83, 24, 466, 331);
+		panel_4.setBounds(83, 11, 466, 397);
 		panel_4.setBackground(new Color(242, 38, 19, 160));
 		PanelEmpresa.add(panel_4);
 		
-		JLabel labelNombreE = new JLabel("Nombre:");
-		labelNombreE.setBounds(10, 67, 97, 14);
-		panel_4.add(labelNombreE);
+		JLabel labelDescripcion = new JLabel("Descripcion:");
+		labelDescripcion.setBounds(10, 67, 97, 14);
+		panel_4.add(labelDescripcion);
 		
-		textNombreE = new JTextField();
-		textNombreE.setColumns(10);
-		textNombreE.setBounds(70, 92, 353, 20);
-		panel_4.add(textNombreE);
+		textDescripcionE = new JTextField();
+		textDescripcionE.setColumns(10);
+		textDescripcionE.setBounds(70, 92, 353, 20);
+		panel_4.add(textDescripcionE);
 		
-		JLabel labelCodigoE = new JLabel("Codigo:");
+		JLabel labelCodigoE = new JLabel("Nombre:");
 		labelCodigoE.setBounds(10, 11, 46, 14);
 		panel_4.add(labelCodigoE);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("         1");
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(70, 36, 65, 20);
-		panel_4.add(textField_1);
+		JLabel labelCorreoE = new JLabel("Correo:");
+		labelCorreoE.setBounds(10, 175, 83, 14);
+		panel_4.add(labelCorreoE);
 		
-		JLabel labelUsuarioE = new JLabel("Usuario:");
-		labelUsuarioE.setBounds(10, 123, 83, 14);
-		panel_4.add(labelUsuarioE);
-		
-		textUsuarioE = new JTextField();
-		textUsuarioE.setColumns(10);
-		textUsuarioE.setBounds(70, 148, 353, 20);
-		panel_4.add(textUsuarioE);
+		textCorreoE = new JTextField();
+		textCorreoE.setColumns(10);
+		textCorreoE.setBounds(70, 200, 353, 20);
+		panel_4.add(textCorreoE);
 		
 		JLabel labelConE = new JLabel("Contrase\u00F1a:");
-		labelConE.setBounds(10, 179, 125, 14);
+		labelConE.setBounds(10, 230, 125, 14);
 		panel_4.add(labelConE);
 		
 		passwordE = new JPasswordField();
-		passwordE.setBounds(70, 205, 353, 20);
+		passwordE.setBounds(70, 255, 353, 20);
 		panel_4.add(passwordE);
 		
-		JLabel labelConfConE = new JLabel("Confirmar Contrase\u00F1a:");
-		labelConfConE.setBounds(10, 247, 186, 14);
-		panel_4.add(labelConfConE);
+		JLabel labelEncargado = new JLabel("Encargado:");
+		labelEncargado.setBounds(10, 286, 186, 14);
+		panel_4.add(labelEncargado);
 		
-		passwordConfE = new JPasswordField();
-		passwordConfE.setBounds(70, 272, 353, 20);
-		panel_4.add(passwordConfE);
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(70, 35, 353, 20);
+		panel_4.add(textField);
+		
+		JLabel labelTelefono = new JLabel("Telefono:");
+		labelTelefono.setBounds(10, 123, 83, 14);
+		panel_4.add(labelTelefono);
+		
+		textTelefono = new JTextField();
+		textTelefono.setColumns(10);
+		textTelefono.setBounds(70, 144, 353, 20);
+		panel_4.add(textTelefono);
+		
+		textEncargado = new JTextField();
+		textEncargado.setColumns(10);
+		textEncargado.setBounds(70, 311, 353, 20);
+		panel_4.add(textEncargado);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(10, 342, 186, 14);
+		panel_4.add(lblTipo);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>"}));
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(70, 353, 353, 20);
+		panel_4.add(comboBox);
 		
 		// El panel principal debe añadir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
