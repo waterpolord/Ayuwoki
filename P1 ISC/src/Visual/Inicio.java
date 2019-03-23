@@ -31,6 +31,7 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 
 public class Inicio extends JFrame {
@@ -56,12 +57,12 @@ public class Inicio extends JFrame {
 	private JLabel labelConfContra;
 	private JPasswordField passwordConfContra;
 	private JPanel panel_2;
-	private JRadioButton radioButtonUni;
-	private JRadioButton radioTec;
-	private JRadioButton radioObrero;
+	private JRadioButton RBUniversitario;
+	private JRadioButton RBTec;
+	private JRadioButton RBObrero;
 	private JPanel panel_3;
-	private JRadioButton rdbtnEmpleado;
-	private JRadioButton rdbtnDesempleado;
+	private JRadioButton RBEmpleado;
+	private JRadioButton RBDesempleado;
 	private JTextField textDescripcionE;
 	private JTextField textCorreoE;
 	private JPasswordField passwordE;
@@ -69,6 +70,8 @@ public class Inicio extends JFrame {
 	private JTextField textTelefono;
 	private JTextField textEncargado;
 	private JTextField textApellido;
+	private ButtonGroup grupoEstado;
+	private ButtonGroup grupoTipo;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/Logo.ico")));
@@ -81,6 +84,8 @@ public class Inicio extends JFrame {
  		}
  	});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		
 		PanelPrincipal = new JPanel();
 		PanelPrincipal.setBackground(Color.WHITE);
@@ -265,20 +270,20 @@ public class Inicio extends JFrame {
 		panel_2.setBackground(new Color(242, 38, 19, 160));
 		PanelUser.add(panel_2);
 		
-		radioButtonUni = new JRadioButton("Universitario");
-		radioButtonUni.setSelected(true);
-		radioButtonUni.setBounds(6, 17, 109, 23);
-		panel_2.add(radioButtonUni);
+		RBUniversitario = new JRadioButton("Universitario");
+		RBUniversitario.setSelected(true);
+		RBUniversitario.setBounds(6, 17, 109, 23);
+		panel_2.add(RBUniversitario);
 		
-		radioTec = new JRadioButton("Tecnico");
-		radioTec.setSelected(false);
-		radioTec.setBounds(171, 17, 109, 23);
-		panel_2.add(radioTec);
+		RBTec = new JRadioButton("Tecnico");
+		RBTec.setSelected(false);
+		RBTec.setBounds(171, 17, 109, 23);
+		panel_2.add(RBTec);
 		
-		radioObrero = new JRadioButton("Obrero");
-		radioObrero.setSelected(false);
-		radioObrero.setBounds(333, 17, 109, 23);
-		panel_2.add(radioObrero);
+		RBObrero = new JRadioButton("Obrero");
+		RBObrero.setSelected(false);
+		RBObrero.setBounds(333, 17, 109, 23);
+		panel_2.add(RBObrero);
 		
 		panel_3 = new JPanel();
 		panel_3.setLayout(null);
@@ -287,16 +292,16 @@ public class Inicio extends JFrame {
 		panel_3.setBackground(new Color(242, 38, 19, 160));
 		PanelUser.add(panel_3);
 		
-		rdbtnEmpleado = new JRadioButton("Empleado");
-		rdbtnEmpleado.setSelected(true);
-		rdbtnEmpleado.setBounds(34, 17, 109, 23);
+		RBEmpleado = new JRadioButton("Empleado");
+		RBEmpleado.setSelected(true);
+		RBEmpleado.setBounds(34, 17, 109, 23);
 		
-		panel_3.add(rdbtnEmpleado);
+		panel_3.add(RBEmpleado);
 		
-		rdbtnDesempleado = new JRadioButton("Desempleado");
-		rdbtnDesempleado.setSelected(false);
-		rdbtnDesempleado.setBounds(333, 17, 109, 23);
-		panel_3.add(rdbtnDesempleado);
+		RBDesempleado = new JRadioButton("Desempleado");
+		RBDesempleado.setSelected(false);
+		RBDesempleado.setBounds(333, 17, 109, 23);
+		panel_3.add(RBDesempleado);
 		PanelEmpresa = new JPanel();
 		PanelEmpresa.setBounds(170, 168, 648, 419);
 		PanelEmpresa.setBackground(new Color(108, 122, 137, 160));
@@ -372,6 +377,15 @@ public class Inicio extends JFrame {
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(70, 353, 353, 20);
 		panel_4.add(comboBox);
+		
+		grupoEstado = new ButtonGroup();
+		grupoTipo = new ButtonGroup();
+		
+		grupoEstado.add(RBDesempleado);
+		grupoEstado.add(RBEmpleado);
+		grupoTipo.add(RBObrero);
+		grupoTipo.add(RBTec);
+		grupoTipo.add(RBUniversitario);
 		
 		// El panel principal debe añadir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
