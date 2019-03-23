@@ -91,9 +91,14 @@ public class Inicio extends JFrame {
 		BTNiniciarSesion.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Boton Iniciar Sesion.jpg")));
 		BTNiniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelEmpresa.setVisible(false);
-	 			PanelLogin.setVisible(true);
-	 			PanelUser.setVisible(false);
+				if(PanelLogin.isVisible()) {
+					PanelLogin.setVisible(false);
+				}
+				else {
+					PanelEmpresa.setVisible(false);
+		 			PanelLogin.setVisible(true);
+		 			PanelUser.setVisible(false);
+				}
 			}
 		});
 		BTNiniciarSesion.setBounds(0, 47, 174, 58);
@@ -103,9 +108,14 @@ public class Inicio extends JFrame {
 		BTNEmpresa.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Empresa.jpg")));
 		BTNEmpresa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelEmpresa.setVisible(true);
-	 			PanelLogin.setVisible(false);
-	 			PanelUser.setVisible(false);
+				if(PanelEmpresa.isVisible()) {
+					PanelEmpresa.setVisible(false);
+				}
+				else {
+					PanelEmpresa.setVisible(true);
+		 			PanelLogin.setVisible(false);
+		 			PanelUser.setVisible(false);
+				}
 			}
 		});
 		BTNEmpresa.setBounds(0, 283, 174, 58);
@@ -139,9 +149,14 @@ public class Inicio extends JFrame {
 		BTNUser.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Boton Usuario.jpg")));
 		BTNUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelEmpresa.setVisible(false);
-	 			PanelLogin.setVisible(false);
-	 			PanelUser.setVisible(true);
+				if(PanelUser.isVisible()) {
+					PanelUser.setVisible(false);
+				}
+				else {
+					PanelEmpresa.setVisible(false);
+		 			PanelLogin.setVisible(false);
+		 			PanelUser.setVisible(true);
+				}
 			}
 		});
 		BTNUser.setHorizontalAlignment(SwingConstants.RIGHT);
