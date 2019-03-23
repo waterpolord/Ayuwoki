@@ -75,7 +75,7 @@ public class Inicio extends JFrame {
 	private ButtonGroup grupoTipo;
 
  public Inicio() {
- 	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/Logo.ico")));
+ 	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
  	addWindowListener(new WindowAdapter() {
  		@Override
  		public void windowOpened(WindowEvent e) {
@@ -87,7 +87,7 @@ public class Inicio extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		
+		setTitle("Bolsa De Empleos");
 		PanelPrincipal = new JPanel();
 		PanelPrincipal.setBackground(Color.WHITE);
 		PanelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
