@@ -16,23 +16,24 @@ import javax.swing.JLabel;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import java.text.ParseException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
-
-
-
+import javax.swing.text.MaskFormatter;
 import javax.swing.UIManager;
 import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Inicio extends JFrame {
 
@@ -66,7 +67,7 @@ public class Inicio extends JFrame {
 	private JTextField textDescripcionE;
 	private JTextField textCorreoE;
 	private JPasswordField passwordE;
-	private JTextField textField;
+	private JTextField TXTNombre;
 	private JTextField textTelefono;
 	private JTextField textEncargado;
 	private JTextField textApellido;
@@ -190,6 +191,15 @@ public class Inicio extends JFrame {
 		panel.add(labelContraseña);
 		
 		textUsuario = new JTextField();
+		textUsuario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char Letra = evt.getKeyChar();
+				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
+		            evt.consume();
+		        }
+			}
+		});
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(68, 40, 191, 20);
 		panel.add(textUsuario);
@@ -225,12 +235,21 @@ public class Inicio extends JFrame {
 		panel_1.add(labelNombre);
 		
 		textNombre = new JTextField();
+		textNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char Letra = evt.getKeyChar();
+				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
+		            evt.consume();
+		        }
+			}
+		});
 		textNombre.setColumns(10);
 		textNombre.setBounds(10, 36, 209, 20);
 		panel_1.add(textNombre);
 		
 		labelApellido = new JLabel("Apellido:");
-		labelApellido.setBounds(256, 11, 46, 14);
+		labelApellido.setBounds(256, 11, 83, 14);
 		panel_1.add(labelApellido);
 		
 		labelCorreo = new JLabel("Correo:");
@@ -259,6 +278,15 @@ public class Inicio extends JFrame {
 		panel_1.add(passwordConfContra);
 		
 		textApellido = new JTextField();
+		textApellido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char Letra = evt.getKeyChar();
+				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
+		            evt.consume();
+		        }
+			}
+		});
 		textApellido.setColumns(10);
 		textApellido.setBounds(256, 36, 200, 20);
 		panel_1.add(textApellido);
@@ -271,7 +299,7 @@ public class Inicio extends JFrame {
 		PanelUser.add(panel_2);
 		
 		RBUniversitario = new JRadioButton("Universitario");
-		RBUniversitario.setSelected(true);
+		RBUniversitario.setSelected(false);
 		RBUniversitario.setBounds(6, 17, 109, 23);
 		panel_2.add(RBUniversitario);
 		
@@ -293,7 +321,7 @@ public class Inicio extends JFrame {
 		PanelUser.add(panel_3);
 		
 		RBEmpleado = new JRadioButton("Empleado");
-		RBEmpleado.setSelected(true);
+		RBEmpleado.setSelected(false);
 		RBEmpleado.setBounds(34, 17, 109, 23);
 		
 		panel_3.add(RBEmpleado);
@@ -349,21 +377,46 @@ public class Inicio extends JFrame {
 		labelEncargado.setBounds(10, 286, 186, 14);
 		panel_4.add(labelEncargado);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(70, 35, 353, 20);
-		panel_4.add(textField);
+		TXTNombre = new JTextField();
+		TXTNombre.setColumns(10);
+		TXTNombre.setBounds(70, 35, 353, 20);
+		panel_4.add(TXTNombre);
 		
 		JLabel labelTelefono = new JLabel("Telefono:");
 		labelTelefono.setBounds(10, 123, 83, 14);
 		panel_4.add(labelTelefono);
+		MaskFormatter Numero = null;
 		
-		textTelefono = new JTextField();
+		try {
+			Numero = new MaskFormatter("###-###-####");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		textTelefono = new JFormattedTextField(Numero);
+		textTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char Letra = evt.getKeyChar();
+				if(Character.isLetter(Letra) || Letra == '.' || Letra == ','){
+		            evt.consume();
+		        }
+			}
+		});
 		textTelefono.setColumns(10);
 		textTelefono.setBounds(70, 144, 353, 20);
 		panel_4.add(textTelefono);
 		
 		textEncargado = new JTextField();
+		textEncargado.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char Letra = evt.getKeyChar();
+				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
+		            evt.consume();
+		        }
+			}
+		});
 		textEncargado.setColumns(10);
 		textEncargado.setBounds(70, 311, 353, 20);
 		panel_4.add(textEncargado);
