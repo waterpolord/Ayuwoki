@@ -10,6 +10,7 @@ public class Empresa {
 	private String clave;
 	private String encargado;
 	private ArrayList<String> tipo;
+	
 	public Empresa(String nombre, String descripcion, String telefono, String correo, String clave, String encargado,
 			ArrayList<String> tipo) {
 		super();

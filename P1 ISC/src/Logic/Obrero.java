@@ -3,6 +3,7 @@ package Logic;
 import java.util.ArrayList;
 
 public class Obrero extends Persona {
+	
 	private ArrayList<String> habilidades;
 	
 	public Obrero(String nombre, String apellido, String correo, String clave, Boolean estado,
