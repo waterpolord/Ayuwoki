@@ -200,7 +200,7 @@ public class Inicio extends JFrame {
 	
 		
 	    PanelUser = new JPanel();
-		PanelUser.setBounds(170, 107, 648, 476);
+		PanelUser.setBounds(170, 107, 648, 480);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelUser);
@@ -368,7 +368,7 @@ public class Inicio extends JFrame {
 		panel_4.add(lblTipo);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Salud", "Educacion", "Comercio", "Software", "Turismo", "Industrial"}));
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(70, 353, 353, 20);
 		panel_4.add(comboBox);
