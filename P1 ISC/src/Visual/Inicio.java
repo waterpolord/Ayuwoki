@@ -18,13 +18,20 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.security.Principal;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
+
+
+
 import javax.swing.UIManager;
 import javax.swing.JRadioButton;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class Inicio extends JFrame {
 
@@ -63,6 +70,7 @@ public class Inicio extends JFrame {
 	private JPasswordField passwordConfE;
 
  public Inicio() {
+ 	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/Logo.ico")));
  	addWindowListener(new WindowAdapter() {
  		@Override
  		public void windowOpened(WindowEvent e) {
@@ -79,7 +87,8 @@ public class Inicio extends JFrame {
 		setContentPane(PanelPrincipal);
 		PanelPrincipal.setLayout(null);
 		
-		BTNiniciarSesion = new JButton("Iniciar Sesi\u00F3n \u25BA");
+		BTNiniciarSesion = new JButton("");
+		BTNiniciarSesion.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Boton Iniciar Sesion.jpg")));
 		BTNiniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelEmpresa.setVisible(false);
@@ -87,21 +96,11 @@ public class Inicio extends JFrame {
 	 			PanelUser.setVisible(false);
 			}
 		});
-		BTNiniciarSesion.setBounds(-6, 46, 156, 58);
+		BTNiniciarSesion.setBounds(0, 47, 174, 58);
 		BTNiniciarSesion.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		BTNUser = new JButton("Usuario \u25BA");
-		BTNUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PanelEmpresa.setVisible(false);
-	 			PanelLogin.setVisible(false);
-	 			PanelUser.setVisible(true);
-			}
-		});
-		BTNUser.setBounds(0, 199, 156, 58);
-		BTNUser.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		JButton BTNEmpresa = new JButton("Empresa \u25BA");
+		JButton BTNEmpresa = new JButton("");
+		BTNEmpresa.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Empresa.jpg")));
 		BTNEmpresa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelEmpresa.setVisible(true);
@@ -109,35 +108,56 @@ public class Inicio extends JFrame {
 	 			PanelUser.setVisible(false);
 			}
 		});
-		BTNEmpresa.setBounds(0, 287, 156, 58);
+		BTNEmpresa.setBounds(0, 283, 174, 58);
 		BTNEmpresa.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel lblNuevo = new JLabel("Nuevo");
+		lblNuevo.setFont(new Font("AntsyPants", Font.ITALIC, 23));
 		lblNuevo.setBounds(0, 128, 150, 49);
 		lblNuevo.setBackground(Color.BLUE);
 		lblNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		Tam = this.getToolkit().getScreenSize();
+		
+		JLabel lblfondo = new JLabel("");
+		lblfondo.setIcon(new ImageIcon("src\\Imgenes\\FondoPortada.jpg"));
+		lblfondo.setBounds(0, 0, (int)Tam.getWidth(), (int)Tam.getHeight());
+		
 		PanelBotones = new JPanel();
 		PanelBotones.setBounds(0, 0, 160, (int)Tam.height);
-		PanelBotones.setBackground(Color.LIGHT_GRAY);
+		PanelBotones.setBackground(new Color(150, 40, 27, 160));
 		
 		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null);
+		
 		PanelPrincipal.add(PanelBotones);
 		PanelBotones.setLayout(null);
 		PanelBotones.add(lblNuevo);
-		PanelBotones.add(BTNiniciarSesion);
+		
+		BTNUser = new JButton("");
+		BTNUser.setBounds(0, 174, 174, 58);
 		PanelBotones.add(BTNUser);
+		BTNUser.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Boton Usuario.jpg")));
+		BTNUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelEmpresa.setVisible(false);
+	 			PanelLogin.setVisible(false);
+	 			PanelUser.setVisible(true);
+			}
+		});
+		BTNUser.setHorizontalAlignment(SwingConstants.RIGHT);
+		PanelBotones.add(BTNiniciarSesion);
 		PanelBotones.add(BTNEmpresa);
 		
 	    PanelLogin = new JPanel();
 		PanelLogin.setBounds(170, 28, 648, 78);
+		PanelLogin.setBackground(new Color(103, 128, 159, 160));
 		PanelPrincipal.add(PanelLogin);
 		PanelLogin.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
+		panel.setBackground(new Color(242, 38, 19, 160));
 		PanelLogin.add(panel);
 		
 		JLabel labelUsuario = new JLabel("Usuario:");
@@ -165,13 +185,18 @@ public class Inicio extends JFrame {
 		
 	    PanelUser = new JPanel();
 		PanelUser.setBounds(170, 107, 648, 421);
-		PanelPrincipal.add(PanelUser);
 		PanelUser.setLayout(null);
+		PanelUser.setBackground(new Color(108, 122, 137, 160));
+		PanelPrincipal.add(PanelUser);
+		
+		
 		
 		panel_1 = new JPanel();
-		panel_1.setLayout(null);
+		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(82, 11, 466, 193);
+		panel_1.setBackground(new Color(242, 38, 19, 160));
+		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
 		
 		labelNombre = new JLabel("Nombre:");
@@ -223,6 +248,7 @@ public class Inicio extends JFrame {
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_2.setBounds(82, 261, 466, 47);
+		panel_2.setBackground(new Color(242, 38, 19, 160));
 		PanelUser.add(panel_2);
 		
 		radioButtonUni = new JRadioButton("Universitario");
@@ -244,11 +270,13 @@ public class Inicio extends JFrame {
 		panel_3.setLayout(null);
 		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Estado", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_3.setBounds(82, 203, 466, 47);
+		panel_3.setBackground(new Color(242, 38, 19, 160));
 		PanelUser.add(panel_3);
 		
 		rdbtnEmpleado = new JRadioButton("Empleado");
 		rdbtnEmpleado.setSelected(true);
 		rdbtnEmpleado.setBounds(34, 17, 109, 23);
+		
 		panel_3.add(rdbtnEmpleado);
 		
 		rdbtnDesempleado = new JRadioButton("Desempleado");
@@ -257,6 +285,7 @@ public class Inicio extends JFrame {
 		panel_3.add(rdbtnDesempleado);
 		PanelEmpresa = new JPanel();
 		PanelEmpresa.setBounds(170, 168, 648, 401);
+		PanelEmpresa.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelEmpresa);
 		PanelEmpresa.setLayout(null);
 		
@@ -264,6 +293,7 @@ public class Inicio extends JFrame {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_4.setBounds(83, 24, 466, 331);
+		panel_4.setBackground(new Color(242, 38, 19, 160));
 		PanelEmpresa.add(panel_4);
 		
 		JLabel labelNombreE = new JLabel("Nombre:");
@@ -311,6 +341,7 @@ public class Inicio extends JFrame {
 		passwordConfE.setBounds(70, 272, 353, 20);
 		panel_4.add(passwordConfE);
 		
-		
+		// El panel principal debe añadir el label de fondo de ultimo siempre
+		PanelPrincipal.add(lblfondo);
 	}
 }
