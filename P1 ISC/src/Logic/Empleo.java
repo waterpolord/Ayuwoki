@@ -1,15 +1,14 @@
 package Logic;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Empleo {
 	
 	private Persona user;
-	//private Curriculum curriculum;
+	private File curriculum;
 	private ArrayList<String> habilidades;
-	
 	public Empleo(Persona user, ArrayList<String> habilidades) {
-		super();
 		this.user = user;
 		this.habilidades = habilidades;
 	}

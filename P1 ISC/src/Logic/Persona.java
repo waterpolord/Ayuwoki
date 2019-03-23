@@ -11,7 +11,6 @@ public abstract class Persona {
 	
 	
 	public Persona(String nombre, String apellido, String correo, String clave, Boolean estado) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;

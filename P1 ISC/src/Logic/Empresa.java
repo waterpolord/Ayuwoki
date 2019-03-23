@@ -11,16 +11,14 @@ public class Empresa {
 	private String encargado;
 	private ArrayList<String> tipo;
 	
-	public Empresa(String nombre, String descripcion, String telefono, String correo, String clave, String encargado,
-			ArrayList<String> tipo) {
-		super();
+	public Empresa(String nombre, String telefono, String correo, String clave, String encargado,
+			String tipo) {
 		Nombre = nombre;
-		this.descripcion = descripcion;
 		this.telefono = telefono;
 		this.correo = correo;
 		this.clave = clave;
 		this.encargado = encargado;
-		this.tipo = tipo;
+		this.tipo.add(tipo);
 	}
 	public String getNombre() {
 		return Nombre;

@@ -7,15 +7,31 @@ public class Vacante {
 	private String puesto;
 	private String TipoPersonal;
 	private ArrayList<String> requisitos;
+	private int CantPuestos;
+	private int CantSolicitudes;
+	private ArrayList<Persona> Solicitantes;
 	
-	public Vacante(Empresa empresa, String puesto, String tipoPersonal, ArrayList<String> requisitos) {
-		super();
+	public Vacante(Empresa empresa, String puesto, String tipoPersonal, ArrayList<String> requisitos,int CP) {
+		
 		this.empresa = empresa;
 		this.puesto = puesto;
 		TipoPersonal = tipoPersonal;
 		this.requisitos = requisitos;
+		CantPuestos = CP;
+		Solicitantes = new ArrayList();
+		CantSolicitudes = 0;
 	}
 
+	public void solicitar(Persona nueva) {
+		Solicitantes.add(nueva);
+		CantSolicitudes++;
+	}
+	
+	public void cancelar(int ind) {
+		Solicitantes.remove(ind);
+		CantSolicitudes--;
+	}
+	
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -46,6 +62,16 @@ public class Vacante {
 
 	public void setRequisitos(ArrayList<String> requisitos) {
 		this.requisitos = requisitos;
+	}
+	/* El metodo getSolicitudes permite ver 
+	 * cuales son las personas que solicitaron el empleo*/
+	 
+	 public ArrayList getSolicitantes() {
+		ArrayList<String> lista = new ArrayList();
+		for(int i = 0;i<CantSolicitudes;i++) {
+			lista.add(Solicitantes.get(i).getNombre());
+		}
+		return lista;
 	}
 	
 
