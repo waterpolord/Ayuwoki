@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+
+
 import javax.swing.UIManager;
 import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
@@ -543,6 +545,7 @@ public class Inicio extends JFrame {
 		// El panel principal debe añadir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
 	}
+ 
 }
 
 
