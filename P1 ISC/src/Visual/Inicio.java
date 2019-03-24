@@ -257,6 +257,7 @@ public class Inicio extends JFrame {
 		        }
 			}
 		});
+		
 		textNombre.setColumns(10);
 		textNombre.setBounds(10, 36, 209, 20);
 		panel_1.add(textNombre);
