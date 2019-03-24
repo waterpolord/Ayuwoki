@@ -224,7 +224,6 @@ public class Inicio extends JFrame {
 		passwordContra.setBounds(348, 40, 191, 20);
 		panel.add(passwordContra);
 		
-	
 		
 	    PanelUser = new JPanel();
 		PanelUser.setBounds(170, 107, 648, 480);
