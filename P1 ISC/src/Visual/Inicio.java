@@ -353,7 +353,7 @@ public class Inicio extends JFrame {
 		panel_4.add(textDescripcionE);
 		
 		JLabel labelCodigoE = new JLabel("Nombre:");
-		labelCodigoE.setBounds(10, 11, 46, 14);
+		labelCodigoE.setBounds(10, 11, 83, 14);
 		panel_4.add(labelCodigoE);
 		
 		JLabel labelCorreoE = new JLabel("Correo:");
