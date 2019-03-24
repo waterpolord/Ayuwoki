@@ -75,6 +75,7 @@ public class Inicio extends JFrame {
 	private JTextField textApellido;
 	private ButtonGroup grupoEstado;
 	private ButtonGroup grupoTipo;
+
 	private JPanel panelUniversitario;
 	private JLabel labelCarrera;
 	private JTextField txtCarrera;
@@ -541,6 +542,7 @@ public class Inicio extends JFrame {
 		btnCancelarUsuario.setBounds(350, 410, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
+
 		// El panel principal debe añadir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
 	}
