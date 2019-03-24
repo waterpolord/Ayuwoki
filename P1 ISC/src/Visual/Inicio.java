@@ -37,6 +37,7 @@ import java.awt.event.KeyEvent;
 
 public class Inicio extends JFrame {
 
+	// Declaraciones de variables
 	private JPanel PanelPrincipal;
 	private JPanel PanelBotones;
 	private JButton BTNiniciarSesion;
@@ -64,7 +65,6 @@ public class Inicio extends JFrame {
 	private JPanel panel_3;
 	private JRadioButton RBEmpleado;
 	private JRadioButton RBDesempleado;
-	private JTextField textDescripcionE;
 	private JTextField textCorreoE;
 	private JPasswordField passwordE;
 	private JTextField TXTNombre;
@@ -73,7 +73,6 @@ public class Inicio extends JFrame {
 	private JTextField textApellido;
 	private ButtonGroup grupoEstado;
 	private ButtonGroup grupoTipo;
-	private JTextField textFieldExpecialidad;
 	private JPanel panelUniversitario;
 	private JLabel labelCarrera;
 	private JTextField txtCarrera;
@@ -81,8 +80,9 @@ public class Inicio extends JFrame {
 	private JLabel labelEspecialidad;
 	private JTextField textFieldEspecialidad;
 	private JPanel panelObrero;
-	private JLabel labelHabilidad;
-	private JComboBox comboBoxHabilidad;
+	private JLabel labelHabilidad; 
+	private  JComboBox<?>  comboBoxHabilidad;
+	
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -145,6 +145,10 @@ public class Inicio extends JFrame {
 		lblNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		Tam = this.getToolkit().getScreenSize();
 		
+		JLabel lblfondo = new JLabel("");
+		lblfondo.setIcon(new ImageIcon("src\\Imgenes\\FondoPortada.jpg"));
+		lblfondo.setBounds(0, 0, (int)Tam.getWidth(), (int)Tam.getHeight());
+		
 		PanelBotones = new JPanel();
 		PanelBotones.setBounds(0, 0, 160, (int)Tam.height);
 		PanelBotones.setBackground(new Color(150, 40, 27, 160));
@@ -183,7 +187,7 @@ public class Inicio extends JFrame {
 		PanelLogin.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 648, 557);
+		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
 		panel.setBackground(new Color(242, 38, 19, 160));
 		PanelLogin.add(panel);
@@ -297,29 +301,52 @@ public class Inicio extends JFrame {
 		textApellido.setBounds(256, 36, 200, 20);
 		panel_1.add(textApellido);
 		
-		JLabel lblfondo = new JLabel("");
-		lblfondo.setBounds(-588, -235, 1366, 768);
-		panel_1.add(lblfondo);
-		lblfondo.setIcon(new ImageIcon("src\\Imgenes\\FondoPortada.jpg"));
-		
 		panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_2.setBounds(82, 249, 466, 47);
+		panel_2.setBounds(82, 261, 466, 47);
 		panel_2.setBackground(new Color(242, 38, 19, 160));
 		PanelUser.add(panel_2);
 		
+	
 		RBUniversitario = new JRadioButton("Universitario");
-		RBUniversitario.setSelected(false);
+		RBUniversitario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RBTec.setSelected(false);
+				RBObrero.setSelected(false);
+				panelTecnico.setVisible(false);
+				panelObrero.setVisible(false);
+				panelUniversitario.setVisible(true);
+		}});
+		
 		RBUniversitario.setBounds(6, 17, 109, 23);
+		RBUniversitario.setSelected(true);
 		panel_2.add(RBUniversitario);
 		
 		RBTec = new JRadioButton("Tecnico");
+		RBTec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RBUniversitario.setSelected(false);
+				RBObrero.setSelected(false);
+				panelUniversitario.setVisible(false);
+				panelObrero.setVisible(false);
+				panelTecnico.setVisible(true);
+		}});
+		
 		RBTec.setSelected(false);
 		RBTec.setBounds(171, 17, 109, 23);
 		panel_2.add(RBTec);
 		
 		RBObrero = new JRadioButton("Obrero");
+		RBObrero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RBUniversitario.setSelected(false);
+				RBTec.setSelected(false);
+				panelUniversitario.setVisible(false);
+				panelTecnico.setVisible(false);
+				panelObrero.setVisible(true);
+		}});
+
 		RBObrero.setSelected(false);
 		RBObrero.setBounds(333, 17, 109, 23);
 		panel_2.add(RBObrero);
@@ -347,45 +374,91 @@ public class Inicio extends JFrame {
 		PanelPrincipal.add(PanelEmpresa);
 		PanelEmpresa.setLayout(null);
 		
+		panelUniversitario = new JPanel();
+		panelUniversitario.setForeground(Color.WHITE);
+		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelUniversitario.setBackground(new Color(242, 38, 19, 160));
+		panelUniversitario.setBounds(82, 306, 466, 81);
+		PanelUser.add(panelUniversitario);
+		
+		labelCarrera = new JLabel("Carrera:");
+		labelCarrera.setBounds(10, 21, 91, 14);
+		panelUniversitario.add(labelCarrera);
+		panelUniversitario.setLayout(null);
+		
+		txtCarrera = new JTextField();
+		txtCarrera.setBounds(78, 34, 251, 25);
+		panelUniversitario.add(txtCarrera);
+		txtCarrera.setColumns(10);
+
+
+		
+		panelTecnico = new JPanel();
+		panelTecnico.setVisible(false);
+		panelTecnico.setLayout(null);
+		panelTecnico.setForeground(Color.WHITE);
+		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelTecnico.setBackground(new Color(242, 38, 19, 160));
+		panelTecnico.setBounds(82, 306, 466, 81);
+		PanelUser.add(panelTecnico);
+		
+		labelEspecialidad = new JLabel("Especialidad:");
+		labelEspecialidad.setBounds(10, 21, 91, 14);
+		panelTecnico.add(labelEspecialidad);
+		
+		textFieldEspecialidad = new JTextField();
+		textFieldEspecialidad.setColumns(10);
+		textFieldEspecialidad.setBounds(78, 34, 251, 25);
+		panelTecnico.add(textFieldEspecialidad);
+		
+		panelObrero = new JPanel();
+		panelObrero.setVisible(false);
+		panelObrero.setLayout(null);
+		panelObrero.setForeground(Color.WHITE);
+		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelObrero.setBackground(new Color(242, 38, 19, 160));
+		panelObrero.setBounds(82, 306, 466, 81);
+		PanelUser.add(panelObrero);
+		
+		labelHabilidad = new JLabel("Habilidades:");
+		labelHabilidad.setBounds(10, 21, 91, 14);
+		panelObrero.add(labelHabilidad);
+		
+		comboBoxHabilidad = new JComboBox();
+		comboBoxHabilidad.setBounds(78, 34, 251, 25);
+		panelObrero.add(comboBoxHabilidad);
+	
+		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_4.setBounds(83, 11, 466, 397);
+		panel_4.setBounds(83, 11, 466, 343);
 		panel_4.setBackground(new Color(242, 38, 19, 160));
 		PanelEmpresa.add(panel_4);
 		
-		JLabel labelDescripcion = new JLabel("Descripcion:");
-		labelDescripcion.setBounds(10, 67, 97, 14);
-		panel_4.add(labelDescripcion);
-		
-		textDescripcionE = new JTextField();
-		textDescripcionE.setColumns(10);
-		textDescripcionE.setBounds(70, 92, 353, 20);
-		panel_4.add(textDescripcionE);
-		
 		JLabel labelCodigoE = new JLabel("Nombre:");
-		labelCodigoE.setBounds(10, 11, 46, 14);
+		labelCodigoE.setBounds(10, 11, 83, 14);
 		panel_4.add(labelCodigoE);
 		
 		JLabel labelCorreoE = new JLabel("Correo:");
-		labelCorreoE.setBounds(10, 175, 83, 14);
+		labelCorreoE.setBounds(10, 138, 83, 14);
 		panel_4.add(labelCorreoE);
 		
 		textCorreoE = new JTextField();
 		textCorreoE.setColumns(10);
-		textCorreoE.setBounds(70, 200, 353, 20);
+		textCorreoE.setBounds(70, 150, 353, 20);
 		panel_4.add(textCorreoE);
 		
 		JLabel labelConE = new JLabel("Contrase\u00F1a:");
-		labelConE.setBounds(10, 230, 125, 14);
+		labelConE.setBounds(10, 181, 125, 14);
 		panel_4.add(labelConE);
 		
 		passwordE = new JPasswordField();
-		passwordE.setBounds(70, 255, 353, 20);
+		passwordE.setBounds(70, 206, 353, 20);
 		panel_4.add(passwordE);
 		
 		JLabel labelEncargado = new JLabel("Encargado:");
-		labelEncargado.setBounds(10, 286, 186, 14);
+		labelEncargado.setBounds(10, 237, 186, 14);
 		panel_4.add(labelEncargado);
 		
 		TXTNombre = new JTextField();
@@ -394,7 +467,7 @@ public class Inicio extends JFrame {
 		panel_4.add(TXTNombre);
 		
 		JLabel labelTelefono = new JLabel("Telefono:");
-		labelTelefono.setBounds(10, 123, 83, 14);
+		labelTelefono.setBounds(10, 77, 83, 14);
 		panel_4.add(labelTelefono);
 		MaskFormatter Numero = null;
 		
@@ -415,7 +488,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		textTelefono.setColumns(10);
-		textTelefono.setBounds(70, 144, 353, 20);
+		textTelefono.setBounds(70, 91, 353, 20);
 		panel_4.add(textTelefono);
 		
 		textEncargado = new JTextField();
@@ -429,18 +502,26 @@ public class Inicio extends JFrame {
 			}
 		});
 		textEncargado.setColumns(10);
-		textEncargado.setBounds(70, 311, 353, 20);
+		textEncargado.setBounds(70, 254, 353, 20);
 		panel_4.add(textEncargado);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setBounds(10, 342, 186, 14);
+		lblTipo.setBounds(10, 291, 186, 14);
 		panel_4.add(lblTipo);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Salud", "Educacion", "Comercio", "Software", "Turismo", "Industrial"}));
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(70, 353, 353, 20);
+		comboBox.setBounds(70, 291, 353, 20);
 		panel_4.add(comboBox);
+		
+		JButton btnCrearEmpresa = new JButton("Crear");
+		btnCrearEmpresa.setBounds(143, 365, 89, 23);
+		PanelEmpresa.add(btnCrearEmpresa);
+		
+		JButton btnCancelarEmpresa = new JButton("Cancelar");
+		btnCancelarEmpresa.setBounds(372, 365, 89, 23);
+		PanelEmpresa.add(btnCancelarEmpresa);
 		
 		grupoEstado = new ButtonGroup();
 		grupoTipo = new ButtonGroup();
@@ -451,57 +532,17 @@ public class Inicio extends JFrame {
 		grupoTipo.add(RBTec);
 		grupoTipo.add(RBUniversitario);
 		
-		panelUniversitario = new JPanel();
-		panelUniversitario.setLayout(null);
-		panelUniversitario.setForeground(Color.WHITE);
-		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelUniversitario.setBackground(new Color(242, 38, 19, 160));
-		panelUniversitario.setBounds(82, 297, 466, 81);
-		PanelUser.add(panelUniversitario);
+		JButton btnCrearUser = new JButton("Crear");
+		btnCrearUser.setBounds(169, 410, 89, 23);
+		PanelUser.add(btnCrearUser);
 		
-		labelCarrera = new JLabel("Carrera:");
-		labelCarrera.setBounds(10, 21, 91, 14);
-		panelUniversitario.add(labelCarrera);
+		JButton btnCancelarUsuario = new JButton("Cancelar");
+		btnCancelarUsuario.setBounds(350, 410, 89, 23);
+		PanelUser.add(btnCancelarUsuario);
 		
-		txtCarrera = new JTextField();
-		txtCarrera.setBounds(78, 34, 251, 25);
-		panelUniversitario.add(txtCarrera);
-		txtCarrera.setColumns(10);
-		
-		panelTecnico = new JPanel();
-		panelTecnico.setLayout(null);
-		panelTecnico.setForeground(Color.WHITE);
-		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelTecnico.setBackground(new Color(242, 38, 19, 160));
-		panelTecnico.setBounds(82, 297, 466, 81);
-		panelUniversitario.add(panelTecnico);
-		
-		labelEspecialidad = new JLabel("Especialidad:");
-		labelEspecialidad.setBounds(10, 21, 91, 14);
-		panelTecnico.add(labelEspecialidad);
-		
-		textFieldEspecialidad = new JTextField();
-		textFieldEspecialidad.setColumns(10);
-		textFieldEspecialidad.setBounds(78, 34, 251, 25);
-		panelTecnico.add(textFieldEspecialidad);
-		
-		panelObrero = new JPanel();
-		panelObrero.setLayout(null);
-		panelObrero.setForeground(Color.WHITE);
-		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelObrero.setBackground(new Color(242, 38, 19, 160));
-		panelObrero.setBounds(82, 297, 466, 81);
-		panelTecnico.add(panelObrero);
-		
-		labelHabilidad = new JLabel("Habilidades:");
-		labelHabilidad.setBounds(10, 21, 91, 14);
-		panelObrero.add(labelHabilidad);
-		
-		comboBoxHabilidad = new JComboBox();
-		comboBoxHabilidad.setBounds(78, 34, 251, 25);
-		panelObrero.add(comboBoxHabilidad);
-		
-	
-	
+		// El panel principal debe añadir el label de fondo de ultimo siempre
+		PanelPrincipal.add(lblfondo);
 	}
 }
+
+
