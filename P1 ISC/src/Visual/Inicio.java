@@ -75,7 +75,9 @@ public class Inicio extends JFrame {
 	private JTextField textApellido;
 	private ButtonGroup grupoEstado;
 	private ButtonGroup grupoTipo;
-
+	private JButton btnMasCarreras;
+	private JButton btnMasHabilidades;
+	private JButton btnMasEspecialidades;
 	private JPanel panelUniversitario;
 	private JLabel labelCarrera;
 	private JTextField txtCarrera;
@@ -195,7 +197,7 @@ public class Inicio extends JFrame {
 		panel.setBackground(new Color(242, 38, 19, 160));
 		PanelLogin.add(panel);
 		
-		JLabel labelUsuario = new JLabel("Usuario:");
+		JLabel labelUsuario = new JLabel("Usuario/Correo:");
 		labelUsuario.setBounds(20, 21, 147, 14);
 		panel.add(labelUsuario);
 		
@@ -381,7 +383,7 @@ public class Inicio extends JFrame {
 		panelUniversitario = new JPanel();
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelUniversitario.setBackground(new Color(242, 38, 19, 160));
+		panelUniversitario.setBackground(new Color(242, 38, 19,200));
 		panelUniversitario.setBounds(82, 306, 466, 81);
 		PanelUser.add(panelUniversitario);
 		
@@ -394,15 +396,17 @@ public class Inicio extends JFrame {
 		txtCarrera.setBounds(78, 34, 251, 25);
 		panelUniversitario.add(txtCarrera);
 		txtCarrera.setColumns(10);
-
-
+		
+		btnMasCarreras = new JButton("Agregar");
+		btnMasCarreras.setBounds(350,34,100,25);
+		panelUniversitario.add(btnMasCarreras);
 		
 		panelTecnico = new JPanel();
 		panelTecnico.setVisible(false);
 		panelTecnico.setLayout(null);
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelTecnico.setBackground(new Color(242, 38, 19, 160));
+		panelTecnico.setBackground(new Color(242, 38, 19, 200));
 		panelTecnico.setBounds(82, 306, 466, 81);
 		PanelUser.add(panelTecnico);
 		
@@ -415,12 +419,16 @@ public class Inicio extends JFrame {
 		textFieldEspecialidad.setBounds(78, 34, 251, 25);
 		panelTecnico.add(textFieldEspecialidad);
 		
+		btnMasEspecialidades = new JButton("Agregar");
+		btnMasEspecialidades.setBounds(350,34,100,25);
+		panelTecnico.add(btnMasEspecialidades);
+		
 		panelObrero = new JPanel();
 		panelObrero.setVisible(false);
 		panelObrero.setLayout(null);
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelObrero.setBackground(new Color(242, 38, 19, 160));
+		panelObrero.setBackground(new Color(242, 38, 19, 200));
 		panelObrero.setBounds(82, 306, 466, 81);
 		PanelUser.add(panelObrero);
 		
@@ -431,6 +439,10 @@ public class Inicio extends JFrame {
 		comboBoxHabilidad = new JComboBox();
 		comboBoxHabilidad.setBounds(78, 34, 251, 25);
 		panelObrero.add(comboBoxHabilidad);
+		
+		btnMasHabilidades = new JButton("Agregar");
+		btnMasHabilidades.setBounds(350,34,100,25);
+		panelObrero.add(btnMasHabilidades);
 	
 		
 		JPanel panel_4 = new JPanel();

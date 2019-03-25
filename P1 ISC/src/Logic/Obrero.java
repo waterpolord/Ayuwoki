@@ -6,19 +6,19 @@ public class Obrero extends Persona {
 	
 	private ArrayList<String> habilidades;
 	
-	public Obrero(String nombre, String apellido, String correo, String clave, Boolean estado,
-			ArrayList<String> habilidades) {
+	public Obrero(String nombre, String apellido, String correo, String clave, Boolean estado, String hab) {
 		super(nombre, apellido, correo, clave, estado);
-		this.habilidades = habilidades;
+		habilidades.add(hab);
 	}
 
 	public ArrayList<String> getHabilidades() {
 		return habilidades;
 	}
 
-	public void setHabilidades(ArrayList<String> habilidades) {
-		this.habilidades = habilidades;
+	public void setHabilidades(String hab) {
+		habilidades.add(hab);
 	}
+	
 
 
 

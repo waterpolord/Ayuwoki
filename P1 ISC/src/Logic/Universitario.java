@@ -1,19 +1,21 @@
 package Logic;
 
+import java.util.ArrayList;
+
 public class Universitario extends Persona {
-	private String carrera;
+	private ArrayList<String> carrera;
 
-	public Universitario(String nombre, String apellido, String correo, String clave, Boolean estado, String carrera) {
+	public Universitario(String nombre, String apellido, String correo, String clave, Boolean estado, String car) {
 		super(nombre, apellido, correo, clave, estado);
-		this.carrera = carrera;
+		carrera.add(car);
 	}
 
-	public String getCarrera() {
-		return carrera;
+	public String getCarrera(int ind) {
+		return carrera.get(ind);
 	}
 
-	public void setCarrera(String carrera) {
-		this.carrera = carrera;
+	public void setCarrera(String car) {
+		carrera.add(car);
 	}
 
 	
