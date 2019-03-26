@@ -156,7 +156,7 @@ public class Inicio extends JFrame {
 		
 		PanelBotones = new JPanel();
 		PanelBotones.setBounds(0, 0, 160, (int)Tam.height);
-		PanelBotones.setBackground(new Color(150, 40, 27, 160));
+		PanelBotones.setBackground(new Color(228, 241, 254));
 		
 		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null);
@@ -194,14 +194,16 @@ public class Inicio extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
-		panel.setBackground(new Color(242, 38, 19, 160));
+		panel.setBackground(new Color(34, 49, 63));
 		PanelLogin.add(panel);
 		
 		JLabel labelUsuario = new JLabel("Usuario/Correo:");
+		labelUsuario.setForeground(Color.WHITE);
 		labelUsuario.setBounds(20, 21, 147, 14);
 		panel.add(labelUsuario);
 		
 		JLabel labelContraseña = new JLabel("Contrase\u00F1a:");
+		labelContraseña.setForeground(Color.WHITE);
 		labelContraseña.setBounds(274, 21, 105, 14);
 		panel.add(labelContraseña);
 		
@@ -238,14 +240,16 @@ public class Inicio extends JFrame {
 		
 		
 		panel_1 = new JPanel();
+		panel_1.setForeground(Color.WHITE);
 		
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_1.setBounds(82, 11, 466, 193);
-		panel_1.setBackground(new Color(242, 38, 19, 160));
+		panel_1.setBackground(new Color(34, 49, 63));
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
 		
 		labelNombre = new JLabel("Nombre:");
+		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setBounds(10, 11, 97, 14);
 		panel_1.add(labelNombre);
 		
@@ -265,10 +269,12 @@ public class Inicio extends JFrame {
 		panel_1.add(textNombre);
 		
 		labelApellido = new JLabel("Apellido:");
+		labelApellido.setForeground(Color.WHITE);
 		labelApellido.setBounds(256, 11, 83, 14);
 		panel_1.add(labelApellido);
 		
 		labelCorreo = new JLabel("Correo:");
+		labelCorreo.setForeground(Color.WHITE);
 		labelCorreo.setBounds(10, 67, 83, 14);
 		panel_1.add(labelCorreo);
 		
@@ -278,6 +284,7 @@ public class Inicio extends JFrame {
 		panel_1.add(txtCorreo);
 		
 		labelContra = new JLabel("Contrase\u00F1a:");
+		labelContra.setForeground(Color.WHITE);
 		labelContra.setBounds(10, 123, 125, 14);
 		panel_1.add(labelContra);
 		
@@ -286,6 +293,7 @@ public class Inicio extends JFrame {
 		panel_1.add(passwordContraseña);
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
+		labelConfContra.setForeground(Color.WHITE);
 		labelConfContra.setBounds(256, 123, 186, 14);
 		panel_1.add(labelConfContra);
 		
@@ -308,10 +316,11 @@ public class Inicio extends JFrame {
 		panel_1.add(textApellido);
 		
 		panel_2 = new JPanel();
+		panel_2.setForeground(Color.WHITE);
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_2.setBounds(82, 261, 466, 47);
-		panel_2.setBackground(new Color(242, 38, 19, 160));
+		panel_2.setBackground(new Color(1, 50, 67));
 		PanelUser.add(panel_2);
 		
 	
@@ -358,10 +367,11 @@ public class Inicio extends JFrame {
 		panel_2.add(RBObrero);
 		
 		panel_3 = new JPanel();
+		panel_3.setForeground(Color.WHITE);
 		panel_3.setLayout(null);
-		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Estado", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Estado", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_3.setBounds(82, 203, 466, 47);
-		panel_3.setBackground(new Color(242, 38, 19, 160));
+		panel_3.setBackground(new Color(34, 49, 63));
 		PanelUser.add(panel_3);
 		
 		RBEmpleado = new JRadioButton("Empleado");
@@ -382,12 +392,13 @@ public class Inicio extends JFrame {
 		
 		panelUniversitario = new JPanel();
 		panelUniversitario.setForeground(Color.WHITE);
-		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelUniversitario.setBackground(new Color(242, 38, 19,200));
+		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
+		panelUniversitario.setBackground(new Color(34, 49, 63));
 		panelUniversitario.setBounds(82, 306, 466, 81);
 		PanelUser.add(panelUniversitario);
 		
 		labelCarrera = new JLabel("Carrera:");
+		labelCarrera.setForeground(Color.WHITE);
 		labelCarrera.setBounds(10, 21, 91, 14);
 		panelUniversitario.add(labelCarrera);
 		panelUniversitario.setLayout(null);
@@ -405,12 +416,13 @@ public class Inicio extends JFrame {
 		panelTecnico.setVisible(false);
 		panelTecnico.setLayout(null);
 		panelTecnico.setForeground(Color.WHITE);
-		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelTecnico.setBackground(new Color(242, 38, 19, 200));
+		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
+		panelTecnico.setBackground(new Color(34, 49, 63));
 		panelTecnico.setBounds(82, 306, 466, 81);
 		PanelUser.add(panelTecnico);
 		
 		labelEspecialidad = new JLabel("Especialidad:");
+		labelEspecialidad.setForeground(Color.WHITE);
 		labelEspecialidad.setBounds(10, 21, 91, 14);
 		panelTecnico.add(labelEspecialidad);
 		
@@ -427,12 +439,13 @@ public class Inicio extends JFrame {
 		panelObrero.setVisible(false);
 		panelObrero.setLayout(null);
 		panelObrero.setForeground(Color.WHITE);
-		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelObrero.setBackground(new Color(242, 38, 19, 200));
+		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
+		panelObrero.setBackground(new Color(34, 49, 63));
 		panelObrero.setBounds(82, 306, 466, 81);
 		PanelUser.add(panelObrero);
 		
 		labelHabilidad = new JLabel("Habilidades:");
+		labelHabilidad.setForeground(Color.WHITE);
 		labelHabilidad.setBounds(10, 21, 91, 14);
 		panelObrero.add(labelHabilidad);
 		
@@ -447,16 +460,18 @@ public class Inicio extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
-		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_4.setBounds(83, 11, 466, 343);
-		panel_4.setBackground(new Color(242, 38, 19, 160));
+		panel_4.setBackground(new Color(34, 49, 63));
 		PanelEmpresa.add(panel_4);
 		
 		JLabel labelCodigoE = new JLabel("Nombre:");
+		labelCodigoE.setForeground(Color.WHITE);
 		labelCodigoE.setBounds(10, 11, 83, 14);
 		panel_4.add(labelCodigoE);
 		
 		JLabel labelCorreoE = new JLabel("Correo:");
+		labelCorreoE.setForeground(Color.WHITE);
 		labelCorreoE.setBounds(10, 138, 83, 14);
 		panel_4.add(labelCorreoE);
 		
@@ -466,6 +481,7 @@ public class Inicio extends JFrame {
 		panel_4.add(textCorreoE);
 		
 		JLabel labelConE = new JLabel("Contrase\u00F1a:");
+		labelConE.setForeground(Color.WHITE);
 		labelConE.setBounds(10, 181, 125, 14);
 		panel_4.add(labelConE);
 		
@@ -474,6 +490,7 @@ public class Inicio extends JFrame {
 		panel_4.add(passwordE);
 		
 		JLabel labelEncargado = new JLabel("Encargado:");
+		labelEncargado.setForeground(Color.WHITE);
 		labelEncargado.setBounds(10, 237, 186, 14);
 		panel_4.add(labelEncargado);
 		
@@ -483,6 +500,7 @@ public class Inicio extends JFrame {
 		panel_4.add(TXTNombre);
 		
 		JLabel labelTelefono = new JLabel("Telefono:");
+		labelTelefono.setForeground(Color.WHITE);
 		labelTelefono.setBounds(10, 77, 83, 14);
 		panel_4.add(labelTelefono);
 		MaskFormatter Numero = null;
@@ -522,6 +540,7 @@ public class Inicio extends JFrame {
 		panel_4.add(textEncargado);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setForeground(Color.WHITE);
 		lblTipo.setBounds(10, 291, 186, 14);
 		panel_4.add(lblTipo);
 		

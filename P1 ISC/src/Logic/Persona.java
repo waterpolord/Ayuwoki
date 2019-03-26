@@ -7,7 +7,6 @@ public abstract class Persona {
 	protected String correo;
 	protected String clave;
 	protected Boolean estado;
-	//private Curriculum curriculum;
 	
 	
 	public Persona(String nombre, String apellido, String correo, String clave, Boolean estado) {
