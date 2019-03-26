@@ -64,9 +64,6 @@ public class Inicio extends JFrame {
 	private JRadioButton RBUniversitario;
 	private JRadioButton RBTec;
 	private JRadioButton RBObrero;
-	private JPanel panel_3;
-	private JRadioButton RBEmpleado;
-	private JRadioButton RBDesempleado;
 	private JTextField textCorreoE;
 	private JPasswordField passwordE;
 	private JTextField TXTNombre;
@@ -232,7 +229,7 @@ public class Inicio extends JFrame {
 		
 		
 	    PanelUser = new JPanel();
-		PanelUser.setBounds(170, 107, 648, 480);
+		PanelUser.setBounds(170, 107, 648, 398);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelUser);
@@ -319,7 +316,7 @@ public class Inicio extends JFrame {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_2.setBounds(82, 261, 466, 47);
+		panel_2.setBounds(82, 204, 466, 47);
 		panel_2.setBackground(new Color(1, 50, 67));
 		PanelUser.add(panel_2);
 		
@@ -365,25 +362,6 @@ public class Inicio extends JFrame {
 		RBObrero.setSelected(false);
 		RBObrero.setBounds(333, 17, 109, 23);
 		panel_2.add(RBObrero);
-		
-		panel_3 = new JPanel();
-		panel_3.setForeground(Color.WHITE);
-		panel_3.setLayout(null);
-		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Estado", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_3.setBounds(82, 203, 466, 47);
-		panel_3.setBackground(new Color(34, 49, 63));
-		PanelUser.add(panel_3);
-		
-		RBEmpleado = new JRadioButton("Empleado");
-		RBEmpleado.setSelected(false);
-		RBEmpleado.setBounds(34, 17, 109, 23);
-		
-		panel_3.add(RBEmpleado);
-		
-		RBDesempleado = new JRadioButton("Desempleado");
-		RBDesempleado.setSelected(false);
-		RBDesempleado.setBounds(333, 17, 109, 23);
-		panel_3.add(RBDesempleado);
 		PanelEmpresa = new JPanel();
 		PanelEmpresa.setBounds(170, 168, 648, 419);
 		PanelEmpresa.setBackground(new Color(108, 122, 137, 160));
@@ -394,7 +372,7 @@ public class Inicio extends JFrame {
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelUniversitario.setBackground(new Color(34, 49, 63));
-		panelUniversitario.setBounds(82, 306, 466, 81);
+		panelUniversitario.setBounds(82, 248, 466, 81);
 		PanelUser.add(panelUniversitario);
 		
 		labelCarrera = new JLabel("Carrera:");
@@ -418,7 +396,7 @@ public class Inicio extends JFrame {
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelTecnico.setBackground(new Color(34, 49, 63));
-		panelTecnico.setBounds(82, 306, 466, 81);
+		panelTecnico.setBounds(82, 248, 466, 81);
 		PanelUser.add(panelTecnico);
 		
 		labelEspecialidad = new JLabel("Especialidad:");
@@ -441,7 +419,7 @@ public class Inicio extends JFrame {
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelObrero.setBackground(new Color(34, 49, 63));
-		panelObrero.setBounds(82, 306, 466, 81);
+		panelObrero.setBounds(82, 248, 466, 81);
 		PanelUser.add(panelObrero);
 		
 		labelHabilidad = new JLabel("Habilidades:");
@@ -560,19 +538,16 @@ public class Inicio extends JFrame {
 		
 		grupoEstado = new ButtonGroup();
 		grupoTipo = new ButtonGroup();
-		
-		grupoEstado.add(RBDesempleado);
-		grupoEstado.add(RBEmpleado);
 		grupoTipo.add(RBObrero);
 		grupoTipo.add(RBTec);
 		grupoTipo.add(RBUniversitario);
 		
 		JButton btnCrearUser = new JButton("Crear");
-		btnCrearUser.setBounds(169, 410, 89, 23);
+		btnCrearUser.setBounds(165, 357, 89, 23);
 		PanelUser.add(btnCrearUser);
 		
 		JButton btnCancelarUsuario = new JButton("Cancelar");
-		btnCancelarUsuario.setBounds(350, 410, 89, 23);
+		btnCancelarUsuario.setBounds(345, 357, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
 
