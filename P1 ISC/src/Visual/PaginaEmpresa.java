@@ -27,6 +27,7 @@ public class PaginaEmpresa extends JFrame {
 		});
 	}
 
+	
 	/**
 	 * Create the frame.
 	 */
