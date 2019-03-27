@@ -87,7 +87,7 @@ public class Inicio extends JFrame {
 	private JLabel labelHabilidad; 
 	private  JComboBox<?>  comboBoxHabilidad;
 	private JLabel LBver;
-	private JLabel LBNo;
+	private JLabel LBOcultar;
 	
 	
 
@@ -269,31 +269,33 @@ public class Inicio extends JFrame {
 			}
 		});
 		
-		LBNo = new JLabel("No");
-		LBNo.addMouseListener(new MouseAdapter() {
+		LBOcultar = new JLabel("Ocultar");
+		LBOcultar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		LBOcultar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				LBNo.setVisible(false);
+				LBOcultar.setVisible(false);
 				LBver.setVisible(true);
 				passwordContraseña.setEchoChar('●');
 			}
 		});
-		LBNo.setForeground(Color.RED);
-		LBNo.setBounds(195, 151, 33, 14);
-		LBNo.setBackground(Color.blue);
-		LBNo.setVisible(false);
-		panel_1.add(LBNo);
+		LBOcultar.setForeground(Color.CYAN);
+		LBOcultar.setBounds(195, 151, 50, 14);
+		LBOcultar.setBackground(Color.blue);
+		LBOcultar.setVisible(false);
+		panel_1.add(LBOcultar);
 		
 		LBver = new JLabel("Ver");
+		LBver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
 		LBver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LBver.setVisible(false);
-				LBNo.setVisible(true);
+				LBOcultar.setVisible(true);
 				passwordContraseña.setEchoChar((char)0);
 			}
 		});
-		LBver.setForeground(Color.GREEN);
+		LBver.setForeground(Color.CYAN);
 		LBver.setVerticalAlignment(SwingConstants.BOTTOM);
 		LBver.setBounds(195, 151, 33, 14);
 		panel_1.add(LBver);
@@ -324,7 +326,7 @@ public class Inicio extends JFrame {
 		panel_1.add(labelContra);
 		
 		passwordContraseña = new JPasswordField();
-		passwordContraseña.setBounds(10, 148, 186, 20);
+		passwordContraseña.setBounds(10, 148, 175, 20);
 		panel_1.add(passwordContraseña);
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
@@ -464,6 +466,7 @@ public class Inicio extends JFrame {
 		labelHabilidad.setForeground(Color.WHITE);
 		labelHabilidad.setBounds(10, 21, 91, 14);
 		panelObrero.add(labelHabilidad);
+		
 		
 		comboBoxHabilidad = new JComboBox();
 		comboBoxHabilidad.setBounds(78, 34, 251, 25);
