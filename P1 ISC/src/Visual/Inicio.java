@@ -86,9 +86,9 @@ public class Inicio extends JFrame {
 	private JPanel panelObrero;
 	private JLabel labelHabilidad; 
 	private  JComboBox<?>  comboBoxHabilidad;
-	private Boolean claveuser = false;
 	private JLabel LBver;
 	private JLabel LBNo;
+	
 	
 
  public Inicio() {
@@ -333,7 +333,7 @@ public class Inicio extends JFrame {
 		panel_1.add(labelConfContra);
 		
 		passwordConfContra = new JPasswordField();
-		passwordConfContra.setBounds(255, 148, 198, 20);
+		passwordConfContra.setBounds(255, 148, 186, 20);
 		panel_1.add(passwordConfContra);
 		
 		textApellido = new JTextField();
