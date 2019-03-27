@@ -9,7 +9,7 @@ public class Empresa {
 	private String correo;
 	private String clave;
 	private String encargado;
-	private ArrayList<String> tipo;
+	private String tipo;
 	
 	public Empresa(String nombre, String telefono, String correo, String clave, String encargado,
 			String tipo) {
@@ -18,7 +18,7 @@ public class Empresa {
 		this.correo = correo;
 		this.clave = clave;
 		this.encargado = encargado;
-		this.tipo.add(tipo);
+		tipo = tipo;
 	}
 	public String getNombre() {
 		return Nombre;
@@ -56,11 +56,8 @@ public class Empresa {
 	public void setEncargado(String encargado) {
 		this.encargado = encargado;
 	}
-	public ArrayList<String> getTipo() {
+	public String getTipo() {
 		return tipo;
-	}
-	public void setTipo(ArrayList<String> tipo) {
-		this.tipo = tipo;
 	}
 	
 	

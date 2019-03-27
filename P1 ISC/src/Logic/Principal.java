@@ -9,16 +9,37 @@ public class Principal {
 	private ArrayList<Empresa> TEmpresas;
 	private ArrayList<Empleo> TEmpleos;
 	private ArrayList<Vacante> TVacantes;
+	private int cantPersonas,cantEmpresas;
 	private static Principal principal;
+	
 
 	public static void main(String args[]) {
+		
 		new Inicio().setVisible(true); 
 	}
-	public Principal getInstance() {
+	
+	public Principal() {
+		Tpersonas = new ArrayList();
+		 TEmpresas = new ArrayList();
+		 TEmpleos = new ArrayList();
+		TVacantes = new ArrayList();
+		cantEmpresas = 0;
+		cantPersonas = 0;
+	}
+	
+	public static Principal getInstance() {
 		if(principal == null) {
 			principal = new Principal();
 		}
 		return principal;
+	}
+	
+	public int getPerson() {
+		return cantPersonas;
+	}
+	
+	public int getEmpresas() {
+		return cantEmpresas;
 	}
 	
 	public ArrayList<Persona> getTpersonas() {
@@ -26,12 +47,14 @@ public class Principal {
 	}
 	public void setTpersonas(Persona nueva) {
 		Tpersonas.add(nueva);
+		cantPersonas++;
 	}
 	public ArrayList<Empresa> getTEmpresas() {
 		return TEmpresas;
 	}
 	public void setTEmpresas(Empresa empresa) {
 		TEmpresas.add(empresa);
+		cantEmpresas++;
 	}
 	public ArrayList<Empleo> getTEmpleos() {
 		return TEmpleos;
@@ -101,6 +124,9 @@ public class Principal {
 		}
 		return lista;
 	}
+	
+
+	
 	
 	
 

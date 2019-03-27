@@ -5,6 +5,7 @@ package Visual;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import Logic.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -71,21 +73,17 @@ public class Inicio extends JFrame {
 	private JTextField TXTNombre;
 	private JTextField textTelefono;
 	private JTextField textEncargado;
-	private JTextField textApellido;
+	private JTextField txtApellido;
 	private ButtonGroup grupoEstado;
 	private ButtonGroup grupoTipo;
-	private JButton btnMasCarreras;
 	private JButton btnMasHabilidades;
-	private JButton btnMasEspecialidades;
 	private JPanel panelUniversitario;
 	private JLabel labelCarrera;
-	private JTextField txtCarrera;
 	private JPanel panelTecnico;
 	private JLabel labelEspecialidad;
-	private JTextField textFieldEspecialidad;
 	private JPanel panelObrero;
 	private JLabel labelHabilidad; 
-	private  JComboBox<?>  comboBoxHabilidad;
+	private  JComboBox<?>  CBXHabilidad;
 	private JLabel LBver;
 	private JLabel LBOcultar;
 	private JLabel LBempresaNover;
@@ -374,8 +372,8 @@ public class Inicio extends JFrame {
 		txtpassconfirm.setBounds(255, 148, 186, 20);
 		panel_1.add(txtpassconfirm);
 		
-		textApellido = new JTextField();
-		textApellido.addKeyListener(new KeyAdapter() {
+		txtApellido = new JTextField();
+		txtApellido.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent evt) {
 				char Letra = evt.getKeyChar();
@@ -384,9 +382,9 @@ public class Inicio extends JFrame {
 		        }
 			}
 		});
-		textApellido.setColumns(10);
-		textApellido.setBounds(256, 36, 200, 20);
-		panel_1.add(textApellido);
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(256, 36, 200, 20);
+		panel_1.add(txtApellido);
 		
 		panel_2 = new JPanel();
 		panel_2.setForeground(Color.WHITE);
@@ -457,14 +455,10 @@ public class Inicio extends JFrame {
 		panelUniversitario.add(labelCarrera);
 		panelUniversitario.setLayout(null);
 		
-		txtCarrera = new JTextField();
-		txtCarrera.setBounds(78, 34, 251, 25);
-		panelUniversitario.add(txtCarrera);
-		txtCarrera.setColumns(10);
-		
-		btnMasCarreras = new JButton("Agregar");
-		btnMasCarreras.setBounds(350,34,100,25);
-		panelUniversitario.add(btnMasCarreras);
+		JComboBox CBXCarreras = new JComboBox();
+		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administración", "Derecho", "Economía", "Ingeniería", "Medicina", "Mercadeo"}));
+		CBXCarreras.setBounds(78, 34, 251, 25);
+		panelUniversitario.add(CBXCarreras);
 		
 		panelTecnico = new JPanel();
 		panelTecnico.setVisible(false);
@@ -480,14 +474,9 @@ public class Inicio extends JFrame {
 		labelEspecialidad.setBounds(10, 21, 91, 14);
 		panelTecnico.add(labelEspecialidad);
 		
-		textFieldEspecialidad = new JTextField();
-		textFieldEspecialidad.setColumns(10);
-		textFieldEspecialidad.setBounds(78, 34, 251, 25);
-		panelTecnico.add(textFieldEspecialidad);
-		
-		btnMasEspecialidades = new JButton("Agregar");
-		btnMasEspecialidades.setBounds(350,34,100,25);
-		panelTecnico.add(btnMasEspecialidades);
+		JComboBox CBXEspecialidad = new JComboBox();
+		CBXEspecialidad.setBounds(78, 34, 251, 25);
+		panelTecnico.add(CBXEspecialidad);
 		
 		panelObrero = new JPanel();
 		panelObrero.setVisible(false);
@@ -504,11 +493,51 @@ public class Inicio extends JFrame {
 		panelObrero.add(labelHabilidad);
 		
 		
-		comboBoxHabilidad = new JComboBox();
-		comboBoxHabilidad.setBounds(78, 34, 251, 25);
-		panelObrero.add(comboBoxHabilidad);
+		CBXHabilidad = new JComboBox();
+		CBXHabilidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "prueba 1"}));
+		CBXHabilidad.setBounds(78, 34, 251, 25);
+		panelObrero.add(CBXHabilidad);
 		
 		btnMasHabilidades = new JButton("Agregar");
+		btnMasHabilidades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+					Boolean esta = false;
+					String pass = new String(txtpassconfirm.getPassword()),
+							passC = new String(passwordContraseña.getPassword());
+					if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
+							&& txtApellido.getText().length() > 2  ) {
+						if(CBXHabilidad.getSelectedIndex() > 0) {
+							if(Principal.getInstance().getPerson() > 0) {
+								esta = Principal.getInstance().existeUser(txtCorreo.getText());
+							}
+							if(esta == true) {
+								Persona aux = Principal.getInstance().buscarPersonas(txtCorreo.getText());
+								if( !(((Obrero) aux).HabilidadExiste(CBXHabilidad.getSelectedItem().toString()))) {
+									((Obrero) aux).setHabilidades(CBXHabilidad.getSelectedItem().toString());
+									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito ","Agregado", 1);
+									
+								}
+								else {
+									JOptionPane.showMessageDialog(null,"Esta habilidad ya la seleccionaste ","Advertencia", 0);
+								}
+							}
+							else {
+								Obrero nuevo = new Obrero(textNombre.getText(),txtApellido.getText(), 
+										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
+								Principal.getInstance().setTpersonas(nuevo);
+								JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito ","Agregado", 1);
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null,"Selecciona una Habilidad","Advertencia", 0);
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos","Advertencia", 0);
+					}
+			}
+		});
 		btnMasHabilidades.setBounds(350,34,100,25);
 		panelObrero.add(btnMasHabilidades);
 	
@@ -649,6 +678,41 @@ public class Inicio extends JFrame {
 		grupoTipo.add(RBUniversitario);
 		
 		JButton btnCrearUser = new JButton("Crear");
+		btnCrearUser.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String pass = new String(txtpassconfirm.getPassword()),
+						passC = new String(passwordContraseña.getPassword());
+				Boolean esta = false;
+				if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
+						&& txtApellido.getText().length() > 2 && pass == passC
+						&& CBXCarreras.getSelectedIndex() > 0 || CBXEspecialidad.getSelectedIndex() > 0 || 
+								CBXHabilidad.getSelectedIndex() > 0 ) {
+						if(Principal.getInstance().getPerson() > 0) {
+							esta = Principal.getInstance().existeUser(txtCorreo.getText());
+						}
+						if(esta == true) {
+							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
+						}
+						else if(esta == false) {
+							String nom = textNombre.getText();
+							if(RBObrero.isSelected()) {
+								Obrero nuevo = new Obrero(nom,txtApellido.getText(), 
+										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
+								Principal.getInstance().setTpersonas(nuevo);
+								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+							}
+						
+							
+						}
+					
+				}
+				else {
+							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos","Advertencia", 0);
+				}
+				
+			}
+		});
 		btnCrearUser.setBounds(165, 357, 89, 23);
 		PanelUser.add(btnCrearUser);
 		
