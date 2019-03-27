@@ -36,6 +36,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Inicio extends JFrame {
 
@@ -57,7 +59,7 @@ public class Inicio extends JFrame {
 	private JLabel labelCorreo;
 	private JTextField txtCorreo;
 	private JLabel labelContra;
-	private JPasswordField passwordContraseÒa;
+	private JPasswordField passwordContrase√±a;
 	private JLabel labelConfContra;
 	private JPasswordField passwordConfContra;
 	private JPanel panel_2;
@@ -84,6 +86,9 @@ public class Inicio extends JFrame {
 	private JPanel panelObrero;
 	private JLabel labelHabilidad; 
 	private  JComboBox<?>  comboBoxHabilidad;
+	private Boolean claveuser = false;
+	private JLabel LBver;
+	private JLabel LBNo;
 	
 
  public Inicio() {
@@ -199,10 +204,10 @@ public class Inicio extends JFrame {
 		labelUsuario.setBounds(20, 21, 147, 14);
 		panel.add(labelUsuario);
 		
-		JLabel labelContraseÒa = new JLabel("Contrase\u00F1a:");
-		labelContraseÒa.setForeground(Color.WHITE);
-		labelContraseÒa.setBounds(274, 21, 105, 14);
-		panel.add(labelContraseÒa);
+		JLabel labelContrase√±a = new JLabel("Contrase\u00F1a:");
+		labelContrase√±a.setForeground(Color.WHITE);
+		labelContrase√±a.setBounds(274, 21, 105, 14);
+		panel.add(labelContrase√±a);
 		
 		textUsuario = new JTextField();
 		textUsuario.addKeyListener(new KeyAdapter() {
@@ -255,11 +260,44 @@ public class Inicio extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent evt) {
 				char Letra = evt.getKeyChar();
+				
 				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
 		            evt.consume();
 		        }
+				
+				
 			}
 		});
+		
+		LBNo = new JLabel("No");
+		LBNo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LBNo.setVisible(false);
+				LBver.setVisible(true);
+				passwordContrase√±a.setEchoChar('‚óè');
+			}
+		});
+		LBNo.setForeground(Color.RED);
+		LBNo.setBounds(195, 151, 33, 14);
+		LBNo.setBackground(Color.blue);
+		LBNo.setVisible(false);
+		panel_1.add(LBNo);
+		
+		LBver = new JLabel("Ver");
+		LBver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LBver.setVisible(false);
+				LBNo.setVisible(true);
+				passwordContrase√±a.setEchoChar((char)0);
+			}
+		});
+		LBver.setForeground(Color.GREEN);
+		LBver.setVerticalAlignment(SwingConstants.BOTTOM);
+		LBver.setBounds(195, 151, 33, 14);
+		panel_1.add(LBver);
+		
 		
 		textNombre.setColumns(10);
 		textNombre.setBounds(10, 36, 209, 20);
@@ -285,9 +323,9 @@ public class Inicio extends JFrame {
 		labelContra.setBounds(10, 123, 125, 14);
 		panel_1.add(labelContra);
 		
-		passwordContraseÒa = new JPasswordField();
-		passwordContraseÒa.setBounds(10, 148, 209, 20);
-		panel_1.add(passwordContraseÒa);
+		passwordContrase√±a = new JPasswordField();
+		passwordContrase√±a.setBounds(10, 148, 186, 20);
+		panel_1.add(passwordContrase√±a);
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
 		labelConfContra.setForeground(Color.WHITE);
@@ -551,10 +589,9 @@ public class Inicio extends JFrame {
 		PanelUser.add(btnCancelarUsuario);
 		
 
-		// El panel principal debe aÒadir el label de fondo de ultimo siempre
+		// El panel principal debe a√±adir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
 	}
- 
 }
 
 
