@@ -61,7 +61,7 @@ public class Inicio extends JFrame {
 	private JLabel labelContra;
 	private JPasswordField passwordContraseña;
 	private JLabel labelConfContra;
-	private JPasswordField passwordConfContra;
+	private JPasswordField txtpassconfirm;
 	private JPanel panel_2;
 	private JRadioButton RBUniversitario;
 	private JRadioButton RBTec;
@@ -87,7 +87,12 @@ public class Inicio extends JFrame {
 	private JLabel labelHabilidad; 
 	private  JComboBox<?>  comboBoxHabilidad;
 	private JLabel LBver;
-	private JLabel LBNo;
+	private JLabel LBOcultar;
+	private JLabel LBempresaNover;
+	private JLabel LBempresaver;
+	private JLabel LBNoconfirm;
+	private JLabel LBConfirmver;
+	
 	
 	
 
@@ -255,6 +260,37 @@ public class Inicio extends JFrame {
 		labelNombre.setBounds(10, 11, 97, 14);
 		panel_1.add(labelNombre);
 		
+		
+		LBNoconfirm = new JLabel("Ocultar");
+		LBNoconfirm.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBNoconfirm.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LBNoconfirm.setVisible(false);
+				LBConfirmver.setVisible(true);
+				txtpassconfirm.setEchoChar('●');
+			}
+		});
+		LBNoconfirm.setForeground(Color.CYAN);
+		LBNoconfirm.setVisible(false);
+		LBNoconfirm.setBounds(443, 151, 34, 14);
+		panel_1.add(LBNoconfirm);
+		
+
+		LBConfirmver = new JLabel("Ver");
+		LBConfirmver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBConfirmver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LBNoconfirm.setVisible(true);
+				LBConfirmver.setVisible(false);
+				txtpassconfirm.setEchoChar((char)0);
+			}
+		});
+		LBConfirmver.setForeground(Color.CYAN);
+		LBConfirmver.setBounds(444, 151, 33, 14);
+		panel_1.add(LBConfirmver);
+		
 		textNombre = new JTextField();
 		textNombre.addKeyListener(new KeyAdapter() {
 			@Override
@@ -269,31 +305,33 @@ public class Inicio extends JFrame {
 			}
 		});
 		
-		LBNo = new JLabel("No");
-		LBNo.addMouseListener(new MouseAdapter() {
+		LBOcultar = new JLabel("Ocultar");
+		LBOcultar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		LBOcultar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				LBNo.setVisible(false);
+				LBOcultar.setVisible(false);
 				LBver.setVisible(true);
 				passwordContraseña.setEchoChar('●');
 			}
 		});
-		LBNo.setForeground(Color.RED);
-		LBNo.setBounds(195, 151, 33, 14);
-		LBNo.setBackground(Color.blue);
-		LBNo.setVisible(false);
-		panel_1.add(LBNo);
+		LBOcultar.setForeground(Color.CYAN);
+		LBOcultar.setBounds(195, 151, 50, 14);
+		LBOcultar.setBackground(Color.blue);
+		LBOcultar.setVisible(false);
+		panel_1.add(LBOcultar);
 		
 		LBver = new JLabel("Ver");
+		LBver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
 		LBver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LBver.setVisible(false);
-				LBNo.setVisible(true);
+				LBOcultar.setVisible(true);
 				passwordContraseña.setEchoChar((char)0);
 			}
 		});
-		LBver.setForeground(Color.GREEN);
+		LBver.setForeground(Color.CYAN);
 		LBver.setVerticalAlignment(SwingConstants.BOTTOM);
 		LBver.setBounds(195, 151, 33, 14);
 		panel_1.add(LBver);
@@ -324,7 +362,7 @@ public class Inicio extends JFrame {
 		panel_1.add(labelContra);
 		
 		passwordContraseña = new JPasswordField();
-		passwordContraseña.setBounds(10, 148, 186, 20);
+		passwordContraseña.setBounds(10, 148, 175, 20);
 		panel_1.add(passwordContraseña);
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
@@ -332,9 +370,9 @@ public class Inicio extends JFrame {
 		labelConfContra.setBounds(256, 123, 186, 14);
 		panel_1.add(labelConfContra);
 		
-		passwordConfContra = new JPasswordField();
-		passwordConfContra.setBounds(255, 148, 186, 20);
-		panel_1.add(passwordConfContra);
+		txtpassconfirm = new JPasswordField();
+		txtpassconfirm.setBounds(255, 148, 186, 20);
+		panel_1.add(txtpassconfirm);
 		
 		textApellido = new JTextField();
 		textApellido.addKeyListener(new KeyAdapter() {
@@ -465,6 +503,7 @@ public class Inicio extends JFrame {
 		labelHabilidad.setBounds(10, 21, 91, 14);
 		panelObrero.add(labelHabilidad);
 		
+		
 		comboBoxHabilidad = new JComboBox();
 		comboBoxHabilidad.setBounds(78, 34, 251, 25);
 		panelObrero.add(comboBoxHabilidad);
@@ -490,6 +529,35 @@ public class Inicio extends JFrame {
 		labelCorreoE.setForeground(Color.WHITE);
 		labelCorreoE.setBounds(10, 138, 83, 14);
 		panel_4.add(labelCorreoE);
+		
+		LBempresaNover = new JLabel("Ocultar");
+		LBempresaNover.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBempresaNover.setVisible(false);
+		LBempresaNover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LBempresaNover.setVisible(false);
+				LBempresaver.setVisible(true);
+				passwordE.setEchoChar('●');
+			}
+		});
+		LBempresaNover.setForeground(Color.CYAN);
+		LBempresaNover.setBounds(425, 206, 46, 14);
+		panel_4.add(LBempresaNover);
+		
+		LBempresaver = new JLabel("Ver");
+		LBempresaver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBempresaver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LBempresaNover.setVisible(true);
+				LBempresaver.setVisible(false);
+				passwordE.setEchoChar((char)0);
+			}
+		});
+		LBempresaver.setForeground(Color.CYAN);
+		LBempresaver.setBounds(425, 206, 46, 14);
+		panel_4.add(LBempresaver);
 		
 		textCorreoE = new JTextField();
 		textCorreoE.setColumns(10);
