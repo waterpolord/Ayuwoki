@@ -90,7 +90,9 @@ public class Inicio extends JFrame {
 	private JLabel LBempresaver;
 	private JLabel LBNoconfirm;
 	private JLabel LBConfirmver;
-	
+	private JLabel LBconfirmCorreo;
+	private JLabel LBClaveCorta;
+	private JLabel LBIgualdad;
 	
 	
 
@@ -271,7 +273,7 @@ public class Inicio extends JFrame {
 		});
 		LBNoconfirm.setForeground(Color.CYAN);
 		LBNoconfirm.setVisible(false);
-		LBNoconfirm.setBounds(443, 151, 34, 14);
+		LBNoconfirm.setBounds(422, 151, 34, 14);
 		panel_1.add(LBNoconfirm);
 		
 
@@ -286,7 +288,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		LBConfirmver.setForeground(Color.CYAN);
-		LBConfirmver.setBounds(444, 151, 33, 14);
+		LBConfirmver.setBounds(422, 151, 33, 14);
 		panel_1.add(LBConfirmver);
 		
 		textNombre = new JTextField();
@@ -350,8 +352,28 @@ public class Inicio extends JFrame {
 		panel_1.add(labelCorreo);
 		
 		txtCorreo = new JTextField();
+		txtCorreo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(txtCorreo.getText().length() > 4 ) {
+					if(Principal.getInstance().existeUser(txtCorreo.getText())) {
+						LBconfirmCorreo.setText("Correo no disponible");
+						LBconfirmCorreo.setForeground(Color.red);
+						LBconfirmCorreo.setVisible(true);
+					}
+					else {
+						LBconfirmCorreo.setText("Correo disponible");
+						LBconfirmCorreo.setForeground(Color.GREEN);
+						LBconfirmCorreo.setVisible(true);
+					}
+				}
+				else {
+					LBconfirmCorreo.setVisible(false);
+				}
+			}
+		});
 		txtCorreo.setColumns(10);
-		txtCorreo.setBounds(10, 92, 347, 20);
+		txtCorreo.setBounds(10, 92, 311, 20);
 		panel_1.add(txtCorreo);
 		
 		labelContra = new JLabel("Contrase\u00F1a:");
@@ -360,6 +382,25 @@ public class Inicio extends JFrame {
 		panel_1.add(labelContra);
 		
 		passwordContraseña = new JPasswordField();
+		passwordContraseña.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(passwordContraseña.getPassword().length < 4) {
+					LBClaveCorta.setVisible(true);
+					LBClaveCorta.setText("Esta contraseña es muy corta");
+					LBClaveCorta.setForeground(Color.ORANGE);
+				}
+				else {
+					LBClaveCorta.setVisible(false);
+				}
+				
+				
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+		});
 		passwordContraseña.setBounds(10, 148, 175, 20);
 		panel_1.add(passwordContraseña);
 		
@@ -369,7 +410,7 @@ public class Inicio extends JFrame {
 		panel_1.add(labelConfContra);
 		
 		txtpassconfirm = new JPasswordField();
-		txtpassconfirm.setBounds(255, 148, 186, 20);
+		txtpassconfirm.setBounds(255, 148, 167, 20);
 		panel_1.add(txtpassconfirm);
 		
 		txtApellido = new JTextField();
@@ -385,6 +426,21 @@ public class Inicio extends JFrame {
 		txtApellido.setColumns(10);
 		txtApellido.setBounds(256, 36, 200, 20);
 		panel_1.add(txtApellido);
+		
+		LBconfirmCorreo = new JLabel("");
+		LBconfirmCorreo.setVisible(false);
+		LBconfirmCorreo.setBounds(323, 95, 133, 20);
+		panel_1.add(LBconfirmCorreo);
+		
+		LBClaveCorta = new JLabel("");
+		LBClaveCorta.setVisible(true);
+		LBClaveCorta.setBounds(10, 168, 200, 14);
+		panel_1.add(LBClaveCorta);
+		
+		LBIgualdad = new JLabel("");
+		LBIgualdad.setBounds(241, 168, 215, 14);
+		LBIgualdad.setVisible(false);
+		panel_1.add(LBIgualdad);
 		
 		panel_2 = new JPanel();
 		panel_2.setForeground(Color.WHITE);
@@ -507,7 +563,7 @@ public class Inicio extends JFrame {
 					String pass = new String(txtpassconfirm.getPassword()),
 							passC = new String(passwordContraseña.getPassword());
 					if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
-							&& txtApellido.getText().length() > 2  ) {
+							&& txtApellido.getText().length() > 2  && pass.equals(passC) && txtpassconfirm.getPassword().length > 4) {
 						if(CBXHabilidad.getSelectedIndex() > 0) {
 							if(Principal.getInstance().getPerson() > 0) {
 								esta = Principal.getInstance().existeUser(txtCorreo.getText());
@@ -516,7 +572,7 @@ public class Inicio extends JFrame {
 								Persona aux = Principal.getInstance().buscarPersonas(txtCorreo.getText());
 								if( !(((Obrero) aux).HabilidadExiste(CBXHabilidad.getSelectedItem().toString()))) {
 									((Obrero) aux).setHabilidades(CBXHabilidad.getSelectedItem().toString());
-									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito ","Agregado", 1);
+									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creó con exito, pero puedes seguir agregando habilidades","Agregado", 1);
 									
 								}
 								else {
@@ -682,13 +738,11 @@ public class Inicio extends JFrame {
 		btnCrearUser.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				String pass = new String(txtpassconfirm.getPassword()),
-						passC = new String(passwordContraseña.getPassword());
+				String passC = new String(txtpassconfirm.getPassword()),
+						pass = new String(passwordContraseña.getPassword());
 				Boolean esta = false;
 				if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
-						&& txtApellido.getText().length() > 2 && pass == passC
-						&& CBXCarreras.getSelectedIndex() > 0 || CBXEspecialidad.getSelectedIndex() > 0 || 
-								CBXHabilidad.getSelectedIndex() > 0 ) {
+						&& txtApellido.getText().length() > 2 && pass.equals(passC) && txtpassconfirm.getPassword().length  > 4) {
 						if(Principal.getInstance().getPerson() > 0) {
 							esta = Principal.getInstance().existeUser(txtCorreo.getText());
 						}
@@ -697,19 +751,38 @@ public class Inicio extends JFrame {
 						}
 						else if(esta == false) {
 							String nom = textNombre.getText();
-							if(RBObrero.isSelected()) {
+							if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
 								Obrero nuevo = new Obrero(nom,txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
 								Principal.getInstance().setTpersonas(nuevo);
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
 							}
-						
-							
+							else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
+								JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
+							}
+							if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
+								Tecnico nuevo = new Tecnico(nom,txtApellido.getText(), 
+										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+								Principal.getInstance().setTpersonas(nuevo);
+								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+							}
+							else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
+								JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
+							}
+							if(RBTec.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
+								Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
+										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+								Principal.getInstance().setTpersonas(nuevo);
+								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+							}
+							else if(RBTec.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
+								JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);
+							}
 						}
 					
 				}
 				else {
-							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos","Advertencia", 0);
+							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos ","Advertencia", 0);
 				}
 				
 			}
