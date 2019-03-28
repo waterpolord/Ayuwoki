@@ -237,7 +237,7 @@ public class Inicio extends JFrame {
 		
 		
 	    PanelUser = new JPanel();
-		PanelUser.setBounds(170, 107, 648, 398);
+		PanelUser.setBounds(170, 107, 648, 405);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelUser);
@@ -475,6 +475,7 @@ public class Inicio extends JFrame {
 		panelTecnico.add(labelEspecialidad);
 		
 		JComboBox CBXEspecialidad = new JComboBox();
+		CBXEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Informatica", "Mercadeo", "Arte", "Turismo", "Contabilidad", "Enfermeria"}));
 		CBXEspecialidad.setBounds(78, 34, 251, 25);
 		panelTecnico.add(CBXEspecialidad);
 		
@@ -494,7 +495,7 @@ public class Inicio extends JFrame {
 		
 		
 		CBXHabilidad = new JComboBox();
-		CBXHabilidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "prueba 1"}));
+		CBXHabilidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Creativo", "Comunicativo", "Adaptable", "Trabajo en Equipo" }));
 		CBXHabilidad.setBounds(78, 34, 251, 25);
 		panelObrero.add(CBXHabilidad);
 		
@@ -545,7 +546,7 @@ public class Inicio extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_4.setBounds(83, 11, 466, 343);
+		panel_4.setBounds(83, 11, 475, 343);
 		panel_4.setBackground(new Color(34, 49, 63));
 		PanelEmpresa.add(panel_4);
 		
