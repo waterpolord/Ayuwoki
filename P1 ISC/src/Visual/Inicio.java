@@ -93,6 +93,7 @@ public class Inicio extends JFrame {
 	private JLabel LBconfirmCorreo;
 	private JLabel LBClaveCorta;
 	private JLabel LBIgualdad;
+	private JLabel LBIncorrecto;
 	
 	
 
@@ -218,17 +219,49 @@ public class Inicio extends JFrame {
 		textUsuario.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent evt) {
-				char Letra = evt.getKeyChar();
-				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
-		            evt.consume();
-		        }
+				
 			}
 		});
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(68, 40, 191, 20);
 		panel.add(textUsuario);
 		
-		JButton buttonLogin = new JButton("Login");
+		JButton buttonLogin = new JButton("Entrar");
+		buttonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String claveUser = new String(passwordContra.getPassword()),
+						claveEmpresa = new String(passwordContra.getPassword());
+				Boolean user = Principal.getInstance().existeUser(textUsuario.getText()),empre = Principal.getInstance().existeEmpresa(textUsuario.getText()),
+						userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+				if(user && userPassword) {
+					Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+					new PerfilUsuarios(login).setVisible(true);
+					dispose();
+				}
+				else if(empre && empresaPassword) {
+					new PerfilEmpresa().setVisible(true);
+					dispose();
+				}
+				else if(user || userPassword) {
+					LBIncorrecto.setVisible(true);
+				}
+				else if(empre || empresaPassword) {
+					LBIncorrecto.setVisible(true);
+				}
+				else {
+					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+					if(Mensaje == JOptionPane.OK_OPTION) {
+						panel.setVisible(false);
+						textNombre.setText("");
+						passwordContra.setText("");
+						PanelUser.setVisible(true);
+					}
+				}
+				
+				
+				
+			}
+		});
 		buttonLogin.setBounds(549, 39, 89, 23);
 		panel.add(buttonLogin);
 		
@@ -236,7 +269,12 @@ public class Inicio extends JFrame {
 		passwordContra.setBounds(348, 40, 191, 20);
 		panel.add(passwordContra);
 		
-		
+	    LBIncorrecto = new JLabel("Nombre o Contraseña incorrectos");
+	    LBIncorrecto.setVisible(false);
+		LBIncorrecto.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBIncorrecto.setForeground(Color.RED);
+		LBIncorrecto.setBounds(68, 62, 212, 14);
+		panel.add(LBIncorrecto);
 		
 	    PanelUser = new JPanel();
 		PanelUser.setBounds(170, 107, 648, 405);
@@ -250,7 +288,7 @@ public class Inicio extends JFrame {
 		panel_1.setForeground(Color.WHITE);
 		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_1.setBounds(82, 11, 532, 193);
+		panel_1.setBounds(82, 11, 466, 193);
 		panel_1.setBackground(new Color(34, 49, 63));
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
@@ -262,7 +300,7 @@ public class Inicio extends JFrame {
 		
 		
 		LBNoconfirm = new JLabel("Ocultar");
-		LBNoconfirm.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		LBNoconfirm.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		LBNoconfirm.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -273,12 +311,12 @@ public class Inicio extends JFrame {
 		});
 		LBNoconfirm.setForeground(Color.CYAN);
 		LBNoconfirm.setVisible(false);
-		LBNoconfirm.setBounds(467, 151, 56, 14);
+		LBNoconfirm.setBounds(422, 151, 34, 14);
 		panel_1.add(LBNoconfirm);
 		
 
 		LBConfirmver = new JLabel("Ver");
-		LBConfirmver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		LBConfirmver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		LBConfirmver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -288,7 +326,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		LBConfirmver.setForeground(Color.CYAN);
-		LBConfirmver.setBounds(469, 151, 33, 14);
+		LBConfirmver.setBounds(422, 151, 33, 14);
 		panel_1.add(LBConfirmver);
 		
 		textNombre = new JTextField();
@@ -343,7 +381,7 @@ public class Inicio extends JFrame {
 		
 		labelApellido = new JLabel("Apellido:");
 		labelApellido.setForeground(Color.WHITE);
-		labelApellido.setBounds(323, 11, 83, 14);
+		labelApellido.setBounds(256, 11, 83, 14);
 		panel_1.add(labelApellido);
 		
 		labelCorreo = new JLabel("Correo:");
@@ -406,11 +444,11 @@ public class Inicio extends JFrame {
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
 		labelConfContra.setForeground(Color.WHITE);
-		labelConfContra.setBounds(300, 123, 186, 14);
+		labelConfContra.setBounds(256, 123, 186, 14);
 		panel_1.add(labelConfContra);
 		
 		txtpassconfirm = new JPasswordField();
-		txtpassconfirm.setBounds(300, 148, 167, 20);
+		txtpassconfirm.setBounds(255, 148, 167, 20);
 		panel_1.add(txtpassconfirm);
 		
 		txtApellido = new JTextField();
@@ -424,7 +462,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(323, 36, 200, 20);
+		txtApellido.setBounds(256, 36, 200, 20);
 		panel_1.add(txtApellido);
 		
 		LBconfirmCorreo = new JLabel("");
@@ -446,7 +484,7 @@ public class Inicio extends JFrame {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_2.setBounds(82, 204, 532, 47);
+		panel_2.setBounds(82, 204, 466, 47);
 		panel_2.setBackground(new Color(1, 50, 67));
 		PanelUser.add(panel_2);
 		
@@ -502,7 +540,7 @@ public class Inicio extends JFrame {
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelUniversitario.setBackground(new Color(34, 49, 63));
-		panelUniversitario.setBounds(82, 248, 532, 81);
+		panelUniversitario.setBounds(82, 248, 466, 81);
 		PanelUser.add(panelUniversitario);
 		
 		labelCarrera = new JLabel("Carrera:");
@@ -522,7 +560,7 @@ public class Inicio extends JFrame {
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelTecnico.setBackground(new Color(34, 49, 63));
-		panelTecnico.setBounds(82, 248, 532, 81);
+		panelTecnico.setBounds(82, 248, 466, 81);
 		PanelUser.add(panelTecnico);
 		
 		labelEspecialidad = new JLabel("Especialidad:");
@@ -541,7 +579,7 @@ public class Inicio extends JFrame {
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelObrero.setBackground(new Color(34, 49, 63));
-		panelObrero.setBounds(82, 248, 532, 81);
+		panelObrero.setBounds(82, 248, 466, 81);
 		PanelUser.add(panelObrero);
 		
 		labelHabilidad = new JLabel("Habilidades:");
@@ -741,11 +779,9 @@ public class Inicio extends JFrame {
 				String passC = new String(txtpassconfirm.getPassword()),
 						pass = new String(passwordContraseña.getPassword());
 				Boolean esta = false;
-				if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
-						&& txtApellido.getText().length() > 2 && pass.equals(passC) && txtpassconfirm.getPassword().length  > 4) {
-						if(Principal.getInstance().getPerson() > 0) {
+				if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 2 && pass.equals(passC) && pass.length() > 3) {
+						
 							esta = Principal.getInstance().existeUser(txtCorreo.getText());
-						}
 						if(esta == true) {
 							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 						}
@@ -769,13 +805,13 @@ public class Inicio extends JFrame {
 							else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
 								JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
 							}
-							if(RBTec.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
+							if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
 								Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
 								Principal.getInstance().setTpersonas(nuevo);
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
 							}
-							else if(RBTec.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
+							else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);
 							}
 						}

@@ -14,14 +14,13 @@ public class Principal {
 	
 
 	public static void main(String args[]) {
-		
 		new Inicio().setVisible(true); 
 	}
 	
 	public Principal() {
 		Tpersonas = new ArrayList();
-		 TEmpresas = new ArrayList();
-		 TEmpleos = new ArrayList();
+		TEmpresas = new ArrayList();
+		TEmpleos = new ArrayList();
 		TVacantes = new ArrayList();
 		cantEmpresas = 0;
 		cantPersonas = 0;
@@ -80,7 +79,7 @@ public class Principal {
 	
 	public Boolean existeUser(String txt) {
 		for(Persona aux:Tpersonas) {
-			if(aux.getCorreo().equalsIgnoreCase(txt)) {
+			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return true;
 			}
 		}
@@ -89,12 +88,36 @@ public class Principal {
 	
 	public Persona buscarPersonas(String txt) {
 		for(Persona aux:Tpersonas) {
-			if(aux.getCorreo().equalsIgnoreCase(txt)) {
+			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return aux;
 			}
 		}
 		return null;
 	}
+	public Empresa buscarEmpresas(String txt) {
+		for(Empresa aux:TEmpresas) {
+			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
+				return aux;
+			}
+		}
+		return null;
+	}
+	//  ind = 0 Persona ind = 1 Empresa
+	public Boolean ContraUser(String txt) {
+			for(Persona aux:Tpersonas) {
+				if(aux.getClave().equalsIgnoreCase(txt))
+					return true;
+			}
+			return false;
+	}
+	public Boolean ContraEmpresa(String txt) {
+		for(Empresa empre:TEmpresas) {
+			if(empre.getClave().equalsIgnoreCase(txt))
+				return true;
+			}
+		return false;
+	}
+	
 	public ArrayList RetornarObrerosDisponibles() {
 		ArrayList<String> lista = new ArrayList();
 		for(Persona aux:Tpersonas) {
@@ -125,7 +148,7 @@ public class Principal {
 		return lista;
 	}
 	
-
+	
 	
 	
 	
