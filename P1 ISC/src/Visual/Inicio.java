@@ -91,7 +91,9 @@ public class Inicio extends JFrame {
 	private JLabel LBNoconfirm;
 	private JLabel LBConfirmver;
 	private JLabel LBconfirmCorreo;
+	private JLabel LBconfirmCorreoE;
 	private JLabel LBClaveCorta;
+	private JLabel LBClaveCortaE;
 	private JLabel LBIgualdad;
 	private JLabel LBIncorrecto;
 	
@@ -272,12 +274,12 @@ public class Inicio extends JFrame {
 	    LBIncorrecto = new JLabel("Nombre o Contraseña incorrectos");
 	    LBIncorrecto.setVisible(false);
 		LBIncorrecto.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		LBIncorrecto.setForeground(Color.RED);
+		LBIncorrecto.setForeground(Color.CYAN);
 		LBIncorrecto.setBounds(68, 62, 212, 14);
 		panel.add(LBIncorrecto);
 		
 	    PanelUser = new JPanel();
-		PanelUser.setBounds(170, 107, 648, 405);
+		PanelUser.setBounds(170, 107, 648, 400);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelUser);
@@ -288,7 +290,7 @@ public class Inicio extends JFrame {
 		panel_1.setForeground(Color.WHITE);
 		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_1.setBounds(82, 11, 466, 193);
+		panel_1.setBounds(82, 11, 533, 192);
 		panel_1.setBackground(new Color(34, 49, 63));
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
@@ -300,7 +302,7 @@ public class Inicio extends JFrame {
 		
 		
 		LBNoconfirm = new JLabel("Ocultar");
-		LBNoconfirm.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBNoconfirm.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
 		LBNoconfirm.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -311,12 +313,12 @@ public class Inicio extends JFrame {
 		});
 		LBNoconfirm.setForeground(Color.CYAN);
 		LBNoconfirm.setVisible(false);
-		LBNoconfirm.setBounds(422, 151, 34, 14);
+		LBNoconfirm.setBounds(465, 151, 58, 14);
 		panel_1.add(LBNoconfirm);
 		
 
 		LBConfirmver = new JLabel("Ver");
-		LBConfirmver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		LBConfirmver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
 		LBConfirmver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -326,7 +328,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		LBConfirmver.setForeground(Color.CYAN);
-		LBConfirmver.setBounds(422, 151, 33, 14);
+		LBConfirmver.setBounds(468, 151, 33, 14);
 		panel_1.add(LBConfirmver);
 		
 		textNombre = new JTextField();
@@ -381,7 +383,7 @@ public class Inicio extends JFrame {
 		
 		labelApellido = new JLabel("Apellido:");
 		labelApellido.setForeground(Color.WHITE);
-		labelApellido.setBounds(256, 11, 83, 14);
+		labelApellido.setBounds(320, 11, 83, 14);
 		panel_1.add(labelApellido);
 		
 		labelCorreo = new JLabel("Correo:");
@@ -444,11 +446,11 @@ public class Inicio extends JFrame {
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
 		labelConfContra.setForeground(Color.WHITE);
-		labelConfContra.setBounds(256, 123, 186, 14);
+		labelConfContra.setBounds(287, 123, 186, 14);
 		panel_1.add(labelConfContra);
 		
 		txtpassconfirm = new JPasswordField();
-		txtpassconfirm.setBounds(255, 148, 167, 20);
+		txtpassconfirm.setBounds(288, 148, 167, 20);
 		panel_1.add(txtpassconfirm);
 		
 		txtApellido = new JTextField();
@@ -462,7 +464,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(256, 36, 200, 20);
+		txtApellido.setBounds(323, 36, 200, 20);
 		panel_1.add(txtApellido);
 		
 		LBconfirmCorreo = new JLabel("");
@@ -484,7 +486,7 @@ public class Inicio extends JFrame {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_2.setBounds(82, 204, 466, 47);
+		panel_2.setBounds(82, 204, 533, 47);
 		panel_2.setBackground(new Color(1, 50, 67));
 		PanelUser.add(panel_2);
 		
@@ -499,7 +501,7 @@ public class Inicio extends JFrame {
 				panelUniversitario.setVisible(true);
 		}});
 		
-		RBUniversitario.setBounds(6, 17, 109, 23);
+		RBUniversitario.setBounds(19, 17, 109, 23);
 		RBUniversitario.setSelected(true);
 		panel_2.add(RBUniversitario);
 		
@@ -514,7 +516,7 @@ public class Inicio extends JFrame {
 		}});
 		
 		RBTec.setSelected(false);
-		RBTec.setBounds(171, 17, 109, 23);
+		RBTec.setBounds(200, 17, 109, 23);
 		panel_2.add(RBTec);
 		
 		RBObrero = new JRadioButton("Obrero");
@@ -528,10 +530,10 @@ public class Inicio extends JFrame {
 		}});
 
 		RBObrero.setSelected(false);
-		RBObrero.setBounds(333, 17, 109, 23);
+		RBObrero.setBounds(379, 17, 109, 23);
 		panel_2.add(RBObrero);
 		PanelEmpresa = new JPanel();
-		PanelEmpresa.setBounds(170, 168, 648, 419);
+		PanelEmpresa.setBounds(170, 168, 688, 419);
 		PanelEmpresa.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelEmpresa);
 		PanelEmpresa.setLayout(null);
@@ -540,7 +542,7 @@ public class Inicio extends JFrame {
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelUniversitario.setBackground(new Color(34, 49, 63));
-		panelUniversitario.setBounds(82, 248, 466, 81);
+		panelUniversitario.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelUniversitario);
 		
 		labelCarrera = new JLabel("Carrera:");
@@ -560,7 +562,7 @@ public class Inicio extends JFrame {
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelTecnico.setBackground(new Color(34, 49, 63));
-		panelTecnico.setBounds(82, 248, 466, 81);
+		panelTecnico.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelTecnico);
 		
 		labelEspecialidad = new JLabel("Especialidad:");
@@ -579,7 +581,7 @@ public class Inicio extends JFrame {
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelObrero.setBackground(new Color(34, 49, 63));
-		panelObrero.setBounds(82, 248, 466, 81);
+		panelObrero.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelObrero);
 		
 		labelHabilidad = new JLabel("Habilidades:");
@@ -640,7 +642,7 @@ public class Inicio extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_4.setBounds(83, 11, 475, 343);
+		panel_4.setBounds(79, 11, 564, 343);
 		panel_4.setBackground(new Color(34, 49, 63));
 		PanelEmpresa.add(panel_4);
 		
@@ -684,6 +686,27 @@ public class Inicio extends JFrame {
 		panel_4.add(LBempresaver);
 		
 		textCorreoE = new JTextField();
+		textCorreoE.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(txtCorreo.getText().length() > 4 ) {
+					if(Principal.getInstance().existeUser(textCorreoE.getText())) {
+						LBconfirmCorreoE.setText("Correo no disponible");
+						LBconfirmCorreoE.setForeground(Color.red);
+						LBconfirmCorreoE.setVisible(true);
+					}
+					else {
+						LBconfirmCorreoE.setText("Correo disponible");
+						LBconfirmCorreoE.setForeground(Color.GREEN);
+						LBconfirmCorreoE.setVisible(true);
+					}
+				}
+				else {
+					LBconfirmCorreo.setVisible(false);
+				}
+			}
+		});
+		
 		textCorreoE.setColumns(10);
 		textCorreoE.setBounds(70, 150, 353, 20);
 		panel_4.add(textCorreoE);
@@ -694,8 +717,37 @@ public class Inicio extends JFrame {
 		panel_4.add(labelConE);
 		
 		passwordE = new JPasswordField();
+		passwordE.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(passwordE.getPassword().length < 4) {
+					LBClaveCortaE.setVisible(true);
+					LBClaveCortaE.setText("Esta contraseña es muy corta");
+					LBClaveCortaE.setForeground(Color.ORANGE);
+				}
+				else {
+					LBClaveCortaE.setVisible(false);
+				}
+				
+				
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+		});
 		passwordE.setBounds(70, 206, 353, 20);
 		panel_4.add(passwordE);
+		
+		LBconfirmCorreoE = new JLabel("");
+		LBconfirmCorreoE.setVisible(false);
+		LBconfirmCorreoE.setBounds(425, 156, 145, 14);
+		panel_4.add(LBconfirmCorreoE);
+		
+		LBClaveCortaE = new JLabel("");
+		LBClaveCortaE.setVisible(true);
+		LBClaveCortaE.setBounds(425, 231, 125, 14);
+		panel_4.add(LBClaveCortaE);
 		
 		JLabel labelEncargado = new JLabel("Encargado:");
 		labelEncargado.setForeground(Color.WHITE);
@@ -703,6 +755,15 @@ public class Inicio extends JFrame {
 		panel_4.add(labelEncargado);
 		
 		TXTNombre = new JTextField();
+		TXTNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char Letra = evt.getKeyChar();
+				if(Character.isDigit(Letra) || Letra == '.' || Letra == ','){
+		            evt.consume();
+		        }
+			}
+		});
 		TXTNombre.setColumns(10);
 		TXTNombre.setBounds(70, 35, 353, 20);
 		panel_4.add(TXTNombre);
@@ -759,10 +820,42 @@ public class Inicio extends JFrame {
 		panel_4.add(comboBox);
 		
 		JButton btnCrearEmpresa = new JButton("Crear");
+		btnCrearEmpresa.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String passC = new String(passwordE.getPassword());			
+				Boolean esta = false;
+				if(TXTNombre.getText().length() > 2 && textTelefono.getText().length() < 11  && textCorreoE.getText().length() > 4 && passC.length() > 3 && textEncargado.getText().length() > 2 ) {
+						
+							esta = Principal.getInstance().existeUser(textCorreoE.getText());
+						if(esta == true) {
+							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
+						}
+						else if(esta == false) {
+							String nom = TXTNombre.getText();
+							if(comboBox.getSelectedIndex() > 0) {
+								JOptionPane.showMessageDialog(null,"Selecciona un Tipo","Advertencia", 0);
+								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Empresa Creada Con Exito", 1);
+							}
+						}
+				}
+			
+				else {
+					JOptionPane.showMessageDialog(null,"Debes llenar todos los campos ","Advertencia", 0);
+				}
+				
+			}
+		});
+		
 		btnCrearEmpresa.setBounds(143, 365, 89, 23);
 		PanelEmpresa.add(btnCrearEmpresa);
 		
 		JButton btnCancelarEmpresa = new JButton("Cancelar");
+		 btnCancelarEmpresa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setVisible(true);
+				}
+			});
 		btnCancelarEmpresa.setBounds(372, 365, 89, 23);
 		PanelEmpresa.add(btnCancelarEmpresa);
 		
@@ -829,6 +922,11 @@ public class Inicio extends JFrame {
 		PanelUser.add(btnCrearUser);
 		
 		JButton btnCancelarUsuario = new JButton("Cancelar");
+		 btnCancelarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(true);
+			}
+		});
 		btnCancelarUsuario.setBounds(345, 357, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
