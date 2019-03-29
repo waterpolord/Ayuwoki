@@ -810,6 +810,8 @@ public class Inicio extends JFrame {
 										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
 								Principal.getInstance().setTpersonas(nuevo);
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+								new PerfilUsuarios(nuevo).setVisible(true);
+								dispose();
 							}
 							else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);
