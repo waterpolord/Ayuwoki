@@ -601,10 +601,10 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 					Boolean esta = false;
-					String pass = new String(txtpassconfirm.getPassword()),
-							passC = new String(passwordContraseña.getPassword());
+					String passC = new String(txtpassconfirm.getPassword()),
+							pass = new String(passwordContraseña.getPassword());
 					if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
-							&& txtApellido.getText().length() > 2  && pass.equals(passC) && txtpassconfirm.getPassword().length > 4) {
+							&& txtApellido.getText().length() > 1  && pass.equals(passC) && pass.length() > 3) {
 						if(CBXHabilidad.getSelectedIndex() > 0) {
 							if(Principal.getInstance().getPerson() > 0) {
 								esta = Principal.getInstance().existeUser(txtCorreo.getText());
@@ -632,7 +632,7 @@ public class Inicio extends JFrame {
 						}
 					}
 					else {
-						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos","Advertencia", 0);
+						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
 					}
 			}
 		});
@@ -883,7 +883,7 @@ public class Inicio extends JFrame {
 				String passC = new String(txtpassconfirm.getPassword()),
 						pass = new String(passwordContraseña.getPassword());
 				Boolean esta = false;
-				if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 2 && pass.equals(passC) && pass.length() > 3) {
+				if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
 						
 							esta = Principal.getInstance().existeUser(txtCorreo.getText());
 						if(esta == true) {
@@ -924,7 +924,7 @@ public class Inicio extends JFrame {
 					
 				}
 				else {
-							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos ","Advertencia", 0);
+							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
 				}
 				
 			}
