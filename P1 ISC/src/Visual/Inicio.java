@@ -327,6 +327,7 @@ public class Inicio extends JFrame {
 				txtpassconfirm.setEchoChar((char)0);
 			}
 		});
+		
 		LBConfirmver.setForeground(Color.CYAN);
 		LBConfirmver.setBounds(468, 151, 33, 14);
 		panel_1.add(LBConfirmver);
@@ -825,20 +826,25 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String passC = new String(passwordE.getPassword());			
 				Boolean esta = false;
-				if(TXTNombre.getText().length() > 2 && textTelefono.getText().length() < 11  && textCorreoE.getText().length() > 4 && passC.length() > 3 && textEncargado.getText().length() > 2 ) {
+				if(TXTNombre.getText().length() > 2 && textTelefono.getText().length() == 12  && textCorreoE.getText().length() > 4 && passC.length() > 3 && textEncargado.getText().length() > 2 ) {
 						
-							esta = Principal.getInstance().existeUser(textCorreoE.getText());
+							esta = Principal.getInstance().existeEmpresa(textCorreoE.getText());
 						if(esta == true) {
 							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = TXTNombre.getText();
-							if(comboBox.getSelectedIndex() > 0) {
-								JOptionPane.showMessageDialog(null,"Selecciona un Tipo","Advertencia", 0);
+							if  (comboBox.getSelectedIndex() > 0) {
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Empresa Creada Con Exito", 1);
+								
+							}
+							
+							else if(comboBox.getSelectedIndex() >= 0){
+								JOptionPane.showMessageDialog(null,"Selecciona un Tipo","Advertencia", 0);
 							}
 						}
-				}
+						}
+				
 			
 				else {
 					JOptionPane.showMessageDialog(null,"Debes llenar todos los campos ","Advertencia", 0);
@@ -846,6 +852,11 @@ public class Inicio extends JFrame {
 				
 			}
 		});
+		
+		
+		
+		
+		
 		
 		btnCrearEmpresa.setBounds(143, 365, 89, 23);
 		PanelEmpresa.add(btnCrearEmpresa);
