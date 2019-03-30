@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Logic.*;;
+
 public class PaginaUsuarios extends JFrame {
 
 	private JPanel contentPane;
@@ -19,7 +21,7 @@ public class PaginaUsuarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PaginaUsuarios() {
+	public PaginaUsuarios(Empresa empresa,Persona persona) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

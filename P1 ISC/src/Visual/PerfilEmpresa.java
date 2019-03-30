@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+
+import Logic.*;
+
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -24,26 +27,7 @@ public class PerfilEmpresa extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PerfilEmpresa frame = new PerfilEmpresa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public PerfilEmpresa() {
+	public PerfilEmpresa(Empresa empresa) {
 		setTitle("Perfil Empresa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 779, 526);
