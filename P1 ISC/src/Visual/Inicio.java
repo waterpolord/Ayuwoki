@@ -241,7 +241,8 @@ public class Inicio extends JFrame {
 					dispose();
 				}
 				else if(empre && empresaPassword) {
-					new PerfilEmpresa().setVisible(true);
+					Empresa empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+					new PerfilEmpresa(empresa).setVisible(true);
 					dispose();
 				}
 				else if(user || userPassword) {
