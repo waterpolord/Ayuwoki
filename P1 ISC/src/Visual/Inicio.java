@@ -747,7 +747,7 @@ public class Inicio extends JFrame {
 		
 		LBClaveCortaE = new JLabel("");
 		LBClaveCortaE.setVisible(true);
-		LBClaveCortaE.setBounds(425, 231, 125, 14);
+		LBClaveCortaE.setBounds(364, 231, 186, 14);
 		panel_4.add(LBClaveCortaE);
 		
 		JLabel labelEncargado = new JLabel("Encargado:");
