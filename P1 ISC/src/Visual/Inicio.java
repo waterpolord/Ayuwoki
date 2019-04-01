@@ -96,7 +96,7 @@ public class Inicio extends JFrame {
 	private JLabel LBClaveCortaE;
 	private JLabel LBIgualdad;
 	private JLabel LBIncorrecto;
-	
+	private JButton buttonLogin;
 	
 
  public Inicio() {
@@ -223,12 +223,46 @@ public class Inicio extends JFrame {
 			public void keyTyped(KeyEvent evt) {
 				
 			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
+					String claveUser = new String(passwordContra.getPassword()),
+							claveEmpresa = new String(passwordContra.getPassword());
+					Boolean user = Principal.getInstance().existeUser(textUsuario.getText()),empre = Principal.getInstance().existeEmpresa(textUsuario.getText()),
+							userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+					if(user && userPassword) {
+						Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						new PerfilUsuarios(login).setVisible(true);
+						dispose();
+					}
+					else if(empre && empresaPassword) {
+						Empresa empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+						new PerfilEmpresa(empresa).setVisible(true);
+						dispose();
+					}
+					else if(user || userPassword) {
+						LBIncorrecto.setVisible(true);
+					}
+					else if(empre || empresaPassword) {
+						LBIncorrecto.setVisible(true);
+					}
+					else {
+						int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+						if(Mensaje == JOptionPane.OK_OPTION) {
+							panel.setVisible(false);
+							textNombre.setText("");
+							passwordContra.setText("");
+							PanelUser.setVisible(true);
+						}
+					}
+				}
+			}
 		});
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(68, 40, 191, 20);
 		panel.add(textUsuario);
 		
-		JButton buttonLogin = new JButton("Entrar");
+		buttonLogin = new JButton("Entrar");
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String claveUser = new String(passwordContra.getPassword()),
@@ -237,7 +271,7 @@ public class Inicio extends JFrame {
 						userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
 				if(user && userPassword) {
 					Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
-					
+					new PerfilUsuarios(login).setVisible(true);
 					dispose();
 				}
 				else if(empre && empresaPassword) {
@@ -269,6 +303,42 @@ public class Inicio extends JFrame {
 		panel.add(buttonLogin);
 		
 		passwordContra = new JPasswordField();
+		passwordContra.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
+					String claveUser = new String(passwordContra.getPassword()),
+							claveEmpresa = new String(passwordContra.getPassword());
+					Boolean user = Principal.getInstance().existeUser(textUsuario.getText()),empre = Principal.getInstance().existeEmpresa(textUsuario.getText()),
+							userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+					if(user && userPassword) {
+						Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						new PerfilUsuarios(login).setVisible(true);
+						dispose();
+					}
+					else if(empre && empresaPassword) {
+						Empresa empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+						new PerfilEmpresa(empresa).setVisible(true);
+						dispose();
+					}
+					else if(user || userPassword) {
+						LBIncorrecto.setVisible(true);
+					}
+					else if(empre || empresaPassword) {
+						LBIncorrecto.setVisible(true);
+					}
+					else {
+						int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+						if(Mensaje == JOptionPane.OK_OPTION) {
+							panel.setVisible(false);
+							textNombre.setText("");
+							passwordContra.setText("");
+							PanelUser.setVisible(true);
+						}
+					}
+				}
+			}
+		});
 		passwordContra.setBounds(348, 40, 191, 20);
 		panel.add(passwordContra);
 		
@@ -834,13 +904,16 @@ public class Inicio extends JFrame {
 							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
-							String nom = TXTNombre.getText();
+							String nom = TXTNombre.getText(),pas = new String(passwordE.getPassword());
+							
 							if  (comboBox.getSelectedIndex() > 0) {
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Empresa Creada Con Exito", 1);
-								
+								Empresa empresa = new Empresa(nom,textTelefono.getText(),textCorreoE.getText(),pas,textEncargado.getText(),comboBox.getSelectedItem().toString());
+								new PerfilEmpresa(empresa).setVisible(true);
+								dispose();
 							}
 							
-							else if(comboBox.getSelectedIndex() >= 0){
+							else{
 								JOptionPane.showMessageDialog(null,"Selecciona un Tipo","Advertencia", 0);
 							}
 						}
@@ -897,6 +970,7 @@ public class Inicio extends JFrame {
 										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
 								Principal.getInstance().setTpersonas(nuevo);
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+								new PerfilUsuarios(nuevo).setVisible(true);
 							}
 							else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
@@ -906,6 +980,7 @@ public class Inicio extends JFrame {
 										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
 								Principal.getInstance().setTpersonas(nuevo);
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+								new PerfilUsuarios(nuevo).setVisible(true);
 							}
 							else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
 								JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
@@ -915,12 +990,12 @@ public class Inicio extends JFrame {
 										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
 								Principal.getInstance().setTpersonas(nuevo);
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
-							
-								dispose();
+								new PerfilUsuarios(nuevo).setVisible(true);
 							}
 							else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);
 							}
+							
 						}
 					
 				}

@@ -10,6 +10,7 @@ public class Empresa {
 	private String clave;
 	private String encargado;
 	private String tipo;
+	private ArrayList<Vacante> MisVacantes;
 	
 	public Empresa(String nombre, String telefono, String correo, String clave, String encargado,
 			String tipo) {
@@ -57,7 +58,11 @@ public class Empresa {
 		this.encargado = encargado;
 	}
 	public String getTipo() {
-		return tipo;
+		return tipo; 
+	}
+	
+	public void setVacante(Vacante nueva) {
+		MisVacantes.add(nueva);
 	}
 	
 	

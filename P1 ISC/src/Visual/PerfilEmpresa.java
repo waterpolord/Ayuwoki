@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.TitledBorder;
 
 import Logic.*;
@@ -26,6 +28,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.JList;
 
 public class PerfilEmpresa extends JFrame {
 
@@ -40,7 +43,8 @@ public class PerfilEmpresa extends JFrame {
 	public PerfilEmpresa(Empresa empresa) {
 		setTitle("Perfil Empresa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 859, 612);
+		Dimension tam = getToolkit().getScreenSize();
+		setBounds(0,0,tam.width,tam.height);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,7 +59,7 @@ public class PerfilEmpresa extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requisitos", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(436, 162, 403, 386);
+		panel_1.setBounds(381, 162, 403, 386);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -316,7 +320,28 @@ public class PerfilEmpresa extends JFrame {
 		spinner.setBounds(142, 159, 67, 20);
 		contentPane.add(spinner);
 		
-	
+		JList ListarSolicitudes = new JList();
+		ListarSolicitudes.setBounds(823, 487, 143, -309);
+		contentPane.add(ListarSolicitudes);
+		
+		JLabel lblSolicitudes = new JLabel("Solicitudes");
+		lblSolicitudes.setBounds(863, 140, 67, 14);
+		contentPane.add(lblSolicitudes);
+		
+		JButton btnVer = new JButton("Ver");
+		btnVer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VistaSolicitud view = new VistaSolicitud();
+				view.setModal(true);
+				view.setVisible(true);
+				
+			}
+		});
+		btnVer.setBounds(853, 525, 89, 23);
+		contentPane.add(btnVer);
+		
+		
+		
 	
 	}
 }
