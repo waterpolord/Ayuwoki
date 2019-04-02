@@ -7,8 +7,8 @@ public class Empleo {
 	
 	private Persona user;
 	private File curriculum;
-	private ArrayList<String> habilidades;
-	public Empleo(Persona user, ArrayList<String> habilidades) {
+	private Boolean[] habilidades = new Boolean[9];
+	public Empleo(Persona user, Boolean[] habilidades) {
 		this.user = user;
 		this.habilidades = habilidades;
 	}
@@ -17,12 +17,6 @@ public class Empleo {
 	}
 	public void setUser(Persona user) {
 		this.user = user;
-	}
-	public ArrayList<String> getHabilidades() {
-		return habilidades;
-	}
-	public void setHabilidades(ArrayList<String> habilidades) {
-		this.habilidades = habilidades;
 	}
 
 	

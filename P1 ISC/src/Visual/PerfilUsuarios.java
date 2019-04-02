@@ -197,9 +197,9 @@ public class PerfilUsuarios extends JFrame {
 		comboBox_1.setBounds(246, 53, 133, 20);
 		panel_1.add(comboBox_1);
 		
-		JButton button_1 = new JButton("Subir");
-		button_1.setBounds(237, 614, 89, 23);
-		contentPane.add(button_1);
+		JButton BTNGuardar = new JButton("Guardar");
+		BTNGuardar.setBounds(237, 614, 89, 23);
+		contentPane.add(BTNGuardar);
 		
 		JButton button_2 = new JButton("Cancelar");
 		button_2.setBounds(474, 614, 89, 23);

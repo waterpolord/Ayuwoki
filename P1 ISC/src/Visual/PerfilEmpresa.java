@@ -53,7 +53,7 @@ public class PerfilEmpresa extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
-		comboBox.setBounds(591, 11, 162, 20);
+		comboBox.setBounds(997, 11, 162, 20);
 		contentPane.add(comboBox);
 		
 		JPanel panel_1 = new JPanel();
