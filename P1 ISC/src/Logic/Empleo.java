@@ -18,6 +18,9 @@ public class Empleo {
 	public void setUser(Persona user) {
 		this.user = user;
 	}
+	public Boolean[] getHab() {
+		return habilidades;
+	}
 
 	
 }

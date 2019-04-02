@@ -7,6 +7,7 @@ public abstract class Persona {
 	protected String correo;
 	protected String clave;
 	protected Boolean estado;
+	protected Empleo Solicitud;
 	
 	
 	public Persona(String nombre, String apellido, String correo, String clave, Boolean estado) {
@@ -15,6 +16,10 @@ public abstract class Persona {
 		this.correo = correo;
 		this.clave = clave;
 		this.estado = estado;
+	}
+	
+	public Empleo getSolicitud() {
+		return Solicitud;
 	}
 	
 	public String getNombre() {

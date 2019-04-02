@@ -6,9 +6,8 @@ public class Vacante {
 	private Empresa empresa;
 	private String puesto;
 	private String TipoPersonal;
-	private Boolean[] requisitos = new Boolean[9];
+	private Boolean[] requisitos = new Boolean[10];
 	private int CantPuestos;
-	private int CantSolicitudes;
 	private ArrayList<Persona> Solicitantes;
 	
 	public Vacante(Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,int CP) {
@@ -19,17 +18,53 @@ public class Vacante {
 		this.requisitos = requisitos;
 		CantPuestos = CP;
 		Solicitantes = new ArrayList();
-		CantSolicitudes = 0;
+		
 	}
 
 	public void solicitar(Persona nueva) {
+		
 		Solicitantes.add(nueva);
-		CantSolicitudes++;
+		Organizar();
+	}
+	
+	
+	// Despues de determinar si el reemplazo aplica se 
+	//usa esta funcion para reemplazar una persona con menos habilidades
+	public void Reemplazo(Persona user,int ind) {
+		Solicitantes.add(ind,user);
+		Organizar();
+	}
+	
+	public void Organizar() {
+		int Positivas = 0,Comp1,Comp2;
+		Persona user1,user2,aux;
+		
+		for(int i = 0;i<Solicitantes.size();i++) {
+			user1 = Solicitantes.get(i);
+			user2 = Solicitantes.get(i+1);
+			Comp1 = getCantPositivas(user1.getSolicitud());
+			Comp2 = getCantPositivas(user2.getSolicitud());
+			if(Comp1 < Comp2) {
+				 aux = user1;
+				 Solicitantes.add(i,user2);
+				 Solicitantes.add(i+1,user2);
+			}
+		}
+	}
+	
+	public int getCantPositivas(Empleo user) {
+		int Positivas = 0,i = 0;
+		for(Boolean var:user.getHab()) {
+			if(var && requisitos[i]) {
+				Positivas++;
+			}
+			i++;
+		}
+			return Positivas;
 	}
 	
 	public void cancelar(int ind) {
 		Solicitantes.remove(ind);
-		CantSolicitudes--;
 	}
 	
 	public Empresa getEmpresa() {
@@ -43,6 +78,10 @@ public class Vacante {
 	public String getPuesto() {
 		return puesto;
 	}
+	
+	public int getCant() {
+		return CantPuestos;
+	}
 
 	public void setPuesto(String puesto) {
 		this.puesto = puesto;
@@ -55,14 +94,63 @@ public class Vacante {
 	public void setTipoPersonal(String tipoPersonal) {
 		TipoPersonal = tipoPersonal;
 	}
-
+	
+	public Boolean aplicaHabilidades(Empleo user) {
+		int Positivas = 0,i = 0;
+		for(Boolean var:user.getHab()) {
+			if(var && requisitos[i]) {
+				Positivas++;
+			}
+			i++;
+		}
+		if(Positivas >= 8) {
+			return true;
+		}
+		return false;
+	}
+	/*
+	 * El metodo reemplazoAplica sirve para analizar si existen nuevos 
+	 * y mejores usuarios, con mejores habilidades que los que estan en la aolicitud (Vacante)
+	 */
+	public int reemplazoAplica(Empleo user) {
+		int PositivasUser = 0,PositivaMenor = 0,i = 0,ind = 0;
+		Boolean valor = false;
+		for(Boolean var:user.getHab()) {
+			if(var && requisitos[i]) {
+				PositivasUser++;
+			}
+			i++;
+		}
+		i = 0;
+		
+		for(Persona Todos:Solicitantes) {
+			for(Boolean var:Todos.getSolicitud().getHab()) {
+				if(var && requisitos[i]) {
+					PositivaMenor++;
+				}
+				if(PositivasUser > PositivaMenor ) {
+					valor = true;
+				}
+				i++;
+			}
+			ind++;
+		}
+		// ind es el indice de la persona en el Arreglo para reemplazar si se aplica
+		if(valor) {
+			return ind;
+		}
+		return -1;
+		
+		
+		
+	}
 
 	/* El metodo getSolicitudes permite ver 
 	 * cuales son las personas que solicitaron el empleo*/
 	 
 	 public ArrayList getSolicitantes() {
 		ArrayList<String> lista = new ArrayList();
-		for(int i = 0;i<CantSolicitudes;i++) {
+		for(int i = 0;i<Solicitantes.size();i++) {
 			lista.add(Solicitantes.get(i).getNombre());
 		}
 		return lista;
