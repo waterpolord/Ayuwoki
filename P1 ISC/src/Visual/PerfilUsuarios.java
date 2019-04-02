@@ -25,6 +25,7 @@ import Logic.Persona;
 public class PerfilUsuarios extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField TXTNombre;
 	private JTextField textField;
 
 	/**
@@ -38,7 +39,7 @@ public class PerfilUsuarios extends JFrame {
 	public PerfilUsuarios(Persona persona) {
 		setTitle("Perfil Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 821, 591);
+		setBounds(100, 100, 821, 687);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,7 +49,7 @@ public class PerfilUsuarios extends JFrame {
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 25, 491, 83);
+		panel.setBounds(10, 25, 491, 134);
 		contentPane.add(panel);
 		
 		JLabel label = new JLabel("Nombre");
@@ -56,16 +57,27 @@ public class PerfilUsuarios extends JFrame {
 		label.setBounds(10, 44, 46, 14);
 		panel.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.inactiveCaption);
-		textField.setBounds(68, 40, 253, 25);
-		panel.add(textField);
+		TXTNombre = new JTextField();
+		TXTNombre.setColumns(10);
+		TXTNombre.setBackground(SystemColor.inactiveCaption);
+		TXTNombre.setBounds(68, 40, 253, 25);
+		panel.add(TXTNombre);
 		
 		JButton button = new JButton("Buscar");
 		button.setBackground(Color.WHITE);
 		button.setBounds(367, 40, 89, 25);
 		panel.add(button);
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 12));
+		lblTipo.setBounds(10, 88, 46, 14);
+		panel.add(lblTipo);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBackground(SystemColor.inactiveCaption);
+		textField.setBounds(68, 86, 253, 25);
+		panel.add(textField);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
@@ -77,16 +89,8 @@ public class PerfilUsuarios extends JFrame {
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(184, 119, 403, 386);
+		panel_1.setBounds(193, 190, 403, 386);
 		contentPane.add(panel_1);
-		
-		JRadioButton radioButton = new JRadioButton("Si");
-		radioButton.setBounds(246, 52, 50, 23);
-		panel_1.add(radioButton);
-		
-		JRadioButton radioButton_1 = new JRadioButton("No");
-		radioButton_1.setBounds(329, 52, 50, 23);
-		panel_1.add(radioButton_1);
 		
 		JRadioButton radioButton_2 = new JRadioButton("Si");
 		radioButton_2.setBounds(246, 89, 50, 23);
@@ -152,7 +156,7 @@ public class PerfilUsuarios extends JFrame {
 		radioButton_17.setBounds(329, 345, 50, 23);
 		panel_1.add(radioButton_17);
 		
-		JLabel lblHablaIngles = new JLabel("Habla Ingles?");
+		JLabel lblHablaIngles = new JLabel("Habla otro Idioma?");
 		lblHablaIngles.setBounds(22, 56, 100, 14);
 		panel_1.add(lblHablaIngles);
 		
@@ -188,12 +192,17 @@ public class PerfilUsuarios extends JFrame {
 		lblDominaAlgunTipo.setBounds(22, 349, 178, 14);
 		panel_1.add(lblDominaAlgunTipo);
 		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Ingles", "Frances", "Chino", "Italiano"}));
+		comboBox_1.setBounds(246, 53, 133, 20);
+		panel_1.add(comboBox_1);
+		
 		JButton button_1 = new JButton("Subir");
-		button_1.setBounds(253, 529, 89, 23);
+		button_1.setBounds(237, 614, 89, 23);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("Cancelar");
-		button_2.setBounds(420, 529, 89, 23);
+		button_2.setBounds(474, 614, 89, 23);
 		contentPane.add(button_2);
 	}
 }

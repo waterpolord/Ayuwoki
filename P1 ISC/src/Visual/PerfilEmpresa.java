@@ -44,7 +44,7 @@ public class PerfilEmpresa extends JFrame {
 		setTitle("Perfil Empresa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension tam = getToolkit().getScreenSize();
-		setBounds(0,0,tam.width,tam.height);
+		setBounds(0,0,1185,659);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,14 +62,6 @@ public class PerfilEmpresa extends JFrame {
 		panel_1.setBounds(381, 162, 403, 386);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Si");
-		rdbtnNewRadioButton.setBounds(246, 52, 50, 23);
-		panel_1.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("No");
-		rdbtnNewRadioButton_1.setBounds(329, 52, 50, 23);
-		panel_1.add(rdbtnNewRadioButton_1);
 		
 		JRadioButton radioButton_3 = new JRadioButton("Si");
 		radioButton_3.setBounds(246, 89, 50, 23);
@@ -135,7 +127,7 @@ public class PerfilEmpresa extends JFrame {
 		radioButton_18.setBounds(329, 345, 50, 23);
 		panel_1.add(radioButton_18);
 		
-		JLabel lblNewLabel_1 = new JLabel("Hablar Ingles");
+		JLabel lblNewLabel_1 = new JLabel("Habla otro Idioma?");
 		lblNewLabel_1.setBounds(22, 56, 100, 14);
 		panel_1.add(lblNewLabel_1);
 		
@@ -170,6 +162,11 @@ public class PerfilEmpresa extends JFrame {
 		JLabel lblDominioDeSoftware = new JLabel("Dominio de Software");
 		lblDominioDeSoftware.setBounds(22, 349, 143, 14);
 		panel_1.add(lblDominioDeSoftware);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Ingles", "Frances", "Chino", "Italiano"}));
+		comboBox_2.setBounds(246, 53, 133, 20);
+		panel_1.add(comboBox_2);
 		
 		JButton btnNewButton = new JButton("Subir");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -321,11 +318,11 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(spinner);
 		
 		JList ListarSolicitudes = new JList();
-		ListarSolicitudes.setBounds(823, 487, 143, -309);
+		ListarSolicitudes.setBounds(823, 487, 237, -309);
 		contentPane.add(ListarSolicitudes);
 		
 		JLabel lblSolicitudes = new JLabel("Solicitudes");
-		lblSolicitudes.setBounds(863, 140, 67, 14);
+		lblSolicitudes.setBounds(932, 140, 67, 14);
 		contentPane.add(lblSolicitudes);
 		
 		JButton btnVer = new JButton("Ver");
@@ -337,7 +334,7 @@ public class PerfilEmpresa extends JFrame {
 				
 			}
 		});
-		btnVer.setBounds(853, 525, 89, 23);
+		btnVer.setBounds(910, 525, 89, 23);
 		contentPane.add(btnVer);
 		
 		
