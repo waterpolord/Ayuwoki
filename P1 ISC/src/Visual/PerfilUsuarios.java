@@ -41,6 +41,7 @@ public class PerfilUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 821, 687);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -80,6 +81,7 @@ public class PerfilUsuarios extends JFrame {
 		panel.add(textField);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setForeground(SystemColor.desktop);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(633, 11, 162, 20);
@@ -193,6 +195,7 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(label_18);
 		
 		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBackground(SystemColor.activeCaption);
 		comboBox_3.setBounds(246, 53, 133, 20);
 		panelReUniversitario.add(comboBox_3);
 		
@@ -372,10 +375,12 @@ public class PerfilUsuarios extends JFrame {
 		panelReObr.add(comboBox_2);
 		
 		JButton BTNGuardar = new JButton("Guardar");
+		BTNGuardar.setBackground(SystemColor.activeCaption);
 		BTNGuardar.setBounds(237, 614, 89, 23);
 		contentPane.add(BTNGuardar);
 		
 		JButton button_2 = new JButton("Cancelar");
+		button_2.setBackground(SystemColor.activeCaption);
 		button_2.setBounds(474, 614, 89, 23);
 		contentPane.add(button_2);
 	}

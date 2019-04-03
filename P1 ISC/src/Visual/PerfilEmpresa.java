@@ -46,6 +46,7 @@ public class PerfilEmpresa extends JFrame {
 		Dimension tam = getToolkit().getScreenSize();
 		setBounds(0,0,1185,659);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -64,66 +65,82 @@ public class PerfilEmpresa extends JFrame {
 		panelReUniversitario.setLayout(null);
 		
 		JRadioButton radioButton_3 = new JRadioButton("Si");
+		radioButton_3.setBackground(SystemColor.activeCaption);
 		radioButton_3.setBounds(246, 89, 50, 23);
 		panelReUniversitario.add(radioButton_3);
 		
 		JRadioButton radioButton_4 = new JRadioButton("No");
+		radioButton_4.setBackground(SystemColor.activeCaption);
 		radioButton_4.setBounds(329, 89, 50, 23);
 		panelReUniversitario.add(radioButton_4);
 		
 		JRadioButton radioButton_5 = new JRadioButton("Si");
+		radioButton_5.setBackground(SystemColor.activeCaption);
 		radioButton_5.setBounds(246, 127, 50, 23);
 		panelReUniversitario.add(radioButton_5);
 		
 		JRadioButton radioButton_6 = new JRadioButton("No");
+		radioButton_6.setBackground(SystemColor.activeCaption);
 		radioButton_6.setBounds(329, 127, 50, 23);
 		panelReUniversitario.add(radioButton_6);
 		
 		JRadioButton radioButton_7 = new JRadioButton("Si");
+		radioButton_7.setBackground(SystemColor.activeCaption);
 		radioButton_7.setBounds(246, 165, 50, 23);
 		panelReUniversitario.add(radioButton_7);
 		
 		JRadioButton radioButton_8 = new JRadioButton("Si");
+		radioButton_8.setBackground(SystemColor.activeCaption);
 		radioButton_8.setBounds(246, 203, 50, 23);
 		panelReUniversitario.add(radioButton_8);
 		
 		JRadioButton radioButton_9 = new JRadioButton("Si");
+		radioButton_9.setBackground(SystemColor.activeCaption);
 		radioButton_9.setBounds(246, 239, 50, 23);
 		panelReUniversitario.add(radioButton_9);
 		
 		JRadioButton radioButton_10 = new JRadioButton("Si");
+		radioButton_10.setBackground(SystemColor.activeCaption);
 		radioButton_10.setBounds(246, 275, 50, 23);
 		panelReUniversitario.add(radioButton_10);
 		
 		JRadioButton radioButton_11 = new JRadioButton("Si");
+		radioButton_11.setBackground(SystemColor.activeCaption);
 		radioButton_11.setBounds(246, 312, 50, 23);
 		panelReUniversitario.add(radioButton_11);
 		
 		JRadioButton radioButton_12 = new JRadioButton("Si");
+		radioButton_12.setBackground(SystemColor.activeCaption);
 		radioButton_12.setBounds(246, 345, 50, 23);
 		panelReUniversitario.add(radioButton_12);
 		
 		JRadioButton radioButton_13 = new JRadioButton("No");
+		radioButton_13.setBackground(SystemColor.activeCaption);
 		radioButton_13.setBounds(329, 165, 50, 23);
 		panelReUniversitario.add(radioButton_13);
 		
 		JRadioButton radioButton_14 = new JRadioButton("No");
+		radioButton_14.setBackground(SystemColor.activeCaption);
 		radioButton_14.setBounds(329, 203, 50, 23);
 		panelReUniversitario.add(radioButton_14);
 		
 		JRadioButton radioButton_15 = new JRadioButton("No");
+		radioButton_15.setBackground(SystemColor.activeCaption);
 		radioButton_15.setBounds(329, 239, 50, 23);
 		panelReUniversitario.add(radioButton_15);
 		
 		JRadioButton radioButton_16 = new JRadioButton("No");
+		radioButton_16.setBackground(SystemColor.activeCaption);
 		radioButton_16.setBounds(329, 275, 50, 23);
 		panelReUniversitario.add(radioButton_16);
 		
 		JRadioButton radioButton_17 = new JRadioButton("No");
+		radioButton_17.setBackground(SystemColor.activeCaption);
 		radioButton_17.setBounds(329, 312, 50, 23);
 		panelReUniversitario.add(radioButton_17);
 		
 		JRadioButton radioButton_18 = new JRadioButton("No");
+		radioButton_18.setBackground(SystemColor.activeCaption);
 		radioButton_18.setBounds(329, 345, 50, 23);
 		panelReUniversitario.add(radioButton_18);
 		
@@ -164,6 +181,7 @@ public class PerfilEmpresa extends JFrame {
 		panelReUniversitario.add(lblDominioDeSoftware);
 		
 		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBackground(new Color(255, 255, 255));
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Ingles", "Frances", "Chino", "Italiano"}));
 		comboBox_2.setBounds(246, 53, 133, 20);
 		panelReUniversitario.add(comboBox_2);
@@ -435,7 +453,7 @@ public class PerfilEmpresa extends JFrame {
 		panel_3.setLayout(null);
 		panel_3.setForeground(Color.WHITE);
 		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo De Personal", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		panel_3.setBackground(SystemColor.inactiveCaption);
+		panel_3.setBackground(SystemColor.activeCaption);
 		panel_3.setBounds(10, 22, 346, 51);
 		panel_2.add(panel_3);
 		
@@ -458,7 +476,7 @@ public class PerfilEmpresa extends JFrame {
 		panel_4.setLayout(null);
 		panel_4.setForeground(Color.WHITE);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_4.setBackground(SystemColor.inactiveCaption);
+		panel_4.setBackground(SystemColor.activeCaption);
 		panel_4.setBounds(10, 98, 346, 81);
 		panel_2.add(panel_4);
 		
@@ -514,7 +532,7 @@ public class PerfilEmpresa extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Monto a Ganar", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_5.setBackground(SystemColor.inactiveCaption);
+		panel_5.setBackground(SystemColor.activeCaption);
 		panel_5.setBounds(10, 201, 346, 106);
 		panel_2.add(panel_5);
 		panel_5.setLayout(null);

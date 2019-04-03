@@ -42,6 +42,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class Inicio extends JFrame {
 
@@ -174,6 +175,7 @@ public class Inicio extends JFrame {
 		Tam = this.getToolkit().getScreenSize();
 		
 		JLabel lblfondo = new JLabel("");
+		lblfondo.setBackground(new Color(211, 211, 211));
 		lblfondo.setIcon(new ImageIcon("src\\Imgenes\\FondoPortada.jpg"));
 		lblfondo.setBounds(0, 0, (int)Tam.getWidth(), (int)Tam.getHeight());
 		
@@ -218,7 +220,7 @@ public class Inicio extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
-		panel.setBackground(new Color(34, 49, 63));
+		panel.setBackground(SystemColor.activeCaption);
 		PanelLogin.add(panel);
 		
 		JLabel labelUsuario = new JLabel("Usuario/Correo:");
@@ -419,7 +421,7 @@ public class Inicio extends JFrame {
 	    LBIncorrecto = new JLabel("Nombre o Contraseña incorrectos");
 	    LBIncorrecto.setVisible(false);
 		LBIncorrecto.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		LBIncorrecto.setForeground(Color.CYAN);
+		LBIncorrecto.setForeground(new Color(0, 51, 255));
 		LBIncorrecto.setBounds(68, 62, 212, 14);
 		panel.add(LBIncorrecto);
 		
@@ -511,7 +513,7 @@ public class Inicio extends JFrame {
 		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_1.setBounds(82, 11, 533, 192);
-		panel_1.setBackground(new Color(34, 49, 63));
+		panel_1.setBackground(SystemColor.activeCaption);
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
 		
@@ -531,7 +533,7 @@ public class Inicio extends JFrame {
 				txtpassconfirm.setEchoChar('●');
 			}
 		});
-		LBNoconfirm.setForeground(Color.CYAN);
+		LBNoconfirm.setForeground(new Color(0, 51, 255));
 		LBNoconfirm.setVisible(false);
 		LBNoconfirm.setBounds(465, 151, 58, 14);
 		panel_1.add(LBNoconfirm);
@@ -548,7 +550,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		
-		LBConfirmver.setForeground(Color.CYAN);
+		LBConfirmver.setForeground(new Color(0, 51, 255));
 		LBConfirmver.setBounds(468, 151, 33, 14);
 		panel_1.add(LBConfirmver);
 		
@@ -576,7 +578,7 @@ public class Inicio extends JFrame {
 				passwordContraseña.setEchoChar('●');
 			}
 		});
-		LBOcultar.setForeground(Color.CYAN);
+		LBOcultar.setForeground(new Color(0, 51, 255));
 		LBOcultar.setBounds(195, 151, 50, 14);
 		LBOcultar.setBackground(Color.blue);
 		LBOcultar.setVisible(false);
@@ -592,7 +594,7 @@ public class Inicio extends JFrame {
 				passwordContraseña.setEchoChar((char)0);
 			}
 		});
-		LBver.setForeground(Color.CYAN);
+		LBver.setForeground(new Color(0, 51, 255));
 		LBver.setVerticalAlignment(SwingConstants.BOTTOM);
 		LBver.setBounds(195, 151, 33, 14);
 		panel_1.add(LBver);
@@ -713,7 +715,7 @@ public class Inicio extends JFrame {
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_2.setBounds(82, 204, 533, 47);
-		panel_2.setBackground(new Color(1, 50, 67));
+		panel_2.setBackground(SystemColor.inactiveCaption);
 		PanelUser.add(panel_2);
 		
 	
@@ -767,7 +769,7 @@ public class Inicio extends JFrame {
 		panelUniversitario = new JPanel();
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelUniversitario.setBackground(new Color(34, 49, 63));
+		panelUniversitario.setBackground(SystemColor.activeCaption);
 		panelUniversitario.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelUniversitario);
 		
@@ -788,7 +790,7 @@ public class Inicio extends JFrame {
 		panelTecnico.setLayout(null);
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelTecnico.setBackground(new Color(34, 49, 63));
+		panelTecnico.setBackground(new Color(153, 204, 204));
 		panelTecnico.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelTecnico);
 		
@@ -807,7 +809,7 @@ public class Inicio extends JFrame {
 		panelObrero.setLayout(null);
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelObrero.setBackground(new Color(34, 49, 63));
+		panelObrero.setBackground(new Color(153, 204, 204));
 		panelObrero.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelObrero);
 		
@@ -886,7 +888,7 @@ public class Inicio extends JFrame {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_4.setBounds(79, 11, 564, 343);
-		panel_4.setBackground(new Color(34, 49, 63));
+		panel_4.setBackground(SystemColor.activeCaption);
 		PanelEmpresa.add(panel_4);
 		
 		JLabel labelCodigoE = new JLabel("Nombre:");
