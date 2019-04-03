@@ -1,10 +1,11 @@
 package Logic;
 
+import java.io.*;
 import java.util.ArrayList;
 
 import Visual.Inicio;
 
-public class Principal {
+public class Principal implements Serializable{
 	private ArrayList<Persona> Tpersonas;
 	private ArrayList<Empresa> TEmpresas;
 	private ArrayList<Empleo> TEmpleos;
@@ -33,6 +34,41 @@ public class Principal {
 		return principal;
 	}
 	
+	public static void setInstance(Principal carga) {
+			principal = carga;
+		
+	}
+	public void dataSalida() throws IOException, ClassNotFoundException{
+    	File salida = new File("Bolsa.dat");
+		FileOutputStream guardar;
+		try {
+			guardar = new FileOutputStream(salida);
+			ObjectOutputStream archivoSalida = new ObjectOutputStream(guardar);
+			archivoSalida.writeObject(Principal.getInstance());
+		}catch(FileNotFoundException evt) {
+			evt.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+	
+	public void dataEntrada() throws IOException, FileNotFoundException, ClassNotFoundException{
+    	File archivoEntrada = new File("Bolsa.dat");
+		if(archivoEntrada.exists()) {
+			
+			FileInputStream file = new FileInputStream(archivoEntrada);
+			try {
+			ObjectInputStream entrada = new ObjectInputStream(file);
+			Principal.setInstance((Principal) entrada.readObject());
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+    	
+    }
+	
 	public int getPerson() {
 		return cantPersonas;
 	}
@@ -44,16 +80,20 @@ public class Principal {
 	public ArrayList<Persona> getTpersonas() {
 		return Tpersonas;
 	}
-	public void setTpersonas(Persona nueva) {
+	public void setTpersonas(Persona nueva) throws ClassNotFoundException, IOException {
+		dataEntrada();
 		Tpersonas.add(nueva);
 		cantPersonas++;
+		dataSalida();
 	}
 	public ArrayList<Empresa> getTEmpresas() {
 		return TEmpresas;
 	}
-	public void setTEmpresas(Empresa empresa) {
+	public void setTEmpresas(Empresa empresa) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 		TEmpresas.add(empresa);
 		cantEmpresas++;
+		dataSalida();
 	}
 	public ArrayList<Empleo> getTEmpleos() {
 		return TEmpleos;
@@ -68,7 +108,8 @@ public class Principal {
 		TVacantes.add(vacante);
 	}
 	
-	public Boolean existeEmpresa(String txt) {
+	public Boolean existeEmpresa(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 		for(Empresa empre:TEmpresas) {
 			if(empre.getCorreo().equalsIgnoreCase(txt)) {
 				return true;
@@ -77,7 +118,8 @@ public class Principal {
 		return false;
 	}
 	
-	public Boolean existeUser(String txt) {
+	public Boolean existeUser(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 		for(Persona aux:Tpersonas) {
 			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return true;
@@ -86,7 +128,8 @@ public class Principal {
 		return false;
 	}
 	
-	public Persona buscarPersonas(String txt) {
+	public Persona buscarPersonas(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 		for(Persona aux:Tpersonas) {
 			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return aux;
@@ -94,7 +137,8 @@ public class Principal {
 		}
 		return null;
 	}
-	public Empresa buscarEmpresas(String txt) {
+	public Empresa buscarEmpresas(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 		for(Empresa aux:TEmpresas) {
 			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return aux;
@@ -103,14 +147,16 @@ public class Principal {
 		return null;
 	}
 	//  ind = 0 Persona ind = 1 Empresa
-	public Boolean ContraUser(String txt) {
+	public Boolean ContraUser(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 			for(Persona aux:Tpersonas) {
 				if(aux.getClave().equalsIgnoreCase(txt))
 					return true;
 			}
 			return false;
 	}
-	public Boolean ContraEmpresa(String txt) {
+	public Boolean ContraEmpresa(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
 		for(Empresa empre:TEmpresas) {
 			if(empre.getClave().equalsIgnoreCase(txt))
 				return true;

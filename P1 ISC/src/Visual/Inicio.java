@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.text.ParseException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -228,15 +229,35 @@ public class Inicio extends JFrame {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
 					String claveUser = new String(passwordContra.getPassword()),
 							claveEmpresa = new String(passwordContra.getPassword());
-					Boolean user = Principal.getInstance().existeUser(textUsuario.getText()),empre = Principal.getInstance().existeEmpresa(textUsuario.getText()),
-							userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+					Boolean user = null, empre = null, userPassword = null, empresaPassword = null;
+					try {
+						user = Principal.getInstance().existeUser(textUsuario.getText());
+						empre = Principal.getInstance().existeEmpresa(textUsuario.getText());
+						userPassword = Principal.getInstance().ContraUser(claveUser);
+						empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					if(user && userPassword) {
-						Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						Persona login = null;
+						try {
+							login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						new PerfilUsuarios(login).setVisible(true);
 						dispose();
 					}
 					else if(empre && empresaPassword) {
-						Empresa empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+						Empresa empresa = null;
+						try {
+							empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						new PerfilEmpresa(empresa).setVisible(true);
 						dispose();
 					}
@@ -267,15 +288,35 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String claveUser = new String(passwordContra.getPassword()),
 						claveEmpresa = new String(passwordContra.getPassword());
-				Boolean user = Principal.getInstance().existeUser(textUsuario.getText()),empre = Principal.getInstance().existeEmpresa(textUsuario.getText()),
-						userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+				Boolean user = null, empre = null, userPassword = null, empresaPassword = null;
+				try {
+					user = Principal.getInstance().existeUser(textUsuario.getText());
+					empre = Principal.getInstance().existeEmpresa(textUsuario.getText());
+					userPassword = Principal.getInstance().ContraUser(claveUser);
+					empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(user && userPassword) {
-					Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+					Persona login = null;
+					try {
+						login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					new PerfilUsuarios(login).setVisible(true);
 					dispose();
 				}
 				else if(empre && empresaPassword) {
-					Empresa empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+					Empresa empresa = null;
+					try {
+						empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					new PerfilEmpresa(empresa).setVisible(true);
 					dispose();
 				}
@@ -309,15 +350,35 @@ public class Inicio extends JFrame {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
 					String claveUser = new String(passwordContra.getPassword()),
 							claveEmpresa = new String(passwordContra.getPassword());
-					Boolean user = Principal.getInstance().existeUser(textUsuario.getText()),empre = Principal.getInstance().existeEmpresa(textUsuario.getText()),
-							userPassword = Principal.getInstance().ContraUser(claveUser),empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+					Boolean user = null, empre = null, userPassword = null, empresaPassword = null;
+					try {
+						user = Principal.getInstance().existeUser(textUsuario.getText());
+						empre = Principal.getInstance().existeEmpresa(textUsuario.getText());
+						userPassword = Principal.getInstance().ContraUser(claveUser);
+						empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					if(user && userPassword) {
-						Persona login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						Persona login = null;
+						try {
+							login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						new PerfilUsuarios(login).setVisible(true);
 						dispose();
 					}
 					else if(empre && empresaPassword) {
-						Empresa empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+						Empresa empresa = null;
+						try {
+							empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						new PerfilEmpresa(empresa).setVisible(true);
 						dispose();
 					}
@@ -468,15 +529,20 @@ public class Inicio extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(txtCorreo.getText().length() > 4 ) {
-					if(Principal.getInstance().existeUser(txtCorreo.getText())) {
-						LBconfirmCorreo.setText("Correo no disponible");
-						LBconfirmCorreo.setForeground(Color.red);
-						LBconfirmCorreo.setVisible(true);
-					}
-					else {
-						LBconfirmCorreo.setText("Correo disponible");
-						LBconfirmCorreo.setForeground(Color.GREEN);
-						LBconfirmCorreo.setVisible(true);
+					try {
+						if(Principal.getInstance().existeUser(txtCorreo.getText())) {
+							LBconfirmCorreo.setText("Correo no disponible");
+							LBconfirmCorreo.setForeground(Color.red);
+							LBconfirmCorreo.setVisible(true);
+						}
+						else {
+							LBconfirmCorreo.setText("Correo disponible");
+							LBconfirmCorreo.setForeground(Color.GREEN);
+							LBconfirmCorreo.setVisible(true);
+						}
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 				else {
@@ -678,10 +744,21 @@ public class Inicio extends JFrame {
 							&& txtApellido.getText().length() > 1  && pass.equals(passC) && pass.length() > 3) {
 						if(CBXHabilidad.getSelectedIndex() > 0) {
 							if(Principal.getInstance().getPerson() > 0) {
-								esta = Principal.getInstance().existeUser(txtCorreo.getText());
+								try {
+									esta = Principal.getInstance().existeUser(txtCorreo.getText());
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							}
 							if(esta == true) {
-								Persona aux = Principal.getInstance().buscarPersonas(txtCorreo.getText());
+								Persona aux = null;
+								try {
+									aux = Principal.getInstance().buscarPersonas(txtCorreo.getText());
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								if( !(((Obrero) aux).HabilidadExiste(CBXHabilidad.getSelectedItem().toString()))) {
 									((Obrero) aux).setHabilidades(CBXHabilidad.getSelectedItem().toString());
 									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creó con exito, pero puedes seguir agregando habilidades","Agregado", 1);
@@ -694,7 +771,12 @@ public class Inicio extends JFrame {
 							else {
 								Obrero nuevo = new Obrero(textNombre.getText(),txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
-								Principal.getInstance().setTpersonas(nuevo);
+								try {
+									Principal.getInstance().setTpersonas(nuevo);
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito ","Agregado", 1);
 							}
 						}
@@ -762,15 +844,20 @@ public class Inicio extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(txtCorreo.getText().length() > 4 ) {
-					if(Principal.getInstance().existeUser(textCorreoE.getText())) {
-						LBconfirmCorreoE.setText("Correo no disponible");
-						LBconfirmCorreoE.setForeground(Color.red);
-						LBconfirmCorreoE.setVisible(true);
-					}
-					else {
-						LBconfirmCorreoE.setText("Correo disponible");
-						LBconfirmCorreoE.setForeground(Color.GREEN);
-						LBconfirmCorreoE.setVisible(true);
+					try {
+						if(Principal.getInstance().existeUser(textCorreoE.getText())) {
+							LBconfirmCorreoE.setText("Correo no disponible");
+							LBconfirmCorreoE.setForeground(Color.red);
+							LBconfirmCorreoE.setVisible(true);
+						}
+						else {
+							LBconfirmCorreoE.setText("Correo disponible");
+							LBconfirmCorreoE.setForeground(Color.GREEN);
+							LBconfirmCorreoE.setVisible(true);
+						}
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 				else {
@@ -899,7 +986,12 @@ public class Inicio extends JFrame {
 				Boolean esta = false;
 				if(TXTNombre.getText().length() > 2 && textTelefono.getText().length() == 12  && textCorreoE.getText().length() > 4 && passC.length() > 3 && textEncargado.getText().length() > 2 ) {
 						
-							esta = Principal.getInstance().existeEmpresa(textCorreoE.getText());
+							try {
+								esta = Principal.getInstance().existeEmpresa(textCorreoE.getText());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						if(esta == true) {
 							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 						}
@@ -959,7 +1051,12 @@ public class Inicio extends JFrame {
 				Boolean esta = false;
 				if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
 						
-							esta = Principal.getInstance().existeUser(txtCorreo.getText());
+							try {
+								esta = Principal.getInstance().existeUser(txtCorreo.getText());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						if(esta == true) {
 							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 						}
@@ -968,7 +1065,12 @@ public class Inicio extends JFrame {
 							if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
 								Obrero nuevo = new Obrero(nom,txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
-								Principal.getInstance().setTpersonas(nuevo);
+								try {
+									Principal.getInstance().setTpersonas(nuevo);
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
 								new PerfilUsuarios(nuevo).setVisible(true);
 							}
@@ -978,7 +1080,12 @@ public class Inicio extends JFrame {
 							if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
 								Tecnico nuevo = new Tecnico(nom,txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
-								Principal.getInstance().setTpersonas(nuevo);
+								try {
+									Principal.getInstance().setTpersonas(nuevo);
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
 								new PerfilUsuarios(nuevo).setVisible(true);
 							}
@@ -988,7 +1095,12 @@ public class Inicio extends JFrame {
 							if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
 								Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
-								Principal.getInstance().setTpersonas(nuevo);
+								try {
+									Principal.getInstance().setTpersonas(nuevo);
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
 								new PerfilUsuarios(nuevo).setVisible(true);
 							}

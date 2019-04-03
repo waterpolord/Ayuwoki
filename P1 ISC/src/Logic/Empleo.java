@@ -1,9 +1,10 @@
 package Logic;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empleo {
+public class Empleo implements Serializable{
 	
 	private Persona user;
 	private File curriculum;
