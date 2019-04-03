@@ -124,6 +124,12 @@ public class Inicio extends JFrame {
 		BTNiniciarSesion.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Boton Iniciar Sesion.jpg")));
 		BTNiniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					Principal.getInstance().dataEntrada();
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if(PanelLogin.isVisible()) {
 					PanelLogin.setVisible(false);
 				}
