@@ -41,31 +41,28 @@ public class Principal implements Serializable{
 	public void dataSalida() throws IOException, ClassNotFoundException{
     	File salida = new File("Bolsa.dat");
 		FileOutputStream guardar;
-		try {
-			guardar = new FileOutputStream(salida);
-			ObjectOutputStream archivoSalida = new ObjectOutputStream(guardar);
-			archivoSalida.writeObject(Principal.getInstance());
-		}catch(FileNotFoundException evt) {
-			evt.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+		guardar = new FileOutputStream(salida);
+		ObjectOutputStream archivoSalida = new ObjectOutputStream(guardar);
+		archivoSalida.writeObject(Principal.getInstance());
+		archivoSalida.close();
     }
 	
 	public void dataEntrada() throws IOException, FileNotFoundException, ClassNotFoundException{
     	File archivoEntrada = new File("Bolsa.dat");
 		if(archivoEntrada.exists()) {
-			
 			FileInputStream file = new FileInputStream(archivoEntrada);
-			try {
 			ObjectInputStream entrada = new ObjectInputStream(file);
 			Principal.setInstance((Principal) entrada.readObject());
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+			Tpersonas = principal.getInstance().Tpersonas;
+			TEmpresas = principal.getInstance().TEmpresas;
+			TEmpleos = principal.getInstance().TEmpleos;
+			TVacantes = principal.getInstance().TVacantes;
+			cantEmpresas = TEmpresas.size();
+			cantPersonas = Tpersonas.size();
+			entrada.close();
 		}
+			
+		
     	
     }
 	

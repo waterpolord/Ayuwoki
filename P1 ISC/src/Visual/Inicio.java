@@ -7,9 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Logic.*;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -98,7 +99,10 @@ public class Inicio extends JFrame {
 	private JLabel LBIgualdad;
 	private JLabel LBIncorrecto;
 	private JButton buttonLogin;
-	
+	private JComboBox CBXCarreras;
+	private JComboBox CBXEspecialidad;
+	private JButton btnCrearUser;
+	private JButton btnCrearEmpresa;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -137,6 +141,7 @@ public class Inicio extends JFrame {
 					PanelEmpresa.setVisible(false);
 		 			PanelLogin.setVisible(true);
 		 			PanelUser.setVisible(false);
+		 			setEnter(buttonLogin);
 				}
 			}
 		});
@@ -154,6 +159,7 @@ public class Inicio extends JFrame {
 					PanelEmpresa.setVisible(true);
 		 			PanelLogin.setVisible(false);
 		 			PanelUser.setVisible(false);
+		 			setEnter(btnCrearEmpresa);
 				}
 			}
 		});
@@ -195,6 +201,7 @@ public class Inicio extends JFrame {
 					PanelEmpresa.setVisible(false);
 		 			PanelLogin.setVisible(false);
 		 			PanelUser.setVisible(true);
+		 			setEnter(btnCrearUser);
 				}
 			}
 		});
@@ -417,6 +424,81 @@ public class Inicio extends JFrame {
 		panel.add(LBIncorrecto);
 		
 	    PanelUser = new JPanel();
+	    PanelUser.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyPressed(KeyEvent e) {
+	    		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+	    			String passC = new String(txtpassconfirm.getPassword()),
+							pass = new String(passwordContraseña.getPassword());
+					Boolean esta = false;
+					if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
+							
+								try {
+									esta = Principal.getInstance().existeUser(txtCorreo.getText());
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							if(esta == true) {
+								JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
+							}
+							else if(esta == false) {
+								String nom = textNombre.getText();
+								if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
+									Obrero nuevo = new Obrero(nom,txtApellido.getText(), 
+											txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
+									try {
+										Principal.getInstance().setTpersonas(nuevo);
+									} catch (ClassNotFoundException | IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+									new PerfilUsuarios(nuevo).setVisible(true);
+								}
+								else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
+									JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
+								}
+								if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
+									Tecnico nuevo = new Tecnico(nom,txtApellido.getText(), 
+											txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+									try {
+										Principal.getInstance().setTpersonas(nuevo);
+									} catch (ClassNotFoundException | IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+									new PerfilUsuarios(nuevo).setVisible(true);
+								}
+								else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
+									JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
+								}
+								if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
+									Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
+											txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+									try {
+										Principal.getInstance().setTpersonas(nuevo);
+									} catch (ClassNotFoundException | IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+									new PerfilUsuarios(nuevo).setVisible(true);
+								}
+								else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
+									JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);
+								}
+								
+							}
+						
+					}
+					else {
+								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
+					}
+	    		}
+	    	}
+	    });
 		PanelUser.setBounds(170, 107, 648, 400);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
@@ -695,7 +777,8 @@ public class Inicio extends JFrame {
 		panelUniversitario.add(labelCarrera);
 		panelUniversitario.setLayout(null);
 		
-		JComboBox CBXCarreras = new JComboBox();
+		 CBXCarreras = new JComboBox();
+		
 		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administración", "Derecho", "Economía", "Ingeniería", "Medicina", "Mercadeo"}));
 		CBXCarreras.setBounds(78, 34, 251, 25);
 		panelUniversitario.add(CBXCarreras);
@@ -714,7 +797,7 @@ public class Inicio extends JFrame {
 		labelEspecialidad.setBounds(10, 21, 91, 14);
 		panelTecnico.add(labelEspecialidad);
 		
-		JComboBox CBXEspecialidad = new JComboBox();
+		 CBXEspecialidad = new JComboBox();
 		CBXEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Informatica", "Mercadeo", "Arte", "Turismo", "Contabilidad", "Enfermeria"}));
 		CBXEspecialidad.setBounds(78, 34, 251, 25);
 		panelTecnico.add(CBXEspecialidad);
@@ -984,7 +1067,7 @@ public class Inicio extends JFrame {
 		comboBox.setBounds(70, 291, 353, 20);
 		panel_4.add(comboBox);
 		
-		JButton btnCrearEmpresa = new JButton("Crear");
+	    btnCrearEmpresa = new JButton("Crear");
 		btnCrearEmpresa.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -1048,9 +1131,10 @@ public class Inicio extends JFrame {
 		grupoTipo.add(RBTec);
 		grupoTipo.add(RBUniversitario);
 		
-		JButton btnCrearUser = new JButton("Crear");
+		btnCrearUser = new JButton("Crear");
+		
 		btnCrearUser.addActionListener(new ActionListener() {
-			
+		
 			public void actionPerformed(ActionEvent e) {
 				String passC = new String(txtpassconfirm.getPassword()),
 						pass = new String(passwordContraseña.getPassword());
@@ -1079,6 +1163,7 @@ public class Inicio extends JFrame {
 								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
 								new PerfilUsuarios(nuevo).setVisible(true);
+								
 							}
 							else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
@@ -1135,10 +1220,15 @@ public class Inicio extends JFrame {
 		btnCancelarUsuario.setBounds(345, 357, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
+		
+		
 
 		// El panel principal debe añadir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
 	}
+ 	public void setEnter(JButton BTN) {
+ 		getRootPane().setDefaultButton(BTN);
+ 	}
 }
 
 
