@@ -57,357 +57,6 @@ public class PerfilEmpresa extends JFrame {
 		comboBox.setBounds(997, 11, 162, 20);
 		contentPane.add(comboBox);
 		
-		JPanel panelReUniversitario = new JPanel();
-		panelReUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requisitos Universitario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelReUniversitario.setBackground(Color.WHITE);
-		panelReUniversitario.setBounds(381, 162, 403, 386);
-		contentPane.add(panelReUniversitario);
-		panelReUniversitario.setLayout(null);
-		
-		JRadioButton radioButton_3 = new JRadioButton("Si");
-		radioButton_3.setBackground(SystemColor.activeCaption);
-		radioButton_3.setBounds(246, 89, 50, 23);
-		panelReUniversitario.add(radioButton_3);
-		
-		JRadioButton radioButton_4 = new JRadioButton("No");
-		radioButton_4.setBackground(SystemColor.activeCaption);
-		radioButton_4.setBounds(329, 89, 50, 23);
-		panelReUniversitario.add(radioButton_4);
-		
-		JRadioButton radioButton_5 = new JRadioButton("Si");
-		radioButton_5.setBackground(SystemColor.activeCaption);
-		radioButton_5.setBounds(246, 127, 50, 23);
-		panelReUniversitario.add(radioButton_5);
-		
-		JRadioButton radioButton_6 = new JRadioButton("No");
-		radioButton_6.setBackground(SystemColor.activeCaption);
-		radioButton_6.setBounds(329, 127, 50, 23);
-		panelReUniversitario.add(radioButton_6);
-		
-		JRadioButton radioButton_7 = new JRadioButton("Si");
-		radioButton_7.setBackground(SystemColor.activeCaption);
-		radioButton_7.setBounds(246, 165, 50, 23);
-		panelReUniversitario.add(radioButton_7);
-		
-		JRadioButton radioButton_8 = new JRadioButton("Si");
-		radioButton_8.setBackground(SystemColor.activeCaption);
-		radioButton_8.setBounds(246, 203, 50, 23);
-		panelReUniversitario.add(radioButton_8);
-		
-		JRadioButton radioButton_9 = new JRadioButton("Si");
-		radioButton_9.setBackground(SystemColor.activeCaption);
-		radioButton_9.setBounds(246, 239, 50, 23);
-		panelReUniversitario.add(radioButton_9);
-		
-		JRadioButton radioButton_10 = new JRadioButton("Si");
-		radioButton_10.setBackground(SystemColor.activeCaption);
-		radioButton_10.setBounds(246, 275, 50, 23);
-		panelReUniversitario.add(radioButton_10);
-		
-		JRadioButton radioButton_11 = new JRadioButton("Si");
-		radioButton_11.setBackground(SystemColor.activeCaption);
-		radioButton_11.setBounds(246, 312, 50, 23);
-		panelReUniversitario.add(radioButton_11);
-		
-		JRadioButton radioButton_12 = new JRadioButton("Si");
-		radioButton_12.setBackground(SystemColor.activeCaption);
-		radioButton_12.setBounds(246, 345, 50, 23);
-		panelReUniversitario.add(radioButton_12);
-		
-		JRadioButton radioButton_13 = new JRadioButton("No");
-		radioButton_13.setBackground(SystemColor.activeCaption);
-		radioButton_13.setBounds(329, 165, 50, 23);
-		panelReUniversitario.add(radioButton_13);
-		
-		JRadioButton radioButton_14 = new JRadioButton("No");
-		radioButton_14.setBackground(SystemColor.activeCaption);
-		radioButton_14.setBounds(329, 203, 50, 23);
-		panelReUniversitario.add(radioButton_14);
-		
-		JRadioButton radioButton_15 = new JRadioButton("No");
-		radioButton_15.setBackground(SystemColor.activeCaption);
-		radioButton_15.setBounds(329, 239, 50, 23);
-		panelReUniversitario.add(radioButton_15);
-		
-		JRadioButton radioButton_16 = new JRadioButton("No");
-		radioButton_16.setBackground(SystemColor.activeCaption);
-		radioButton_16.setBounds(329, 275, 50, 23);
-		panelReUniversitario.add(radioButton_16);
-		
-		JRadioButton radioButton_17 = new JRadioButton("No");
-		radioButton_17.setBackground(SystemColor.activeCaption);
-		radioButton_17.setBounds(329, 312, 50, 23);
-		panelReUniversitario.add(radioButton_17);
-		
-		JRadioButton radioButton_18 = new JRadioButton("No");
-		radioButton_18.setBackground(SystemColor.activeCaption);
-		radioButton_18.setBounds(329, 345, 50, 23);
-		panelReUniversitario.add(radioButton_18);
-		
-		JLabel lblNewLabel_1 = new JLabel("Habla otro Idioma?");
-		lblNewLabel_1.setBounds(22, 56, 100, 14);
-		panelReUniversitario.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Vehiculo Propio");
-		lblNewLabel_2.setBounds(22, 93, 100, 14);
-		panelReUniversitario.add(lblNewLabel_2);
-		
-		JLabel lblDisponibilidadDeViajar = new JLabel("Disponibilidad de Horario");
-		lblDisponibilidadDeViajar.setBounds(22, 131, 156, 14);
-		panelReUniversitario.add(lblDisponibilidadDeViajar);
-		
-		JLabel lblDisposicionDeViajar = new JLabel("Disposicion de Viajar");
-		lblDisposicionDeViajar.setBounds(22, 169, 100, 14);
-		panelReUniversitario.add(lblDisposicionDeViajar);
-		
-		JLabel lblDisposicionAMudarse = new JLabel("Disposicion a Mudarse");
-		lblDisposicionAMudarse.setBounds(22, 207, 143, 14);
-		panelReUniversitario.add(lblDisposicionAMudarse);
-		
-		JLabel lblManeajerMaquinarias = new JLabel("Maneajer Maquinarias");
-		lblManeajerMaquinarias.setBounds(22, 243, 143, 14);
-		panelReUniversitario.add(lblManeajerMaquinarias);
-		
-		JLabel lblManejoDeFunciones = new JLabel("Manejo de Funciones de Oficina");
-		lblManejoDeFunciones.setBounds(22, 279, 156, 14);
-		panelReUniversitario.add(lblManejoDeFunciones);
-		
-		JLabel lblConocimientosMedicos = new JLabel("Conocimientos Medicos");
-		lblConocimientosMedicos.setBounds(22, 316, 156, 14);
-		panelReUniversitario.add(lblConocimientosMedicos);
-		
-		JLabel lblDominioDeSoftware = new JLabel("Dominio de Software");
-		lblDominioDeSoftware.setBounds(22, 349, 143, 14);
-		panelReUniversitario.add(lblDominioDeSoftware);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBackground(new Color(255, 255, 255));
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Ingles", "Frances", "Chino", "Italiano"}));
-		comboBox_2.setBounds(246, 53, 133, 20);
-		panelReUniversitario.add(comboBox_2);
-		
-		JPanel panelReTec = new JPanel();
-		panelReTec.setLayout(null);
-		panelReTec.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requisitos Tecnico", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelReTec.setBackground(Color.WHITE);
-		panelReTec.setBounds(381, 162, 403, 386);
-		contentPane.add(panelReTec);
-		
-		JRadioButton radioButton_35 = new JRadioButton("Si");
-		radioButton_35.setBounds(246, 89, 50, 23);
-		panelReTec.add(radioButton_35);
-		
-		JRadioButton radioButton_36 = new JRadioButton("No");
-		radioButton_36.setBounds(329, 89, 50, 23);
-		panelReTec.add(radioButton_36);
-		
-		JRadioButton radioButton_37 = new JRadioButton("Si");
-		radioButton_37.setBounds(246, 127, 50, 23);
-		panelReTec.add(radioButton_37);
-		
-		JRadioButton radioButton_38 = new JRadioButton("No");
-		radioButton_38.setBounds(329, 127, 50, 23);
-		panelReTec.add(radioButton_38);
-		
-		JRadioButton radioButton_39 = new JRadioButton("Si");
-		radioButton_39.setBounds(246, 165, 50, 23);
-		panelReTec.add(radioButton_39);
-		
-		JRadioButton radioButton_40 = new JRadioButton("Si");
-		radioButton_40.setBounds(246, 203, 50, 23);
-		panelReTec.add(radioButton_40);
-		
-		JRadioButton radioButton_41 = new JRadioButton("Si");
-		radioButton_41.setBounds(246, 239, 50, 23);
-		panelReTec.add(radioButton_41);
-		
-		JRadioButton radioButton_42 = new JRadioButton("Si");
-		radioButton_42.setBounds(246, 275, 50, 23);
-		panelReTec.add(radioButton_42);
-		
-		JRadioButton radioButton_43 = new JRadioButton("Si");
-		radioButton_43.setBounds(246, 312, 50, 23);
-		panelReTec.add(radioButton_43);
-		
-		JRadioButton radioButton_44 = new JRadioButton("Si");
-		radioButton_44.setBounds(246, 345, 50, 23);
-		panelReTec.add(radioButton_44);
-		
-		JRadioButton radioButton_45 = new JRadioButton("No");
-		radioButton_45.setBounds(329, 165, 50, 23);
-		panelReTec.add(radioButton_45);
-		
-		JRadioButton radioButton_46 = new JRadioButton("No");
-		radioButton_46.setBounds(329, 203, 50, 23);
-		panelReTec.add(radioButton_46);
-		
-		JRadioButton radioButton_47 = new JRadioButton("No");
-		radioButton_47.setBounds(329, 239, 50, 23);
-		panelReTec.add(radioButton_47);
-		
-		JRadioButton radioButton_48 = new JRadioButton("No");
-		radioButton_48.setBounds(329, 275, 50, 23);
-		panelReTec.add(radioButton_48);
-		
-		JRadioButton radioButton_49 = new JRadioButton("No");
-		radioButton_49.setBounds(329, 312, 50, 23);
-		panelReTec.add(radioButton_49);
-		
-		JRadioButton radioButton_50 = new JRadioButton("No");
-		radioButton_50.setBounds(329, 345, 50, 23);
-		panelReTec.add(radioButton_50);
-		
-		JLabel label_11 = new JLabel("Habla otro Idioma?");
-		label_11.setBounds(22, 56, 100, 14);
-		panelReTec.add(label_11);
-		
-		JLabel label_12 = new JLabel("Vehiculo Propio");
-		label_12.setBounds(22, 93, 100, 14);
-		panelReTec.add(label_12);
-		
-		JLabel label_13 = new JLabel("Disponibilidad de Horario");
-		label_13.setBounds(22, 131, 156, 14);
-		panelReTec.add(label_13);
-		
-		JLabel label_14 = new JLabel("Disposicion de Viajar");
-		label_14.setBounds(22, 169, 100, 14);
-		panelReTec.add(label_14);
-		
-		JLabel label_15 = new JLabel("Disposicion a Mudarse");
-		label_15.setBounds(22, 207, 143, 14);
-		panelReTec.add(label_15);
-		
-		JLabel label_16 = new JLabel("Maneajer Maquinarias");
-		label_16.setBounds(22, 243, 143, 14);
-		panelReTec.add(label_16);
-		
-		JLabel label_17 = new JLabel("Manejo de Funciones de Oficina");
-		label_17.setBounds(22, 279, 156, 14);
-		panelReTec.add(label_17);
-		
-		JLabel label_18 = new JLabel("Conocimientos Medicos");
-		label_18.setBounds(22, 316, 156, 14);
-		panelReTec.add(label_18);
-		
-		JLabel label_19 = new JLabel("Dominio de Software");
-		label_19.setBounds(22, 349, 143, 14);
-		panelReTec.add(label_19);
-		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(246, 53, 133, 20);
-		panelReTec.add(comboBox_4);
-		
-		JPanel panelReObrero = new JPanel();
-		panelReObrero.setLayout(null);
-		panelReObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requisitos Obrero", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelReObrero.setBackground(Color.WHITE);
-		panelReObrero.setBounds(381, 162, 403, 386);
-		contentPane.add(panelReObrero);
-		
-		JRadioButton radioButton_19 = new JRadioButton("Si");
-		radioButton_19.setBounds(246, 89, 50, 23);
-		panelReObrero.add(radioButton_19);
-		
-		JRadioButton radioButton_20 = new JRadioButton("No");
-		radioButton_20.setBounds(329, 89, 50, 23);
-		panelReObrero.add(radioButton_20);
-		
-		JRadioButton radioButton_21 = new JRadioButton("Si");
-		radioButton_21.setBounds(246, 127, 50, 23);
-		panelReObrero.add(radioButton_21);
-		
-		JRadioButton radioButton_22 = new JRadioButton("No");
-		radioButton_22.setBounds(329, 127, 50, 23);
-		panelReObrero.add(radioButton_22);
-		
-		JRadioButton radioButton_23 = new JRadioButton("Si");
-		radioButton_23.setBounds(246, 165, 50, 23);
-		panelReObrero.add(radioButton_23);
-		
-		JRadioButton radioButton_24 = new JRadioButton("Si");
-		radioButton_24.setBounds(246, 203, 50, 23);
-		panelReObrero.add(radioButton_24);
-		
-		JRadioButton radioButton_25 = new JRadioButton("Si");
-		radioButton_25.setBounds(246, 239, 50, 23);
-		panelReObrero.add(radioButton_25);
-		
-		JRadioButton radioButton_26 = new JRadioButton("Si");
-		radioButton_26.setBounds(246, 275, 50, 23);
-		panelReObrero.add(radioButton_26);
-		
-		JRadioButton radioButton_27 = new JRadioButton("Si");
-		radioButton_27.setBounds(246, 312, 50, 23);
-		panelReObrero.add(radioButton_27);
-		
-		JRadioButton radioButton_28 = new JRadioButton("Si");
-		radioButton_28.setBounds(246, 345, 50, 23);
-		panelReObrero.add(radioButton_28);
-		
-		JRadioButton radioButton_29 = new JRadioButton("No");
-		radioButton_29.setBounds(329, 165, 50, 23);
-		panelReObrero.add(radioButton_29);
-		
-		JRadioButton radioButton_30 = new JRadioButton("No");
-		radioButton_30.setBounds(329, 203, 50, 23);
-		panelReObrero.add(radioButton_30);
-		
-		JRadioButton radioButton_31 = new JRadioButton("No");
-		radioButton_31.setBounds(329, 239, 50, 23);
-		panelReObrero.add(radioButton_31);
-		
-		JRadioButton radioButton_32 = new JRadioButton("No");
-		radioButton_32.setBounds(329, 275, 50, 23);
-		panelReObrero.add(radioButton_32);
-		
-		JRadioButton radioButton_33 = new JRadioButton("No");
-		radioButton_33.setBounds(329, 312, 50, 23);
-		panelReObrero.add(radioButton_33);
-		
-		JRadioButton radioButton_34 = new JRadioButton("No");
-		radioButton_34.setBounds(329, 345, 50, 23);
-		panelReObrero.add(radioButton_34);
-		
-		JLabel label_2 = new JLabel("Habla otro Idioma?");
-		label_2.setBounds(22, 56, 100, 14);
-		panelReObrero.add(label_2);
-		
-		JLabel label_3 = new JLabel("Vehiculo Propio");
-		label_3.setBounds(22, 93, 100, 14);
-		panelReObrero.add(label_3);
-		
-		JLabel label_4 = new JLabel("Disponibilidad de Horario");
-		label_4.setBounds(22, 131, 156, 14);
-		panelReObrero.add(label_4);
-		
-		JLabel label_5 = new JLabel("Disposicion de Viajar");
-		label_5.setBounds(22, 169, 100, 14);
-		panelReObrero.add(label_5);
-		
-		JLabel label_6 = new JLabel("Disposicion a Mudarse");
-		label_6.setBounds(22, 207, 143, 14);
-		panelReObrero.add(label_6);
-		
-		JLabel label_7 = new JLabel("Maneajer Maquinarias");
-		label_7.setBounds(22, 243, 143, 14);
-		panelReObrero.add(label_7);
-		
-		JLabel label_8 = new JLabel("Manejo de Funciones de Oficina");
-		label_8.setBounds(22, 279, 156, 14);
-		panelReObrero.add(label_8);
-		
-		JLabel label_9 = new JLabel("Conocimientos Medicos");
-		label_9.setBounds(22, 316, 156, 14);
-		panelReObrero.add(label_9);
-		
-		JLabel label_10 = new JLabel("Dominio de Software");
-		label_10.setBounds(22, 349, 143, 14);
-		panelReObrero.add(label_10);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(246, 53, 133, 20);
-		panelReObrero.add(comboBox_3);
-		
 		JButton btnNewButton = new JButton("Subir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -576,8 +225,384 @@ public class PerfilEmpresa extends JFrame {
 		});
 		btnVer.setBounds(910, 525, 89, 23);
 		contentPane.add(btnVer);
+		JPanel panelUniE = new JPanel();
+		panelUniE.setLayout(null);
+		panelUniE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos Universitario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelUniE.setBackground(new Color(255, 255, 255));
+		panelUniE.setBounds(402, 159, 460, 434);
+		contentPane.add(panelUniE);
+		
+		JRadioButton radioButton_41 = new JRadioButton("Si");
+		radioButton_41.setBounds(313, 52, 50, 23);
+		panelUniE.add(radioButton_41);
+		
+		JRadioButton radioButton_42 = new JRadioButton("No");
+		radioButton_42.setBounds(385, 52, 50, 23);
+		panelUniE.add(radioButton_42);
+		
+		JRadioButton radioButton_43 = new JRadioButton("Si");
+		radioButton_43.setBounds(313, 89, 50, 23);
+		panelUniE.add(radioButton_43);
+		
+		JRadioButton radioButton_44 = new JRadioButton("No");
+		radioButton_44.setBounds(385, 89, 50, 23);
+		panelUniE.add(radioButton_44);
+		
+		JRadioButton radioButton_45 = new JRadioButton("Si");
+		radioButton_45.setBounds(313, 127, 50, 23);
+		panelUniE.add(radioButton_45);
+		
+		JRadioButton radioButton_46 = new JRadioButton("Si");
+		radioButton_46.setBounds(313, 165, 50, 23);
+		panelUniE.add(radioButton_46);
+		
+		JRadioButton radioButton_47 = new JRadioButton("Si");
+		radioButton_47.setBounds(313, 203, 50, 23);
+		panelUniE.add(radioButton_47);
+		
+		JRadioButton radioButton_48 = new JRadioButton("Si");
+		radioButton_48.setBounds(313, 239, 50, 23);
+		panelUniE.add(radioButton_48);
+		
+		JRadioButton radioButton_49 = new JRadioButton("Si");
+		radioButton_49.setBounds(313, 275, 50, 23);
+		panelUniE.add(radioButton_49);
+		
+		JRadioButton radioButton_50 = new JRadioButton("Si");
+		radioButton_50.setBounds(313, 312, 50, 23);
+		panelUniE.add(radioButton_50);
+		
+		JRadioButton radioButton_51 = new JRadioButton("No");
+		radioButton_51.setBounds(385, 127, 50, 23);
+		panelUniE.add(radioButton_51);
+		
+		JRadioButton radioButton_52 = new JRadioButton("No");
+		radioButton_52.setBounds(385, 165, 50, 23);
+		panelUniE.add(radioButton_52);
+		
+		JRadioButton radioButton_53 = new JRadioButton("No");
+		radioButton_53.setBounds(385, 203, 50, 23);
+		panelUniE.add(radioButton_53);
+		
+		JRadioButton radioButton_54 = new JRadioButton("No");
+		radioButton_54.setBounds(385, 239, 50, 23);
+		panelUniE.add(radioButton_54);
+		
+		JRadioButton radioButton_55 = new JRadioButton("No");
+		radioButton_55.setBounds(385, 275, 50, 23);
+		panelUniE.add(radioButton_55);
+		
+		JRadioButton radioButton_56 = new JRadioButton("No");
+		radioButton_56.setBounds(385, 312, 50, 23);
+		panelUniE.add(radioButton_56);
+		
+		JLabel label_22 = new JLabel("1. \u00BFHabla otro idioma?");
+		label_22.setBounds(22, 56, 122, 14);
+		panelUniE.add(label_22);
+		
+		JLabel label_23 = new JLabel("2. \u00BFVeh\u00EDculo Propio?");
+		label_23.setBounds(22, 93, 100, 14);
+		panelUniE.add(label_23);
+		
+		JLabel label_24 = new JLabel("3. \u00BFDisponibilidad de Horario?");
+		label_24.setBounds(22, 131, 156, 14);
+		panelUniE.add(label_24);
+		
+		JLabel label_25 = new JLabel("4. \u00BFDisposici\u00F3n de Viaje?");
+		label_25.setBounds(22, 169, 156, 14);
+		panelUniE.add(label_25);
+		
+		JLabel label_26 = new JLabel("5. \u00BFDispuesto a Mudarse?");
+		label_26.setBounds(22, 207, 143, 14);
+		panelUniE.add(label_26);
+		
+		JLabel label_27 = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
+		label_27.setBounds(22, 243, 193, 14);
+		panelUniE.add(label_27);
+		
+		JLabel label_28 = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
+		label_28.setBounds(22, 279, 178, 14);
+		panelUniE.add(label_28);
+		
+		JLabel label_29 = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
+		label_29.setBounds(22, 316, 242, 14);
+		panelUniE.add(label_29);
+		
+		JLabel label_30 = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
+		label_30.setBounds(22, 349, 218, 14);
+		panelUniE.add(label_30);
+		
+		JRadioButton radioButton_57 = new JRadioButton("No");
+		radioButton_57.setBounds(385, 345, 50, 23);
+		panelUniE.add(radioButton_57);
+		
+		JRadioButton radioButton_58 = new JRadioButton("Si");
+		radioButton_58.setBounds(313, 345, 50, 23);
+		panelUniE.add(radioButton_58);
+		
+		JLabel label_31 = new JLabel("10. \u00BFTrabajas bien en equipo?");
+		label_31.setBounds(22, 390, 156, 14);
+		panelUniE.add(label_31);
+		
+		JRadioButton radioButton_59 = new JRadioButton("Si");
+		radioButton_59.setBounds(315, 386, 50, 23);
+		panelUniE.add(radioButton_59);
+		
+		JRadioButton radioButton_60 = new JRadioButton("No");
+		radioButton_60.setBounds(385, 386, 50, 23);
+		panelUniE.add(radioButton_60);
 		
 		
+		
+		JPanel panelTecE = new JPanel();
+		panelTecE.setLayout(null);
+		panelTecE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos Tecnicos", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelTecE.setBackground(Color.WHITE);
+		panelTecE.setBounds(402, 159, 460, 434);
+		contentPane.add(panelTecE);
+		
+		JRadioButton radioButton_23 = new JRadioButton("Si");
+		radioButton_23.setBounds(283, 89, 50, 23);
+		panelTecE.add(radioButton_23);
+		
+		JRadioButton radioButton_24 = new JRadioButton("No");
+		radioButton_24.setBounds(357, 89, 50, 23);
+		panelTecE.add(radioButton_24);
+		
+		JRadioButton radioButton_25 = new JRadioButton("Si");
+		radioButton_25.setBounds(283, 127, 50, 23);
+		panelTecE.add(radioButton_25);
+		
+		JRadioButton radioButton_26 = new JRadioButton("No");
+		radioButton_26.setBounds(357, 127, 50, 23);
+		panelTecE.add(radioButton_26);
+		
+		JRadioButton radioButton_27 = new JRadioButton("Si");
+		radioButton_27.setBounds(283, 165, 50, 23);
+		panelTecE.add(radioButton_27);
+		
+		JRadioButton radioButton_28 = new JRadioButton("Si");
+		radioButton_28.setBounds(283, 203, 50, 23);
+		panelTecE.add(radioButton_28);
+		
+		JRadioButton radioButton_29 = new JRadioButton("No");
+		radioButton_29.setBounds(357, 165, 50, 23);
+		panelTecE.add(radioButton_29);
+		
+		JRadioButton radioButton_30 = new JRadioButton("No");
+		radioButton_30.setBounds(357, 203, 50, 23);
+		panelTecE.add(radioButton_30);
+		
+		JLabel label_12 = new JLabel("1. \u00BFHabla otro Idioma?");
+		label_12.setBounds(22, 56, 143, 14);
+		panelTecE.add(label_12);
+		
+		JLabel label_13 = new JLabel("2. \u00BFVehiculo Propio?");
+		label_13.setBounds(22, 93, 143, 14);
+		panelTecE.add(label_13);
+		
+		JLabel label_14 = new JLabel("3. \u00BFDisponibilidad de Horario?");
+		label_14.setBounds(22, 131, 156, 14);
+		panelTecE.add(label_14);
+		
+		JLabel label_15 = new JLabel("4. \u00BFDisposicion de Viaje?");
+		label_15.setBounds(22, 169, 143, 14);
+		panelTecE.add(label_15);
+		
+		JLabel label_16 = new JLabel("5. \u00BFDispuesto a Mudarse?");
+		label_16.setBounds(22, 207, 143, 14);
+		panelTecE.add(label_16);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(246, 53, 133, 20);
+		panelTecE.add(comboBox_2);
+		
+		JLabel label_17 = new JLabel("10. \u00BFTrabajas bien en equipo?");
+		label_17.setBounds(22, 398, 156, 14);
+		panelTecE.add(label_17);
+		
+		JRadioButton radioButton_31 = new JRadioButton("Si");
+		radioButton_31.setBounds(283, 354, 50, 23);
+		panelTecE.add(radioButton_31);
+		
+		JRadioButton radioButton_32 = new JRadioButton("No");
+		radioButton_32.setBounds(357, 354, 50, 23);
+		panelTecE.add(radioButton_32);
+		
+		JLabel label_18 = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
+		label_18.setBounds(22, 247, 193, 14);
+		panelTecE.add(label_18);
+		
+		JLabel label_19 = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
+		label_19.setBounds(22, 287, 178, 14);
+		panelTecE.add(label_19);
+		
+		JLabel label_20 = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
+		label_20.setBounds(22, 322, 242, 14);
+		panelTecE.add(label_20);
+		
+		JLabel label_21 = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
+		label_21.setBounds(22, 358, 218, 14);
+		panelTecE.add(label_21);
+		
+		JRadioButton radioButton_33 = new JRadioButton("Si");
+		radioButton_33.setBounds(283, 243, 50, 23);
+		panelTecE.add(radioButton_33);
+		
+		JRadioButton radioButton_34 = new JRadioButton("Si");
+		radioButton_34.setBounds(283, 283, 50, 23);
+		panelTecE.add(radioButton_34);
+		
+		JRadioButton radioButton_35 = new JRadioButton("Si");
+		radioButton_35.setBounds(283, 318, 50, 23);
+		panelTecE.add(radioButton_35);
+		
+		JRadioButton radioButton_36 = new JRadioButton("No");
+		radioButton_36.setBounds(357, 243, 50, 23);
+		panelTecE.add(radioButton_36);
+		
+		JRadioButton radioButton_37 = new JRadioButton("No");
+		radioButton_37.setBounds(357, 283, 50, 23);
+		panelTecE.add(radioButton_37);
+		
+		JRadioButton radioButton_38 = new JRadioButton("No");
+		radioButton_38.setBounds(357, 318, 50, 23);
+		panelTecE.add(radioButton_38);
+		
+		JRadioButton radioButton_39 = new JRadioButton("No");
+		radioButton_39.setBounds(357, 394, 50, 23);
+		panelTecE.add(radioButton_39);
+		
+		JRadioButton radioButton_40 = new JRadioButton("Si");
+		radioButton_40.setBounds(283, 394, 50, 23);
+		panelTecE.add(radioButton_40);
+		
+		JPanel panelObreE = new JPanel();
+		panelObreE.setLayout(null);
+		panelObreE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos Universitario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelObreE.setBackground(Color.WHITE);
+		panelObreE.setBounds(402, 159, 460, 434);
+		contentPane.add(panelObreE);
+		
+		JRadioButton radioButton_3 = new JRadioButton("Si");
+		radioButton_3.setBounds(313, 52, 50, 23);
+		panelObreE.add(radioButton_3);
+		
+		JRadioButton radioButton_4 = new JRadioButton("No");
+		radioButton_4.setBounds(385, 52, 50, 23);
+		panelObreE.add(radioButton_4);
+		
+		JRadioButton radioButton_5 = new JRadioButton("Si");
+		radioButton_5.setBounds(313, 89, 50, 23);
+		panelObreE.add(radioButton_5);
+		
+		JRadioButton radioButton_6 = new JRadioButton("No");
+		radioButton_6.setBounds(385, 89, 50, 23);
+		panelObreE.add(radioButton_6);
+		
+		JRadioButton radioButton_7 = new JRadioButton("Si");
+		radioButton_7.setBounds(313, 127, 50, 23);
+		panelObreE.add(radioButton_7);
+		
+		JRadioButton radioButton_8 = new JRadioButton("Si");
+		radioButton_8.setBounds(313, 165, 50, 23);
+		panelObreE.add(radioButton_8);
+		
+		JRadioButton radioButton_9 = new JRadioButton("Si");
+		radioButton_9.setBounds(313, 203, 50, 23);
+		panelObreE.add(radioButton_9);
+		
+		JRadioButton radioButton_10 = new JRadioButton("Si");
+		radioButton_10.setBounds(313, 239, 50, 23);
+		panelObreE.add(radioButton_10);
+		
+		JRadioButton radioButton_11 = new JRadioButton("Si");
+		radioButton_11.setBounds(313, 275, 50, 23);
+		panelObreE.add(radioButton_11);
+		
+		JRadioButton radioButton_12 = new JRadioButton("Si");
+		radioButton_12.setBounds(313, 312, 50, 23);
+		panelObreE.add(radioButton_12);
+		
+		JRadioButton radioButton_13 = new JRadioButton("No");
+		radioButton_13.setBounds(385, 127, 50, 23);
+		panelObreE.add(radioButton_13);
+		
+		JRadioButton radioButton_14 = new JRadioButton("No");
+		radioButton_14.setBounds(385, 165, 50, 23);
+		panelObreE.add(radioButton_14);
+		
+		JRadioButton radioButton_15 = new JRadioButton("No");
+		radioButton_15.setBounds(385, 203, 50, 23);
+		panelObreE.add(radioButton_15);
+		
+		JRadioButton radioButton_16 = new JRadioButton("No");
+		radioButton_16.setBounds(385, 239, 50, 23);
+		panelObreE.add(radioButton_16);
+		
+		JRadioButton radioButton_17 = new JRadioButton("No");
+		radioButton_17.setBounds(385, 275, 50, 23);
+		panelObreE.add(radioButton_17);
+		
+		JRadioButton radioButton_18 = new JRadioButton("No");
+		radioButton_18.setBounds(385, 312, 50, 23);
+		panelObreE.add(radioButton_18);
+		
+		JLabel label_2 = new JLabel("1. \u00BFHabla otro idioma?");
+		label_2.setBounds(22, 56, 122, 14);
+		panelObreE.add(label_2);
+		
+		JLabel label_3 = new JLabel("2. \u00BFVeh\u00EDculo Propio?");
+		label_3.setBounds(22, 93, 100, 14);
+		panelObreE.add(label_3);
+		
+		JLabel label_4 = new JLabel("3. \u00BFDisponibilidad de Horario?");
+		label_4.setBounds(22, 131, 156, 14);
+		panelObreE.add(label_4);
+		
+		JLabel label_5 = new JLabel("4. \u00BFDisposici\u00F3n de Viaje?");
+		label_5.setBounds(22, 169, 156, 14);
+		panelObreE.add(label_5);
+		
+		JLabel label_6 = new JLabel("5. \u00BFDispuesto a Mudarse?");
+		label_6.setBounds(22, 207, 143, 14);
+		panelObreE.add(label_6);
+		
+		JLabel label_7 = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
+		label_7.setBounds(22, 243, 193, 14);
+		panelObreE.add(label_7);
+		
+		JLabel label_8 = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
+		label_8.setBounds(22, 279, 178, 14);
+		panelObreE.add(label_8);
+		
+		JLabel label_9 = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
+		label_9.setBounds(22, 316, 242, 14);
+		panelObreE.add(label_9);
+		
+		JLabel label_10 = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
+		label_10.setBounds(22, 349, 218, 14);
+		panelObreE.add(label_10);
+		
+		JRadioButton radioButton_19 = new JRadioButton("No");
+		radioButton_19.setBounds(385, 345, 50, 23);
+		panelObreE.add(radioButton_19);
+		
+		JRadioButton radioButton_20 = new JRadioButton("Si");
+		radioButton_20.setBounds(313, 345, 50, 23);
+		panelObreE.add(radioButton_20);
+		
+		JLabel label_11 = new JLabel("10. \u00BFTrabajas bien en equipo?");
+		label_11.setBounds(22, 390, 156, 14);
+		panelObreE.add(label_11);
+		
+		JRadioButton radioButton_21 = new JRadioButton("Si");
+		radioButton_21.setBounds(315, 386, 50, 23);
+		panelObreE.add(radioButton_21);
+		
+		JRadioButton radioButton_22 = new JRadioButton("No");
+		radioButton_22.setBounds(385, 386, 50, 23);
+		panelObreE.add(radioButton_22);
 		
 	
 	}
