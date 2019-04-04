@@ -58,6 +58,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Subir");
+		btnNewButton.setBackground(SystemColor.activeCaption);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -66,6 +67,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.setBackground(SystemColor.activeCaption);
 		btnNewButton_1.setBounds(228, 561, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
