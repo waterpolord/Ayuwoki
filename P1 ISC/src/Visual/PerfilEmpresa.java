@@ -120,6 +120,8 @@ public class PerfilEmpresa extends JFrame {
 	private JRadioButton rbn56;
 	private JRadioButton rbn57;
 	private JRadioButton rbn58;
+	private JRadioButton rbn59;
+	private JRadioButton rbn60;
 	
 	
 
@@ -466,15 +468,15 @@ public class PerfilEmpresa extends JFrame {
 		panelUniE.add(rbn16);
 
 		JLabel label_22 = new JLabel("1. \u00BFHabla otro idioma?");
-		label_22.setBounds(22, 56, 122, 14);
+		label_22.setBounds(22, 56, 207, 14);
 		panelUniE.add(label_22);
 
 		JLabel label_23 = new JLabel("2. \u00BFVeh\u00EDculo Propio?");
-		label_23.setBounds(22, 93, 100, 14);
+		label_23.setBounds(22, 93, 193, 14);
 		panelUniE.add(label_23);
 
 		JLabel label_24 = new JLabel("3. \u00BFDisponibilidad de Horario?");
-		label_24.setBounds(22, 131, 156, 14);
+		label_24.setBounds(22, 131, 253, 14);
 		panelUniE.add(label_24);
 
 		JLabel label_25 = new JLabel("4. \u00BFDisposici\u00F3n de Viaje?");
@@ -482,23 +484,23 @@ public class PerfilEmpresa extends JFrame {
 		panelUniE.add(label_25);
 
 		JLabel label_26 = new JLabel("5. \u00BFDispuesto a Mudarse?");
-		label_26.setBounds(22, 207, 143, 14);
+		label_26.setBounds(22, 207, 207, 14);
 		panelUniE.add(label_26);
 
 		JLabel label_27 = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
-		label_27.setBounds(22, 243, 193, 14);
+		label_27.setBounds(22, 243, 242, 14);
 		panelUniE.add(label_27);
 
 		JLabel label_28 = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
-		label_28.setBounds(22, 279, 178, 14);
+		label_28.setBounds(22, 279, 230, 14);
 		panelUniE.add(label_28);
 
 		JLabel label_29 = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
-		label_29.setBounds(22, 316, 242, 14);
+		label_29.setBounds(22, 316, 269, 14);
 		panelUniE.add(label_29);
 
 		JLabel label_30 = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
-		label_30.setBounds(22, 349, 218, 14);
+		label_30.setBounds(22, 349, 277, 14);
 		panelUniE.add(label_30);
 
 		JRadioButton rbn17 = new JRadioButton("No");
@@ -510,7 +512,7 @@ public class PerfilEmpresa extends JFrame {
 		panelUniE.add(rbn18);
 
 		JLabel label_31 = new JLabel("10. \u00BFTrabajas bien en equipo?");
-		label_31.setBounds(22, 390, 156, 14);
+		label_31.setBounds(22, 390, 242, 14);
 		panelUniE.add(label_31);
 
 		JRadioButton rbn19 = new JRadioButton("Si");
@@ -530,116 +532,124 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(panelTecE);
 
 		JRadioButton rbn21 = new JRadioButton("Si");
-		rbn21.setBounds(283, 89, 50, 23);
+		rbn21.setBounds(313, 52, 50, 23);
 		panelTecE.add(rbn21);
 
 		JRadioButton rbn22 = new JRadioButton("No");
-		rbn22.setBounds(357, 89, 50, 23);
+		rbn22.setBounds(385, 52, 50, 23);
 		panelTecE.add(rbn22);
 
 		JRadioButton rbn23 = new JRadioButton("Si");
-		rbn23.setBounds(283, 127, 50, 23);
+		rbn23.setBounds(313, 89, 50, 23);
 		panelTecE.add(rbn23);
 
 		JRadioButton rbn24 = new JRadioButton("No");
-		rbn24.setBounds(357, 127, 50, 23);
+		rbn24.setBounds(385, 89, 50, 23);
 		panelTecE.add(rbn24);
 
 		JRadioButton rbn25 = new JRadioButton("Si");
-		rbn25.setBounds(283, 165, 50, 23);
+		rbn25.setBounds(313, 127, 50, 23);
 		panelTecE.add(rbn25);
 
 		JRadioButton rbn26 = new JRadioButton("Si");
-		rbn26.setBounds(283, 203, 50, 23);
+		rbn26.setBounds(313, 165, 50, 23);
 		panelTecE.add(rbn26);
 
-		JRadioButton rbn27 = new JRadioButton("No");
-		rbn27.setBounds(357, 165, 50, 23);
+		JRadioButton rbn27 = new JRadioButton("Si");
+		rbn27.setBounds(313, 203, 50, 23);
 		panelTecE.add(rbn27);
 
-		JRadioButton rbn28 = new JRadioButton("No");
-		rbn28.setBounds(357, 203, 50, 23);
+		JRadioButton rbn28 = new JRadioButton("Si");
+		rbn28.setBounds(313, 239, 50, 23);
 		panelTecE.add(rbn28);
 
 		JLabel label_12 = new JLabel("1. \u00BFHabla otro Idioma?");
-		label_12.setBounds(22, 56, 143, 14);
+		label_12.setBounds(22, 56, 207, 14);
 		panelTecE.add(label_12);
 
 		JLabel label_13 = new JLabel("2. \u00BFVehiculo Propio?");
-		label_13.setBounds(22, 93, 143, 14);
+		label_13.setBounds(22, 93, 193, 14);
 		panelTecE.add(label_13);
 
 		JLabel label_14 = new JLabel("3. \u00BFDisponibilidad de Horario?");
-		label_14.setBounds(22, 131, 156, 14);
+		label_14.setBounds(22, 131, 253, 14);
 		panelTecE.add(label_14);
 
 		JLabel label_15 = new JLabel("4. \u00BFDisposicion de Viaje?");
-		label_15.setBounds(22, 169, 143, 14);
+		label_15.setBounds(22, 169, 156, 14);
 		panelTecE.add(label_15);
 
 		JLabel label_16 = new JLabel("5. \u00BFDispuesto a Mudarse?");
-		label_16.setBounds(22, 207, 143, 14);
+		label_16.setBounds(22, 207, 207, 14);
 		panelTecE.add(label_16);
 
-		JLabel label_17 = new JLabel("10. \u00BFTrabajas bien en equipo?");
-		label_17.setBounds(22, 398, 156, 14);
-		panelTecE.add(label_17);
+		JLabel lblpiensaAmpliar = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
+		lblpiensaAmpliar.setBounds(22, 243, 242, 14);
+		panelTecE.add(lblpiensaAmpliar);
 
 		JRadioButton rbn29 = new JRadioButton("Si");
-		rbn29.setBounds(283, 354, 50, 23);
+		rbn29.setBounds(313, 275, 50, 23);
 		panelTecE.add(rbn29);
 
-		JRadioButton rbn30 = new JRadioButton("No");
-		rbn30.setBounds(357, 354, 50, 23);
+		JRadioButton rbn30 = new JRadioButton("Si");
+		rbn30.setBounds(313, 312, 50, 23);
 		panelTecE.add(rbn30);
 
-		JLabel label_18 = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
-		label_18.setBounds(22, 247, 193, 14);
-		panelTecE.add(label_18);
+		JLabel lbltrabajaruedaLos = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
+		lbltrabajaruedaLos.setBounds(22, 279, 230, 14);
+		panelTecE.add(lbltrabajaruedaLos);
 
-		JLabel label_19 = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
-		label_19.setBounds(22, 287, 178, 14);
-		panelTecE.add(label_19);
+		JLabel lblposeeExperiencia = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
+		lblposeeExperiencia.setBounds(22, 316, 269, 14);
+		panelTecE.add(lblposeeExperiencia);
 
-		JLabel label_20 = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
-		label_20.setBounds(22, 322, 242, 14);
-		panelTecE.add(label_20);
+		JLabel lblpuedeRealizar = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
+		lblpuedeRealizar.setBounds(22, 349, 277, 14);
+		panelTecE.add(lblpuedeRealizar);
 
-		JLabel label_21 = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
-		label_21.setBounds(22, 358, 218, 14);
-		panelTecE.add(label_21);
+		JLabel lbltrabajasBien = new JLabel("10. \u00BFTrabajas bien en equipo?");
+		lbltrabajasBien.setBounds(22, 390, 242, 14);
+		panelTecE.add(lbltrabajasBien);
 
-		JRadioButton rbn31 = new JRadioButton("Si");
-		rbn31.setBounds(283, 243, 50, 23);
+		JRadioButton rbn31 = new JRadioButton("No");
+		rbn31.setBounds(385, 127, 50, 23);
 		panelTecE.add(rbn31);
 
-		JRadioButton rbn32 = new JRadioButton("Si");
-		rbn32.setBounds(283, 283, 50, 23);
+		JRadioButton rbn32 = new JRadioButton("No");
+		rbn32.setBounds(385, 165, 50, 23);
 		panelTecE.add(rbn32);
 
-		JRadioButton rbn33 = new JRadioButton("Si");
-		rbn33.setBounds(283, 318, 50, 23);
+		JRadioButton rbn33 = new JRadioButton("No");
+		rbn33.setBounds(385, 203, 50, 23);
 		panelTecE.add(rbn33);
 
 		JRadioButton rbn34 = new JRadioButton("No");
-		rbn34.setBounds(357, 243, 50, 23);
+		rbn34.setBounds(385, 239, 50, 23);
 		panelTecE.add(rbn34);
 
 		JRadioButton rbn35 = new JRadioButton("No");
-		rbn35.setBounds(357, 283, 50, 23);
+		rbn35.setBounds(385, 275, 50, 23);
 		panelTecE.add(rbn35);
 
 		JRadioButton rbn36 = new JRadioButton("No");
-		rbn36.setBounds(357, 318, 50, 23);
+		rbn36.setBounds(385, 312, 50, 23);
 		panelTecE.add(rbn36);
 
 		JRadioButton rbn37 = new JRadioButton("No");
-		rbn37.setBounds(357, 394, 50, 23);
+		rbn37.setBounds(385, 345, 50, 23);
 		panelTecE.add(rbn37);
 
 		JRadioButton rbn38 = new JRadioButton("Si");
-		rbn38.setBounds(283, 394, 50, 23);
+		rbn38.setBounds(313, 345, 50, 23);
 		panelTecE.add(rbn38);
+		
+		JRadioButton rbn59 = new JRadioButton("Si");
+		rbn59.setBounds(315, 386, 50, 23);
+		panelTecE.add(rbn59);
+
+		JRadioButton rbn60 = new JRadioButton("No");
+		rbn60.setBounds(385, 386, 50, 23);
+		panelTecE.add(rbn60);
 
 		panelObreE = new JPanel();
 		panelObreE.setLayout(null);
@@ -714,15 +724,15 @@ public class PerfilEmpresa extends JFrame {
 		panelObreE.add(rbn54);
 
 		JLabel label_2 = new JLabel("1. \u00BFHabla otro idioma?");
-		label_2.setBounds(22, 56, 122, 14);
+		label_2.setBounds(22, 56, 207, 14);
 		panelObreE.add(label_2);
 
 		JLabel label_3 = new JLabel("2. \u00BFVeh\u00EDculo Propio?");
-		label_3.setBounds(22, 93, 100, 14);
+		label_3.setBounds(22, 93, 193, 14);
 		panelObreE.add(label_3);
 
 		JLabel label_4 = new JLabel("3. \u00BFDisponibilidad de Horario?");
-		label_4.setBounds(22, 131, 156, 14);
+		label_4.setBounds(22, 131, 253, 14);
 		panelObreE.add(label_4);
 
 		JLabel label_5 = new JLabel("4. \u00BFDisposici\u00F3n de Viaje?");
@@ -730,23 +740,23 @@ public class PerfilEmpresa extends JFrame {
 		panelObreE.add(label_5);
 
 		JLabel label_6 = new JLabel("5. \u00BFDispuesto a Mudarse?");
-		label_6.setBounds(22, 207, 143, 14);
+		label_6.setBounds(22, 207, 207, 14);
 		panelObreE.add(label_6);
 
 		JLabel label_7 = new JLabel("6. \u00BFPiensa ampliar sus conocimientos?");
-		label_7.setBounds(22, 243, 193, 14);
+		label_7.setBounds(22, 243, 242, 14);
 		panelObreE.add(label_7);
 
 		JLabel label_8 = new JLabel("7. \u00BFTrabajar\u00EDa los fines de semana?");
-		label_8.setBounds(22, 279, 178, 14);
+		label_8.setBounds(22, 279, 230, 14);
 		panelObreE.add(label_8);
 
 		JLabel label_9 = new JLabel("8. \u00BFPosee Experiencia de trabajos anteriores?");
-		label_9.setBounds(22, 316, 242, 14);
+		label_9.setBounds(22, 316, 269, 14);
 		panelObreE.add(label_9);
 
 		JLabel label_10 = new JLabel("9. \u00BFPuede realizar m\u00E1s de una tarea a la vez?");
-		label_10.setBounds(22, 349, 218, 14);
+		label_10.setBounds(22, 349, 277, 14);
 		panelObreE.add(label_10);
 
 		JRadioButton rbn55 = new JRadioButton("No");
@@ -758,7 +768,7 @@ public class PerfilEmpresa extends JFrame {
 		panelObreE.add(rbn56);
 
 		JLabel label_11 = new JLabel("10. \u00BFTrabajas bien en equipo?");
-		label_11.setBounds(22, 390, 156, 14);
+		label_11.setBounds(22, 390, 242, 14);
 		panelObreE.add(label_11);
 
 		JRadioButton rbn57 = new JRadioButton("Si");
