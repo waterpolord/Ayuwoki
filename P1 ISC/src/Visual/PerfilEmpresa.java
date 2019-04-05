@@ -757,7 +757,7 @@ public class PerfilEmpresa extends JFrame {
 		GrupoRespuestas9.add(RBN9S);
 		GrupoRespuestas10.add(RBN10S);
 
-
+		
 	}
 	
 }
