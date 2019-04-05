@@ -21,7 +21,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import Logic.Persona;
+import Logic.Principal;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class PerfilUsuarios extends JFrame {
@@ -83,6 +86,26 @@ public class PerfilUsuarios extends JFrame {
 		panel.add(textField);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboBox.getSelectedIndex() == 2) {
+					try {
+						Principal.getInstance().buscarPersonas(persona.getCorreo()).setSesion(false);;
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						Principal.getInstance().dataSalida();
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					dispose();
+					new Inicio().setVisible(true);
+				}
+			}
+		});
 		comboBox.setForeground(SystemColor.desktop);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
 		comboBox.setBackground(Color.WHITE);

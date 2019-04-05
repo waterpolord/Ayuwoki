@@ -193,7 +193,25 @@ public class Principal implements Serializable{
 	
 	
 	
+	public Empresa SesionEmpresa() throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
+		for(Empresa aux:TEmpresas) {
+			if(aux.getSesion()) {
+				return aux;
+			}
+		}
+		return null;
+	}
 	
+	public Persona SesionUser() throws FileNotFoundException, ClassNotFoundException, IOException {
+		dataEntrada();
+		for(Persona aux:Tpersonas) {
+			if(aux.getSesion()) {
+				return aux;
+			}
+		}
+		return null;
+	}
 	
 
 	

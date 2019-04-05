@@ -10,6 +10,7 @@ public abstract class Persona implements Serializable{
 	protected String clave;
 	protected Boolean estado;
 	protected Empleo Solicitud;
+	protected Boolean Sesion;
 	
 	
 	public Persona(String nombre, String apellido, String correo, String clave, Boolean estado) {
@@ -18,6 +19,7 @@ public abstract class Persona implements Serializable{
 		this.correo = correo;
 		this.clave = clave;
 		this.estado = estado;
+		Sesion = false;
 	}
 	
 	public Empleo getSolicitud() {
@@ -42,6 +44,15 @@ public abstract class Persona implements Serializable{
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	
+	public void setSesion(Boolean sesion) {
+		this.Sesion = sesion;
+	}
+	
+	public Boolean getSesion() {
+		return this.Sesion;
+	}
+	
 	public String getClave() {
 		return clave;
 	}

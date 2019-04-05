@@ -43,6 +43,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
+import javax.swing.JCheckBox;
 
 public class Inicio extends JFrame {
 
@@ -104,6 +105,7 @@ public class Inicio extends JFrame {
 	private JComboBox CBXEspecialidad;
 	private JButton btnCrearUser;
 	private JButton btnCrearEmpresa;
+	private JCheckBox checkSesion;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -113,6 +115,21 @@ public class Inicio extends JFrame {
  			PanelEmpresa.setVisible(false);
  			PanelLogin.setVisible(false);
  			PanelUser.setVisible(false);
+ 			try {
+			Empresa empre = Principal.getInstance().SesionEmpresa();
+			Persona user = Principal.getInstance().SesionUser();
+			if(empre != null) {
+				new PerfilEmpresa(empre).setVisible(true);;
+				dispose();
+			}
+			if(user != null) {
+				new PerfilUsuarios(user).setVisible(true);;
+				dispose();
+			}
+		} catch (ClassNotFoundException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
  		}
  	});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -234,66 +251,7 @@ public class Inicio extends JFrame {
 		panel.add(labelContraseña);
 		
 		textUsuario = new JTextField();
-		textUsuario.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-				
-			}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
-					String claveUser = new String(passwordContra.getPassword()),
-							claveEmpresa = new String(passwordContra.getPassword());
-					Boolean user = null, empre = null, userPassword = null, empresaPassword = null;
-					try {
-						user = Principal.getInstance().existeUser(textUsuario.getText());
-						empre = Principal.getInstance().existeEmpresa(textUsuario.getText());
-						userPassword = Principal.getInstance().ContraUser(claveUser);
-						empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
-					} catch (ClassNotFoundException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					if(user && userPassword) {
-						Persona login = null;
-						try {
-							login = Principal.getInstance().buscarPersonas(textUsuario.getText());
-						} catch (ClassNotFoundException | IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						new PerfilUsuarios(login).setVisible(true);
-						dispose();
-					}
-					else if(empre && empresaPassword) {
-						Empresa empresa = null;
-						try {
-							empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
-						} catch (ClassNotFoundException | IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						new PerfilEmpresa(empresa).setVisible(true);
-						dispose();
-					}
-					else if(user || userPassword) {
-						LBIncorrecto.setVisible(true);
-					}
-					else if(empre || empresaPassword) {
-						LBIncorrecto.setVisible(true);
-					}
-					else {
-						int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
-						if(Mensaje == JOptionPane.OK_OPTION) {
-							panel.setVisible(false);
-							textNombre.setText("");
-							passwordContra.setText("");
-							PanelUser.setVisible(true);
-						}
-					}
-				}
-			}
-		});
+		
 		textUsuario.setColumns(10);
 		textUsuario.setBounds(68, 40, 191, 20);
 		panel.add(textUsuario);
@@ -317,6 +275,21 @@ public class Inicio extends JFrame {
 					Persona login = null;
 					try {
 						login = Principal.getInstance().buscarPersonas(textUsuario.getText());
+						
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if(checkSesion.isSelected()) {
+						try {
+							Principal.getInstance().buscarPersonas(textUsuario.getText()).setSesion(true);
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						};
+					}
+					try {
+						Principal.getInstance().dataSalida();
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -328,6 +301,20 @@ public class Inicio extends JFrame {
 					Empresa empresa = null;
 					try {
 						empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if(checkSesion.isSelected()) {
+						try {
+							Principal.getInstance().buscarEmpresas(textUsuario.getText()).setSesion(true);
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						};
+					}
+					try {
+						Principal.getInstance().dataSalida();
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -359,62 +346,7 @@ public class Inicio extends JFrame {
 		panel.add(buttonLogin);
 		
 		passwordContra = new JPasswordField();
-		passwordContra.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
-					String claveUser = new String(passwordContra.getPassword()),
-							claveEmpresa = new String(passwordContra.getPassword());
-					Boolean user = null, empre = null, userPassword = null, empresaPassword = null;
-					try {
-						user = Principal.getInstance().existeUser(textUsuario.getText());
-						empre = Principal.getInstance().existeEmpresa(textUsuario.getText());
-						userPassword = Principal.getInstance().ContraUser(claveUser);
-						empresaPassword = Principal.getInstance().ContraEmpresa(claveEmpresa);
-					} catch (ClassNotFoundException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					if(user && userPassword) {
-						Persona login = null;
-						try {
-							login = Principal.getInstance().buscarPersonas(textUsuario.getText());
-						} catch (ClassNotFoundException | IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						new PerfilUsuarios(login).setVisible(true);
-						dispose();
-					}
-					else if(empre && empresaPassword) {
-						Empresa empresa = null;
-						try {
-							empresa = Principal.getInstance().buscarEmpresas(textUsuario.getText());
-						} catch (ClassNotFoundException | IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						new PerfilEmpresa(empresa).setVisible(true);
-						dispose();
-					}
-					else if(user || userPassword) {
-						LBIncorrecto.setVisible(true);
-					}
-					else if(empre || empresaPassword) {
-						LBIncorrecto.setVisible(true);
-					}
-					else {
-						int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
-						if(Mensaje == JOptionPane.OK_OPTION) {
-							panel.setVisible(false);
-							textNombre.setText("");
-							passwordContra.setText("");
-							PanelUser.setVisible(true);
-						}
-					}
-				}
-			}
-		});
+		
 		passwordContra.setBounds(348, 40, 191, 20);
 		panel.add(passwordContra);
 		
@@ -424,6 +356,11 @@ public class Inicio extends JFrame {
 		LBIncorrecto.setForeground(new Color(0, 51, 255));
 		LBIncorrecto.setBounds(68, 62, 212, 14);
 		panel.add(LBIncorrecto);
+		
+		checkSesion = new JCheckBox("Mantener sesión iniciada");
+		checkSesion.setBounds(348, 58, 176, 23);
+		checkSesion.setSelected(true);
+		panel.add(checkSesion);
 		
 	    PanelUser = new JPanel();
 	    PanelUser.addKeyListener(new KeyAdapter() {
@@ -1092,6 +1029,12 @@ public class Inicio extends JFrame {
 							if  (comboBox.getSelectedIndex() > 0) {
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Empresa Creada Con Exito", 1);
 								Empresa empresa = new Empresa(nom,textTelefono.getText(),textCorreoE.getText(),pas,textEncargado.getText(),comboBox.getSelectedItem().toString());
+								try {
+									Principal.getInstance().setTEmpresas(empresa);
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								new PerfilEmpresa(empresa).setVisible(true);
 								dispose();
 							}
