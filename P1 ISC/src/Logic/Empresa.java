@@ -13,6 +13,7 @@ public class Empresa implements Serializable{
 	private String encargado;
 	private String tipo;
 	private ArrayList<Vacante> MisVacantes;
+	private Boolean Sesion;
 	
 	public Empresa(String nombre, String telefono, String correo, String clave, String encargado,
 			String tipo) {
@@ -22,6 +23,7 @@ public class Empresa implements Serializable{
 		this.clave = clave;
 		this.encargado = encargado;
 		tipo = tipo;
+		Sesion = false;
 	}
 	public String getNombre() {
 		return Nombre;
@@ -67,6 +69,12 @@ public class Empresa implements Serializable{
 		MisVacantes.add(nueva);
 	}
 	
+	public void setSesion(Boolean sesion) {
+		this.Sesion = sesion;
+	}
+	public Boolean getSesion() {
+		return this.Sesion;
+	}
 	
 
 }
