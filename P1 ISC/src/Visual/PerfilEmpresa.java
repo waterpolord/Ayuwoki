@@ -403,67 +403,67 @@ public class PerfilEmpresa extends JFrame {
 		panelUniE.setBounds(402, 159, 460, 434);
 		contentPane.add(panelUniE);
 
-		JRadioButton rbn1 = new JRadioButton("Si");
+		rbn1 = new JRadioButton("Si");
 		rbn1.setBounds(313, 52, 50, 23);
 		panelUniE.add(rbn1);
 
-		JRadioButton rbn2 = new JRadioButton("No");
+		rbn2 = new JRadioButton("No");
 		rbn2.setBounds(385, 52, 50, 23);
 		panelUniE.add(rbn2);
 
-		JRadioButton rbn3 = new JRadioButton("Si");
+		rbn3 = new JRadioButton("Si");
 		rbn3.setBounds(313, 89, 50, 23);
 		panelUniE.add(rbn3);
 
-		JRadioButton rbn4 = new JRadioButton("No");
+		rbn4 = new JRadioButton("No");
 		rbn4.setBounds(385, 89, 50, 23);
 		panelUniE.add(rbn4);
 
-		JRadioButton rbn5S = new JRadioButton("Si");
-		rbn5S.setBounds(313, 127, 50, 23);
-		panelUniE.add(rbn5S);
+		rbn5 = new JRadioButton("Si");
+		rbn5.setBounds(313, 127, 50, 23);
+		panelUniE.add(rbn5);
 
-		JRadioButton rbn6 = new JRadioButton("Si");
+		rbn6 = new JRadioButton("Si");
 		rbn6.setBounds(313, 165, 50, 23);
 		panelUniE.add(rbn6);
 
-		JRadioButton rbn7 = new JRadioButton("Si");
+		rbn7 = new JRadioButton("Si");
 		rbn7.setBounds(313, 203, 50, 23);
 		panelUniE.add(rbn7);
 
-		JRadioButton rbn8 = new JRadioButton("Si");
+		rbn8 = new JRadioButton("Si");
 		rbn8.setBounds(313, 239, 50, 23);
 		panelUniE.add(rbn8);
 
-		JRadioButton rbn9 = new JRadioButton("Si");
+		rbn9 = new JRadioButton("Si");
 		rbn9.setBounds(313, 275, 50, 23);
 		panelUniE.add(rbn9);
 
-		JRadioButton rbn10 = new JRadioButton("Si");
+		rbn10 = new JRadioButton("Si");
 		rbn10.setBounds(313, 312, 50, 23);
 		panelUniE.add(rbn10);
 
-		JRadioButton rbn11 = new JRadioButton("No");
+		rbn11 = new JRadioButton("No");
 		rbn11.setBounds(385, 127, 50, 23);
 		panelUniE.add(rbn11);
 
-		JRadioButton rbn12 = new JRadioButton("No");
+		rbn12 = new JRadioButton("No");
 		rbn12.setBounds(385, 165, 50, 23);
 		panelUniE.add(rbn12);
 
-		JRadioButton rbn13 = new JRadioButton("No");
+		rbn13 = new JRadioButton("No");
 		rbn13.setBounds(385, 203, 50, 23);
 		panelUniE.add(rbn13);
 
-		JRadioButton rbn14 = new JRadioButton("No");
+		rbn14 = new JRadioButton("No");
 		rbn14.setBounds(385, 239, 50, 23);
 		panelUniE.add(rbn14);
 
-		JRadioButton rbn15 = new JRadioButton("No");
+		rbn15 = new JRadioButton("No");
 		rbn15.setBounds(385, 275, 50, 23);
 		panelUniE.add(rbn15);
 
-		JRadioButton rbn16 = new JRadioButton("No");
+		rbn16 = new JRadioButton("No");
 		rbn16.setBounds(385, 312, 50, 23);
 		panelUniE.add(rbn16);
 
@@ -503,11 +503,11 @@ public class PerfilEmpresa extends JFrame {
 		label_30.setBounds(22, 349, 277, 14);
 		panelUniE.add(label_30);
 
-		JRadioButton rbn17 = new JRadioButton("No");
+		rbn17 = new JRadioButton("No");
 		rbn17.setBounds(385, 345, 50, 23);
 		panelUniE.add(rbn17);
 
-		JRadioButton rbn18 = new JRadioButton("Si");
+		rbn18 = new JRadioButton("Si");
 		rbn18.setBounds(313, 345, 50, 23);
 		panelUniE.add(rbn18);
 
@@ -515,11 +515,11 @@ public class PerfilEmpresa extends JFrame {
 		label_31.setBounds(22, 390, 242, 14);
 		panelUniE.add(label_31);
 
-		JRadioButton rbn19 = new JRadioButton("Si");
+		rbn19 = new JRadioButton("Si");
 		rbn19.setBounds(315, 386, 50, 23);
 		panelUniE.add(rbn19);
 
-		JRadioButton rbn20 = new JRadioButton("No");
+		rbn20 = new JRadioButton("No");
 		rbn20.setBounds(385, 386, 50, 23);
 		panelUniE.add(rbn20);
 
@@ -531,35 +531,35 @@ public class PerfilEmpresa extends JFrame {
 		panelTecE.setBounds(402, 159, 460, 434);
 		contentPane.add(panelTecE);
 
-		JRadioButton rbn21 = new JRadioButton("Si");
+		rbn21 = new JRadioButton("Si");
 		rbn21.setBounds(313, 52, 50, 23);
 		panelTecE.add(rbn21);
 
-		JRadioButton rbn22 = new JRadioButton("No");
+		rbn22 = new JRadioButton("No");
 		rbn22.setBounds(385, 52, 50, 23);
 		panelTecE.add(rbn22);
 
-		JRadioButton rbn23 = new JRadioButton("Si");
+		rbn23 = new JRadioButton("Si");
 		rbn23.setBounds(313, 89, 50, 23);
 		panelTecE.add(rbn23);
 
-		JRadioButton rbn24 = new JRadioButton("No");
+		rbn24 = new JRadioButton("No");
 		rbn24.setBounds(385, 89, 50, 23);
 		panelTecE.add(rbn24);
 
-		JRadioButton rbn25 = new JRadioButton("Si");
+		rbn25 = new JRadioButton("Si");
 		rbn25.setBounds(313, 127, 50, 23);
 		panelTecE.add(rbn25);
 
-		JRadioButton rbn26 = new JRadioButton("Si");
+		rbn26 = new JRadioButton("Si");
 		rbn26.setBounds(313, 165, 50, 23);
 		panelTecE.add(rbn26);
 
-		JRadioButton rbn27 = new JRadioButton("Si");
+		rbn27 = new JRadioButton("Si");
 		rbn27.setBounds(313, 203, 50, 23);
 		panelTecE.add(rbn27);
 
-		JRadioButton rbn28 = new JRadioButton("Si");
+		rbn28 = new JRadioButton("Si");
 		rbn28.setBounds(313, 239, 50, 23);
 		panelTecE.add(rbn28);
 
@@ -587,11 +587,11 @@ public class PerfilEmpresa extends JFrame {
 		lblpiensaAmpliar.setBounds(22, 243, 242, 14);
 		panelTecE.add(lblpiensaAmpliar);
 
-		JRadioButton rbn29 = new JRadioButton("Si");
+		rbn29 = new JRadioButton("Si");
 		rbn29.setBounds(313, 275, 50, 23);
 		panelTecE.add(rbn29);
 
-		JRadioButton rbn30 = new JRadioButton("Si");
+		rbn30 = new JRadioButton("Si");
 		rbn30.setBounds(313, 312, 50, 23);
 		panelTecE.add(rbn30);
 
@@ -611,43 +611,43 @@ public class PerfilEmpresa extends JFrame {
 		lbltrabajasBien.setBounds(22, 390, 242, 14);
 		panelTecE.add(lbltrabajasBien);
 
-		JRadioButton rbn31 = new JRadioButton("No");
+		rbn31 = new JRadioButton("No");
 		rbn31.setBounds(385, 127, 50, 23);
 		panelTecE.add(rbn31);
 
-		JRadioButton rbn32 = new JRadioButton("No");
+		rbn32 = new JRadioButton("No");
 		rbn32.setBounds(385, 165, 50, 23);
 		panelTecE.add(rbn32);
 
-		JRadioButton rbn33 = new JRadioButton("No");
+		rbn33 = new JRadioButton("No");
 		rbn33.setBounds(385, 203, 50, 23);
 		panelTecE.add(rbn33);
 
-		JRadioButton rbn34 = new JRadioButton("No");
+		rbn34 = new JRadioButton("No");
 		rbn34.setBounds(385, 239, 50, 23);
 		panelTecE.add(rbn34);
 
-		JRadioButton rbn35 = new JRadioButton("No");
+		rbn35 = new JRadioButton("No");
 		rbn35.setBounds(385, 275, 50, 23);
 		panelTecE.add(rbn35);
 
-		JRadioButton rbn36 = new JRadioButton("No");
+		rbn36 = new JRadioButton("No");
 		rbn36.setBounds(385, 312, 50, 23);
 		panelTecE.add(rbn36);
 
-		JRadioButton rbn37 = new JRadioButton("No");
+		rbn37 = new JRadioButton("No");
 		rbn37.setBounds(385, 345, 50, 23);
 		panelTecE.add(rbn37);
 
-		JRadioButton rbn38 = new JRadioButton("Si");
+		rbn38 = new JRadioButton("Si");
 		rbn38.setBounds(313, 345, 50, 23);
 		panelTecE.add(rbn38);
 		
-		JRadioButton rbn59 = new JRadioButton("Si");
+		rbn59 = new JRadioButton("Si");
 		rbn59.setBounds(315, 386, 50, 23);
 		panelTecE.add(rbn59);
 
-		JRadioButton rbn60 = new JRadioButton("No");
+		rbn60 = new JRadioButton("No");
 		rbn60.setBounds(385, 386, 50, 23);
 		panelTecE.add(rbn60);
 
@@ -659,67 +659,67 @@ public class PerfilEmpresa extends JFrame {
 		panelObreE.setBounds(402, 159, 460, 434);
 		contentPane.add(panelObreE);
 
-		JRadioButton rbn39 = new JRadioButton("Si");
+		rbn39 = new JRadioButton("Si");
 		rbn39.setBounds(313, 52, 50, 23);
 		panelObreE.add(rbn39);
 
-		JRadioButton rbn40 = new JRadioButton("No");
+		rbn40 = new JRadioButton("No");
 		rbn40.setBounds(385, 52, 50, 23);
 		panelObreE.add(rbn40);
 
-		JRadioButton rbn41 = new JRadioButton("Si");
+		rbn41 = new JRadioButton("Si");
 		rbn41.setBounds(313, 89, 50, 23);
 		panelObreE.add(rbn41);
 
-		JRadioButton rbn42 = new JRadioButton("No");
+		rbn42 = new JRadioButton("No");
 		rbn42.setBounds(385, 89, 50, 23);
 		panelObreE.add(rbn42);
 
-		JRadioButton rbn43 = new JRadioButton("Si");
+		rbn43 = new JRadioButton("Si");
 		rbn43.setBounds(313, 127, 50, 23);
 		panelObreE.add(rbn43);
 
-		JRadioButton rbn44 = new JRadioButton("Si");
+		rbn44 = new JRadioButton("Si");
 		rbn44.setBounds(313, 165, 50, 23);
 		panelObreE.add(rbn44);
 
-		JRadioButton rbn45 = new JRadioButton("Si");
+		rbn45 = new JRadioButton("Si");
 		rbn45.setBounds(313, 203, 50, 23);
 		panelObreE.add(rbn45);
 
-		JRadioButton rbn46 = new JRadioButton("Si");
+		rbn46 = new JRadioButton("Si");
 		rbn46.setBounds(313, 239, 50, 23);
 		panelObreE.add(rbn46);
 
-		JRadioButton rbn47 = new JRadioButton("Si");
+		rbn47 = new JRadioButton("Si");
 		rbn47.setBounds(313, 275, 50, 23);
 		panelObreE.add(rbn47);
 
-		JRadioButton rbn48 = new JRadioButton("Si");
+		rbn48 = new JRadioButton("Si");
 		rbn48.setBounds(313, 312, 50, 23);
 		panelObreE.add(rbn48);
 
-		JRadioButton rbn49 = new JRadioButton("No");
+		rbn49 = new JRadioButton("No");
 		rbn49.setBounds(385, 127, 50, 23);
 		panelObreE.add(rbn49);
 
-		JRadioButton rbn50 = new JRadioButton("No");
+		rbn50 = new JRadioButton("No");
 		rbn50.setBounds(385, 165, 50, 23);
 		panelObreE.add(rbn50);
 
-		JRadioButton rbn51 = new JRadioButton("No");
+		rbn51 = new JRadioButton("No");
 		rbn51.setBounds(385, 203, 50, 23);
 		panelObreE.add(rbn51);
 
-		JRadioButton rbn52 = new JRadioButton("No");
+		rbn52 = new JRadioButton("No");
 		rbn52.setBounds(385, 239, 50, 23);
 		panelObreE.add(rbn52);
 
-		JRadioButton rbn53 = new JRadioButton("No");
+		rbn53 = new JRadioButton("No");
 		rbn53.setBounds(385, 275, 50, 23);
 		panelObreE.add(rbn53);
 
-		JRadioButton rbn54 = new JRadioButton("No");
+		rbn54 = new JRadioButton("No");
 		rbn54.setBounds(385, 312, 50, 23);
 		panelObreE.add(rbn54);
 
@@ -759,11 +759,11 @@ public class PerfilEmpresa extends JFrame {
 		label_10.setBounds(22, 349, 277, 14);
 		panelObreE.add(label_10);
 
-		JRadioButton rbn55 = new JRadioButton("No");
+		rbn55 = new JRadioButton("No");
 		rbn55.setBounds(385, 345, 50, 23);
 		panelObreE.add(rbn55);
 
-		JRadioButton rbn56 = new JRadioButton("Si");
+		rbn56 = new JRadioButton("Si");
 		rbn56.setBounds(313, 345, 50, 23);
 		panelObreE.add(rbn56);
 
@@ -771,11 +771,11 @@ public class PerfilEmpresa extends JFrame {
 		label_11.setBounds(22, 390, 242, 14);
 		panelObreE.add(label_11);
 
-		JRadioButton rbn57 = new JRadioButton("Si");
+		rbn57 = new JRadioButton("Si");
 		rbn57.setBounds(315, 386, 50, 23);
 		panelObreE.add(rbn57);
 
-		JRadioButton rbn58 = new JRadioButton("No");
+		rbn58 = new JRadioButton("No");
 		rbn58.setBounds(385, 386, 50, 23);
 		panelObreE.add(rbn58);
 		
