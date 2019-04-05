@@ -356,11 +356,9 @@ public class Inicio extends JFrame {
 		LBIncorrecto.setBounds(68, 62, 212, 14);
 		panel.add(LBIncorrecto);
 		
-<<<<<<< HEAD
+
 		checkSesion = new JCheckBox("Mantener sesicion iniciada");
-=======
 		checkSesion = new JCheckBox("Mantener sesión iniciada");
->>>>>>> branch 'master' of https://github.com/waterpolord/Ayuwoki.git
 		checkSesion.setBounds(348, 58, 176, 23);
 		checkSesion.setSelected(true);
 		panel.add(checkSesion);
@@ -636,7 +634,8 @@ public class Inicio extends JFrame {
 		panel_1.add(txtApellido);
 		
 		LBconfirmCorreo = new JLabel("");
-		LBconfirmCorreo.setVisible(false);
+		LBconfirmCorreo
+		.setVisible(false);
 		LBconfirmCorreo.setBounds(323, 95, 133, 20);
 		panel_1.add(LBconfirmCorreo);
 		
