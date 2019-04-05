@@ -1,7 +1,6 @@
 package Visual;
 
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -65,7 +64,7 @@ public class Inicio extends JFrame {
 	private JLabel labelCorreo;
 	private JTextField txtCorreo;
 	private JLabel labelContra;
-	private JPasswordField passwordContraseña;
+	private JPasswordField passwordContrasena;
 	private JLabel labelConfContra;
 	private JPasswordField txtpassconfirm;
 	private JPanel panel_2;
@@ -245,10 +244,10 @@ public class Inicio extends JFrame {
 		labelUsuario.setBounds(20, 21, 147, 14);
 		panel.add(labelUsuario);
 		
-		JLabel labelContraseña = new JLabel("Contrase\u00F1a:");
-		labelContraseña.setForeground(Color.WHITE);
-		labelContraseña.setBounds(274, 21, 105, 14);
-		panel.add(labelContraseña);
+		JLabel labelContrasena = new JLabel("Contrase\u00F1a:");
+		labelContrasena.setForeground(Color.WHITE);
+		labelContrasena.setBounds(274, 21, 105, 14);
+		panel.add(labelContrasena);
 		
 		textUsuario = new JTextField();
 		
@@ -329,7 +328,7 @@ public class Inicio extends JFrame {
 					LBIncorrecto.setVisible(true);
 				}
 				else {
-					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "Â¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
 					if(Mensaje == JOptionPane.OK_OPTION) {
 						panel.setVisible(false);
 						textNombre.setText("");
@@ -357,6 +356,8 @@ public class Inicio extends JFrame {
 		LBIncorrecto.setBounds(68, 62, 212, 14);
 		panel.add(LBIncorrecto);
 		
+
+		checkSesion = new JCheckBox("Mantener sesicion iniciada");
 		checkSesion = new JCheckBox("Mantener sesión iniciada");
 		checkSesion.setBounds(348, 58, 176, 23);
 		checkSesion.setSelected(true);
@@ -368,7 +369,7 @@ public class Inicio extends JFrame {
 	    	public void keyPressed(KeyEvent e) {
 	    		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 	    			String passC = new String(txtpassconfirm.getPassword()),
-							pass = new String(passwordContraseña.getPassword());
+							pass = new String(passwordContrasena.getPassword());
 					Boolean esta = false;
 					if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
 							
@@ -379,7 +380,7 @@ public class Inicio extends JFrame {
 									e1.printStackTrace();
 								}
 							if(esta == true) {
-								JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
+								JOptionPane.showMessageDialog(null,"Este correo ya estÃ¡ en uso","Correo Repetido", 0);
 							}
 							else if(esta == false) {
 								String nom = textNombre.getText();
@@ -433,7 +434,7 @@ public class Inicio extends JFrame {
 						
 					}
 					else {
-								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
+								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃ±a sea mayor que 4 caracteres.","Advertencia", 0);
 					}
 	    		}
 	    	}
@@ -467,7 +468,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBNoconfirm.setVisible(false);
 				LBConfirmver.setVisible(true);
-				txtpassconfirm.setEchoChar('●');
+				txtpassconfirm.setEchoChar('.');
 			}
 		});
 		LBNoconfirm.setForeground(new Color(0, 51, 255));
@@ -512,7 +513,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBOcultar.setVisible(false);
 				LBver.setVisible(true);
-				passwordContraseña.setEchoChar('●');
+				passwordContrasena.setEchoChar('�');
 			}
 		});
 		LBOcultar.setForeground(new Color(0, 51, 255));
@@ -528,7 +529,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBver.setVisible(false);
 				LBOcultar.setVisible(true);
-				passwordContraseña.setEchoChar((char)0);
+				passwordContrasena.setEchoChar((char)0);
 			}
 		});
 		LBver.setForeground(new Color(0, 51, 255));
@@ -586,13 +587,13 @@ public class Inicio extends JFrame {
 		labelContra.setBounds(10, 123, 125, 14);
 		panel_1.add(labelContra);
 		
-		passwordContraseña = new JPasswordField();
-		passwordContraseña.addKeyListener(new KeyAdapter() {
+		passwordContrasena = new JPasswordField();
+		passwordContrasena.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if(passwordContraseña.getPassword().length < 4) {
+				if(passwordContrasena.getPassword().length < 4) {
 					LBClaveCorta.setVisible(true);
-					LBClaveCorta.setText("Esta contraseña es muy corta");
+					LBClaveCorta.setText("Esta contraseÃ±a es muy corta");
 					LBClaveCorta.setForeground(Color.ORANGE);
 				}
 				else {
@@ -606,8 +607,8 @@ public class Inicio extends JFrame {
 				
 			}
 		});
-		passwordContraseña.setBounds(10, 148, 175, 20);
-		panel_1.add(passwordContraseña);
+		passwordContrasena.setBounds(10, 148, 175, 20);
+		panel_1.add(passwordContrasena);
 		
 		labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
 		labelConfContra.setForeground(Color.WHITE);
@@ -633,7 +634,8 @@ public class Inicio extends JFrame {
 		panel_1.add(txtApellido);
 		
 		LBconfirmCorreo = new JLabel("");
-		LBconfirmCorreo.setVisible(false);
+		LBconfirmCorreo
+		.setVisible(false);
 		LBconfirmCorreo.setBounds(323, 95, 133, 20);
 		panel_1.add(LBconfirmCorreo);
 		
@@ -718,7 +720,7 @@ public class Inicio extends JFrame {
 		
 		 CBXCarreras = new JComboBox();
 		
-		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administración", "Derecho", "Economía", "Ingeniería", "Medicina", "Mercadeo"}));
+		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "AdministraciÃ³n", "Derecho", "EconomÃ­a", "IngenierÃ­a", "Medicina", "Mercadeo"}));
 		CBXCarreras.setBounds(78, 34, 251, 25);
 		panelUniversitario.add(CBXCarreras);
 		
@@ -767,7 +769,7 @@ public class Inicio extends JFrame {
 			
 					Boolean esta = false;
 					String passC = new String(txtpassconfirm.getPassword()),
-							pass = new String(passwordContraseña.getPassword());
+							pass = new String(passwordContrasena.getPassword());
 					if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
 							&& txtApellido.getText().length() > 1  && pass.equals(passC) && pass.length() > 3) {
 						if(CBXHabilidad.getSelectedIndex() > 0) {
@@ -789,7 +791,7 @@ public class Inicio extends JFrame {
 								}
 								if( !(((Obrero) aux).HabilidadExiste(CBXHabilidad.getSelectedItem().toString()))) {
 									((Obrero) aux).setHabilidades(CBXHabilidad.getSelectedItem().toString());
-									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creó con exito, pero puedes seguir agregando habilidades","Agregado", 1);
+									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creÃ³ con exito, pero puedes seguir agregando habilidades","Agregado", 1);
 									
 								}
 								else {
@@ -813,7 +815,7 @@ public class Inicio extends JFrame {
 						}
 					}
 					else {
-						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
+						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃ±a sea mayor que 4 caracteres.","Advertencia", 0);
 					}
 			}
 		});
@@ -846,7 +848,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBempresaNover.setVisible(false);
 				LBempresaver.setVisible(true);
-				passwordE.setEchoChar('●');
+				passwordE.setEchoChar('�');
 			}
 		});
 		LBempresaNover.setForeground(Color.CYAN);
@@ -909,7 +911,7 @@ public class Inicio extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				if(passwordE.getPassword().length < 4) {
 					LBClaveCortaE.setVisible(true);
-					LBClaveCortaE.setText("Esta contraseña es muy corta");
+					LBClaveCortaE.setText("Esta contraseÃ±a es muy corta");
 					LBClaveCortaE.setForeground(Color.ORANGE);
 				}
 				else {
@@ -1021,7 +1023,7 @@ public class Inicio extends JFrame {
 								e1.printStackTrace();
 							}
 						if(esta == true) {
-							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
+							JOptionPane.showMessageDialog(null,"Este correo ya estÃ¡ en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = TXTNombre.getText(),pas = new String(passwordE.getPassword());
@@ -1082,7 +1084,7 @@ public class Inicio extends JFrame {
 		
 			public void actionPerformed(ActionEvent e) {
 				String passC = new String(txtpassconfirm.getPassword()),
-						pass = new String(passwordContraseña.getPassword());
+						pass = new String(passwordContrasena.getPassword());
 				Boolean esta = false;
 				if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
 						
@@ -1093,7 +1095,7 @@ public class Inicio extends JFrame {
 								e1.printStackTrace();
 							}
 						if(esta == true) {
-							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
+							JOptionPane.showMessageDialog(null,"Este correo ya estÃ¡ en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = textNombre.getText();
@@ -1148,7 +1150,7 @@ public class Inicio extends JFrame {
 					
 				}
 				else {
-							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
+							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃ±a sea mayor que 4 caracteres.","Advertencia", 0);
 				}
 				
 			}
@@ -1168,7 +1170,7 @@ public class Inicio extends JFrame {
 		
 		
 
-		// El panel principal debe añadir el label de fondo de ultimo siempre
+		// El panel principal debe aÃ±adir el label de fondo de ultimo siempre
 		PanelPrincipal.add(lblfondo);
 	}
  	public void setEnter(JButton BTN) {

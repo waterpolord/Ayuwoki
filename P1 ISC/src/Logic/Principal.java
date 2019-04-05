@@ -4,8 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 import Visual.Inicio;
-// Principal
+
+
 public class Principal implements Serializable{
+
 	private ArrayList<Persona> Tpersonas;
 	private ArrayList<Empresa> TEmpresas;
 	private ArrayList<Empleo> TEmpleos;

@@ -1,5 +1,4 @@
 package Logic;
-
 import java.io.Serializable;
 
 public abstract class Persona implements Serializable{
@@ -70,3 +69,4 @@ public abstract class Persona implements Serializable{
 	
 
 }
+
