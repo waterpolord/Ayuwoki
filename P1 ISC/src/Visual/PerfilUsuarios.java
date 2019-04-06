@@ -181,7 +181,7 @@ public class PerfilUsuarios extends JFrame {
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(SystemColor.activeCaption);
-		panel.setBounds(10, 25, 491, 81);
+		panel.setBounds(10, 25, 340, 81);
 		contentPane.add(panel);
 		
 		JLabel label = new JLabel("Nombre");
@@ -213,17 +213,6 @@ public class PerfilUsuarios extends JFrame {
 		TXTNombre.setBackground(SystemColor.inactiveCaptionBorder);
 		TXTNombre.setBounds(68, 40, 253, 25);
 		panel.add(TXTNombre);
-		
-		JButton button = new JButton("Buscar");
-		button.setBackground(new Color(255, 255, 255));
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-			
-		});
-		button.setBounds(367, 40, 89, 25);
-		panel.add(button);
 		
 		
 			

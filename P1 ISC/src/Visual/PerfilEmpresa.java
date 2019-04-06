@@ -28,13 +28,18 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PerfilEmpresa extends JFrame {
 
@@ -122,6 +127,7 @@ public class PerfilEmpresa extends JFrame {
 	private JRadioButton rbn58;
 	private JRadioButton rbn59;
 	private JRadioButton rbn60;
+	private DefaultListModel<String> lista;
 	
 	
 
@@ -145,6 +151,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		lista = new DefaultListModel();
 		
 		GrupoRespuestas1 = new ButtonGroup();
 		GrupoRespuestas2 = new ButtonGroup();
@@ -204,7 +211,7 @@ public class PerfilEmpresa extends JFrame {
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Empresa",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(5, 35, 491, 83);
+		panel.setBounds(5, 35, 333, 83);
 		contentPane.add(panel);
 
 		JLabel label = new JLabel("Nombre");
@@ -213,15 +220,23 @@ public class PerfilEmpresa extends JFrame {
 		panel.add(label);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			
+			public void keyReleased(KeyEvent e) {
+				int selec = 0;
+				ArrayList<String> nom = new ArrayList<String>();
+				nom = Principal.getInstance().RetornarNombres(textField.getText(),selec);
+				lista.clear();
+				for(int i=0;i<nom.size();i++) {
+					lista.add(i,nom.get(i));
+				}
+			}
+		});
 		textField.setColumns(10);
 		textField.setBackground(SystemColor.inactiveCaption);
 		textField.setBounds(68, 40, 253, 25);
 		panel.add(textField);
-
-		JButton button = new JButton("Buscar");
-		button.setBackground(Color.WHITE);
-		button.setBounds(367, 40, 89, 25);
-		panel.add(button);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
@@ -368,7 +383,7 @@ public class PerfilEmpresa extends JFrame {
 		PanelMonto.add(RBN50);
 
 		JLabel lblNewLabel = new JLabel("Cantidad de Personal");
-		lblNewLabel.setBounds(20, 140, 114, 14);
+		lblNewLabel.setBounds(20, 140, 143, 14);
 		contentPane.add(lblNewLabel);
 		
 		Cantidad = new SpinnerNumberModel();
@@ -381,12 +396,8 @@ public class PerfilEmpresa extends JFrame {
 		
 		contentPane.add(SPNCant);
 
-		JList ListarSolicitudes = new JList();
-		ListarSolicitudes.setBounds(823, 487, 237, -309);
-		contentPane.add(ListarSolicitudes);
-
 		JLabel lblSolicitudes = new JLabel("Solicitudes");
-		lblSolicitudes.setBounds(932, 140, 67, 14);
+		lblSolicitudes.setBounds(954, 140, 67, 14);
 		contentPane.add(lblSolicitudes);
 
 		JButton btnVer = new JButton("Ver");
@@ -398,7 +409,7 @@ public class PerfilEmpresa extends JFrame {
 
 			}
 		});
-		btnVer.setBounds(910, 525, 89, 23);
+		btnVer.setBounds(951, 523, 89, 23);
 		contentPane.add(btnVer);
 	    
 	    		panelObreE = new JPanel();
@@ -793,6 +804,17 @@ public class PerfilEmpresa extends JFrame {
 		Grupo2.add(RBN30);
 		Grupo2.add(RBN50);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(886, 165, 206, 347);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JList list = new JList();
+		list.setBounds(10, 343, 186, -333);
+		list.setModel(lista);
+		panel_1.add(list);
+		
 		
 		
 	}
@@ -887,5 +909,4 @@ public class PerfilEmpresa extends JFrame {
 
 		
 	}
-	
 }
