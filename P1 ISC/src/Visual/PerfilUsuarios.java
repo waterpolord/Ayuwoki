@@ -2,8 +2,7 @@ package Visual;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
-
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -14,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -27,6 +27,7 @@ import Logic.Principal;
 import Logic.Tecnico;
 import Logic.Universitario;
 
+
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
@@ -37,7 +38,6 @@ public class PerfilUsuarios extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField TXTNombre;
-	private JTextField textField;
 	private ButtonGroup GrupoRespuestas1;
 	private ButtonGroup GrupoRespuestas2;
 	private ButtonGroup GrupoRespuestas3;
@@ -81,6 +81,10 @@ public class PerfilUsuarios extends JFrame {
 	private JLabel lb9;
 	private JLabel lb10;
 	private String Borde;
+	private JRadioButton rbtUni;
+	private JRadioButton rbtTec;
+	private JRadioButton rbtObre;
+	
 
 	
 
@@ -153,7 +157,8 @@ public class PerfilUsuarios extends JFrame {
 		});
 		setTitle("Perfil Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 856, 687);
+		Dimension tam = getToolkit().getScreenSize();
+		setBounds(250,30,889,687);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -164,7 +169,7 @@ public class PerfilUsuarios extends JFrame {
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(SystemColor.activeCaption);
-		panel.setBounds(10, 25, 491, 134);
+		panel.setBounds(10, 25, 491, 81);
 		contentPane.add(panel);
 		
 		JLabel label = new JLabel("Nombre");
@@ -180,20 +185,17 @@ public class PerfilUsuarios extends JFrame {
 		
 		JButton button = new JButton("Buscar");
 		button.setBackground(new Color(255, 255, 255));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
 		button.setBounds(367, 40, 89, 25);
 		panel.add(button);
 		
-		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 12));
-		lblTipo.setBounds(10, 88, 46, 14);
-		panel.add(lblTipo);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
-		textField.setBounds(68, 86, 253, 25);
-		panel.add(textField);
-		
+			
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -239,19 +241,19 @@ public class PerfilUsuarios extends JFrame {
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Monto a Ganar", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBackground(SystemColor.activeCaption);
-		panel_1.setBounds(480, 345, 346, 106);
+		panel_1.setBounds(480, 345, 363, 106);
 		contentPane.add(panel_1);
 		
 		JRadioButton rdbtnEntreA = new JRadioButton("Entre 10,000 y 30,000");
-		rdbtnEntreA.setBounds(6, 31, 142, 23);
+		rdbtnEntreA.setBounds(6, 31, 161, 23);
 		panel_1.add(rdbtnEntreA);
 		
 		JRadioButton rdbtnEntreY = new JRadioButton("Entre 30,000 y 50,000");
-		rdbtnEntreY.setBounds(196, 31, 142, 23);
+		rdbtnEntreY.setBounds(196, 31, 161, 23);
 		panel_1.add(rdbtnEntreY);
 		
 		JRadioButton radioButton_55 = new JRadioButton("50,000 o M\u00E1s");
-		radioButton_55.setBounds(105, 76, 142, 23);
+		radioButton_55.setBounds(105, 76, 161, 23);
 		panel_1.add(radioButton_55);
 		
 		ButtonGroup grupo = new ButtonGroup();
@@ -396,6 +398,52 @@ public class PerfilUsuarios extends JFrame {
 		rbn19_1.setBounds(385, 386, 50, 23);
 		panelReUniversitario.add(rbn19_1);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setForeground(Color.WHITE);
+		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
+		panel_2.setBackground(SystemColor.inactiveCaption);
+		panel_2.setBounds(10, 109, 491, 47);
+		contentPane.add(panel_2);
+		
+		rbtUni = new JRadioButton("Universitario");
+		rbtUni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rbtTec.setSelected(false);
+				rbtObre.setSelected(false);
+				panelReUniversitario.setVisible(true);
+				
+		}});
+		
+		rbtUni.setSelected(true);
+		rbtUni.setBounds(19, 17, 109, 23);
+		panel_2.add(rbtUni);
+		
+		rbtTec = new JRadioButton("Tecnico");
+		rbtTec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rbtUni.setSelected(false);
+				rbtObre.setSelected(false);
+				panelReUniversitario.setVisible(true);
+				
+		}});
+		
+		rbtTec.setSelected(false);
+		rbtTec.setBounds(200, 17, 109, 23);
+		panel_2.add(rbtTec);
+		
+		rbtObre = new JRadioButton("Obrero");
+		rbtTec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rbtUni.setSelected(false);
+				rbtTec.setSelected(false);
+				panelReUniversitario.setVisible(true);
+				
+		}});
+		rbtObre.setSelected(false);
+		rbtObre.setBounds(376, 17, 109, 23);
+		panel_2.add(rbtObre);
+		
 		
 		
 		
@@ -444,4 +492,7 @@ public class PerfilUsuarios extends JFrame {
 		GrupoRespuestas10.add(RBN10N);
 
 	}
+	
+	
+		
 }

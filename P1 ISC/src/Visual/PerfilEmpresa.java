@@ -139,7 +139,7 @@ public class PerfilEmpresa extends JFrame {
 		setTitle("Perfil Empresa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension tam = getToolkit().getScreenSize();
-		setBounds(0, 0, 1185, 659);
+		setBounds(100, 20, 1185, 659);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -356,15 +356,15 @@ public class PerfilEmpresa extends JFrame {
 		PanelMonto.setLayout(null);
 
 		JRadioButton RBN10 = new JRadioButton("Entre 10,000 a 30,000");
-		RBN10.setBounds(6, 31, 142, 23);
+		RBN10.setBounds(6, 31, 154, 23);
 		PanelMonto.add(RBN10);
 
 		JRadioButton RBN30 = new JRadioButton("Entre 30,000 o 50,000");
-		RBN30.setBounds(196, 31, 142, 23);
+		RBN30.setBounds(178, 31, 162, 23);
 		PanelMonto.add(RBN30);
 
 		JRadioButton RBN50 = new JRadioButton("Entre 50,000 o M\u00E1s");
-		RBN50.setBounds(105, 76, 142, 23);
+		RBN50.setBounds(105, 76, 154, 23);
 		PanelMonto.add(RBN50);
 
 		JLabel lblNewLabel = new JLabel("Cantidad de Personal");
