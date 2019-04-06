@@ -163,8 +163,8 @@ public class Principal implements Serializable{
 		return false;
 	}
 	
-	public ArrayList RetornarObrerosDisponibles() {
-		ArrayList<String> lista = new ArrayList();
+	public ArrayList<String> RetornarObrerosDisponibles() {
+		ArrayList<String> lista = new ArrayList<String>();
 		for(Persona aux:Tpersonas) {
 			if(aux instanceof Obrero && aux.getEstado() == true) {
 				lista.add(aux.getNombre());
@@ -173,8 +173,8 @@ public class Principal implements Serializable{
 		return lista;
 	}
 	
-	public ArrayList RetornarUniversitariosDisponibles() {
-		ArrayList<String> lista = new ArrayList();
+	public ArrayList<String> RetornarUniversitariosDisponibles() {
+		ArrayList<String> lista = new ArrayList<String>();
 		for(Persona aux:Tpersonas) {
 			if(aux instanceof Universitario && aux.getEstado() == true) {
 				lista.add(aux.getNombre());
@@ -183,8 +183,8 @@ public class Principal implements Serializable{
 		return lista;
 	}
 	
-	public ArrayList RetornarTecnicosDisponibles() {
-		ArrayList<String> lista = new ArrayList();
+	public ArrayList<String> RetornarTecnicosDisponibles() {
+		ArrayList<String> lista = new ArrayList<String>();
 		for(Persona aux:Tpersonas) {
 			if(aux instanceof Tecnico && aux.getEstado() == true) {
 				lista.add(aux.getNombre());
