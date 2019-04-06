@@ -9,6 +9,7 @@ import java.awt.SystemColor;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -30,9 +31,13 @@ import Logic.Universitario;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JList;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PerfilUsuarios extends JFrame {
 
@@ -84,8 +89,9 @@ public class PerfilUsuarios extends JFrame {
 	private JRadioButton rbtUni;
 	private JRadioButton rbtTec;
 	private JRadioButton rbtObre;
-	
-
+	private JRadioButton rdbtnTodos;
+	private JList Lista;
+	private DefaultListModel<String> modelo1;
 	
 
 	/**
@@ -164,6 +170,12 @@ public class PerfilUsuarios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		modelo1 = new DefaultListModel();
+		
+		Lista = new JList();
+		Lista.setBounds(511, 108, 288, 200);
+		Lista.setModel(modelo1);
+		contentPane.add(Lista);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -178,6 +190,25 @@ public class PerfilUsuarios extends JFrame {
 		panel.add(label);
 		
 		TXTNombre = new JTextField();
+		TXTNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			
+			public void keyReleased(KeyEvent e) {
+				int selec = 0;
+				if(rbtUni.isSelected())
+					selec = 1;
+				if(rbtTec.isSelected())
+					selec = 2;
+				if(rbtObre.isSelected())
+					selec = 3;
+				ArrayList<String> nom = new ArrayList<String>();
+				nom = Principal.getInstance().RetornarNombres(TXTNombre.getText(),selec);
+				modelo1.clear();
+				for(int i=0;i<nom.size();i++) {
+					modelo1.add(i,nom.get(i));
+				}
+			}
+		});
 		TXTNombre.setColumns(10);
 		TXTNombre.setBackground(SystemColor.inactiveCaptionBorder);
 		TXTNombre.setBounds(68, 40, 253, 25);
@@ -403,7 +434,7 @@ public class PerfilUsuarios extends JFrame {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_2.setBackground(SystemColor.inactiveCaption);
-		panel_2.setBounds(10, 109, 491, 47);
+		panel_2.setBounds(10, 109, 491, 83);
 		contentPane.add(panel_2);
 		
 		rbtUni = new JRadioButton("Universitario");
@@ -415,7 +446,7 @@ public class PerfilUsuarios extends JFrame {
 				
 		}});
 		
-		rbtUni.setSelected(true);
+		rbtUni.setSelected(false);
 		rbtUni.setBounds(19, 17, 109, 23);
 		panel_2.add(rbtUni);
 		
@@ -444,6 +475,17 @@ public class PerfilUsuarios extends JFrame {
 		rbtObre.setBounds(376, 17, 109, 23);
 		panel_2.add(rbtObre);
 		
+	    rdbtnTodos = new JRadioButton("Todos");
+		rdbtnTodos.setSelected(true);
+		rdbtnTodos.setBounds(200, 53, 109, 23);
+		panel_2.add(rdbtnTodos);
+		
+		ButtonGroup Busc = new ButtonGroup();
+		
+		Busc.add(rbtObre);
+		Busc.add(rbtTec);
+		Busc.add(rbtUni);
+		Busc.add(rdbtnTodos);
 		
 		
 		
@@ -492,7 +534,4 @@ public class PerfilUsuarios extends JFrame {
 		GrupoRespuestas10.add(RBN10N);
 
 	}
-	
-	
-		
 }

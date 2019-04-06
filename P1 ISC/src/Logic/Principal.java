@@ -55,10 +55,10 @@ public class Principal implements Serializable{
 			FileInputStream file = new FileInputStream(archivoEntrada);
 			ObjectInputStream entrada = new ObjectInputStream(file);
 			Principal.setInstance((Principal) entrada.readObject());
-			Tpersonas = principal.getInstance().Tpersonas;
-			TEmpresas = principal.getInstance().TEmpresas;
-			TEmpleos = principal.getInstance().TEmpleos;
-			TVacantes = principal.getInstance().TVacantes;
+			Tpersonas = Principal.getInstance().Tpersonas;
+			TEmpresas = Principal.getInstance().TEmpresas;
+			TEmpleos = Principal.getInstance().TEmpleos;
+			TVacantes = Principal.getInstance().TVacantes;
 			cantEmpresas = TEmpresas.size();
 			cantPersonas = Tpersonas.size();
 			entrada.close();
@@ -215,7 +215,98 @@ public class Principal implements Serializable{
 		return null;
 	}
 	
-
-	
+	public ArrayList<String> RetornarNombres(String txt, int ind) {
+		ArrayList<String> lista = new ArrayList<String>();
+		Character l1 = null,l2 = null;
+		int i = 0,num = 0;
+		if(ind == 0) {
+			for(Persona aux:Tpersonas) {
+				for(int j=0;j<txt.length();j++) {
+					
+					if(l1.toUpperCase(aux.getNombre().charAt(i)) == l2.toUpperCase(txt.charAt(j)))  {
+						num++;
+						if(num == txt.length()) {
+							lista.add(aux.getNombre());
+							num = 0;
+						}
+					}
+					i++;
+					
+					if(j == txt.length()-1) {
+						i = 0;
+						num = 0;
+					}
+				}
+			}
+		}
+		if(ind == 1) {
+			for(Persona aux:Tpersonas) {
+				if(aux instanceof Universitario) {
+					for(int j=0;j<txt.length();j++) {
+						
+						if(l1.toUpperCase(aux.getNombre().charAt(i)) == l2.toUpperCase(txt.charAt(j)))  {
+							num++;
+							if(num == txt.length()) {
+								lista.add(aux.getNombre());
+								num = 0;
+							}
+						}
+						i++;
+						
+						if(j == txt.length()-1) {
+							i = 0;
+							num = 0;
+						}
+					}
+				}
+			}
+		}
+		if(ind == 2) {
+			for(Persona aux:Tpersonas) {
+				if(aux instanceof Tecnico) {
+					for(int j=0;j<txt.length();j++) {
+						
+						if(l1.toUpperCase(aux.getNombre().charAt(i)) == l2.toUpperCase(txt.charAt(j)))  {
+							num++;
+							if(num == txt.length()) {
+								lista.add(aux.getNombre());
+								num = 0;
+							}
+						}
+						i++;
+						
+						if(j == txt.length()-1) {
+							i = 0;
+							num = 0;
+						}
+					}
+				}
+			}
+		}
+		if(ind == 3) {
+			for(Persona aux:Tpersonas) {
+				if(aux instanceof Obrero) {
+					for(int j=0;j<txt.length();j++) {
+						
+						if(l1.toUpperCase(aux.getNombre().charAt(i)) == l2.toUpperCase(txt.charAt(j)))  {
+							num++;
+							if(num == txt.length()) {
+								lista.add(aux.getNombre());
+								num = 0;
+							}
+						}
+						i++;
+						
+						if(j == txt.length()-1) {
+							i = 0;
+							num = 0;
+						}
+					}
+				}
+			}
+		}
+		
+		return lista;
+	}
 
 }

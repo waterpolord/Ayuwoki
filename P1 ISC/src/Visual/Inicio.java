@@ -111,24 +111,24 @@ public class Inicio extends JFrame {
  	addWindowListener(new WindowAdapter() {
  		@Override
  		public void windowOpened(WindowEvent e) {
- 			PanelEmpresa.setVisible(false);
- 			PanelLogin.setVisible(false);
- 			PanelUser.setVisible(false);
- 			try {
-			Empresa empre = Principal.getInstance().SesionEmpresa();
-			Persona user = Principal.getInstance().SesionUser();
-			if(empre != null) {
-				new PerfilEmpresa(empre).setVisible(true);;
-				dispose();
+	 			PanelEmpresa.setVisible(false);
+	 			PanelLogin.setVisible(false);
+	 			PanelUser.setVisible(false);
+	 			try {
+				Empresa empre = Principal.getInstance().SesionEmpresa();
+				Persona user = Principal.getInstance().SesionUser();
+				if(empre != null) {
+					new PerfilEmpresa(empre).setVisible(true);;
+					dispose();
+				}
+				if(user != null) {
+					new PerfilUsuarios(user).setVisible(true);;
+					dispose();
+				}
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			if(user != null) {
-				new PerfilUsuarios(user).setVisible(true);;
-				dispose();
-			}
-		} catch (ClassNotFoundException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
  		}
  	});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
