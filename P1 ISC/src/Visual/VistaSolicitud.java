@@ -21,12 +21,17 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 public class VistaSolicitud extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTable table;
 	private DefaultTableModel modeloT;
+	private JLabel lbNombre;
+	private JTable table;
 
 
 	public VistaSolicitud(Vacante vacante, String Titulo) {
@@ -63,24 +68,47 @@ public class VistaSolicitud extends JDialog {
 		modeloT.addColumn("Nombre");
 		modeloT.addColumn("Apellido");
 		modeloT.addColumn("Carrera");
-		contentPanel.setLayout(null);
 		{
-			JLabel lbNombre = new JLabel(vacante.getPuesto());
-			lbNombre.setBounds(293, 0, 99, 23);
-			contentPanel.add(lbNombre);
+			lbNombre = new JLabel(vacante.getPuesto());
 		}
 		
-		table = new JTable(modeloT);
-		table.setColumnSelectionAllowed(true);
-		table.setBounds(70, 250, 272, -165);
-		table.setModel(modeloT);
-		contentPanel.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
+		gl_contentPanel.setHorizontalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGap(27)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)))
+		);
+		gl_contentPanel.setVerticalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(32)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(65, Short.MAX_VALUE))
+		);
+		
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nombre", "Apellido", "Carrera"
+			}
+		));
+		scrollPane.setViewportView(table);
+		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Ver");
+				okButton.setEnabled(false);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -91,7 +119,7 @@ public class VistaSolicitud extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Volver");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
