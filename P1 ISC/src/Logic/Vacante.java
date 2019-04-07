@@ -29,6 +29,7 @@ public class Vacante implements Serializable{
 	
 
 	public void solicitar(Persona nueva) {
+		Solicitantes.add( nueva);
 		Organizar();
 	}
 	
@@ -43,16 +44,17 @@ public class Vacante implements Serializable{
 	public void Organizar() {
 		int Positivas = 0,Comp1,Comp2;
 		Persona user1,user2,aux;
-		
-		for(int i = 0;i<Solicitantes.size();i++) {
-			user1 = Solicitantes.get(i);
-			user2 = Solicitantes.get(i+1);
-			Comp1 = getCantPositivas(user1.getSolicitud());
-			Comp2 = getCantPositivas(user2.getSolicitud());
-			if(Comp1 < Comp2) {
-				 aux = user1;
-				 Solicitantes.add(i,user2);
-				 Solicitantes.add(i+1,user2);
+		if(CantPuestos > 1 || Solicitantes.size() > 1) {
+			for(int i = 0;i<Solicitantes.size();i++) {
+				user1 = Solicitantes.get(i);
+				user2 = Solicitantes.get(i+1);
+				Comp1 = getCantPositivas(user1.getSolicitud());
+				Comp2 = getCantPositivas(user2.getSolicitud());
+				if(Comp1 < Comp2) {
+					 aux = user1;
+					 Solicitantes.add(i,user2);
+					 Solicitantes.add(i+1,user2);
+				}
 			}
 		}
 	}
@@ -70,6 +72,10 @@ public class Vacante implements Serializable{
 	
 	public void cancelar(int ind) {
 		Solicitantes.remove(ind);
+	}
+	
+	public ArrayList<Persona> getPersonas(){
+		return Solicitantes;
 	}
 	
 	public Empresa getEmpresa() {
@@ -154,15 +160,10 @@ public class Vacante implements Serializable{
 		
 	}
 
-	/* El metodo getSolicitudes permite ver 
-	 * cuales son las personas que solicitaron el empleo*/
+	
 	 
-	 public ArrayList getSolicitantes() {
-		ArrayList<String> lista = new ArrayList();
-		for(int i = 0;i<Solicitantes.size();i++) {
-			lista.add(Solicitantes.get(i).getNombre());
-		}
-		return lista;
+	 public int getCantSolicitantes() {
+		return Solicitantes.size();
 	}
 	 
 	

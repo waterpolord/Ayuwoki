@@ -384,6 +384,7 @@ public class PerfilUsuarios extends JFrame {
 				if(num == 0) {
 					Empleo nuevo = new Empleo(valores,monto);
 					persona.setSolicitud(nuevo);
+					
 					try {
 						Principal.getInstance().dataSalida();
 					} catch (ClassNotFoundException | IOException e1) {

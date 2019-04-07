@@ -10,7 +10,7 @@ public class Universitario extends Persona {
 		carrera = car;
 	}
 
-	public String getCarrera(int ind) {
+	public String getCarrera() {
 		return carrera;
 	}
 

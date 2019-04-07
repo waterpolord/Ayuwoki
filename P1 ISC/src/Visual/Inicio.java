@@ -775,7 +775,7 @@ public class Inicio extends JFrame {
 					if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
 							&& txtApellido.getText().length() > 1  && pass.equals(passC) && pass.length() > 3) {
 						if(CBXHabilidad.getSelectedIndex() > 0) {
-							if(Principal.getInstance().getPerson() > 0) {
+							if(Principal.getInstance().getCantPerson() > 0) {
 								try {
 									esta = Principal.getInstance().existeUser(txtCorreo.getText());
 								} catch (ClassNotFoundException | IOException e1) {
@@ -1097,7 +1097,7 @@ public class Inicio extends JFrame {
 								e1.printStackTrace();
 							}
 						if(esta == true) {
-							JOptionPane.showMessageDialog(null,"Este correo ya estÃ¡ en uso","Correo Repetido", 0);
+							JOptionPane.showMessageDialog(null,"Este correo ya esta¡ en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = textNombre.getText();
@@ -1134,7 +1134,7 @@ public class Inicio extends JFrame {
 							}
 							if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
 								Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
-										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+										txtCorreo.getText(), pass,true,CBXCarreras.getSelectedItem().toString());
 								try {
 									Principal.getInstance().setTpersonas(nuevo);
 								} catch (ClassNotFoundException | IOException e1) {

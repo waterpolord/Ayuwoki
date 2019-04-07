@@ -68,7 +68,7 @@ public class Principal implements Serializable{
     	
     }
 	
-	public int getPerson() {
+	public int getCantPerson() {
 		return cantPersonas;
 	}
 	

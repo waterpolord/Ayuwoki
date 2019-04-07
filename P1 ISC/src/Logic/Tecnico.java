@@ -12,7 +12,7 @@ public class Tecnico extends Persona {
 		especialidad = especial;
 	}
 
-	public String getEspecialidad(int ind) {
+	public String getEspecialidad() {
 		return especialidad;
 	}
 

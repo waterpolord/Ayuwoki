@@ -9,10 +9,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Logic.Obrero;
+import Logic.Persona;
+import Logic.Tecnico;
+import Logic.Universitario;
 import Logic.Vacante;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VistaSolicitud extends JDialog {
 
@@ -22,6 +30,28 @@ public class VistaSolicitud extends JDialog {
 
 
 	public VistaSolicitud(Vacante vacante, String Titulo) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				Object[] encontrado = new Object[3];
+				if(vacante.getCantSolicitantes() > 0) {
+					for(Persona aux:vacante.getPersonas()) {
+						encontrado[0] = aux.getNombre();
+						encontrado[1] = aux.getApellido();
+						if(aux instanceof Universitario) {
+							encontrado[2] = ((Universitario) aux).getCarrera();
+						}
+						if(aux instanceof Tecnico) {
+							encontrado[2] = ((Tecnico) aux).getEspecialidad();
+						}
+						if(aux instanceof Obrero) {
+							encontrado[2] = vacante.getTipoPersonal();
+						}
+						((DefaultTableModel) table.getModel()).addRow(encontrado);
+					}
+				}
+			}
+		});
 		setBounds(100, 100, 666, 441);
 		setTitle(Titulo);
 		setLocationRelativeTo(null);
@@ -40,18 +70,10 @@ public class VistaSolicitud extends JDialog {
 			contentPanel.add(lbNombre);
 		}
 		
-		table = new JTable();
+		table = new JTable(modeloT);
 		table.setColumnSelectionAllowed(true);
 		table.setBounds(70, 250, 272, -165);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
+		table.setModel(modeloT);
 		contentPanel.add(table);
 		{
 			JPanel buttonPane = new JPanel();
@@ -59,6 +81,11 @@ public class VistaSolicitud extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

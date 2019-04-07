@@ -341,9 +341,16 @@ public class PerfilEmpresa extends JFrame {
 					}
 					if(num == 0 && CBXCarrera.getSelectedIndex() > 0) {
 						Vacante nueva = new Vacante(empresa,"Universitario",CBXCarrera.getSelectedItem().toString(),valores,(int)Cantidad.getValue(),monto,empresa.getCode());
+						for(Persona user:Principal.getInstance().getTpersonas()) {
+							if(user instanceof Universitario ) {
+								if(nueva.aplicaHabilidades(user.getSolicitud()) && nueva.getCant() > nueva.getCantSolicitantes()) {
+									nueva.solicitar(user);
+								}
+							}
+						}
 						empresa.setVacante(nueva);
 						try {
-							Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
+						    Principal.getInstance().setTVacantes(nueva);
 							Principal.getInstance().dataSalida();
 							lista.clear();
 							int i = 0;
