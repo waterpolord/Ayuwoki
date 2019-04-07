@@ -56,7 +56,7 @@ public class VistaSolicitud extends JDialog {
 					}
 				}
 			}
-		});
+		}); 
 		setBounds(100, 100, 666, 441);
 		setTitle(Titulo);
 		setLocationRelativeTo(null);
