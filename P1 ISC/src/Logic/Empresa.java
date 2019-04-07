@@ -14,16 +14,18 @@ public class Empresa implements Serializable{
 	private String tipo;
 	private ArrayList<Vacante> MisVacantes;
 	private Boolean Sesion;
+	private int codigoMisVacantes = 1029;
 	
 	public Empresa(String nombre, String telefono, String correo, String clave, String encargado,
-			String tipo) {
+			String tipos) {
 		Nombre = nombre;
 		this.telefono = telefono;
 		this.correo = correo;
 		this.clave = clave;
 		this.encargado = encargado;
-		tipo = tipo;
+		tipo = tipos;
 		Sesion = false;
+		MisVacantes = new ArrayList<Vacante>();
 	}
 	public String getNombre() {
 		return Nombre;
@@ -65,9 +67,17 @@ public class Empresa implements Serializable{
 		return tipo; 
 	}
 	
+	public int getCode() {
+		return codigoMisVacantes; 
+	}
+	
 	public void setVacante(Vacante nueva) {
+		codigoMisVacantes++;
 		MisVacantes.add(nueva);
 	}
+	
+	public ArrayList<Vacante> getMisVacantes() {
+		return MisVacantes;	}
 	
 	public void setSesion(Boolean sesion) {
 		this.Sesion = sesion;
@@ -76,5 +86,13 @@ public class Empresa implements Serializable{
 		return this.Sesion;
 	}
 	
+	public Vacante BuscarVacantes(int code) {
+		for(Vacante aux:MisVacantes) {
+			if(aux.getCodigo() == code) {
+				return aux;
+			}
+		}
+		return null;
+	}
 
 }

@@ -10,9 +10,11 @@ public class Vacante implements Serializable{
 	private String TipoPersonal;
 	private Boolean[] requisitos = new Boolean[10];
 	private int CantPuestos;
+	private int monto;
 	private ArrayList<Persona> Solicitantes;
+	private int codigoVacante;
 	
-	public Vacante(Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,int CP) {
+	public Vacante(Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,int CP, int Monto,int codigo) {
 		
 		this.empresa = empresa;
 		this.puesto = puesto;
@@ -20,12 +22,13 @@ public class Vacante implements Serializable{
 		this.requisitos = requisitos;
 		CantPuestos = CP;
 		Solicitantes = new ArrayList();
-		
+		this.monto = Monto;
+		codigoVacante = codigo;
 	}
+	
+	
 
 	public void solicitar(Persona nueva) {
-		
-		Solicitantes.add(nueva);
 		Organizar();
 	}
 	
@@ -79,6 +82,10 @@ public class Vacante implements Serializable{
 
 	public String getPuesto() {
 		return puesto;
+	}
+	
+	public int getCodigo() {
+		return codigoVacante;
 	}
 	
 	public int getCant() {
@@ -157,6 +164,7 @@ public class Vacante implements Serializable{
 		}
 		return lista;
 	}
+	 
 	
 
 }

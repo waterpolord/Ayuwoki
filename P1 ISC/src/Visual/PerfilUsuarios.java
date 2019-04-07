@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import Logic.Empleo;
 import Logic.Obrero;
 import Logic.Persona;
 import Logic.Principal;
@@ -92,16 +93,13 @@ public class PerfilUsuarios extends JFrame {
 	private JRadioButton rdbtnTodos;
 	private JList Lista;
 	private DefaultListModel<String> modelo1;
+	private JRadioButton RBN10;
+	private JRadioButton RBN30;
+	private JRadioButton RBN50;
+	private ButtonGroup grupo;
+	private JButton BTNGuardar;
 	
 
-	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
-	 * Create the frame.
-	 */
 	public PerfilUsuarios(Persona persona) {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -116,6 +114,8 @@ public class PerfilUsuarios extends JFrame {
 				GrupoRespuestas8 = new ButtonGroup();
 				GrupoRespuestas9 = new ButtonGroup();
 				GrupoRespuestas10 = new ButtonGroup();
+				
+				setEnter(BTNGuardar);
 				setgrupo(rbn1_1,rbn3_1,rbn5_1,rbn6_1,rbn7_1,rbn8_1,rbn9_1,rbn10_1,rbn18_1,rdbtnNewRadioButton,
 						rbn2_1,
 						rbn4_1,rbn11_1,rbn12_1,rbn13_1,rbn14_1,rbn15_1,rbn16_1,rbn17_1,rbn19_1);
@@ -173,9 +173,10 @@ public class PerfilUsuarios extends JFrame {
 		modelo1 = new DefaultListModel();
 		
 		Lista = new JList();
-		Lista.setBounds(511, 108, 288, 200);
-		Lista.setModel(modelo1);
+		Lista.setBounds(65, 105, 288, 134);
+		Lista.setVisible(false);
 		contentPane.add(Lista);
+		Lista.setModel(modelo1);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -194,19 +195,31 @@ public class PerfilUsuarios extends JFrame {
 			@Override
 			
 			public void keyReleased(KeyEvent e) {
-				int selec = 0;
-				if(rbtUni.isSelected())
-					selec = 1;
-				if(rbtTec.isSelected())
-					selec = 2;
-				if(rbtObre.isSelected())
-					selec = 3;
-				ArrayList<String> nom = new ArrayList<String>();
-				nom = Principal.getInstance().RetornarNombres(TXTNombre.getText(),selec);
-				modelo1.clear();
-				for(int i=0;i<nom.size();i++) {
-					modelo1.add(i,nom.get(i));
+				if(TXTNombre.getText().length() > 0) {
+					int selec = 0;
+					if(rbtUni.isSelected())
+						selec = 1;
+					if(rbtTec.isSelected())
+						selec = 2;
+					if(rbtObre.isSelected())
+						selec = 3;
+					ArrayList<String> nom = new ArrayList<String>();
+					nom = Principal.getInstance().RetornarNombres(TXTNombre.getText(),selec);
+					if(nom.size() > -1) {
+						Lista.setVisible(true);
+					}
+					if(nom.isEmpty()) {
+						nom.add("No Se Encuentra Ningun Usuario");
+					}
+					modelo1.clear();
+					for(int i=0;i<nom.size();i++) {
+						modelo1.add(i,nom.get(i));
+					}
 				}
+				else {
+					Lista.setVisible(false);
+				}
+				
 			}
 		});
 		TXTNombre.setColumns(10);
@@ -243,7 +256,145 @@ public class PerfilUsuarios extends JFrame {
 		comboBox.setBounds(633, 11, 162, 20);
 		contentPane.add(comboBox);
 		
-		JButton BTNGuardar = new JButton("Guardar");
+	    BTNGuardar = new JButton("Guardar");
+		BTNGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean valores[] = new Boolean[10];
+				int num = 0,monto = 10;
+				if(RBN10.isSelected()) {
+					monto = 10;
+				}
+				if(RBN30.isSelected()) {
+					monto = 30;
+				}
+				if(RBN50.isSelected()) {
+					monto = 50;
+				}
+				// Primera pregunta
+				if(GrupoRespuestas1.getSelection() == rbn1_1.getModel()) {
+					valores[0] = true;
+					
+				}
+				else if(GrupoRespuestas1.getSelection() == rbn2_1.getModel()) {
+					valores[0] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 1 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Segunda pregunta
+				if(GrupoRespuestas2.getSelection() == rbn3_1.getModel()) {
+					valores[1] = true;
+				}
+				else if(GrupoRespuestas2.getSelection() == rbn4_1.getModel()) {
+					valores[1] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 2 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Tercera pregunta
+				if(GrupoRespuestas3.getSelection() == rbn5_1.getModel()) {
+					valores[2] = true;
+				}
+				else if(GrupoRespuestas3.getSelection() == rbn11_1.getModel()) {
+					valores[2] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 3 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Cuarta pregunta
+				if(GrupoRespuestas4.getSelection() == rbn6_1.getModel()) {
+					valores[3] = true;
+				}
+				else if(GrupoRespuestas4.getSelection() == rbn12_1.getModel()) {
+					valores[3] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 4 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Quinta pregunta
+				if(GrupoRespuestas5.getSelection() == rbn7_1.getModel()) {
+					valores[4] = true;
+				}
+				else if(GrupoRespuestas5.getSelection() == rbn13_1.getModel()) {
+					valores[4] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 5 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Sexta pregunta
+				if(GrupoRespuestas6.getSelection() == rbn8_1.getModel()) {
+					valores[5] = true;
+				}
+				else if(GrupoRespuestas6.getSelection() == rbn14_1.getModel()) {
+					valores[5] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 6 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Septima pregunta
+				if(GrupoRespuestas7.getSelection() == rbn9_1.getModel()) {
+					valores[6] = true;
+				}
+				else if(GrupoRespuestas7.getSelection() == rbn15_1.getModel()) {
+					valores[6] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 7 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Octava pregunta
+				if(GrupoRespuestas8.getSelection() == rbn10_1.getModel()) {
+					valores[7] = true;
+				}
+				else if(GrupoRespuestas8.getSelection() == rbn16_1.getModel()) {
+					valores[7] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 8 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Novena pregunta
+				if(GrupoRespuestas9.getSelection() == rbn18_1.getModel()) {
+					valores[8] = true;
+				}
+				else if(GrupoRespuestas9.getSelection() == rbn17_1.getModel()) {
+					valores[8] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 9 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				// Decima pregunta
+				if(GrupoRespuestas10.getSelection() == rdbtnNewRadioButton.getModel()) {
+					valores[9] = true;
+				}
+				else if(GrupoRespuestas10.getSelection() == rbn19_1.getModel()) {
+					valores[9] = false;
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"La pregunta 10 esta vacia","Llena Todos Los Campos",0);
+					num = 1;
+				}
+				if(num == 0) {
+					Empleo nuevo = new Empleo(valores,monto);
+					persona.setSolicitud(nuevo);
+					try {
+						Principal.getInstance().dataSalida();
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					JOptionPane.showMessageDialog(null,"La solicitud se guardo con exito","Confirmado",1);
+					
+				}
+			}
+		});
 		BTNGuardar.setBackground(SystemColor.activeCaption);
 		BTNGuardar.setBounds(535, 550, 89, 37);
 		contentPane.add(BTNGuardar);
@@ -251,6 +402,12 @@ public class PerfilUsuarios extends JFrame {
 		JButton button_2 = new JButton("Cancelar");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(persona.getSoli() == 1) {
+					setPreguntas(persona.getSolicitud().getHab(),persona.getSolicitud().getMonto());
+				}
+				JOptionPane.showMessageDialog(null,"Se cancelo con exito","Confirmado",1);
+				
+				
 			}
 		});
 		button_2.setBackground(SystemColor.activeCaption);
@@ -264,22 +421,23 @@ public class PerfilUsuarios extends JFrame {
 		panel_1.setBounds(480, 345, 363, 106);
 		contentPane.add(panel_1);
 		
-		JRadioButton rdbtnEntreA = new JRadioButton("Entre 10,000 y 30,000");
-		rdbtnEntreA.setBounds(6, 31, 161, 23);
-		panel_1.add(rdbtnEntreA);
+		RBN10 = new JRadioButton("Entre 10,000 y 30,000");
+		RBN10.setBounds(6, 31, 161, 23);
+		RBN10.setSelected(true);
+		panel_1.add(RBN10);
 		
-		JRadioButton rdbtnEntreY = new JRadioButton("Entre 30,000 y 50,000");
-		rdbtnEntreY.setBounds(196, 31, 161, 23);
-		panel_1.add(rdbtnEntreY);
+		RBN30 = new JRadioButton("Entre 30,000 y 50,000");
+		RBN30.setBounds(196, 31, 161, 23);
+		panel_1.add(RBN30);
 		
-		JRadioButton radioButton_55 = new JRadioButton("50,000 o M\u00E1s");
-		radioButton_55.setBounds(105, 76, 161, 23);
-		panel_1.add(radioButton_55);
+		 RBN50 = new JRadioButton("50,000 o M\u00E1s");
+		RBN50.setBounds(105, 76, 161, 23);
+		panel_1.add(RBN50);
 		
-		ButtonGroup grupo = new ButtonGroup();
-		grupo.add(rdbtnEntreA);
-		grupo.add(rdbtnEntreY);
-		grupo.add(radioButton_55);
+		grupo = new ButtonGroup();
+		grupo.add(RBN10);
+		grupo.add(RBN30);
+		grupo.add(RBN50);
 		
 		if(persona instanceof Universitario ) {
 			Borde = "Requerimientos Universitario";
@@ -475,7 +633,8 @@ public class PerfilUsuarios extends JFrame {
 		Busc.add(rbtTec);
 		Busc.add(rbtUni);
 		Busc.add(rdbtnTodos);
-		
+		if(persona.getSoli() == 1) {
+			setPreguntas(persona.getSolicitud().getHab(),persona.getSolicitud().getMonto());}
 		
 		
 	}
@@ -523,4 +682,104 @@ public class PerfilUsuarios extends JFrame {
 		GrupoRespuestas10.add(RBN10N);
 
 	}
+	
+	public void setPreguntas(Boolean[] valores,int ind) {
+		Boolean b = true;
+		// Primera pregunta
+		if(valores[0]) {
+			rbn1_1.setSelected(true);
+		}
+		else{
+			rbn2_1.setSelected(true);
+		}
+		
+		// Segunda pregunta
+		if(valores[1]) {
+			rbn3_1.setSelected(b);
+		}
+		else {
+			rbn4_1.setSelected(b);
+		}
+		
+		// Tercera pregunta
+		if(valores[2]) {
+			rbn5_1.setSelected(b);
+		}
+		else {
+			rbn11_1.setSelected(b);
+		}
+		
+		// Cuarta pregunta
+		if(valores[3]) {
+			rbn6_1.setSelected(b);
+			
+		}
+		else {
+			 rbn12_1.setSelected(b);
+		}
+		
+		// Quinta pregunta
+		if(valores[4]) {
+			rbn7_1.setSelected(b);
+		}
+		else {
+			  rbn13_1.setSelected(b);
+		}
+		
+		// Sexta pregunta
+		if(valores[5]) {
+			rbn8_1.setSelected(b);
+		}
+		else {
+			rbn14_1.setSelected(b);
+		}
+		
+		
+		// Septima pregunta
+		if(valores[6]) {
+			rbn9_1.setSelected(b);
+		}
+		else{
+			rbn15_1.setSelected(b);
+		}
+		
+		// Octava pregunta
+		if(valores[7] ) {
+			rbn10_1.setSelected(b);
+		}
+		else {
+			rbn16_1.setSelected(b);
+		}
+		
+		// Novena pregunta
+		if(valores[8]) {
+			rbn18_1.setSelected(b);
+		}
+		else  {
+			rbn17_1.setSelected(b);
+		}
+	
+		// Decima pregunta
+		if(valores[9] ) {
+			rdbtnNewRadioButton.setSelected(b);
+			
+		}
+		else {
+			rbn19_1.setSelected(b);
+		}
+		if(ind == 10) {
+			RBN10.setSelected(b);
+		}
+		if(ind == 30) {
+			RBN30.setSelected(b);
+		}
+		if(ind == 50) {
+			RBN50.setSelected(b);
+		}
+				
+	}
+	
+	public void setEnter(JButton BTN) {
+ 		getRootPane().setDefaultButton(BTN);
+ 	}
 }

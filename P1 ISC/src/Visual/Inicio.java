@@ -108,6 +108,7 @@ public class Inicio extends JFrame {
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
+ 	
  	addWindowListener(new WindowAdapter() {
  		@Override
  		public void windowOpened(WindowEvent e) {
@@ -125,6 +126,7 @@ public class Inicio extends JFrame {
 					new PerfilUsuarios(user).setVisible(true);;
 					dispose();
 				}
+				
 			} catch (ClassNotFoundException | IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

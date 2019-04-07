@@ -6,21 +6,19 @@ import java.util.ArrayList;
 
 public class Empleo implements Serializable{
 	
-	private Persona user;
-	private File curriculum;
-	private Boolean[] habilidades = new Boolean[9];
-	public Empleo(Persona user, Boolean[] habilidades) {
-		this.user = user;
+	private int monto;
+	private Boolean[] habilidades = new Boolean[10];
+	public Empleo( Boolean[] habilidades, int monto) {
 		this.habilidades = habilidades;
+		this.monto = monto;
 	}
-	public Persona getUser() {
-		return user;
-	}
-	public void setUser(Persona user) {
-		this.user = user;
-	}
+	
+
 	public Boolean[] getHab() {
 		return habilidades;
+	}
+	public int getMonto() {
+		return monto;
 	}
 
 	
