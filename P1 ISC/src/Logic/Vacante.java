@@ -26,11 +26,18 @@ public class Vacante implements Serializable{
 		codigoVacante = codigo;
 	}
 	
-	
+	public int getMonto() {
+		return monto;
+	}
+	public void setMonto(int monto) {
+		this.monto = monto;
+	}
+
 
 	public void solicitar(Persona nueva) {
 		Solicitantes.add( nueva);
-		Organizar();
+		//Organizar();
+		CantPuestos--;
 	}
 	
 	
@@ -38,7 +45,7 @@ public class Vacante implements Serializable{
 	//usa esta funcion para reemplazar una persona con menos habilidades
 	public void Reemplazo(Persona user,int ind) {
 		Solicitantes.add(ind,user);
-		Organizar();
+		//Organizar();
 	}
 	
 	public void Organizar() {
@@ -63,6 +70,9 @@ public class Vacante implements Serializable{
 		int Positivas = 0,i = 0;
 		for(Boolean var:user.getHab()) {
 			if(var && requisitos[i]) {
+				Positivas++;
+			}
+			if( !(var && requisitos[i])) {
 				Positivas++;
 			}
 			i++;
@@ -113,7 +123,10 @@ public class Vacante implements Serializable{
 	public Boolean aplicaHabilidades(Empleo user) {
 		int Positivas = 0,i = 0;
 		for(Boolean var:user.getHab()) {
-			if(var && requisitos[i]) {
+			if((var && requisitos[i]) ) {
+				Positivas++;
+			}
+			if(!(var && requisitos[i])) {
 				Positivas++;
 			}
 			i++;
@@ -155,9 +168,15 @@ public class Vacante implements Serializable{
 			return ind;
 		}
 		return -1;
-		
-		
-		
+	}
+	
+	public Boolean VacanteRepite(String txt) {
+		for(Persona aux:Solicitantes ) {
+			if(aux.correo.equalsIgnoreCase(txt)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	

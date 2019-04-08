@@ -25,6 +25,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class VistaSolicitud extends JDialog {
 
@@ -32,6 +35,7 @@ public class VistaSolicitud extends JDialog {
 	private DefaultTableModel modeloT;
 	private JLabel lbNombre;
 	private JTable table;
+	private JButton btnver;
 
 
 	public VistaSolicitud(Vacante vacante, String Titulo) {
@@ -73,14 +77,31 @@ public class VistaSolicitud extends JDialog {
 		}
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(table.getSelectedRow() > -1) {
+					btnver.setEnabled(true);
+				}
+			}
+		});
+		
+		JButton btnConfirmar = new JButton("Confirmar Contratacion");
+		
+		JButton btnNewButton = new JButton("Actualizar");
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(27)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(btnConfirmar)
+								.addGap(28)
+								.addComponent(btnNewButton))
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE))))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -88,7 +109,11 @@ public class VistaSolicitud extends JDialog {
 					.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					.addGap(32)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(65, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnConfirmar)
+						.addComponent(btnNewButton))
+					.addContainerGap(31, Short.MAX_VALUE))
 		);
 		
 		table = new JTable();
@@ -107,19 +132,24 @@ public class VistaSolicitud extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Ver");
-				okButton.setEnabled(false);
-				okButton.addActionListener(new ActionListener() {
+				 btnver = new JButton("Ver");
+				btnver.setEnabled(false);
+				btnver.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnver.setActionCommand("OK");
+				buttonPane.add(btnver);
+				getRootPane().setDefaultButton(btnver);
 			}
 			{
 				JButton cancelButton = new JButton("Volver");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

@@ -156,6 +156,7 @@ public class PerfilEmpresa extends JFrame {
 				panelObreE.setVisible(false);
 				panelTecE.setVisible(false);
 				panelUniE.setVisible(true);
+				
 				setgrupo(rbn1,rbn3,rbn5,rbn6,rbn7,rbn8,rbn9,rbn10,rbn18,rbn19,rbn2,rbn4,rbn11,rbn12,rbn13,rbn14,rbn15,rbn16,rbn17,rbn20);
 			}
 		});
@@ -341,13 +342,7 @@ public class PerfilEmpresa extends JFrame {
 					}
 					if(num == 0 && CBXCarrera.getSelectedIndex() > 0) {
 						Vacante nueva = new Vacante(empresa,"Universitario",CBXCarrera.getSelectedItem().toString(),valores,(int)Cantidad.getValue(),monto,empresa.getCode());
-						for(Persona user:Principal.getInstance().getTpersonas()) {
-							if(user instanceof Universitario ) {
-								if(nueva.aplicaHabilidades(user.getSolicitud()) && nueva.getCant() > nueva.getCantSolicitantes()) {
-									nueva.solicitar(user);
-								}
-							}
-						}
+						
 						empresa.setVacante(nueva);
 						try {
 						    Principal.getInstance().setTVacantes(nueva);
@@ -367,6 +362,7 @@ public class PerfilEmpresa extends JFrame {
 					if(CBXCarrera.getSelectedIndex() <= 0) {
 						JOptionPane.showMessageDialog(null,"Selecciona una carrera","Llena Todos Los Campos",0);
 					}
+					
 					
 				}
 				if(RBNTecnico.isSelected()) {
@@ -1313,52 +1309,7 @@ public class PerfilEmpresa extends JFrame {
 		GrupoRespuestas10.add(RBN10N);
 
 	}
-	public void removerGrupo( 
-			JRadioButton RBN1S,
-			JRadioButton RBN2S,
-			JRadioButton RBN3S,
-			JRadioButton RBN4S,
-			JRadioButton RBN5S,
-			JRadioButton RBN6S,
-			JRadioButton RBN7S,
-			JRadioButton RBN8S,
-			JRadioButton RBN9S,
-			JRadioButton RBN10S,
-			JRadioButton RBN1N,
-			JRadioButton RBN2N,
-			JRadioButton RBN3N,
-			JRadioButton RBN4N,
-			JRadioButton RBN5N,
-			JRadioButton RBN6N,
-			JRadioButton RBN7N,
-			JRadioButton RBN8N,
-			JRadioButton RBN9N,
-			JRadioButton RBN10N
-			  ) {
-		GrupoRespuestas1.remove(RBN1S);
-		GrupoRespuestas2.remove(RBN2S);
-		GrupoRespuestas3.remove(RBN3S);
-		GrupoRespuestas4.remove(RBN4S);
-		GrupoRespuestas5.remove(RBN5S);
-		GrupoRespuestas6.remove(RBN6S);
-		GrupoRespuestas7.remove(RBN7S);
-		GrupoRespuestas8.remove(RBN8S);
-		GrupoRespuestas9.remove(RBN9S);
-		GrupoRespuestas10.remove(RBN10S);
-
-		GrupoRespuestas1.remove(RBN1N);
-		GrupoRespuestas2.remove(RBN2N);
-		GrupoRespuestas3.remove(RBN3N);
-		GrupoRespuestas4.remove(RBN4N);
-		GrupoRespuestas5.remove(RBN5N);
-		GrupoRespuestas6.remove(RBN6N);
-		GrupoRespuestas7.remove(RBN7N);
-		GrupoRespuestas8.remove(RBN8N);
-		GrupoRespuestas9.remove(RBN9N);
-		GrupoRespuestas10.remove(RBN10N);
-
-		
-	}
+	
 	public void setEnter(JButton BTN) {
  		getRootPane().setDefaultButton(BTN);
  	}

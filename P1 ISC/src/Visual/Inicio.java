@@ -330,12 +330,13 @@ public class Inicio extends JFrame {
 					LBIncorrecto.setVisible(true);
 				}
 				else {
-					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "Â¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
 					if(Mensaje == JOptionPane.OK_OPTION) {
-						panel.setVisible(false);
+						
 						textNombre.setText("");
 						passwordContra.setText("");
 						PanelUser.setVisible(true);
+						setEnter(btnCrearUser);
 					}
 				}
 				

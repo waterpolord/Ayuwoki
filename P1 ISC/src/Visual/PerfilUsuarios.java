@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Panel;
 import java.awt.SystemColor;
 
 import javax.swing.ButtonGroup;
@@ -28,7 +29,7 @@ import Logic.Persona;
 import Logic.Principal;
 import Logic.Tecnico;
 import Logic.Universitario;
-
+import Logic.Vacante;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -39,10 +40,19 @@ import java.awt.event.WindowEvent;
 import javax.swing.JList;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JScrollPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PerfilUsuarios extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel panelReUniversitario;
 	private JTextField TXTNombre;
 	private ButtonGroup GrupoRespuestas1;
 	private ButtonGroup GrupoRespuestas2;
@@ -98,6 +108,11 @@ public class PerfilUsuarios extends JFrame {
 	private JRadioButton RBN50;
 	private ButtonGroup grupo;
 	private JButton BTNGuardar;
+	private JTable table;
+	private JButton btnVer;
+	private JButton btnEnviar;
+	private ArrayList<Vacante> solicitudesEnTabla = new ArrayList();
+	private JScrollPane scrollPane;
 	
 
 	public PerfilUsuarios(Persona persona) {
@@ -115,10 +130,177 @@ public class PerfilUsuarios extends JFrame {
 				GrupoRespuestas9 = new ButtonGroup();
 				GrupoRespuestas10 = new ButtonGroup();
 				
-				setEnter(BTNGuardar);
-				setgrupo(rbn1_1,rbn3_1,rbn5_1,rbn6_1,rbn7_1,rbn8_1,rbn9_1,rbn10_1,rbn18_1,rdbtnNewRadioButton,
-						rbn2_1,
-						rbn4_1,rbn11_1,rbn12_1,rbn13_1,rbn14_1,rbn15_1,rbn16_1,rbn17_1,rbn19_1);
+				
+				if(persona.getSoli() == 0) {
+					setgrupo(rbn1_1,rbn3_1,rbn5_1,rbn6_1,rbn7_1,rbn8_1,rbn9_1,rbn10_1,rbn18_1,rdbtnNewRadioButton,
+							rbn2_1,
+							rbn4_1,rbn11_1,rbn12_1,rbn13_1,rbn14_1,rbn15_1,rbn16_1,rbn17_1,rbn19_1);
+					setEnter(BTNGuardar);
+					table.setVisible(false);
+					
+					}
+				else {
+					
+					Boolean b = true,valores[] = persona.getSolicitud().getHab();
+					int ind = persona.getSolicitud().getMonto();
+					// Primera pregunta
+					if(valores[0]) {
+						fijarOpciones(rbn1_1);
+						quitarOpciones(rbn2_1);
+					}
+					else{
+						fijarOpciones(rbn2_1);
+						quitarOpciones(rbn1_1);
+					}
+					
+					// Segunda pregunta
+					if(valores[1]) {
+						
+						fijarOpciones(rbn3_1);
+						quitarOpciones(rbn4_1);
+					}
+					else {
+						fijarOpciones(rbn4_1);
+						quitarOpciones(rbn3_1);
+					}
+					
+					// Tercera pregunta
+					if(valores[2]) {
+						rbn5_1.setSelected(b);
+						fijarOpciones(rbn5_1);
+						quitarOpciones(rbn11_1);
+					}
+					else {
+						fijarOpciones(rbn11_1);
+						quitarOpciones(rbn5_1);
+					}
+					
+					// Cuarta pregunta
+					if(valores[3]) {
+					
+						fijarOpciones(rbn6_1);
+						quitarOpciones(rbn12_1);
+						
+					}
+					else {
+						fijarOpciones(rbn12_1);
+						quitarOpciones(rbn6_1);
+					}
+					
+					// Quinta pregunta
+					if(valores[4]) {
+						
+						fijarOpciones(rbn7_1);
+						quitarOpciones(rbn13_1);
+					}
+					else {
+						fijarOpciones(rbn13_1);
+						quitarOpciones(rbn7_1);
+					}
+					
+					// Sexta pregunta
+					if(valores[5]) {
+						fijarOpciones(rbn8_1);
+						quitarOpciones(rbn14_1);
+					}
+					else {
+						fijarOpciones(rbn14_1);
+						quitarOpciones(rbn8_1);
+					}
+					
+					
+					// Septima pregunta
+					if(valores[6]) {
+					
+						fijarOpciones(rbn9_1);
+						quitarOpciones(rbn15_1);
+					}
+					else{
+						fijarOpciones(rbn15_1);
+						quitarOpciones(rbn9_1);
+					}
+					
+					// Octava pregunta
+					if(valores[7] ) {
+						fijarOpciones(rbn10_1);
+						quitarOpciones(rbn16_1);
+					}
+					else {
+						fijarOpciones(rbn16_1);
+						quitarOpciones(rbn10_1);
+					}
+					
+					// Novena pregunta
+					if(valores[8]) {
+						
+						fijarOpciones(rbn18_1);
+						quitarOpciones(rbn17_1);
+					}
+					else  {
+						fijarOpciones(rbn17_1);
+						quitarOpciones(rbn18_1);
+					}
+				
+					// Decima pregunta
+					if(valores[9] ) {
+						
+						fijarOpciones(rdbtnNewRadioButton);
+						quitarOpciones(rbn19_1);
+						
+					}
+					else {
+						fijarOpciones(rbn19_1);
+						quitarOpciones(rdbtnNewRadioButton);
+					}
+					if(ind == 10) {
+						fijarOpciones(RBN10);
+						quitarOpciones(RBN30);
+						quitarOpciones(RBN50);
+					}
+					if(ind == 30) {
+						fijarOpciones(RBN30);
+						quitarOpciones(RBN10);
+						quitarOpciones(RBN50);
+					}
+					if(ind == 50) {
+						fijarOpciones(RBN50);
+						quitarOpciones(RBN10);
+						quitarOpciones(RBN30);
+					}
+					BTNGuardar.setVisible(false);
+					for(Vacante vac:Principal.getInstance().getTVacantes()) {
+						Boolean validar = false;
+						if(persona instanceof Universitario ) {
+							if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
+								validar = true;
+							}
+						}
+						if(persona instanceof Tecnico ) {
+							if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
+								validar = true;
+							}
+						}
+						if(persona instanceof Obrero ) {
+							if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
+								validar = true;
+							}
+						}
+						if(validar) {
+							if(vac.aplicaHabilidades(persona.getSolicitud()) && vac.getCant() != 0) {
+								Object[] encontrado = new Object[5];
+								
+										encontrado[0] = vac.getCant();
+										encontrado[1] = vac.getEmpresa().getNombre();
+										encontrado[2] = vac.getPuesto();
+										encontrado[3] = vac.getMonto()+",000 o mas";
+										encontrado[4] = vac.getCantPositivas(persona.getSolicitud())+"0%";
+										((DefaultTableModel) table.getModel()).addRow(encontrado);
+										solicitudesEnTabla.add(vac);
+							}
+						}
+					}
+					
+				}
 				
 				if(persona instanceof Universitario) {
 					lb1.setText("1.¿Habla otro idioma?");
@@ -163,27 +345,24 @@ public class PerfilUsuarios extends JFrame {
 		});
 		setTitle("Perfil Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension tam = getToolkit().getScreenSize();
-		setBounds(250,30,889,687);
+		Dimension Tam = getToolkit().getScreenSize();
+		Tam = this.getToolkit().getScreenSize();
+		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
+		this.setLocationRelativeTo(null); 
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		modelo1 = new DefaultListModel();
 		
 		Lista = new JList();
-		Lista.setBounds(65, 105, 288, 134);
 		Lista.setVisible(false);
-		contentPane.add(Lista);
 		Lista.setModel(modelo1);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(SystemColor.activeCaption);
-		panel.setBounds(10, 25, 340, 81);
-		contentPane.add(panel);
 		
 		JLabel label = new JLabel("Nombre");
 		label.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 12));
@@ -253,8 +432,6 @@ public class PerfilUsuarios extends JFrame {
 		comboBox.setForeground(SystemColor.desktop);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(633, 11, 162, 20);
-		contentPane.add(comboBox);
 		
 	    BTNGuardar = new JButton("Guardar");
 		BTNGuardar.addActionListener(new ActionListener() {
@@ -397,8 +574,6 @@ public class PerfilUsuarios extends JFrame {
 			}
 		});
 		BTNGuardar.setBackground(SystemColor.activeCaption);
-		BTNGuardar.setBounds(535, 550, 89, 37);
-		contentPane.add(BTNGuardar);
 		
 		JButton button_2 = new JButton("Cancelar");
 		button_2.addActionListener(new ActionListener() {
@@ -412,15 +587,11 @@ public class PerfilUsuarios extends JFrame {
 			}
 		});
 		button_2.setBackground(SystemColor.activeCaption);
-		button_2.setBounds(670, 550, 89, 37);
-		contentPane.add(button_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Monto a Ganar", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBackground(SystemColor.activeCaption);
-		panel_1.setBounds(480, 345, 363, 106);
-		contentPane.add(panel_1);
 		
 		RBN10 = new JRadioButton("Entre 10,000 y 30,000");
 		RBN10.setBounds(6, 31, 161, 23);
@@ -450,9 +621,7 @@ public class PerfilUsuarios extends JFrame {
 			Borde = "Requerimientos Tecnico";
 		}
 		
-		JPanel panelReUniversitario = new JPanel();
-		panelReUniversitario.setBounds(10, 203, 460, 434);
-		contentPane.add(panelReUniversitario);
+	    panelReUniversitario = new JPanel();
 		panelReUniversitario.setLayout(null);
 		panelReUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), Borde, TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelReUniversitario.setBackground(SystemColor.window);
@@ -582,8 +751,6 @@ public class PerfilUsuarios extends JFrame {
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_2.setBackground(SystemColor.inactiveCaption);
-		panel_2.setBounds(10, 109, 491, 83);
-		contentPane.add(panel_2);
 		
 		rbtUni = new JRadioButton("Universitario");
 		rbtUni.addActionListener(new ActionListener() {
@@ -634,6 +801,142 @@ public class PerfilUsuarios extends JFrame {
 		Busc.add(rbtTec);
 		Busc.add(rbtUni);
 		Busc.add(rdbtnTodos);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		btnVer = new JButton("Ver Empresa");
+		btnVer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selecF = table.getSelectedRow();
+				if(selecF > -1) {
+					PaginaEmpresa pagina = new PaginaEmpresa(solicitudesEnTabla.get( selecF ).getEmpresa());
+					pagina.setModal(true);
+					pagina.setVisible(true);
+				}
+			}
+		});
+		btnVer.setEnabled(false);
+		
+		btnEnviar = new JButton("Enviar");
+		btnEnviar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selecF = table.getSelectedRow();
+				if( selecF > -1) {
+					if( !(solicitudesEnTabla.get(selecF).VacanteRepite(persona.getCorreo()))){
+						if(solicitudesEnTabla.get(selecF).getCant() != 0) {
+							solicitudesEnTabla.get(selecF).solicitar(persona);
+							JOptionPane.showMessageDialog(null,"Vacante de empleo agregada con exito","Vacante de empleo agregada",1);
+							try {
+								Principal.getInstance().dataSalida();
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null,"Esta vacante ya no esta disponible","Vacante de empleo ocupada",0);
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Parece que ya enviaste esta vacante anteriormente","Vacante repetida",0);
+					}
+				}
+			}
+		});
+		btnEnviar.setEnabled(false);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(74, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(55)
+									.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE))
+								.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
+							.addGap(10)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
+									.addGap(29)
+									.addComponent(btnVer)
+									.addGap(90)
+									.addComponent(btnEnviar))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(55)
+									.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+									.addGap(46)
+									.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(265)
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 531, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(20)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(80)
+							.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(178)
+							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(31)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(25)
+							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+							.addGap(99)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnVer)
+								.addComponent(btnEnviar)))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(104)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE))
+		);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(table.getSelectedRow() > -1) {
+					btnVer.setEnabled(true);
+					btnEnviar.setEnabled(true);
+				}
+			}
+		});
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Vacante", "Nombre", "Puesto", "Sueldo", "Compatibilidad"
+			}
+		));
+		scrollPane.setViewportView(table);
+		contentPane.setLayout(gl_contentPane);
 		if(persona.getSoli() == 1) {
 			setPreguntas(persona.getSolicitud().getHab(),persona.getSolicitud().getMonto());}
 		
@@ -778,6 +1081,17 @@ public class PerfilUsuarios extends JFrame {
 			RBN50.setSelected(b);
 		}
 				
+	}
+	
+	public void fijarOpciones( JRadioButton RBN1S ) {
+		Boolean b = false;
+		RBN1S.setEnabled(b);
+		
+	}
+	public void quitarOpciones( JRadioButton RBN1S) {
+		Boolean b = false;
+		RBN1S.setVisible(b);
+
 	}
 	
 	public void setEnter(JButton BTN) {
