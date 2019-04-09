@@ -144,6 +144,7 @@ public class Inicio extends JFrame {
 		PanelPrincipal.setLayout(null);
 		
 		BTNiniciarSesion = new JButton("");
+		//BTNiniciarSesion.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		BTNiniciarSesion.setIcon(new ImageIcon(Inicio.class.getResource("/Imgenes/Boton Iniciar Sesion.jpg")));
 		BTNiniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

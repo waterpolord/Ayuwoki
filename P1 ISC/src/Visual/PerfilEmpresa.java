@@ -342,7 +342,13 @@ public class PerfilEmpresa extends JFrame {
 					}
 					if(num == 0 && CBXCarrera.getSelectedIndex() > 0) {
 						Vacante nueva = new Vacante(empresa,"Universitario",CBXCarrera.getSelectedItem().toString(),valores,(int)Cantidad.getValue(),monto,empresa.getCode());
-						
+						for(Persona aux:Principal.getInstance().getTpersonas()) {
+							if(aux instanceof Universitario ) {
+								if(nueva.aplicaHabilidades(aux.getSolicitud())) {
+									nueva.solicitar(aux);
+								}
+							}
+						}
 						empresa.setVacante(nueva);
 						try {
 						    Principal.getInstance().setTVacantes(nueva);
@@ -362,7 +368,6 @@ public class PerfilEmpresa extends JFrame {
 					if(CBXCarrera.getSelectedIndex() <= 0) {
 						JOptionPane.showMessageDialog(null,"Selecciona una carrera","Llena Todos Los Campos",0);
 					}
-					
 					
 				}
 				if(RBNTecnico.isSelected()) {

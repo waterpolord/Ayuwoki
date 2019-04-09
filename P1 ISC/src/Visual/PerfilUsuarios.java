@@ -108,11 +108,7 @@ public class PerfilUsuarios extends JFrame {
 	private JRadioButton RBN50;
 	private ButtonGroup grupo;
 	private JButton BTNGuardar;
-	private JTable table;
-	private JButton btnVer;
-	private JButton btnEnviar;
 	private ArrayList<Vacante> solicitudesEnTabla = new ArrayList();
-	private JScrollPane scrollPane;
 	
 
 	public PerfilUsuarios(Persona persona) {
@@ -136,7 +132,6 @@ public class PerfilUsuarios extends JFrame {
 							rbn2_1,
 							rbn4_1,rbn11_1,rbn12_1,rbn13_1,rbn14_1,rbn15_1,rbn16_1,rbn17_1,rbn19_1);
 					setEnter(BTNGuardar);
-					table.setVisible(false);
 					
 					}
 				else {
@@ -268,39 +263,10 @@ public class PerfilUsuarios extends JFrame {
 						quitarOpciones(RBN30);
 					}
 					BTNGuardar.setVisible(false);
-					for(Vacante vac:Principal.getInstance().getTVacantes()) {
-						Boolean validar = false;
-						if(persona instanceof Universitario ) {
-							if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
-								validar = true;
-							}
-						}
-						if(persona instanceof Tecnico ) {
-							if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
-								validar = true;
-							}
-						}
-						if(persona instanceof Obrero ) {
-							if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
-								validar = true;
-							}
-						}
-						if(validar) {
-							if(vac.aplicaHabilidades(persona.getSolicitud()) && vac.getCant() != 0) {
-								Object[] encontrado = new Object[5];
-								
-										encontrado[0] = vac.getCant();
-										encontrado[1] = vac.getEmpresa().getNombre();
-										encontrado[2] = vac.getPuesto();
-										encontrado[3] = vac.getMonto()+",000 o mas";
-										encontrado[4] = vac.getCantPositivas(persona.getSolicitud())+"0%";
-										((DefaultTableModel) table.getModel()).addRow(encontrado);
-										solicitudesEnTabla.add(vac);
-							}
-						}
+					
 					}
 					
-				}
+				
 				
 				if(persona instanceof Universitario) {
 					lb1.setText("1.¿Habla otro idioma?");
@@ -561,14 +527,62 @@ public class PerfilUsuarios extends JFrame {
 				if(num == 0) {
 					Empleo nuevo = new Empleo(valores,monto);
 					persona.setSolicitud(nuevo);
-					
+					for(Vacante vac:Principal.getInstance().getTVacantes()) {
+						if(persona instanceof Universitario ) {
+							if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
+								if(vac.aplicaHabilidades(persona.getSolicitud())) {
+									if(vac.getEstado()) {
+										vac.solicitar(persona);
+									}
+									else {
+										int ind = vac.reemplazoAplica(persona.getSolicitud());
+										if(ind != -1) {
+											vac.Reemplazo( persona , ind);
+										}
+									}
+								}
+							}
+						}
+						if(persona instanceof Tecnico ) {
+							if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
+								if(vac.aplicaHabilidades(persona.getSolicitud())) {
+									if(vac.getEstado()) {
+										vac.solicitar(persona);
+									}
+									else {
+										int ind = vac.reemplazoAplica(persona.getSolicitud());
+										if(ind != -1) {
+											vac.Reemplazo( persona , ind);
+										}
+									}
+								}
+							}
+						}
+						if(persona instanceof Obrero ) {
+							if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
+								if(vac.aplicaHabilidades(persona.getSolicitud())) {
+									if(vac.getEstado()) {
+										vac.solicitar(persona);
+									}
+									else {
+										int ind = vac.reemplazoAplica(persona.getSolicitud());
+										if(ind != -1) {
+											vac.Reemplazo( persona , ind);
+										}
+									}
+								}
+							}
+						}
+					}
 					try {
 						Principal.getInstance().dataSalida();
+						JOptionPane.showMessageDialog(null,"La solicitud se guardo con exito","Confirmado",1);
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null,"No se guardo la solicitud","Advertencia",0);
 					}
-					JOptionPane.showMessageDialog(null,"La solicitud se guardo con exito","Confirmado",1);
+					
 					
 				}
 			}
@@ -801,87 +815,19 @@ public class PerfilUsuarios extends JFrame {
 		Busc.add(rbtTec);
 		Busc.add(rbtUni);
 		Busc.add(rdbtnTodos);
-		
-		scrollPane = new JScrollPane();
-		scrollPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});
-		
-		btnVer = new JButton("Ver Empresa");
-		btnVer.setBackground(new Color(95, 158, 160));
-		btnVer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int selecF = table.getSelectedRow();
-				if(selecF > -1) {
-					PaginaEmpresa pagina = new PaginaEmpresa(solicitudesEnTabla.get( selecF ).getEmpresa());
-					pagina.setModal(true);
-					pagina.setVisible(true);
-				}
-			}
-		});
-		btnVer.setEnabled(false);
-		
-		btnEnviar = new JButton("Enviar");
-		btnEnviar.setBackground(new Color(95, 158, 160));
-		btnEnviar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int selecF = table.getSelectedRow();
-				if( selecF > -1) {
-					if( !(solicitudesEnTabla.get(selecF).VacanteRepite(persona.getCorreo()))){
-						if(solicitudesEnTabla.get(selecF).getCant() != 0) {
-							solicitudesEnTabla.get(selecF).solicitar(persona);
-							JOptionPane.showMessageDialog(null,"Vacante de empleo agregada con exito","Vacante de empleo agregada",1);
-							try {
-								Principal.getInstance().dataSalida();
-							} catch (ClassNotFoundException | IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						}
-						else {
-							JOptionPane.showMessageDialog(null,"Esta vacante ya no esta disponible","Vacante de empleo ocupada",0);
-						}
-					}
-					else {
-						JOptionPane.showMessageDialog(null,"Parece que ya enviaste esta vacante anteriormente","Vacante repetida",0);
-					}
-				}
-			}
-		});
-		btnEnviar.setEnabled(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(55)
-									.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE))
-								.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
-							.addGap(10)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(409)
-									.addComponent(btnVer)
-									.addGap(77)
-									.addComponent(btnEnviar)
-									.addGap(258))
-								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-									.addGap(60)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-										.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 531, GroupLayout.PREFERRED_SIZE)
-									.addGap(94))))
+							.addGap(166)
+							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(868)
@@ -890,7 +836,10 @@ public class PerfilUsuarios extends JFrame {
 									.addGap(38)
 									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
 									.addGap(18)
-									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)))))
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+										.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
+										.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))))))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -906,48 +855,20 @@ public class PerfilUsuarios extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
 								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(109)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
-											.addGap(53)
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-												.addComponent(btnVer)
-												.addComponent(btnEnviar))
-											.addGap(14))
-										.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)))))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-							.addGap(55)
+							.addGap(43)
 							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-							.addGap(65))))
+							.addGap(116))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(18)
+							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
-		
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(table.getSelectedRow() > -1) {
-					btnVer.setEnabled(true);
-					btnEnviar.setEnabled(true);
-				}
-			}
-		});
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Vacante", "Nombre", "Puesto", "Sueldo", "Compatibilidad"
-			}
-		));
-		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
 		if(persona.getSoli() == 1) {
 			setPreguntas(persona.getSolicitud().getHab(),persona.getSolicitud().getMonto());}
