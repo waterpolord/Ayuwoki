@@ -350,7 +350,7 @@ public class PerfilUsuarios extends JFrame {
 		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null); 
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
+		contentPane.setBackground(new Color(255, 255, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		modelo1 = new DefaultListModel();
@@ -362,7 +362,7 @@ public class PerfilUsuarios extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBackground(SystemColor.activeCaption);
+		panel.setBackground(new Color(95, 158, 160));
 		
 		JLabel label = new JLabel("Nombre");
 		label.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 12));
@@ -431,7 +431,7 @@ public class PerfilUsuarios extends JFrame {
 		});
 		comboBox.setForeground(SystemColor.desktop);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
-		comboBox.setBackground(Color.WHITE);
+		comboBox.setBackground(new Color(95, 158, 160));
 		
 	    BTNGuardar = new JButton("Guardar");
 		BTNGuardar.addActionListener(new ActionListener() {
@@ -591,7 +591,7 @@ public class PerfilUsuarios extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Monto a Ganar", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBackground(SystemColor.activeCaption);
+		panel_1.setBackground(new Color(32, 178, 170));
 		
 		RBN10 = new JRadioButton("Entre 10,000 y 30,000");
 		RBN10.setBounds(6, 31, 161, 23);
@@ -612,7 +612,7 @@ public class PerfilUsuarios extends JFrame {
 		grupo.add(RBN50);
 		
 		if(persona instanceof Universitario ) {
-			Borde = "Requerimientos Universitario";
+			Borde = "Requerimientos";
 		}
 		if(persona instanceof Obrero ) {
 			Borde = "Requerimientos Obrero";
@@ -624,7 +624,7 @@ public class PerfilUsuarios extends JFrame {
 	    panelReUniversitario = new JPanel();
 		panelReUniversitario.setLayout(null);
 		panelReUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), Borde, TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelReUniversitario.setBackground(SystemColor.window);
+		panelReUniversitario.setBackground(new Color(95, 158, 160));
 		
 		rbn1_1 = new JRadioButton("Si");
 		rbn1_1.setBounds(313, 52, 50, 23);
@@ -750,7 +750,7 @@ public class PerfilUsuarios extends JFrame {
 		panel_2.setLayout(null);
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_2.setBackground(SystemColor.inactiveCaption);
+		panel_2.setBackground(new Color(32, 178, 170));
 		
 		rbtUni = new JRadioButton("Universitario");
 		rbtUni.addActionListener(new ActionListener() {
@@ -775,7 +775,7 @@ public class PerfilUsuarios extends JFrame {
 		}});
 		
 		rbtTec.setSelected(false);
-		rbtTec.setBounds(200, 17, 109, 23);
+		rbtTec.setBounds(19, 43, 109, 23);
 		panel_2.add(rbtTec);
 		
 		rbtObre = new JRadioButton("Obrero");
@@ -787,12 +787,12 @@ public class PerfilUsuarios extends JFrame {
 				
 		}});
 		rbtObre.setSelected(false);
-		rbtObre.setBounds(376, 17, 109, 23);
+		rbtObre.setBounds(200, 17, 109, 23);
 		panel_2.add(rbtObre);
 		
 	    rdbtnTodos = new JRadioButton("Todos");
 		rdbtnTodos.setSelected(true);
-		rdbtnTodos.setBounds(200, 53, 109, 23);
+		rdbtnTodos.setBounds(200, 43, 109, 23);
 		panel_2.add(rdbtnTodos);
 		
 		ButtonGroup Busc = new ButtonGroup();
@@ -811,6 +811,7 @@ public class PerfilUsuarios extends JFrame {
 		});
 		
 		btnVer = new JButton("Ver Empresa");
+		btnVer.setBackground(new Color(95, 158, 160));
 		btnVer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selecF = table.getSelectedRow();
@@ -824,6 +825,7 @@ public class PerfilUsuarios extends JFrame {
 		btnVer.setEnabled(false);
 		
 		btnEnviar = new JButton("Enviar");
+		btnEnviar.setBackground(new Color(95, 158, 160));
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selecF = table.getSelectedRow();
@@ -854,8 +856,8 @@ public class PerfilUsuarios extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(74, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -863,59 +865,69 @@ public class PerfilUsuarios extends JFrame {
 									.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE))
 								.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
 							.addGap(10)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(409)
+									.addComponent(btnVer)
+									.addGap(77)
+									.addComponent(btnEnviar)
+									.addGap(258))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addGap(60)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+										.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 531, GroupLayout.PREFERRED_SIZE)
+									.addGap(94))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
-									.addGap(29)
-									.addComponent(btnVer)
-									.addGap(90)
-									.addComponent(btnEnviar))
+									.addGap(868)
+									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(55)
-									.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-									.addGap(46)
-									.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(265)
-									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 531, GroupLayout.PREFERRED_SIZE))))
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+									.addGap(38)
+									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(20)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(80)
-							.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+							.addGap(28)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(178)
-							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(31)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(25)
-							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-							.addGap(99)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnVer)
-								.addComponent(btnEnviar)))))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(104)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE))
+								.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(109)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
+											.addGap(53)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+												.addComponent(btnVer)
+												.addComponent(btnEnviar))
+											.addGap(14))
+										.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)))))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+							.addGap(55)
+							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+							.addGap(65))))
 		);
 		
 		table = new JTable();

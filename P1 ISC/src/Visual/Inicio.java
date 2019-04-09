@@ -193,13 +193,13 @@ public class Inicio extends JFrame {
 		Tam = this.getToolkit().getScreenSize();
 		
 		JLabel lblfondo = new JLabel("");
-		lblfondo.setBackground(new Color(211, 211, 211));
-		lblfondo.setIcon(new ImageIcon("src\\Imgenes\\FondoPortada.jpg"));
+		lblfondo.setBackground(new Color(32, 178, 170));
+		lblfondo.setIcon(new ImageIcon("C:\\Users\\Arlenys Cuevas\\Desktop\\mami\\WorkSpaceNeon\\Ayuwoki-master\\P1 ISC\\src\\Imgenes\\FondoPortada.jpg"));
 		lblfondo.setBounds(0, 0, (int)Tam.getWidth(), (int)Tam.getHeight());
 		
 		PanelBotones = new JPanel();
 		PanelBotones.setBounds(0, 0, 160, (int)Tam.height);
-		PanelBotones.setBackground(new Color(228, 241, 254));
+		PanelBotones.setBackground(new Color(72, 209, 204));
 		
 		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null);
@@ -238,7 +238,7 @@ public class Inicio extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
-		panel.setBackground(SystemColor.activeCaption);
+		panel.setBackground(new Color(95, 158, 160));
 		PanelLogin.add(panel);
 		
 		JLabel labelUsuario = new JLabel("Usuario/Correo:");
@@ -454,7 +454,7 @@ public class Inicio extends JFrame {
 		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_1.setBounds(82, 11, 533, 192);
-		panel_1.setBackground(SystemColor.activeCaption);
+		panel_1.setBackground(new Color(95, 158, 160));
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
 		
@@ -657,7 +657,7 @@ public class Inicio extends JFrame {
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_2.setBounds(82, 204, 533, 47);
-		panel_2.setBackground(SystemColor.inactiveCaption);
+		panel_2.setBackground(new Color(95, 158, 160));
 		PanelUser.add(panel_2);
 		
 	
@@ -711,7 +711,7 @@ public class Inicio extends JFrame {
 		panelUniversitario = new JPanel();
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelUniversitario.setBackground(SystemColor.activeCaption);
+		panelUniversitario.setBackground(new Color(95, 158, 160));
 		panelUniversitario.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelUniversitario);
 		
@@ -732,7 +732,7 @@ public class Inicio extends JFrame {
 		panelTecnico.setLayout(null);
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelTecnico.setBackground(new Color(153, 204, 204));
+		panelTecnico.setBackground(new Color(95, 158, 160));
 		panelTecnico.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelTecnico);
 		
@@ -751,7 +751,7 @@ public class Inicio extends JFrame {
 		panelObrero.setLayout(null);
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelObrero.setBackground(new Color(153, 204, 204));
+		panelObrero.setBackground(new Color(95, 158, 160));
 		panelObrero.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelObrero);
 		
@@ -830,7 +830,7 @@ public class Inicio extends JFrame {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_4.setBounds(79, 11, 564, 343);
-		panel_4.setBackground(SystemColor.activeCaption);
+		panel_4.setBackground(new Color(95, 158, 160));
 		PanelEmpresa.add(panel_4);
 		
 		JLabel labelCodigoE = new JLabel("Nombre:");
@@ -1012,6 +1012,7 @@ public class Inicio extends JFrame {
 		panel_4.add(comboBox);
 		
 	    btnCrearEmpresa = new JButton("Crear");
+	    btnCrearEmpresa.setBackground(new Color(72, 209, 204));
 		btnCrearEmpresa.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -1067,6 +1068,7 @@ public class Inicio extends JFrame {
 		PanelEmpresa.add(btnCrearEmpresa);
 		
 		JButton btnCancelarEmpresa = new JButton("Cancelar");
+		btnCancelarEmpresa.setBackground(new Color(72, 209, 204));
 		 btnCancelarEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(true);
@@ -1082,6 +1084,7 @@ public class Inicio extends JFrame {
 		grupoTipo.add(RBUniversitario);
 		
 		btnCrearUser = new JButton("Crear");
+		btnCrearUser.setBackground(new Color(72, 209, 204));
 		
 		btnCrearUser.addActionListener(new ActionListener() {
 		
@@ -1162,6 +1165,7 @@ public class Inicio extends JFrame {
 		PanelUser.add(btnCrearUser);
 		
 		JButton btnCancelarUsuario = new JButton("Cancelar");
+		btnCancelarUsuario.setBackground(new Color(72, 209, 204));
 		 btnCancelarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(true);

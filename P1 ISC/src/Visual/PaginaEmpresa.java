@@ -5,21 +5,26 @@ import Logic.*;
 
 import java.awt.FlowLayout;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+
+
 
 public class PaginaEmpresa extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JLabel lblTitulo;
+	private JTextArea textArea;
+	private JButton button;
+	private JLabel label;
+	
 
 	public PaginaEmpresa(Empresa empresa) {
 		setBounds(100, 100, 450, 300);
@@ -39,12 +44,12 @@ public class PaginaEmpresa extends JDialog {
 		}
 		{
 			JButton btnNewButton = new JButton("\u2190");
+			btnNewButton.setBounds(0, -1, 43, 23);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 				}
 			});
-			btnNewButton.setBounds(0, -1, 43, 23);
 			contentPanel.add(btnNewButton);
 		}
 		
@@ -55,6 +60,17 @@ public class PaginaEmpresa extends JDialog {
 		JLabel lblNewLabel = new JLabel(empresa.getCorreo());
 		lblNewLabel.setBounds(10, 63, 139, 14);
 		contentPanel.add(lblNewLabel);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(27, 88, 371, 108);
+		contentPanel.add(textArea);
+		
+		JButton btnNewButton_1 = new JButton("A\u00F1adir Informaci\u00F3n");
+		btnNewButton_1.setBounds(37, 207, 151, 23);
+		contentPanel.add(btnNewButton_1);
+		getRootPane().setDefaultButton(btnNewButton_1);
+	
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -69,6 +85,10 @@ public class PaginaEmpresa extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+		
+				
+		
+		
 			}
 		}
 	}

@@ -168,7 +168,7 @@ public class PerfilEmpresa extends JFrame {
 		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null); 
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -208,13 +208,13 @@ public class PerfilEmpresa extends JFrame {
 				}
 			}
 		});
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Configuracion", "Editar Cuenta", "Cerrar Sesion" }));
-		comboBox.setBounds(997, 11, 162, 20);
+		comboBox.setBackground(new Color(95, 158, 160));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuraci\u00F3n", "Cerrar Sesion"}));
+		comboBox.setBounds(1178, 11, 162, 20);
 		contentPane.add(comboBox);
 
 		btnNewButton = new JButton("Subir");
-		btnNewButton.setBackground(SystemColor.activeCaption);
+		btnNewButton.setBackground(new Color(32, 178, 170));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Boolean valores[] = new Boolean[10];
@@ -637,7 +637,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Cancelar");
-		btnNewButton_1.setBackground(SystemColor.activeCaption);
+		btnNewButton_1.setBackground(new Color(32, 178, 170));
 		btnNewButton_1.setBounds(228, 561, 89, 23);
 		contentPane.add(btnNewButton_1);
 
@@ -645,7 +645,7 @@ public class PerfilEmpresa extends JFrame {
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Empresa",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(32, 178, 170));
 		panel.setBounds(5, 35, 333, 83);
 		contentPane.add(panel);
 
@@ -663,12 +663,12 @@ public class PerfilEmpresa extends JFrame {
 			}
 		});
 		textField.setColumns(10);
-		textField.setBackground(SystemColor.inactiveCaption);
+		textField.setBackground(new Color(248, 248, 255));
 		textField.setBounds(68, 40, 253, 25);
 		panel.add(textField);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
+		panel_2.setBackground(new Color(95, 158, 160));
 		panel_2.setBounds(20, 205, 366, 336);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
@@ -678,7 +678,7 @@ public class PerfilEmpresa extends JFrame {
 		PanelTipoPersonal.setForeground(Color.WHITE);
 		PanelTipoPersonal.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo De Personal",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		PanelTipoPersonal.setBackground(SystemColor.activeCaption);
+		PanelTipoPersonal.setBackground(new Color(102, 205, 170));
 		PanelTipoPersonal.setBounds(10, 22, 346, 51);
 		panel_2.add(PanelTipoPersonal);
 
@@ -740,7 +740,7 @@ public class PerfilEmpresa extends JFrame {
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		panelUniversitario.setBackground(SystemColor.activeCaption);
+		panelUniversitario.setBackground(new Color(102, 205, 170));
 		panelUniversitario.setBounds(10, 98, 346, 81);
 		panel_2.add(panelUniversitario);
 
@@ -750,8 +750,7 @@ public class PerfilEmpresa extends JFrame {
 		panelUniversitario.add(label_1);
 
 		CBXCarrera = new JComboBox();
-		CBXCarrera.setModel(new DefaultComboBoxModel(new String[] { "<Seleccionar>", "Administración", "Derecho",
-				"Economía", "Ingeniería", "Medicina", "Mercadeo" }));
+		CBXCarrera.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administraci\u00F3n", "Derecho", "Econom\u00EDa", "Ingenier\u00EDa", "Medicina", "Mercadeo"}));
 		CBXCarrera.setBounds(78, 34, 168, 25);
 		panelUniversitario.add(CBXCarrera);
 
@@ -761,7 +760,7 @@ public class PerfilEmpresa extends JFrame {
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		panelTecnico.setBackground(SystemColor.inactiveCaption);
+		panelTecnico.setBackground(new Color(102, 205, 170));
 		panelTecnico.setBounds(10, 98, 346, 81);
 		panel_2.add(panelTecnico);
 
@@ -782,7 +781,7 @@ public class PerfilEmpresa extends JFrame {
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		panelObrero.setBackground(SystemColor.inactiveCaption);
+		panelObrero.setBackground(new Color(102, 205, 170));
 		panelObrero.setBounds(10, 98, 346, 81);
 		panel_2.add(panelObrero);
 
@@ -800,7 +799,7 @@ public class PerfilEmpresa extends JFrame {
 		JPanel PanelMonto = new JPanel();
 		PanelMonto.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Monto a Ganar",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		PanelMonto.setBackground(SystemColor.activeCaption);
+		PanelMonto.setBackground(new Color(102, 205, 170));
 		PanelMonto.setBounds(10, 201, 346, 106);
 		panel_2.add(PanelMonto);
 		PanelMonto.setLayout(null);
@@ -837,6 +836,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(lblSolicitudes);
 
 		JButton btnVer = new JButton("Ver");
+		btnVer.setBackground(new Color(95, 158, 160));
 		btnVer.setEnabled(false);
 		btnVer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -859,7 +859,7 @@ public class PerfilEmpresa extends JFrame {
 	    				panelObreE.setLayout(null);
 	    				panelObreE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),
 	    						"Requerimientos Obrero", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-	    				panelObreE.setBackground(Color.WHITE);
+	    				panelObreE.setBackground(new Color(102, 205, 170));
 	    				panelObreE.setBounds(402, 159, 460, 434);
 	    				contentPane.add(panelObreE);
 	    				
@@ -986,7 +986,7 @@ public class PerfilEmpresa extends JFrame {
 	    		panelUniE.setLayout(null);
 	    		panelUniE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos Universitario",
 	    				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-	    		panelUniE.setBackground(new Color(255, 255, 255));
+	    		panelUniE.setBackground(new Color(102, 205, 170));
 	    		panelUniE.setBounds(402, 159, 460, 434);
 	    		contentPane.add(panelUniE);
 	    		
@@ -1114,7 +1114,7 @@ public class PerfilEmpresa extends JFrame {
 				panelTecE.setLayout(null);
 				panelTecE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos Tecnicos",
 						TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-				panelTecE.setBackground(Color.WHITE);
+				panelTecE.setBackground(new Color(102, 205, 170));
 				panelTecE.setBounds(402, 159, 460, 434);
 				contentPane.add(panelTecE);
 				
@@ -1248,6 +1248,7 @@ public class PerfilEmpresa extends JFrame {
 		Grupo2.add(RBN50);
 		
 	    list = new JList();
+	    list.setBackground(new Color(95, 158, 160));
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				int selec = list.getSelectedIndex();
