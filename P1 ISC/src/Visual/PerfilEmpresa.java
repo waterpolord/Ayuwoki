@@ -209,7 +209,7 @@ public class PerfilEmpresa extends JFrame {
 			}
 		});
 		comboBox.setBackground(new Color(95, 158, 160));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuraci\u00F3n", "Cerrar Sesion"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuraci\u00F3n", "Descripcion","Cerrar Sesion"}));
 		comboBox.setBounds(1178, 11, 162, 20);
 		contentPane.add(comboBox);
 
