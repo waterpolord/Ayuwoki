@@ -314,10 +314,10 @@ public class PerfilUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension Tam = getToolkit().getScreenSize();
 		Tam = this.getToolkit().getScreenSize();
-		this.setBounds(50, 20, 953,748);
+		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null); 
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(230, 230, 250));
+		contentPane.setBackground(new Color(255, 255, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		modelo1 = new DefaultListModel();
@@ -621,16 +621,16 @@ public class PerfilUsuarios extends JFrame {
 		panel_1.setBackground(new Color(32, 178, 170));
 		
 		RBN10 = new JRadioButton("Entre 10,000 y 30,000");
-		RBN10.setBounds(32, 44, 177, 23);
+		RBN10.setBounds(6, 31, 161, 23);
 		RBN10.setSelected(true);
 		panel_1.add(RBN10);
 		
 		RBN30 = new JRadioButton("Entre 30,000 y 50,000");
-		RBN30.setBounds(32, 100, 177, 23);
+		RBN30.setBounds(196, 31, 161, 23);
 		panel_1.add(RBN30);
 		
 		 RBN50 = new JRadioButton("50,000 o M\u00E1s");
-		RBN50.setBounds(32, 155, 177, 23);
+		RBN50.setBounds(105, 76, 161, 23);
 		panel_1.add(RBN50);
 		
 		grupo = new ButtonGroup();
@@ -802,7 +802,7 @@ public class PerfilUsuarios extends JFrame {
 		}});
 		
 		rbtTec.setSelected(false);
-		rbtTec.setBounds(19, 68, 109, 23);
+		rbtTec.setBounds(19, 43, 109, 23);
 		panel_2.add(rbtTec);
 		
 		rbtObre = new JRadioButton("Obrero");
@@ -814,12 +814,12 @@ public class PerfilUsuarios extends JFrame {
 				
 		}});
 		rbtObre.setSelected(false);
-		rbtObre.setBounds(19, 116, 109, 23);
+		rbtObre.setBounds(200, 17, 109, 23);
 		panel_2.add(rbtObre);
 		
 	    rdbtnTodos = new JRadioButton("Todos");
 		rdbtnTodos.setSelected(true);
-		rdbtnTodos.setBounds(19, 167, 109, 23);
+		rdbtnTodos.setBounds(200, 43, 109, 23);
 		panel_2.add(rdbtnTodos);
 		
 		ButtonGroup Busc = new ButtonGroup();
@@ -834,22 +834,6 @@ public class PerfilUsuarios extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-
-							.addGap(54)
-							.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(44)
-									.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-									.addGap(117)
-									.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(33)
-									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
-
 							.addGap(166)
 							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -864,52 +848,18 @@ public class PerfilUsuarios extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(38)
 									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
-
 									.addGap(18)
-
-									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)))))
-					.addGap(191))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-					.addGap(173))
-=======
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 										.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
 										.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))))))
 					.addContainerGap())
->>>>>>> branch 'master' of https://github.com/waterpolord/Ayuwoki.git
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-<<<<<<< HEAD
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(65)
-							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(124)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE))
-							.addGap(50)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-								.addComponent(BTNGuardar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(41, Short.MAX_VALUE))
-=======
 							.addGap(28)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -931,7 +881,6 @@ public class PerfilUsuarios extends JFrame {
 							.addGap(18)
 							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())))
->>>>>>> branch 'master' of https://github.com/waterpolord/Ayuwoki.git
 		);
 		contentPane.setLayout(gl_contentPane);
 		if(persona.getSoli() == 1) {

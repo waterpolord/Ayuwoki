@@ -167,7 +167,7 @@ public class VistaSolicitud extends JDialog {
 			new Object[][] {
 			},
 			new String[] {
-				"Nombre", "Apellido", "Carrera","Correo"
+				"Nombre", "Apellido", "Carrera"," Correo "
 			}
 		));
 		scrollPane.setViewportView(table);
