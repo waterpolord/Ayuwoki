@@ -14,7 +14,10 @@ import Logic.Persona;
 import Logic.Tecnico;
 import Logic.Universitario;
 import Logic.Vacante;
+
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
@@ -37,17 +40,20 @@ public class VistaSolicitud extends JDialog {
 	private JLabel lbNombre;
 	private JTable table;
 	private JButton btnver;
+	
 
 
 	public VistaSolicitud(Vacante vacante, String Titulo) {
+		setBackground(new Color(255, 255, 255));
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				Object[] encontrado = new Object[3];
+				Object[] encontrado = new Object[4];
 				if(vacante.getCantSolicitantes() > 0) {
 					for(Persona aux:vacante.getPersonas()) {
 						encontrado[0] = aux.getNombre();
 						encontrado[1] = aux.getApellido();
+						encontrado[3] = aux.getCorreo();
 						if(aux instanceof Universitario) {
 							encontrado[2] = ((Universitario) aux).getCarrera();
 						}
@@ -61,21 +67,24 @@ public class VistaSolicitud extends JDialog {
 					}
 				}
 			}
+			
 		}); 
-		setBounds(100, 100, 666, 441);
+		setBounds(100, 100, 450, 441);
 		setTitle(Titulo);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(Color.WHITE);
+		contentPanel.setBackground(new Color(32, 178, 170));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		modeloT = new DefaultTableModel();
 		modeloT.addColumn("Nombre");
 		modeloT.addColumn("Apellido");
 		modeloT.addColumn("Carrera");
+		modeloT.addColumn("Correo");
 		{
 			lbNombre = new JLabel(vacante.getPuesto());
+			lbNombre.setBackground(new Color(255, 255, 255));
 		}
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -89,10 +98,39 @@ public class VistaSolicitud extends JDialog {
 		});
 		
 		JButton btnConfirmar = new JButton("Confirmar Contrataci\u00F3n");
-		btnConfirmar.setBackground(new Color(173, 216, 230));
+		btnConfirmar.setBackground(new Color(255, 255, 255));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				if (table.getSelectedRow() < 0) {
+					JOptionPane.showMessageDialog(null, "No ha seleccionado a niguna persona", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
+		
+				} else {
+					
+					
+					JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+				}
+			}
+		});
+		
+				
+						
+				
 		
 		JButton btnNewButton = new JButton("Actualizar");
-		btnNewButton.setBackground(new Color(173, 216, 230));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() > -1) {
+					JOptionPane.showMessageDialog(null, "   ", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
+		
+				} else {
+						
+						
+				}
+				}
+		});
+			
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -102,10 +140,13 @@ public class VistaSolicitud extends JDialog {
 						.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_contentPanel.createSequentialGroup()
-								.addComponent(btnConfirmar)
-								.addGap(28)
-								.addComponent(btnNewButton))
+								.addGap(10)
+								.addComponent(btnConfirmar))
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE))))
+				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+					.addContainerGap(227, Short.MAX_VALUE)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+					.addGap(61))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -113,11 +154,11 @@ public class VistaSolicitud extends JDialog {
 					.addComponent(lbNombre, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					.addGap(32)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnConfirmar)
 						.addComponent(btnNewButton))
-					.addContainerGap(31, Short.MAX_VALUE))
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		
 		table = new JTable();
@@ -126,7 +167,7 @@ public class VistaSolicitud extends JDialog {
 			new Object[][] {
 			},
 			new String[] {
-				"Nombre", "Apellido", "Carrera"
+				"Nombre", "Apellido", "Carrera","Correo"
 			}
 		));
 		scrollPane.setViewportView(table);

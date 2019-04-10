@@ -1,5 +1,7 @@
 package Logic;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class Empresa implements Serializable{
 		this.clave = clave;
 		this.encargado = encargado;
 		tipo = tipos;
-		Sesion = false;
+		Sesion = true;
 		MisVacantes = new ArrayList<Vacante>();
 	}
 	public String getNombre() {
@@ -71,9 +73,10 @@ public class Empresa implements Serializable{
 		return codigoMisVacantes; 
 	}
 	
-	public void setVacante(Vacante nueva) {
+	public void setVacante(Vacante nueva) throws FileNotFoundException, ClassNotFoundException, IOException {
 		codigoMisVacantes++;
 		MisVacantes.add(nueva);
+		Principal.getInstance().setTVacantes(nueva);
 	}
 	
 	public ArrayList<Vacante> getMisVacantes() {

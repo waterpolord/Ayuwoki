@@ -29,6 +29,7 @@ public class PaginaEmpresa extends JDialog {
 	public PaginaEmpresa(Empresa empresa) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(230, 230, 250));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setUndecorated(true);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -36,7 +37,7 @@ public class PaginaEmpresa extends JDialog {
 		{
 			lblTitulo = new JLabel(empresa.getNombre());
 			lblTitulo.setBounds(0, 0, 450, 20);
-			lblTitulo.setBackground(Color.BLUE);
+			lblTitulo.setBackground(new Color(32, 178, 170));
 			lblTitulo.setForeground(Color.BLACK);
 			lblTitulo.setHorizontalAlignment(SwingConstants.RIGHT);
 			
@@ -53,8 +54,9 @@ public class PaginaEmpresa extends JDialog {
 			contentPanel.add(btnNewButton);
 		}
 		
-		JLabel lblInformacion = new JLabel("Informacion");
-		lblInformacion.setBounds(192, 31, 68, 14);
+		JLabel lblInformacion = new JLabel("Informaci\u00F3n");
+		lblInformacion.setFont(new Font("Sitka Subheading", Font.BOLD | Font.ITALIC, 15));
+		lblInformacion.setBounds(169, 31, 108, 14);
 		contentPanel.add(lblInformacion);
 		
 		JLabel lblNewLabel = new JLabel(empresa.getCorreo());
@@ -66,6 +68,7 @@ public class PaginaEmpresa extends JDialog {
 		contentPanel.add(textArea);
 		
 		JButton btnNewButton_1 = new JButton("A\u00F1adir Informaci\u00F3n");
+		btnNewButton_1.setBackground(new Color(32, 178, 170));
 		btnNewButton_1.setBounds(37, 207, 151, 23);
 		contentPanel.add(btnNewButton_1);
 		getRootPane().setDefaultButton(btnNewButton_1);
@@ -77,12 +80,14 @@ public class PaginaEmpresa extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setBackground(new Color(32, 178, 170));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setBackground(new Color(32, 178, 170));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 		

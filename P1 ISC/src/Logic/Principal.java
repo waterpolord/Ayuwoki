@@ -1,5 +1,4 @@
 package Logic;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -97,14 +96,18 @@ public class Principal implements Serializable{
 	public ArrayList<Empleo> getTEmpleos() {
 		return TEmpleos;
 	}
-	public void setTEmpleos(Empleo nuevo) {
+	public void setTEmpleos(Empleo nuevo) throws FileNotFoundException, ClassNotFoundException, IOException {
 		TEmpleos.add(nuevo);
+		dataSalida();
+		dataEntrada();
 	}
 	public ArrayList<Vacante> getTVacantes() {
 		return TVacantes;
 	}
-	public void setTVacantes(Vacante vacante) {
+	public void setTVacantes(Vacante vacante) throws FileNotFoundException, ClassNotFoundException, IOException {
 		TVacantes.add(vacante);
+		dataSalida();
+		dataEntrada();
 	}
 	
 	public Boolean existeEmpresa(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
@@ -310,3 +313,5 @@ public class Principal implements Serializable{
 	}
 
 }
+
+

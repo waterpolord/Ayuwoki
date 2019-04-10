@@ -1,6 +1,5 @@
 package Logic;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -9,6 +8,7 @@ public class Vacante implements Serializable{
 	private String puesto;
 	private String TipoPersonal;
 	private Boolean[] requisitos = new Boolean[10];
+	private Boolean estado;
 	private int CantPuestos;
 	private int monto;
 	private ArrayList<Persona> Solicitantes;
@@ -24,6 +24,7 @@ public class Vacante implements Serializable{
 		Solicitantes = new ArrayList();
 		this.monto = Monto;
 		codigoVacante = codigo;
+		this.estado = true;
 	}
 	
 	public int getMonto() {
@@ -36,8 +37,11 @@ public class Vacante implements Serializable{
 
 	public void solicitar(Persona nueva) {
 		Solicitantes.add( nueva);
-		//Organizar();
+		Organizar();
 		CantPuestos--;
+		if(CantPuestos == 0) {
+			estado = false;
+		}
 	}
 	
 	
@@ -45,7 +49,7 @@ public class Vacante implements Serializable{
 	//usa esta funcion para reemplazar una persona con menos habilidades
 	public void Reemplazo(Persona user,int ind) {
 		Solicitantes.add(ind,user);
-		//Organizar();
+		Organizar();
 	}
 	
 	public void Organizar() {
@@ -82,6 +86,14 @@ public class Vacante implements Serializable{
 	
 	public void cancelar(int ind) {
 		Solicitantes.remove(ind);
+		CantPuestos++;
+		if(CantPuestos > 0) {
+			estado = true;
+		}
+	}
+	
+	public Boolean getEstado() {
+		return estado;
 	}
 	
 	public ArrayList<Persona> getPersonas(){
@@ -147,6 +159,9 @@ public class Vacante implements Serializable{
 			if(var && requisitos[i]) {
 				PositivasUser++;
 			}
+			if( !(var && requisitos[i])) {
+				PositivasUser++;
+			}
 			i++;
 		}
 		i = 0;
@@ -188,4 +203,5 @@ public class Vacante implements Serializable{
 	
 
 }
+
 
