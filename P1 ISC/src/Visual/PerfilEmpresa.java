@@ -944,11 +944,11 @@ public class PerfilEmpresa extends JFrame {
 	    						panelTecE.setLayout(null);
 	    						panelTecE.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Requerimientos Tecnicos",
 	    								TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-<<<<<<< HEAD
+
 	    						panelTecE.setBackground(new Color(32, 178, 170));
-=======
+
 	    						panelTecE.setBackground(new Color(102, 205, 170));
->>>>>>> branch 'master' of https://github.com/waterpolord/Ayuwoki.git
+
 	    						panelTecE.setBounds(402, 159, 460, 434);
 	    						contentPane.add(panelTecE);
 	    						

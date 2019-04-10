@@ -834,7 +834,7 @@ public class PerfilUsuarios extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-<<<<<<< HEAD
+
 							.addGap(54)
 							.addComponent(Lista, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -849,7 +849,7 @@ public class PerfilUsuarios extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(33)
 									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
-=======
+
 							.addGap(166)
 							.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -864,9 +864,9 @@ public class PerfilUsuarios extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(38)
 									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
->>>>>>> branch 'master' of https://github.com/waterpolord/Ayuwoki.git
+
 									.addGap(18)
-<<<<<<< HEAD
+
 									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)))))
 					.addGap(191))
 				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
