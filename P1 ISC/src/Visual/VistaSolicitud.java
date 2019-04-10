@@ -42,7 +42,6 @@ public class VistaSolicitud extends JDialog {
 	private JButton btnver;
 	
 
-
 	public VistaSolicitud(Vacante vacante, String Titulo) {
 		setBackground(new Color(255, 255, 255));
 		addWindowListener(new WindowAdapter() {
