@@ -122,7 +122,7 @@ public class VistaSolicitud extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() > -1) {
-					JOptionPane.showMessageDialog(null, "   ", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, " -  ", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
 		
 				} else {
 						
