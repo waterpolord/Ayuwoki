@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.awt.event.ActionListener;
@@ -116,6 +117,19 @@ public class Inicio extends JFrame {
 	 			PanelLogin.setVisible(false);
 	 			PanelUser.setVisible(false);
 	 			try {
+					Principal.getInstance().dataEntrada();
+				} catch (FileNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (ClassNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+	 			try {
+	 			;
 				Empresa empre = Principal.getInstance().SesionEmpresa();
 				Persona user = Principal.getInstance().SesionUser();
 				if(empre != null) {
@@ -724,7 +738,7 @@ public class Inicio extends JFrame {
 		
 		 CBXCarreras = new JComboBox();
 		
-		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "AdministraciÃ³n", "Derecho", "EconomÃ­a", "IngenierÃ­a", "Medicina", "Mercadeo"}));
+		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administracion", "Derecho", "Economia", "Ingenieria", "Medicina", "Mercadeo"}));
 		CBXCarreras.setBounds(78, 34, 251, 25);
 		panelUniversitario.add(CBXCarreras);
 		

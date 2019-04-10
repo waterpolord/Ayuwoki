@@ -32,6 +32,7 @@ import Logic.Universitario;
 import Logic.Vacante;
 
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -527,6 +528,18 @@ public class PerfilUsuarios extends JFrame {
 				if(num == 0) {
 					Empleo nuevo = new Empleo(valores,monto);
 					persona.setSolicitud(nuevo);
+					try {
+						Principal.getInstance().setTEmpleos(nuevo);
+					} catch (FileNotFoundException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (ClassNotFoundException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
 						if(persona instanceof Universitario ) {
 							if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
