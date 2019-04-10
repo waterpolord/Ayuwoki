@@ -106,6 +106,7 @@ public class Inicio extends JFrame {
 	private JButton btnCrearUser;
 	private JButton btnCrearEmpresa;
 	private JCheckBox checkSesion;
+	private JCheckBox checkSesion_1;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -214,7 +215,7 @@ public class Inicio extends JFrame {
 		
 		PanelBotones = new JPanel();
 		PanelBotones.setBounds(0, 0, 160, (int)Tam.height);
-		PanelBotones.setBackground(new Color(72, 209, 204));
+		PanelBotones.setBackground(SystemColor.activeCaption);
 		
 		this.setBounds(100, 100, (int)Tam.getWidth(),(int)Tam.height);
 		this.setLocationRelativeTo(null);
@@ -253,7 +254,7 @@ public class Inicio extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 648, 517);
 		panel.setLayout(null);
-		panel.setBackground(new Color(95, 158, 160));
+		panel.setBackground(new Color(119, 136, 153));
 		PanelLogin.add(panel);
 		
 		JLabel labelUsuario = new JLabel("Usuario/Correo:");
@@ -273,6 +274,7 @@ public class Inicio extends JFrame {
 		panel.add(textUsuario);
 		
 		buttonLogin = new JButton("Entrar");
+		buttonLogin.setBackground(Color.WHITE);
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String claveUser = new String(passwordContra.getPassword()),
@@ -376,10 +378,11 @@ public class Inicio extends JFrame {
 		
 
 		checkSesion = new JCheckBox("Mantener sesicion iniciada");
-		checkSesion = new JCheckBox("Mantener sesión iniciada");
-		checkSesion.setBounds(348, 58, 176, 23);
-		checkSesion.setSelected(true);
-		panel.add(checkSesion);
+		checkSesion_1 = new JCheckBox("Mantener sesión iniciada");
+		checkSesion_1.setBackground(SystemColor.inactiveCaption);
+		checkSesion_1.setBounds(348, 58, 176, 23);
+		checkSesion_1.setSelected(true);
+		panel.add(checkSesion_1);
 		
 	    PanelUser = new JPanel();
 	    PanelUser.addKeyListener(new KeyAdapter() {
@@ -469,7 +472,7 @@ public class Inicio extends JFrame {
 		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_1.setBounds(82, 11, 533, 192);
-		panel_1.setBackground(new Color(95, 158, 160));
+		panel_1.setBackground(new Color(119, 136, 153));
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
 		
@@ -672,7 +675,7 @@ public class Inicio extends JFrame {
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_2.setBounds(82, 204, 533, 47);
-		panel_2.setBackground(new Color(95, 158, 160));
+		panel_2.setBackground(new Color(119, 136, 153));
 		PanelUser.add(panel_2);
 		
 	
@@ -726,7 +729,7 @@ public class Inicio extends JFrame {
 		panelUniversitario = new JPanel();
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelUniversitario.setBackground(new Color(95, 158, 160));
+		panelUniversitario.setBackground(new Color(119, 136, 153));
 		panelUniversitario.setBounds(82, 248, 533, 81);
 		PanelUser.add(panelUniversitario);
 		
@@ -845,7 +848,7 @@ public class Inicio extends JFrame {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Empresa", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
 		panel_4.setBounds(79, 11, 564, 343);
-		panel_4.setBackground(new Color(95, 158, 160));
+		panel_4.setBackground(new Color(119, 136, 153));
 		PanelEmpresa.add(panel_4);
 		
 		JLabel labelCodigoE = new JLabel("Nombre:");
@@ -1027,7 +1030,7 @@ public class Inicio extends JFrame {
 		panel_4.add(comboBox);
 		
 	    btnCrearEmpresa = new JButton("Crear");
-	    btnCrearEmpresa.setBackground(new Color(72, 209, 204));
+	    btnCrearEmpresa.setBackground(Color.WHITE);
 		btnCrearEmpresa.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -1083,7 +1086,7 @@ public class Inicio extends JFrame {
 		PanelEmpresa.add(btnCrearEmpresa);
 		
 		JButton btnCancelarEmpresa = new JButton("Cancelar");
-		btnCancelarEmpresa.setBackground(new Color(72, 209, 204));
+		btnCancelarEmpresa.setBackground(Color.WHITE);
 		 btnCancelarEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(true);
@@ -1099,7 +1102,7 @@ public class Inicio extends JFrame {
 		grupoTipo.add(RBUniversitario);
 		
 		btnCrearUser = new JButton("Crear");
-		btnCrearUser.setBackground(new Color(72, 209, 204));
+		btnCrearUser.setBackground(Color.WHITE);
 		
 		btnCrearUser.addActionListener(new ActionListener() {
 		
@@ -1180,7 +1183,7 @@ public class Inicio extends JFrame {
 		PanelUser.add(btnCrearUser);
 		
 		JButton btnCancelarUsuario = new JButton("Cancelar");
-		btnCancelarUsuario.setBackground(new Color(72, 209, 204));
+		btnCancelarUsuario.setBackground(Color.WHITE);
 		 btnCancelarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(true);

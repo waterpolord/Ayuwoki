@@ -29,7 +29,7 @@ public class PaginaEmpresa extends JDialog {
 	public PaginaEmpresa(Empresa empresa) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(230, 230, 250));
+		contentPanel.setBackground(new Color(119, 136, 153));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setUndecorated(true);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -68,7 +68,7 @@ public class PaginaEmpresa extends JDialog {
 		contentPanel.add(textArea);
 		
 		JButton btnNewButton_1 = new JButton("A\u00F1adir Informaci\u00F3n");
-		btnNewButton_1.setBackground(new Color(32, 178, 170));
+		btnNewButton_1.setBackground(SystemColor.activeCaption);
 		btnNewButton_1.setBounds(37, 207, 151, 23);
 		contentPanel.add(btnNewButton_1);
 		getRootPane().setDefaultButton(btnNewButton_1);
@@ -80,14 +80,14 @@ public class PaginaEmpresa extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
-				okButton.setBackground(new Color(32, 178, 170));
+				okButton.setBackground(new Color(119, 136, 153));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setBackground(new Color(32, 178, 170));
+				cancelButton.setBackground(new Color(119, 136, 153));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 		
