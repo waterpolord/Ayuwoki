@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Logic.Obrero;
 import Logic.Persona;
+import Logic.Principal;
 import Logic.Tecnico;
 import Logic.Universitario;
 import Logic.Vacante;
@@ -22,6 +23,8 @@ import javax.swing.JTable;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
@@ -100,14 +103,31 @@ public class VistaSolicitud extends JDialog {
 		btnConfirmar.setBackground(new Color(255, 255, 255));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				if (table.getSelectedRow() < 0) {
+				int selecF = table.getSelectedRow();
+				if (selecF < 0) {
 					JOptionPane.showMessageDialog(null, "No ha seleccionado a niguna persona", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
-		
+					
 				} else {
+					try {
+						Principal.getInstance().buscarPersonas(table.getModel().getValueAt(selecF, 3).toString()).setEstado(false);
+						vacante.restCant();
+						JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+						if(vacante.getCant() == 0) {
+							vacante.setEstado(false);
+							JOptionPane.showMessageDialog(null, "La solicitud vacante ha sido completada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+						}
+						Principal.getInstance().dataSalida();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
-					
-					JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
 				}
 			}
 		});
@@ -120,14 +140,85 @@ public class VistaSolicitud extends JDialog {
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (table.getSelectedRow() > -1) {
-					JOptionPane.showMessageDialog(null, " -  ", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
-		
-				} else {
-						
-						
+				if(vacante.getCantInicial() != vacante.getCantSolicitantes())
+					for(Persona aux:Principal.getInstance().getTpersonas()) {
+						if(aux.getSoli() == 1)
+							if(aux instanceof Tecnico && vacante.getPuesto().equalsIgnoreCase("Tecnico") &&
+									((Tecnico) aux).getEspecialidad().equalsIgnoreCase(vacante.getTipoPersonal())) {
+								Object[] encontrado = new Object[4];
+								if(vacante.aplicaHabilidades(aux.getSolicitud())) {
+									vacante.solicitar(aux);
+									table.removeAll();
+									for(Persona vac:vacante.getPersonas()) {
+										encontrado[0] = vac.getNombre();
+										encontrado[1] = vac.getApellido();
+										encontrado[3] = vac.getCorreo();
+										
+										if(aux instanceof Universitario) {
+											encontrado[2] = ((Universitario) aux).getCarrera();
+										}
+										if(aux instanceof Tecnico) {
+											encontrado[2] = ((Tecnico) aux).getEspecialidad();
+										}
+										if(aux instanceof Obrero) {
+											encontrado[2] = vacante.getTipoPersonal();
+										}
+										
+										((DefaultTableModel) table.getModel()).addRow(encontrado);
+									}
+								}
+							}
+						if(aux instanceof Universitario && vacante.getPuesto().equalsIgnoreCase("Universitario") &&
+								((Universitario) aux).getCarrera().equalsIgnoreCase(vacante.getTipoPersonal())) {
+							Object[] encontrado = new Object[4];
+							if(vacante.aplicaHabilidades(aux.getSolicitud())) {
+								vacante.solicitar(aux);
+								table.removeAll();
+								for(Persona vac:vacante.getPersonas()) {
+									encontrado[0] = vac.getNombre();
+									encontrado[1] = vac.getApellido();
+									encontrado[3] = vac.getCorreo();
+									if(aux instanceof Universitario) {
+										encontrado[2] = ((Universitario) aux).getCarrera();
+									}
+									if(aux instanceof Tecnico) {
+										encontrado[2] = ((Tecnico) aux).getEspecialidad();
+									}
+									if(aux instanceof Obrero) {
+										encontrado[2] = vacante.getTipoPersonal();
+									}
+									
+									((DefaultTableModel) table.getModel()).addRow(encontrado);
+								}
+							}
+						}
+						if(aux instanceof Obrero && vacante.getPuesto().equalsIgnoreCase("Obrero") &&
+								((Obrero) aux).getHabilidades().get(0).equalsIgnoreCase(vacante.getTipoPersonal())) {
+							Object[] encontrado = new Object[4];
+							if(vacante.aplicaHabilidades(aux.getSolicitud())) {
+								vacante.solicitar(aux);
+								table.removeAll();
+								for(Persona vac:vacante.getPersonas()) {
+									encontrado[0] = vac.getNombre();
+									encontrado[1] = vac.getApellido();
+									encontrado[3] = vac.getCorreo();
+									if(aux instanceof Universitario) {
+										encontrado[2] = ((Universitario) aux).getCarrera();
+									}
+									if(aux instanceof Tecnico) {
+										encontrado[2] = ((Tecnico) aux).getEspecialidad();
+									}
+									if(aux instanceof Obrero) {
+										encontrado[2] = vacante.getTipoPersonal();
+									}
+									
+									((DefaultTableModel) table.getModel()).addRow(encontrado);
+								}
+							}
+						}
+					}
 				}
-				}
+			
 		});
 			
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);

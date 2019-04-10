@@ -11,6 +11,7 @@ public class Vacante implements Serializable{
 	private Boolean estado;
 	private int CantPuestos;
 	private int monto;
+	private int cantInicial;
 	private ArrayList<Persona> Solicitantes;
 	private int codigoVacante;
 	
@@ -25,6 +26,7 @@ public class Vacante implements Serializable{
 		this.monto = Monto;
 		codigoVacante = codigo;
 		this.estado = true;
+		cantInicial = CantPuestos;
 	}
 	
 	public int getMonto() {
@@ -33,41 +35,34 @@ public class Vacante implements Serializable{
 	public void setMonto(int monto) {
 		this.monto = monto;
 	}
-
+	public int getCantInicial() {
+		return this.cantInicial;
+	}
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
 
 	public void solicitar(Persona nueva) {
 		Solicitantes.add( nueva);
-		Organizar();
-		CantPuestos--;
-		if(CantPuestos == 0) {
-			estado = false;
-		}
+	//	Organizar();
 	}
 	
+	public void sumCant() {
+		this.CantPuestos++;
+	}
+	public void restCant() {
+		this.CantPuestos--;
+	}
 	
 	// Despues de determinar si el reemplazo aplica se 
 	//usa esta funcion para reemplazar una persona con menos habilidades
 	public void Reemplazo(Persona user,int ind) {
 		Solicitantes.add(ind,user);
-		Organizar();
+	//	Organizar();
 	}
 	
 	public void Organizar() {
-		int Positivas = 0,Comp1,Comp2;
-		Persona user1,user2,aux;
-		if(CantPuestos > 1 || Solicitantes.size() > 1) {
-			for(int i = 0;i<Solicitantes.size();i++) {
-				user1 = Solicitantes.get(i);
-				user2 = Solicitantes.get(i+1);
-				Comp1 = getCantPositivas(user1.getSolicitud());
-				Comp2 = getCantPositivas(user2.getSolicitud());
-				if(Comp1 < Comp2) {
-					 aux = user1;
-					 Solicitantes.add(i,user2);
-					 Solicitantes.add(i+1,user2);
-				}
-			}
-		}
+
 	}
 	
 	public int getCantPositivas(Empleo user) {
@@ -86,10 +81,6 @@ public class Vacante implements Serializable{
 	
 	public void cancelar(int ind) {
 		Solicitantes.remove(ind);
-		CantPuestos++;
-		if(CantPuestos > 0) {
-			estado = true;
-		}
 	}
 	
 	public Boolean getEstado() {

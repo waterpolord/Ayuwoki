@@ -354,7 +354,7 @@ public class PerfilEmpresa extends JFrame {
 						}
 						try {
 							empresa.setVacante(nueva);
-							Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
+							//Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

@@ -541,46 +541,48 @@ public class PerfilUsuarios extends JFrame {
 						e2.printStackTrace();
 					}
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
-						if(persona instanceof Universitario ) {
-							if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
-								if(vac.aplicaHabilidades(persona.getSolicitud())) {
-									if(vac.getEstado()) {
-										vac.solicitar(persona);
-									}
-									else {
-										int ind = vac.reemplazoAplica(persona.getSolicitud());
-										if(ind != -1) {
-											vac.Reemplazo( persona , ind);
+						if(vac.getEstado()) {
+							if(persona instanceof Universitario ) {
+								if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
+									if(vac.aplicaHabilidades(persona.getSolicitud())) {
+										if(vac.getCantSolicitantes() != vac.getCantInicial()) {
+											vac.solicitar(persona);
+										}
+										else {
+											int ind = vac.reemplazoAplica(persona.getSolicitud());
+											if(ind != -1) {
+												vac.Reemplazo( persona , ind);
+											}
 										}
 									}
 								}
 							}
-						}
-						if(persona instanceof Tecnico ) {
-							if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
-								if(vac.aplicaHabilidades(persona.getSolicitud())) {
-									if(vac.getEstado()) {
-										vac.solicitar(persona);
-									}
-									else {
-										int ind = vac.reemplazoAplica(persona.getSolicitud());
-										if(ind != -1) {
-											vac.Reemplazo( persona , ind);
+							if(persona instanceof Tecnico ) {
+								if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
+									if(vac.aplicaHabilidades(persona.getSolicitud())) {
+										if(vac.getCantSolicitantes() != vac.getCantInicial()) {
+											vac.solicitar(persona);
+										}
+										else {
+											int ind = vac.reemplazoAplica(persona.getSolicitud());
+											if(ind != -1) {
+												vac.Reemplazo( persona , ind);
+											}
 										}
 									}
 								}
 							}
-						}
-						if(persona instanceof Obrero ) {
-							if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
-								if(vac.aplicaHabilidades(persona.getSolicitud())) {
-									if(vac.getEstado()) {
-										vac.solicitar(persona);
-									}
-									else {
-										int ind = vac.reemplazoAplica(persona.getSolicitud());
-										if(ind != -1) {
-											vac.Reemplazo( persona , ind);
+							if(persona instanceof Obrero ) {
+								if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
+									if(vac.aplicaHabilidades(persona.getSolicitud())) {
+										if(vac.getCantSolicitantes() != vac.getCantInicial()) {
+											vac.solicitar(persona);
+										}
+										else {
+											int ind = vac.reemplazoAplica(persona.getSolicitud());
+											if(ind != -1) {
+												vac.Reemplazo( persona , ind);
+											}
 										}
 									}
 								}

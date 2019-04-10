@@ -133,11 +133,11 @@ public class Inicio extends JFrame {
 				Empresa empre = Principal.getInstance().SesionEmpresa();
 				Persona user = Principal.getInstance().SesionUser();
 				if(empre != null) {
-					new PerfilEmpresa(empre).setVisible(true);;
+					new PerfilEmpresa(Principal.getInstance().buscarEmpresas(empre.getCorreo())).setVisible(true);;
 					dispose();
 				}
 				if(user != null) {
-					new PerfilUsuarios(user).setVisible(true);;
+					new PerfilUsuarios(Principal.getInstance().buscarPersonas(user.getCorreo())).setVisible(true);;
 					dispose();
 				}
 				
