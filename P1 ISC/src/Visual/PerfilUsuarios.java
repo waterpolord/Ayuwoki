@@ -130,7 +130,7 @@ public class PerfilUsuarios extends JFrame {
 							}
 						}
 					}
-					JOptionPane.showMessageDialog(null,"Actualmente esta trabajando para \n"+letra+" Si desea cambiarlo consulte la configuracion de la cuenta","Trabajo",1);
+					JOptionPane.showMessageDialog(null,"    Actualmente esta trabajando para  " +letra+ ", Si desea cambiarlo consulte la configuracion de la cuenta","Trabajo",1);
 				}
 				
 				if(persona.getSoli() == 0) {
