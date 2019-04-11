@@ -666,18 +666,22 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(rbn1_1);
 		
 		rbn2_1 = new JRadioButton("No");
+		rbn2_1.setBackground(new Color(255, 255, 255));
 		rbn2_1.setBounds(385, 52, 50, 23);
 		panelReUniversitario.add(rbn2_1);
 		
 		rbn3_1 = new JRadioButton("Si");
+		rbn3_1.setBackground(new Color(255, 255, 255));
 		rbn3_1.setBounds(313, 89, 50, 23);
 		panelReUniversitario.add(rbn3_1);
 		
 		rbn4_1 = new JRadioButton("No");
+		rbn4_1.setBackground(new Color(255, 255, 255));
 		rbn4_1.setBounds(385, 89, 50, 23);
 		panelReUniversitario.add(rbn4_1);
 		
 		rbn5_1 = new JRadioButton("Si");
+		rbn5_1.setBackground(new Color(255, 255, 255));
 		rbn5_1.setBounds(313, 127, 50, 23);
 		panelReUniversitario.add(rbn5_1);
 		
@@ -702,6 +706,7 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(rbn10_1);
 		
 		rbn11_1 = new JRadioButton("No");
+		rbn11_1.setBackground(new Color(255, 255, 255));
 		rbn11_1.setBounds(385, 127, 50, 23);
 		panelReUniversitario.add(rbn11_1);
 		
