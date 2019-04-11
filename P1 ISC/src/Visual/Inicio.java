@@ -106,7 +106,7 @@ public class Inicio extends JFrame {
 	private JButton btnCrearUser;
 	private JButton btnCrearEmpresa;
 	private JCheckBox checkSesion;
-	private JCheckBox checkSesion_1;
+	
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -369,7 +369,7 @@ public class Inicio extends JFrame {
 		passwordContra.setBounds(348, 40, 191, 20);
 		panel.add(passwordContra);
 		
-	    LBIncorrecto = new JLabel("Nombre o Contraseña incorrectos");
+	    LBIncorrecto = new JLabel("Nombre o Contrase\u00F1a incorrectos");
 	    LBIncorrecto.setVisible(false);
 		LBIncorrecto.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		LBIncorrecto.setForeground(Color.CYAN);
@@ -377,12 +377,12 @@ public class Inicio extends JFrame {
 		panel.add(LBIncorrecto);
 		
 
-		checkSesion = new JCheckBox("Mantener sesicion iniciada");
-		checkSesion_1 = new JCheckBox("Mantener sesión iniciada");
-		checkSesion_1.setBackground(SystemColor.inactiveCaption);
-		checkSesion_1.setBounds(348, 58, 176, 23);
-		checkSesion_1.setSelected(true);
-		panel.add(checkSesion_1);
+		
+		checkSesion = new JCheckBox("Mantener sesi\u00F3n iniciada");
+		checkSesion.setBackground(SystemColor.inactiveCaption);
+		checkSesion.setBounds(348, 58, 176, 23);
+		checkSesion.setSelected(true);
+		panel.add(checkSesion);
 		
 	    PanelUser = new JPanel();
 	    PanelUser.addKeyListener(new KeyAdapter() {
@@ -534,7 +534,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBOcultar.setVisible(false);
 				LBver.setVisible(true);
-				passwordContrasena.setEchoChar('�');
+				passwordContrasena.setEchoChar('s');
 			}
 		});
 		LBOcultar.setForeground(Color.CYAN);
@@ -874,7 +874,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBempresaNover.setVisible(false);
 				LBempresaver.setVisible(true);
-				passwordE.setEchoChar('�');
+				passwordE.setEchoChar('s');
 			}
 		});
 		LBempresaNover.setForeground(Color.CYAN);
@@ -1141,8 +1141,19 @@ public class Inicio extends JFrame {
 									e1.printStackTrace();
 								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
-								new PerfilUsuarios(nuevo).setVisible(true);
-								
+								try {
+									new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
+								} catch (FileNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (ClassNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								dispose();
 							}
 							else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
@@ -1157,7 +1168,19 @@ public class Inicio extends JFrame {
 									e1.printStackTrace();
 								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
-								new PerfilUsuarios(nuevo).setVisible(true);
+								try {
+									new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
+								} catch (FileNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (ClassNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								dispose();
 							}
 							else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
 								JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
@@ -1172,7 +1195,19 @@ public class Inicio extends JFrame {
 									e1.printStackTrace();
 								}
 								JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
-								new PerfilUsuarios(nuevo).setVisible(true);
+								try {
+									new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
+								} catch (FileNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (ClassNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								dispose();
 							}
 							else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
 								JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);

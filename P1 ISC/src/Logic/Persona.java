@@ -1,4 +1,6 @@
 package Logic;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Persona implements Serializable{
@@ -26,9 +28,10 @@ public abstract class Persona implements Serializable{
 		return Solicitud;
 	}
 	
-	public void setSolicitud(Empleo guardar) {
+	public void setSolicitud(Empleo guardar) throws FileNotFoundException, ClassNotFoundException, IOException {
 		Solicitud = guardar;
 		tieneSolicitud = 1;
+		Principal.getInstance().setTEmpleos(guardar);
 	}
 	
 	public int getSoli() {

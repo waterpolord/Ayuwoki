@@ -57,6 +57,7 @@ public class Vacante implements Serializable{
 	// Despues de determinar si el reemplazo aplica se 
 	//usa esta funcion para reemplazar una persona con menos habilidades
 	public void Reemplazo(Persona user,int ind) {
+		cancelar(ind);
 		Solicitantes.add(ind,user);
 	//	Organizar();
 	}
@@ -145,7 +146,7 @@ public class Vacante implements Serializable{
 	 */
 	public int reemplazoAplica(Empleo user) {
 		int PositivasUser = 0,PositivaMenor = 0,i = 0,ind = 0;
-		Boolean valor = false;
+		
 		for(Boolean var:user.getHab()) {
 			if(var && requisitos[i]) {
 				PositivasUser++;
@@ -163,16 +164,13 @@ public class Vacante implements Serializable{
 					PositivaMenor++;
 				}
 				if(PositivasUser > PositivaMenor ) {
-					valor = true;
+					return ind;
 				}
 				i++;
 			}
 			ind++;
 		}
 		// ind es el indice de la persona en el Arreglo para reemplazar si se aplica
-		if(valor) {
-			return ind;
-		}
 		return -1;
 	}
 	

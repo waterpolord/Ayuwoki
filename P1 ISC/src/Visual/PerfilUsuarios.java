@@ -528,9 +528,8 @@ public class PerfilUsuarios extends JFrame {
 				}
 				if(num == 0) {
 					Empleo nuevo = new Empleo(valores,monto);
-					persona.setSolicitud(nuevo);
 					try {
-						Principal.getInstance().setTEmpleos(nuevo);
+						persona.setSolicitud(nuevo);
 					} catch (FileNotFoundException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -541,54 +540,70 @@ public class PerfilUsuarios extends JFrame {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
+		
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
-						if(vac.getEstado()) {
-							if(persona instanceof Universitario ) {
-								if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
-									if(vac.aplicaHabilidades(persona.getSolicitud())) {
-										if(vac.getCantSolicitantes() != vac.getCantInicial()) {
-											vac.solicitar(persona);
+							if(vac.getEstado()) {
+								if(persona instanceof Universitario ) {
+									if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
+										if(vac.aplicaHabilidades(persona.getSolicitud())) {
+											if(vac.getCantInicial() != vac.getCantSolicitantes()) {
+												try {
+													vac.solicitar(Principal.getInstance().buscarPersonas(persona.getCorreo()));
+												} catch (ClassNotFoundException | IOException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
+												}
+											}
+											else {
+												int ind = vac.reemplazoAplica(persona.getSolicitud());
+												if(ind != -1) {
+													vac.Reemplazo( persona , ind);
+												}
+											}
 										}
-										else {
-											int ind = vac.reemplazoAplica(persona.getSolicitud());
-											if(ind != -1) {
-												vac.Reemplazo( persona , ind);
+									}
+								}
+								if(persona instanceof Tecnico ) {
+									if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
+										if(vac.aplicaHabilidades(persona.getSolicitud())) {
+											if(vac.getCantSolicitantes() != vac.getCantInicial()) {
+												try {
+													vac.solicitar(Principal.getInstance().buscarPersonas(persona.getCorreo()));
+												} catch (ClassNotFoundException | IOException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
+												}
+											}
+											else {
+												int ind = vac.reemplazoAplica(persona.getSolicitud());
+												if(ind != -1) {
+													vac.Reemplazo( persona , ind);
+												}
+											}
+										}
+									}
+								}
+								if(persona instanceof Obrero ) {
+									if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
+										if(vac.aplicaHabilidades(persona.getSolicitud())) {
+											if(vac.getCantSolicitantes() != vac.getCantInicial()) {
+												try {
+													vac.solicitar(Principal.getInstance().buscarPersonas(persona.getCorreo()));
+												} catch (ClassNotFoundException | IOException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
+												}
+											}
+											else {
+												int ind = vac.reemplazoAplica(persona.getSolicitud());
+												if(ind != -1) {
+													vac.Reemplazo( persona , ind);
+												}
 											}
 										}
 									}
 								}
 							}
-							if(persona instanceof Tecnico ) {
-								if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
-									if(vac.aplicaHabilidades(persona.getSolicitud())) {
-										if(vac.getCantSolicitantes() != vac.getCantInicial()) {
-											vac.solicitar(persona);
-										}
-										else {
-											int ind = vac.reemplazoAplica(persona.getSolicitud());
-											if(ind != -1) {
-												vac.Reemplazo( persona , ind);
-											}
-										}
-									}
-								}
-							}
-							if(persona instanceof Obrero ) {
-								if(vac.getTipoPersonal().equalsIgnoreCase(((Obrero) persona).getHabilidades().get(0))) {
-									if(vac.aplicaHabilidades(persona.getSolicitud())) {
-										if(vac.getCantSolicitantes() != vac.getCantInicial()) {
-											vac.solicitar(persona);
-										}
-										else {
-											int ind = vac.reemplazoAplica(persona.getSolicitud());
-											if(ind != -1) {
-												vac.Reemplazo( persona , ind);
-											}
-										}
-									}
-								}
-							}
-						}
 					}
 					try {
 						Principal.getInstance().dataSalida();

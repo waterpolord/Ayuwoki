@@ -145,12 +145,18 @@ public class VistaSolicitud extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(vacante.getCantInicial() != vacante.getCantSolicitantes())
 					for(Persona aux:Principal.getInstance().getTpersonas()) {
-						if(aux.getSoli() == 1)
+					if(aux.getEstado()) {
+						if(aux.getSoli() == 1 && !(vacante.VacanteRepite(aux.getCorreo()))) {
 							if(aux instanceof Tecnico && vacante.getPuesto().equalsIgnoreCase("Tecnico") &&
 									((Tecnico) aux).getEspecialidad().equalsIgnoreCase(vacante.getTipoPersonal())) {
 								Object[] encontrado = new Object[4];
 								if(vacante.aplicaHabilidades(aux.getSolicitud())) {
-									vacante.solicitar(aux);
+									try {
+										vacante.solicitar(Principal.getInstance().buscarPersonas(aux.getCorreo()));
+									} catch (ClassNotFoundException | IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
 									table.removeAll();
 									for(Persona vac:vacante.getPersonas()) {
 										encontrado[0] = vac.getNombre();
@@ -174,8 +180,13 @@ public class VistaSolicitud extends JDialog {
 						if(aux instanceof Universitario && vacante.getPuesto().equalsIgnoreCase("Universitario") &&
 								((Universitario) aux).getCarrera().equalsIgnoreCase(vacante.getTipoPersonal())) {
 							Object[] encontrado = new Object[4];
-							if(vacante.aplicaHabilidades(aux.getSolicitud())) {
-								vacante.solicitar(aux);
+							if(vacante.aplicaHabilidades(aux.getSolicitud()) ) {
+								try {
+									vacante.solicitar(Principal.getInstance().buscarPersonas(aux.getCorreo()));
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								table.removeAll();
 								for(Persona vac:vacante.getPersonas()) {
 									encontrado[0] = vac.getNombre();
@@ -199,7 +210,12 @@ public class VistaSolicitud extends JDialog {
 								((Obrero) aux).getHabilidades().get(0).equalsIgnoreCase(vacante.getTipoPersonal())) {
 							Object[] encontrado = new Object[4];
 							if(vacante.aplicaHabilidades(aux.getSolicitud())) {
-								vacante.solicitar(aux);
+								try {
+									vacante.solicitar(Principal.getInstance().buscarPersonas(aux.getCorreo()));
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								table.removeAll();
 								for(Persona vac:vacante.getPersonas()) {
 									encontrado[0] = vac.getNombre();
@@ -220,6 +236,9 @@ public class VistaSolicitud extends JDialog {
 							}
 						}
 					}
+					}
+					
+			}
 				}
 			
 		});

@@ -347,11 +347,12 @@ public class PerfilEmpresa extends JFrame {
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
 							if(aux.getSoli() == 1)
-								if(aux instanceof Universitario  && ((Universitario) aux).getCarrera().equalsIgnoreCase(nueva.getTipoPersonal())) {
-									if(nueva.aplicaHabilidades(aux.getSolicitud())) {
-										nueva.solicitar(aux);
+								if(nueva.getCantInicial() != nueva.getCantSolicitantes())
+									if(aux instanceof Universitario  && ((Universitario) aux).getCarrera().equalsIgnoreCase(nueva.getTipoPersonal())) {
+										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
+											nueva.solicitar(aux);
+										}
 									}
-								}
 						}
 						try {
 							empresa.setVacante(nueva);
@@ -525,12 +526,13 @@ public class PerfilEmpresa extends JFrame {
 						}
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
-							if(aux.getSoli() == 1)
-								if(aux instanceof Tecnico && ((Tecnico) aux).getEspecialidad().equalsIgnoreCase(nueva.getTipoPersonal())) {
-									if(nueva.aplicaHabilidades(aux.getSolicitud())) {
-										nueva.solicitar(aux);
+							if(nueva.getCantInicial() != nueva.getCantSolicitantes())
+								if(aux.getSoli() == 1)
+									if(aux instanceof Tecnico && ((Tecnico) aux).getEspecialidad().equalsIgnoreCase(nueva.getTipoPersonal())) {
+										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
+											nueva.solicitar(aux);
+										}
 									}
-								}
 						}
 						try {
 							Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
@@ -690,12 +692,13 @@ public class PerfilEmpresa extends JFrame {
 						}
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
-							if(aux.getSoli() == 1)
-								if(aux instanceof Obrero && ((Obrero) aux).getHabilidades().get(0).equalsIgnoreCase(nueva.getTipoPersonal()) ) {
-									if(nueva.aplicaHabilidades(aux.getSolicitud())) {
-										nueva.solicitar(aux);
+							if(nueva.getCantInicial() != nueva.getCantSolicitantes())
+								if(aux.getSoli() == 1)
+									if(aux instanceof Obrero && ((Obrero) aux).getHabilidades().get(0).equalsIgnoreCase(nueva.getTipoPersonal()) ) {
+										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
+											nueva.solicitar(aux);
+										}
 									}
-								}
 						}
 						try {
 							Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
