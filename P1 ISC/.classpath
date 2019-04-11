@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="libreria"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
-	<classpathentry kind="lib" path="C:/Users/r_rok/Desktop/Ayuwoki-master/P1 ISC/jcommon-1.0.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/r_rok/Desktop/Ayuwoki-master/P1 ISC/jfreechart-1.0.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/r_rok/Desktop/Ayuwoki-master/P1 ISC/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="libreria/jcommon-1.0.9.jar"/>
+	<classpathentry kind="lib" path="libreria/jfreechart-1.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
