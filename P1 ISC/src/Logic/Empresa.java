@@ -97,5 +97,15 @@ public class Empresa implements Serializable{
 		}
 		return null;
 	}
+	
+	public int getVacantesActivas() {
+		int ind = 0;
+		for(Vacante aux:MisVacantes) {
+			if(aux.getEstado()) {
+				ind++;
+			}
+		}
+		return ind;
+	}
 
 }

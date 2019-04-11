@@ -79,7 +79,6 @@ public class Principal implements Serializable{
 		return Tpersonas;
 	}
 	public void setTpersonas(Persona nueva) throws ClassNotFoundException, IOException {
-		dataEntrada();
 		Tpersonas.add(nueva);
 		cantPersonas++;
 		dataSalida();
@@ -88,7 +87,7 @@ public class Principal implements Serializable{
 		return TEmpresas;
 	}
 	public void setTEmpresas(Empresa empresa) throws FileNotFoundException, ClassNotFoundException, IOException {
-		dataEntrada();
+		
 		TEmpresas.add(empresa);
 		cantEmpresas++;
 		dataSalida();

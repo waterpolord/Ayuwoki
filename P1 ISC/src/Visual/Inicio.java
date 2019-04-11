@@ -21,6 +21,7 @@ import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -28,6 +29,12 @@ import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.UIManager;
 import javax.swing.JRadioButton;
@@ -73,6 +80,11 @@ public class Inicio extends JFrame {
 	private JRadioButton RBUniversitario;
 	private JRadioButton RBTec;
 	private JRadioButton RBObrero;
+	private JRadioButton rbnEmpresasYUsuarios;
+	private JRadioButton rbnUniversitarios;
+	private JRadioButton rbnTecnicos;
+	private JRadioButton rbnObreros;
+	private JRadioButton rbnEmpresas;
 	private JTextField textCorreoE;
 	private JPasswordField passwordE;
 	private JTextField TXTNombre;
@@ -81,6 +93,7 @@ public class Inicio extends JFrame {
 	private JTextField txtApellido;
 	private ButtonGroup grupoEstado;
 	private ButtonGroup grupoTipo;
+	private ButtonGroup grupoGraficas;
 	private JButton btnMasHabilidades;
 	private JPanel panelUniversitario;
 	private JLabel labelCarrera;
@@ -107,7 +120,9 @@ public class Inicio extends JFrame {
 	private JButton btnCrearUser;
 	private JButton btnCrearEmpresa;
 	private JCheckBox checkSesion;
-	
+	private JPanel panel_3;
+	private JPanel panel_5;
+	private JComboBox<?> cbxGraficas;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -142,8 +157,7 @@ public class Inicio extends JFrame {
 					new PerfilUsuarios(Principal.getInstance().buscarPersonas(user.getCorreo())).setVisible(true);;
 					dispose();
 				}
-				repaint();
-				
+				generarBarras();
 			} catch (ClassNotFoundException | IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -209,11 +223,6 @@ public class Inicio extends JFrame {
 		lblNuevo.setBackground(Color.BLUE);
 		lblNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		Tam = this.getToolkit().getScreenSize();
-		
-		JLabel lblfondo = new JLabel("");
-		lblfondo.setBackground(new Color(32, 178, 170));
-		lblfondo.setIcon(new ImageIcon("C:\\Users\\Arlenys Cuevas\\Desktop\\mami\\WorkSpaceNeon\\Ayuwoki-master\\P1 ISC\\src\\Imgenes\\FondoPortada.jpg"));
-		lblfondo.setBounds(0, 0, (int)Tam.getWidth(), (int)Tam.getHeight());
 		
 		PanelBotones = new JPanel();
 		PanelBotones.setBounds(0, 0, 160, (int)Tam.height);
@@ -1053,7 +1062,7 @@ public class Inicio extends JFrame {
 								e1.printStackTrace();
 							}
 						if(esta == true) {
-							JOptionPane.showMessageDialog(null,"Este correo ya estÃ¡ en uso","Correo Repetido", 0);
+							JOptionPane.showMessageDialog(null,"Este correo ya est� en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = TXTNombre.getText(),pas = new String(passwordE.getPassword());
@@ -1238,49 +1247,174 @@ public class Inicio extends JFrame {
 		btnCancelarUsuario.setBounds(430, 357, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
+		panel_3 = new JPanel();
+		panel_3.setBounds(388, 200, 812, 380);
+		PanelPrincipal.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
 		
+		panel_5 = new JPanel();
+		panel_5.setBounds(388, 592, 818, 106);
+		PanelPrincipal.add(panel_5);
+		panel_5.setLayout(null);
 		
-
-		// El panel principal debe aÃ±adir el label de fondo de ultimo siempre
-		PanelPrincipal.add(lblfondo);
+		rbnEmpresasYUsuarios = new JRadioButton("Empresas y Usuarios");
+		rbnEmpresasYUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generarBarras();
+			}
+		});
+		rbnEmpresasYUsuarios.setBounds(78, 20, 138, 23);
+		rbnEmpresasYUsuarios.setSelected(true);
+		panel_5.add(rbnEmpresasYUsuarios);
+		
+		rbnUniversitarios = new JRadioButton("Universitarios");
+		rbnUniversitarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Administracion", "Derecho", "Economia", "Ingenieria", "Medicina", "Mercadeo"}));
+				cbxGraficas.setEnabled(true);
+				generarBarras();
+			}
+		});
+		rbnUniversitarios.setBounds(237, 20, 109, 23);
+		panel_5.add(rbnUniversitarios);
+		
+		rbnTecnicos = new JRadioButton("Tecnicos");
+		rbnTecnicos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Informatica", "Mercadeo", "Arte", "Turismo", "Contabilidad", "Enfermeria"}));
+				cbxGraficas.setEnabled(true);
+				generarBarras();
+			}
+		});
+		rbnTecnicos.setBounds(372, 20, 109, 23);
+		panel_5.add(rbnTecnicos);
+		
+		rbnObreros = new JRadioButton("Obreros");
+		rbnObreros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Creativo", "Comunicativo", "Adaptable", "Trabajo en Equipo" }));
+				cbxGraficas.setEnabled(true);
+				generarBarras();
+			}
+		});
+		rbnObreros.setBounds(503, 20, 109, 23);
+		panel_5.add(rbnObreros);
+		
+		rbnEmpresas = new JRadioButton("Empresas");
+		rbnEmpresas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todas>", "Salud", "Educacion", "Comercio", "Software", "Turismo", "Industrial"}));
+				cbxGraficas.setEnabled(true);
+				generarBarras();
+			
+			}
+		});
+		rbnEmpresas.setBounds(640, 20, 109, 23);
+		grupoGraficas = new ButtonGroup();
+		grupoGraficas.add(rbnEmpresasYUsuarios);
+		grupoGraficas.add(rbnTecnicos);
+		grupoGraficas.add(rbnUniversitarios);
+		grupoGraficas.add(rbnObreros);
+		grupoGraficas.add(rbnEmpresas);
+		panel_5.add(rbnEmpresas);
+		
+		cbxGraficas = new JComboBox();
+		cbxGraficas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generarBarras();
+			}
+		});
+		cbxGraficas.setBounds(328, 63, 153, 20);
+		panel_5.add(cbxGraficas);
+		
 	}
  	public void setEnter(JButton BTN) {
  		getRootPane().setDefaultButton(BTN);
  	}
  	
- 	public void paint(Graphics g) {
- 		super.paint(g);
- 		try {
-			Principal.getInstance().dataEntrada();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
- 		int personas = Principal.getInstance().getCantPerson();
- 		int empre = Principal.getInstance().getEmpresas();
- 		
- 		int total = personas + 7;
- 		if(total == 0) {
- 			total = 2;
+ 	public void generarBarras() {
+ 		DefaultCategoryDataset ds = new DefaultCategoryDataset();
+ 		JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "Cantidad", ds,PlotOrientation.VERTICAL, 
+ 				true,true,true);
+
+ 		if(rbnEmpresasYUsuarios.isSelected()) {
+ 			ds.addValue(Principal.getInstance().getCantPerson(),"Persona","");
+ 	 		ds.addValue(Principal.getInstance().getEmpresas(),"Empresas","");
+ 			ChartPanel f = new ChartPanel(jf);
+ 			cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {" "}));
+ 			cbxGraficas.setEnabled(false);
+	 		panel_3.removeAll();
+	 		panel_3.add(f,BorderLayout.CENTER);
+	 		panel_3.validate();
  		}
- 		int gradosempre = 7 * 360 / total; 
- 		int gradoperson = personas * 360 / total;
- 		
- 		g.setColor(Color.blue);
- 		g.fillArc(400,280,200, 200, 0,7);
- 		g.fillRect(625,420,20,20);
- 		g.drawString("Empresas", 650,435);
- 		
- 		g.setColor(Color.red);
- 		g.fillArc(400,280,200, 200, 7,gradoperson);
- 		g.fillRect(625,450,20,20);
- 		g.drawString("Usuarios", 650,465);
+ 		if(rbnUniversitarios.isSelected()) {
+ 			int ind = 0;
+ 			for(Persona aux:Principal.getInstance().getTpersonas()) {
+ 				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Universitario) aux).getCarrera())) {
+ 					ind++;
+ 				}
+ 				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
+ 					ind++;
+ 				}
+ 			}
+ 			ds.addValue(ind,"Universitarios Activos","");
+ 			ChartPanel f = new ChartPanel(jf);
+	 		panel_3.removeAll();
+	 		panel_3.add(f,BorderLayout.CENTER);
+	 		panel_3.validate();
+ 		}
+ 		if(rbnTecnicos.isSelected()) {
+ 			int ind = 0;
+ 			for(Persona aux:Principal.getInstance().getTpersonas()) {
+ 				if(aux instanceof Tecnico && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Tecnico) aux).getEspecialidad())) {
+ 					ind++;
+ 				}
+ 				if(aux instanceof Tecnico && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
+ 					ind++;
+ 				}
+ 			}
+ 			ds.addValue(ind,"Tecnicos Activos","");
+ 			ChartPanel f = new ChartPanel(jf);
+	 		panel_3.removeAll();
+	 		panel_3.add(f,BorderLayout.CENTER);
+	 		panel_3.validate();
+ 		}
+ 		if(rbnObreros.isSelected()) {
+ 			int ind = 0;
+ 			for(Persona aux:Principal.getInstance().getTpersonas()) {
+ 				if(aux instanceof Obrero && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Obrero) aux).getHabilidades().get(0))) {
+ 					ind++;
+ 				}
+ 				if(aux instanceof Obrero && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
+ 					ind++;
+ 				}
+ 			}
+ 			ds.addValue(ind,"Obreros Activos","");
+ 			ChartPanel f = new ChartPanel(jf);
+	 		panel_3.removeAll();
+	 		panel_3.add(f,BorderLayout.CENTER);
+	 		panel_3.validate();	
+ 		}
+ 		if(rbnEmpresas.isSelected()) {
+ 			int ind = 0,Cvac = 0;
+ 			for(Empresa aux:Principal.getInstance().getTEmpresas()) {
+ 				if(cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(aux.getTipo())) {
+ 					ind++;
+ 					Cvac += aux.getVacantesActivas();
+ 				}
+ 				if(cbxGraficas.getSelectedIndex() == 0 ) {
+ 					ind++;
+ 					Cvac += aux.getVacantesActivas();
+ 				}
+ 			}
+ 			ds.addValue(ind,"Empresas Disponibles","");
+ 			ds.addValue(Cvac,"Vacantes De Empleo Disponibles","");
+ 			ChartPanel f = new ChartPanel(jf);
+	 		panel_3.removeAll();
+	 		panel_3.add(f,BorderLayout.CENTER);
+	 		panel_3.validate();	
+ 		}
+
  		
  	}
 }
