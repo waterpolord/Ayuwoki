@@ -661,6 +661,7 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.setBackground(SystemColor.activeCaption);
 		
 		rbn1_1 = new JRadioButton("Si");
+		rbn1_1.setBackground(new Color(255, 255, 255));
 		rbn1_1.setBounds(313, 52, 50, 23);
 		panelReUniversitario.add(rbn1_1);
 		
