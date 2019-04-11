@@ -1,5 +1,6 @@
 package Logic;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -42,8 +43,9 @@ public class Vacante implements Serializable{
 		this.estado = estado;
 	}
 
-	public void solicitar(Persona nueva) {
+	public void solicitar(Persona nueva) throws ClassNotFoundException, IOException {
 		Solicitantes.add( nueva);
+		Principal.getInstance().dataSalida();
 	//	Organizar();
 	}
 	
@@ -62,9 +64,10 @@ public class Vacante implements Serializable{
 	
 	// Despues de determinar si el reemplazo aplica se 
 	//usa esta funcion para reemplazar una persona con menos habilidades
-	public void Reemplazo(Persona user,int ind) {
+	public void Reemplazo(Persona user,int ind) throws ClassNotFoundException, IOException {
 		cancelar(ind);
 		Solicitantes.add(ind,user);
+		Principal.getInstance().dataSalida();
 	//	Organizar();
 	}
 	

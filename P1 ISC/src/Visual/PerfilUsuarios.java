@@ -120,6 +120,18 @@ public class PerfilUsuarios extends JFrame {
 				GrupoRespuestas9 = new ButtonGroup();
 				GrupoRespuestas10 = new ButtonGroup();
 				
+				if(persona.getEstado() == false) {
+					String letra = "Ninguna";
+					for(Vacante vac:Principal.getInstance().getTVacantes()) {
+						for(Persona person:vac.getPersonas()) {
+							if(person.getCorreo().equalsIgnoreCase(persona.getCorreo())) {
+								letra = vac.getEmpresa().getNombre();
+								break;
+							}
+						}
+					}
+					JOptionPane.showMessageDialog(null,"Actualmente esta trabajando para \n"+letra+" Si desea cambiarlo consulte la configuracion de la cuenta","Trabajo",1);
+				}
 				
 				if(persona.getSoli() == 0) {
 					setgrupo(rbn1_1,rbn3_1,rbn5_1,rbn6_1,rbn7_1,rbn8_1,rbn9_1,rbn10_1,rbn18_1,rdbtnNewRadioButton,
@@ -372,22 +384,10 @@ public class PerfilUsuarios extends JFrame {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getSelectedIndex() == 1) {
-					try {
-						Principal.getInstance().buscarPersonas(persona.getCorreo()).setSesion(true);;
-						JOptionPane.showMessageDialog(null, "Se encuentra Empleado", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
-					Principal.getInstance().dataSalida();
+					ConfiguracionUsuario confi = new ConfiguracionUsuario(persona);
+					confi.setModal(true);
+					confi.setVisible(true);
 					
-				} catch (ClassNotFoundException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				dispose();
-				new Inicio().setVisible(true);
 				}
 					if(comboBox.getSelectedIndex() == 2) {
 					try {
@@ -568,7 +568,12 @@ public class PerfilUsuarios extends JFrame {
 											else {
 												int ind = vac.reemplazoAplica(persona.getSolicitud());
 												if(ind != -1) {
-													vac.Reemplazo( persona , ind);
+													try {
+														vac.Reemplazo( persona , ind);
+													} catch (ClassNotFoundException | IOException e1) {
+														// TODO Auto-generated catch block
+														e1.printStackTrace();
+													}
 												}
 											}
 										}
@@ -588,7 +593,12 @@ public class PerfilUsuarios extends JFrame {
 											else {
 												int ind = vac.reemplazoAplica(persona.getSolicitud());
 												if(ind != -1) {
-													vac.Reemplazo( persona , ind);
+													try {
+														vac.Reemplazo( persona , ind);
+													} catch (ClassNotFoundException | IOException e1) {
+														// TODO Auto-generated catch block
+														e1.printStackTrace();
+													}
 												}
 											}
 										}
@@ -608,7 +618,12 @@ public class PerfilUsuarios extends JFrame {
 											else {
 												int ind = vac.reemplazoAplica(persona.getSolicitud());
 												if(ind != -1) {
-													vac.Reemplazo( persona , ind);
+													try {
+														vac.Reemplazo( persona , ind);
+													} catch (ClassNotFoundException | IOException e1) {
+														// TODO Auto-generated catch block
+														e1.printStackTrace();
+													}
 												}
 											}
 										}

@@ -98,7 +98,7 @@ public class Principal implements Serializable{
 	public void setTEmpleos(Empleo nuevo) throws FileNotFoundException, ClassNotFoundException, IOException {
 		TEmpleos.add(nuevo);
 		dataSalida();
-		dataEntrada();
+		
 	}
 	public ArrayList<Vacante> getTVacantes() {
 		return TVacantes;
@@ -106,7 +106,7 @@ public class Principal implements Serializable{
 	public void setTVacantes(Vacante vacante) throws FileNotFoundException, ClassNotFoundException, IOException {
 		TVacantes.add(vacante);
 		dataSalida();
-		dataEntrada();
+		
 	}
 	
 	public Boolean existeEmpresa(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {

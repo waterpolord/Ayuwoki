@@ -364,7 +364,12 @@ public class PerfilEmpresa extends JFrame {
 								if(nueva.getCantInicial() != nueva.getCantSolicitantes())
 									if(aux instanceof Universitario  && ((Universitario) aux).getCarrera().equalsIgnoreCase(nueva.getTipoPersonal())) {
 										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
-											nueva.solicitar(aux);
+											try {
+												nueva.solicitar(aux);
+											} catch (ClassNotFoundException | IOException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
 										}
 									}
 						}
@@ -544,7 +549,12 @@ public class PerfilEmpresa extends JFrame {
 								if(aux.getSoli() == 1)
 									if(aux instanceof Tecnico && ((Tecnico) aux).getEspecialidad().equalsIgnoreCase(nueva.getTipoPersonal())) {
 										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
-											nueva.solicitar(aux);
+											try {
+												nueva.solicitar(aux);
+											} catch (ClassNotFoundException | IOException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
 										}
 									}
 						}
@@ -710,7 +720,12 @@ public class PerfilEmpresa extends JFrame {
 								if(aux.getSoli() == 1)
 									if(aux instanceof Obrero && ((Obrero) aux).getHabilidades().get(0).equalsIgnoreCase(nueva.getTipoPersonal()) ) {
 										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
-											nueva.solicitar(aux);
+											try {
+												nueva.solicitar(aux);
+											} catch (ClassNotFoundException | IOException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
 										}
 									}
 						}
