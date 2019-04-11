@@ -686,22 +686,27 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(rbn5_1);
 		
 		rbn6_1 = new JRadioButton("Si");
+		rbn6_1.setBackground(new Color(255, 255, 255));
 		rbn6_1.setBounds(313, 165, 50, 23);
 		panelReUniversitario.add(rbn6_1);
 		
 		rbn7_1 = new JRadioButton("Si");
+		rbn7_1.setBackground(new Color(255, 255, 255));
 		rbn7_1.setBounds(313, 203, 50, 23);
 		panelReUniversitario.add(rbn7_1);
 		
 		rbn8_1 = new JRadioButton("Si");
+		rbn8_1.setBackground(new Color(255, 255, 255));
 		rbn8_1.setBounds(313, 239, 50, 23);
 		panelReUniversitario.add(rbn8_1);
 		
 		rbn9_1 = new JRadioButton("Si");
+		rbn9_1.setBackground(new Color(255, 255, 255));
 		rbn9_1.setBounds(313, 275, 50, 23);
 		panelReUniversitario.add(rbn9_1);
 		
 		rbn10_1 = new JRadioButton("Si");
+		rbn10_1.setBackground(new Color(255, 255, 255));
 		rbn10_1.setBounds(313, 312, 50, 23);
 		panelReUniversitario.add(rbn10_1);
 		
@@ -711,22 +716,27 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(rbn11_1);
 		
 		rbn12_1 = new JRadioButton("No");
+		rbn12_1.setBackground(new Color(255, 255, 255));
 		rbn12_1.setBounds(385, 165, 50, 23);
 		panelReUniversitario.add(rbn12_1);
 		
 		rbn13_1 = new JRadioButton("No");
+		rbn13_1.setBackground(new Color(255, 255, 255));
 		rbn13_1.setBounds(385, 203, 50, 23);
 		panelReUniversitario.add(rbn13_1);
 		
 		rbn14_1 = new JRadioButton("No");
+		rbn14_1.setBackground(new Color(255, 255, 255));
 		rbn14_1.setBounds(385, 239, 50, 23);
 		panelReUniversitario.add(rbn14_1);
 		
 		rbn15_1 = new JRadioButton("No");
+		rbn15_1.setBackground(new Color(255, 255, 255));
 		rbn15_1.setBounds(385, 275, 50, 23);
 		panelReUniversitario.add(rbn15_1);
 		
 		rbn16_1 = new JRadioButton("No");
+		rbn16_1.setBackground(new Color(255, 255, 255));
 		rbn16_1.setBounds(385, 312, 50, 23);
 		panelReUniversitario.add(rbn16_1);
 		
@@ -767,10 +777,12 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(lb9);
 		
 		rbn17_1 = new JRadioButton("No");
+		rbn17_1.setBackground(new Color(255, 255, 255));
 		rbn17_1.setBounds(385, 345, 50, 23);
 		panelReUniversitario.add(rbn17_1);
 		
 		rbn18_1 = new JRadioButton("Si");
+		rbn18_1.setBackground(new Color(255, 255, 255));
 		rbn18_1.setBounds(313, 345, 50, 23);
 		panelReUniversitario.add(rbn18_1);
 		
@@ -779,10 +791,12 @@ public class PerfilUsuarios extends JFrame {
 		panelReUniversitario.add(lb10);
 		
 		rdbtnNewRadioButton = new JRadioButton("Si");
+		rdbtnNewRadioButton.setBackground(new Color(255, 255, 255));
 		rdbtnNewRadioButton.setBounds(315, 386, 50, 23);
 		panelReUniversitario.add(rdbtnNewRadioButton);
 		
 		rbn19_1 = new JRadioButton("No");
+		rbn19_1.setBackground(new Color(255, 255, 255));
 		rbn19_1.setBounds(385, 386, 50, 23);
 		panelReUniversitario.add(rbn19_1);
 		
