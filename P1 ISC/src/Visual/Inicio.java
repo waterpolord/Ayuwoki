@@ -33,6 +33,7 @@ import javax.swing.UIManager;
 import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -141,6 +142,7 @@ public class Inicio extends JFrame {
 					new PerfilUsuarios(Principal.getInstance().buscarPersonas(user.getCorreo())).setVisible(true);;
 					dispose();
 				}
+				repaint();
 				
 			} catch (ClassNotFoundException | IOException e1) {
 				// TODO Auto-generated catch block
@@ -1244,6 +1246,42 @@ public class Inicio extends JFrame {
 	}
  	public void setEnter(JButton BTN) {
  		getRootPane().setDefaultButton(BTN);
+ 	}
+ 	
+ 	public void paint(Graphics g) {
+ 		super.paint(g);
+ 		try {
+			Principal.getInstance().dataEntrada();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 		int personas = Principal.getInstance().getCantPerson();
+ 		int empre = Principal.getInstance().getEmpresas();
+ 		
+ 		int total = personas + 7;
+ 		if(total == 0) {
+ 			total = 2;
+ 		}
+ 		int gradosempre = 7 * 360 / total; 
+ 		int gradoperson = personas * 360 / total;
+ 		
+ 		g.setColor(Color.blue);
+ 		g.fillArc(400,280,200, 200, 0,7);
+ 		g.fillRect(625,420,20,20);
+ 		g.drawString("Empresas", 650,435);
+ 		
+ 		g.setColor(Color.red);
+ 		g.fillArc(400,280,200, 200, 7,gradoperson);
+ 		g.fillRect(625,450,20,20);
+ 		g.drawString("Usuarios", 650,465);
+ 		
  	}
 }
 
