@@ -736,7 +736,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(panel);
 
 		JLabel label = new JLabel("Nombre");
-		label.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 12));
+		label.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 12));
 		label.setBounds(10, 44, 46, 14);
 		panel.add(label);
 
