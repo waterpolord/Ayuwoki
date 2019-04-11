@@ -492,7 +492,7 @@ public class Inicio extends JFrame {
 				txtpassconfirm.setEchoChar('.');
 			}
 		});
-		LBNoconfirm.setForeground(new Color(0, 51, 255));
+		LBNoconfirm.setForeground(Color.CYAN);
 		LBNoconfirm.setVisible(false);
 		LBNoconfirm.setBounds(465, 151, 58, 14);
 		panel_1.add(LBNoconfirm);
@@ -509,7 +509,7 @@ public class Inicio extends JFrame {
 			}
 		});
 		
-		LBConfirmver.setForeground(new Color(0, 51, 255));
+		LBConfirmver.setForeground(Color.CYAN);
 		LBConfirmver.setBounds(468, 151, 33, 14);
 		panel_1.add(LBConfirmver);
 		
@@ -537,9 +537,9 @@ public class Inicio extends JFrame {
 				passwordContrasena.setEchoChar('�');
 			}
 		});
-		LBOcultar.setForeground(new Color(0, 51, 255));
+		LBOcultar.setForeground(Color.CYAN);
 		LBOcultar.setBounds(195, 151, 50, 14);
-		LBOcultar.setBackground(Color.blue);
+		LBOcultar.setBackground(Color.CYAN);
 		LBOcultar.setVisible(false);
 		panel_1.add(LBOcultar);
 		
@@ -553,7 +553,7 @@ public class Inicio extends JFrame {
 				passwordContrasena.setEchoChar((char)0);
 			}
 		});
-		LBver.setForeground(new Color(0, 51, 255));
+		LBver.setForeground(Color.CYAN);
 		LBver.setVerticalAlignment(SwingConstants.BOTTOM);
 		LBver.setBounds(195, 151, 33, 14);
 		panel_1.add(LBver);
@@ -680,6 +680,7 @@ public class Inicio extends JFrame {
 		
 	
 		RBUniversitario = new JRadioButton("Universitario");
+		RBUniversitario.setBackground(Color.WHITE);
 		RBUniversitario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RBTec.setSelected(false);
@@ -694,6 +695,7 @@ public class Inicio extends JFrame {
 		panel_2.add(RBUniversitario);
 		
 		RBTec = new JRadioButton("Tecnico");
+		RBTec.setBackground(Color.WHITE);
 		RBTec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RBUniversitario.setSelected(false);
@@ -708,6 +710,7 @@ public class Inicio extends JFrame {
 		panel_2.add(RBTec);
 		
 		RBObrero = new JRadioButton("Obrero");
+		RBObrero.setBackground(Color.WHITE);
 		RBObrero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RBUniversitario.setSelected(false);
@@ -740,6 +743,8 @@ public class Inicio extends JFrame {
 		panelUniversitario.setLayout(null);
 		
 		 CBXCarreras = new JComboBox();
+		 CBXCarreras.setForeground(Color.BLACK);
+		 CBXCarreras.setBackground(Color.WHITE);
 		
 		CBXCarreras.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administracion", "Derecho", "Economia", "Ingenieria", "Medicina", "Mercadeo"}));
 		CBXCarreras.setBounds(78, 34, 251, 25);
@@ -1030,6 +1035,7 @@ public class Inicio extends JFrame {
 		panel_4.add(comboBox);
 		
 	    btnCrearEmpresa = new JButton("Crear");
+	    btnCrearEmpresa.setForeground(new Color(0, 128, 128));
 	    btnCrearEmpresa.setBackground(Color.WHITE);
 		btnCrearEmpresa.addActionListener(new ActionListener() {
 			
@@ -1082,17 +1088,18 @@ public class Inicio extends JFrame {
 		
 		
 		
-		btnCrearEmpresa.setBounds(143, 365, 89, 23);
+		btnCrearEmpresa.setBounds(195, 365, 89, 23);
 		PanelEmpresa.add(btnCrearEmpresa);
 		
 		JButton btnCancelarEmpresa = new JButton("Cancelar");
+		btnCancelarEmpresa.setForeground(new Color(255, 0, 0));
 		btnCancelarEmpresa.setBackground(Color.WHITE);
 		 btnCancelarEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(true);
 				}
 			});
-		btnCancelarEmpresa.setBounds(372, 365, 89, 23);
+		btnCancelarEmpresa.setBounds(409, 365, 89, 23);
 		PanelEmpresa.add(btnCancelarEmpresa);
 		
 		grupoEstado = new ButtonGroup();
@@ -1102,6 +1109,7 @@ public class Inicio extends JFrame {
 		grupoTipo.add(RBUniversitario);
 		
 		btnCrearUser = new JButton("Crear");
+		btnCrearUser.setForeground(new Color(0, 128, 128));
 		btnCrearUser.setBackground(Color.WHITE);
 		
 		btnCrearUser.addActionListener(new ActionListener() {
@@ -1179,17 +1187,18 @@ public class Inicio extends JFrame {
 				
 			}
 		});
-		btnCrearUser.setBounds(165, 357, 89, 23);
+		btnCrearUser.setBounds(201, 357, 89, 23);
 		PanelUser.add(btnCrearUser);
 		
 		JButton btnCancelarUsuario = new JButton("Cancelar");
+		btnCancelarUsuario.setForeground(new Color(255, 0, 0));
 		btnCancelarUsuario.setBackground(Color.WHITE);
 		 btnCancelarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(true);
 			}
 		});
-		btnCancelarUsuario.setBounds(345, 357, 89, 23);
+		btnCancelarUsuario.setBounds(430, 357, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
 		

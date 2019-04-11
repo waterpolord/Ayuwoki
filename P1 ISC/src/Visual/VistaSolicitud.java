@@ -101,7 +101,8 @@ public class VistaSolicitud extends JDialog {
 		});
 		
 		JButton btnConfirmar = new JButton("Confirmar Contrataci\u00F3n");
-		btnConfirmar.setBackground(SystemColor.activeCaption);
+		btnConfirmar.setForeground(new Color(0, 128, 128));
+		btnConfirmar.setBackground(Color.WHITE);
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selecF = table.getSelectedRow();
@@ -138,7 +139,8 @@ public class VistaSolicitud extends JDialog {
 				
 		
 		JButton btnNewButton = new JButton("Actualizar");
-		btnNewButton.setBackground(SystemColor.activeCaption);
+		btnNewButton.setForeground(new Color(0, 128, 128));
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(vacante.getCantInicial() != vacante.getCantSolicitantes())
@@ -269,7 +271,8 @@ public class VistaSolicitud extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				 btnver = new JButton("Ver");
-				 btnver.setBackground(new Color(119, 136, 153));
+				 btnver.setForeground(new Color(119, 136, 153));
+				 btnver.setBackground(new Color(255, 255, 255));
 				btnver.setEnabled(false);
 				btnver.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -282,7 +285,8 @@ public class VistaSolicitud extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Volver");
-				cancelButton.setBackground(new Color(119, 136, 153));
+				cancelButton.setForeground(new Color(119, 136, 153));
+				cancelButton.setBackground(new Color(255, 255, 255));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

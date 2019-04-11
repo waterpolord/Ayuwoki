@@ -215,6 +215,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(comboBox);
 
 		btnNewButton = new JButton("Subir");
+		btnNewButton.setForeground(new Color(0, 128, 128));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -721,6 +722,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.setForeground(new Color(255, 0, 0));
 		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setBounds(228, 561, 89, 23);
 		contentPane.add(btnNewButton_1);
@@ -838,7 +840,7 @@ public class PerfilEmpresa extends JFrame {
 		panelUniversitario.add(label_1);
 
 		CBXCarrera = new JComboBox();
-		CBXCarrera.setForeground(new Color(119, 136, 153));
+		CBXCarrera.setForeground(new Color(0, 0, 0));
 		CBXCarrera.setBackground(Color.WHITE);
 		CBXCarrera.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administracion", "Derecho", "Economia", "Ingenieria", "Medicina", "Mercadeo"}));
 		CBXCarrera.setBounds(78, 34, 168, 25);
@@ -930,6 +932,7 @@ public class PerfilEmpresa extends JFrame {
 		contentPane.add(lblSolicitudes);
 
 		JButton btnVer = new JButton("Ver");
+		btnVer.setForeground(new Color(0, 128, 128));
 		btnVer.setBackground(Color.WHITE);
 		btnVer.setEnabled(false);
 		btnVer.addActionListener(new ActionListener() {
