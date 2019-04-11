@@ -143,15 +143,29 @@ public class PerfilEmpresa extends JFrame {
 	private Dimension Tam;
 	
 	
+	
 
 	public PerfilEmpresa(Empresa empresa) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
 				int i = 0;
+				int ind = 0,indvac = 0;
+				list.setSelectionBackground(Color.blue);
+				
 				for(Vacante vac:empresa.getMisVacantes()) {
+					
+					for(Persona aux:vac.getPersonas()) {
+						if(aux.getEstado() == false && vac.getEstado() != true) {
+							vac.cancelar(ind);
+							break;
+						}
+						ind++;
+					}
+					ind = 0;
 					lista.add(i,"Codigo: "+vac.getCodigo()+" Puesto: "+vac.getPuesto()+" Tipo: "+vac.getTipoPersonal()+" ("+vac.getCant()+")"+"\n\n");
 					i++;
+					
 				}
 				setEnter(btnNewButton);
 				panelObreE.setVisible(false);
@@ -346,7 +360,7 @@ public class PerfilEmpresa extends JFrame {
 						Vacante nueva = new Vacante(empresa,"Universitario",CBXCarrera.getSelectedItem().toString(),valores,(int)Cantidad.getValue(),monto,empresa.getCode());
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
-							if(aux.getSoli() == 1)
+							if(aux.getSoli() == 1 && aux.getEstado())
 								if(nueva.getCantInicial() != nueva.getCantSolicitantes())
 									if(aux instanceof Universitario  && ((Universitario) aux).getCarrera().equalsIgnoreCase(nueva.getTipoPersonal())) {
 										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
@@ -945,7 +959,7 @@ public class PerfilEmpresa extends JFrame {
 					String var = list.getSelectedValue().toString().substring(8,12);
 					int code = Integer.parseInt(var);
 					Vacante aux = empresa.BuscarVacantes(code);
-					VistaSolicitud view = new VistaSolicitud(aux,empresa.getNombre());
+					VistaSolicitud view = new VistaSolicitud(aux,empresa.getNombre(),empresa.getCorreo());
 					view.setModal(true);
 					view.setVisible(true);
 				}
@@ -1378,6 +1392,15 @@ public class PerfilEmpresa extends JFrame {
 				int selec = list.getSelectedIndex();
 				if(selec > -1) {
 					btnVer.setEnabled(true);
+					String var = list.getSelectedValue().toString().substring(8,12);
+					int code = Integer.parseInt(var);
+					Vacante aux = empresa.BuscarVacantes(code);
+					if(aux.getEstado() == false) {
+						list.setSelectionBackground(Color.green);
+					}
+					else {
+						list.setSelectionBackground(Color.blue);
+					}
 				}
 			}
 		});

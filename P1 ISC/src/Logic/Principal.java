@@ -131,7 +131,7 @@ public class Principal implements Serializable{
 	}
 	
 	public Persona buscarPersonas(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
-		dataEntrada();
+		//dataEntrada();
 		for(Persona aux:Tpersonas) {
 			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return aux;
@@ -140,7 +140,7 @@ public class Principal implements Serializable{
 		return null;
 	}
 	public Empresa buscarEmpresas(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
-		dataEntrada();
+		//dataEntrada();
 		for(Empresa aux:TEmpresas) {
 			if(aux.getCorreo().equalsIgnoreCase(txt) || aux.getNombre().equalsIgnoreCase(txt)) {
 				return aux;

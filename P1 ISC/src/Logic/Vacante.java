@@ -49,9 +49,15 @@ public class Vacante implements Serializable{
 	
 	public void sumCant() {
 		this.CantPuestos++;
+		if(CantPuestos > cantInicial) {
+			CantPuestos = cantInicial;
+		}
 	}
 	public void restCant() {
 		this.CantPuestos--;
+		if(CantPuestos < 0) {
+			CantPuestos = 0;
+		}
 	}
 	
 	// Despues de determinar si el reemplazo aplica se 

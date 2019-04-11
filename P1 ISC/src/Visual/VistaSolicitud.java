@@ -46,7 +46,7 @@ public class VistaSolicitud extends JDialog {
 	private JButton btnver;
 	
 
-	public VistaSolicitud(Vacante vacante, String Titulo) {
+	public VistaSolicitud(Vacante vacante, String Titulo,String correo) {
 		setBackground(new Color(119, 136, 153));
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -111,13 +111,17 @@ public class VistaSolicitud extends JDialog {
 					
 				} else {
 					try {
-						Principal.getInstance().buscarPersonas(table.getModel().getValueAt(selecF, 3).toString()).setEstado(false);
 						vacante.restCant();
+						Principal.getInstance().buscarPersonas(table.getModel().getValueAt(selecF, 3).toString()).setEstado(false);
+						Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).restCant();
+						Principal.getInstance().dataSalida();
 						JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
-						if(vacante.getCant() == 0) {
+						if(Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).getCant() == 0) {
 							vacante.setEstado(false);
+							Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).setEstado(false);
 							JOptionPane.showMessageDialog(null, "La solicitud vacante ha sido completada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
 						}
+						
 						Principal.getInstance().dataSalida();
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
