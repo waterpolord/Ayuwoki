@@ -156,7 +156,7 @@ public class PerfilEmpresa extends JFrame {
 				for(Vacante vac:empresa.getMisVacantes()) {
 					
 					for(Persona aux:vac.getPersonas()) {
-						if(aux.getEstado() == false && vac.getEstado() != true) {
+						if(aux.getEstado() == false && vac.getEstado()) {
 							vac.cancelar(ind);
 							break;
 						}

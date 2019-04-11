@@ -44,6 +44,8 @@ public class VistaSolicitud extends JDialog {
 	private JLabel lbNombre;
 	private JTable table;
 	private JButton btnver;
+	private JButton btnNewButton;
+	private JButton btnConfirmar;
 	
 
 	public VistaSolicitud(Vacante vacante, String Titulo,String correo) {
@@ -52,7 +54,26 @@ public class VistaSolicitud extends JDialog {
 			@Override
 			public void windowOpened(WindowEvent e) {
 				Object[] encontrado = new Object[4];
-				if(vacante.getCantSolicitantes() > 0) {
+				if(vacante.getEstado()) {
+					if(vacante.getCantSolicitantes() > 0) {
+						for(Persona aux:vacante.getPersonas()) {
+							encontrado[0] = aux.getNombre();
+							encontrado[1] = aux.getApellido();
+							encontrado[3] = aux.getCorreo();
+							if(aux instanceof Universitario) {
+								encontrado[2] = ((Universitario) aux).getCarrera();
+							}
+							if(aux instanceof Tecnico) {
+								encontrado[2] = ((Tecnico) aux).getEspecialidad();
+							}
+							if(aux instanceof Obrero) {
+								encontrado[2] = vacante.getTipoPersonal();
+							}
+							((DefaultTableModel) table.getModel()).addRow(encontrado);
+						}
+					}
+				}
+				else {
 					for(Persona aux:vacante.getPersonas()) {
 						encontrado[0] = aux.getNombre();
 						encontrado[1] = aux.getApellido();
@@ -68,6 +89,8 @@ public class VistaSolicitud extends JDialog {
 						}
 						((DefaultTableModel) table.getModel()).addRow(encontrado);
 					}
+					btnNewButton.setVisible(false);
+					btnConfirmar.setVisible(false);
 				}
 			}
 			
@@ -100,7 +123,7 @@ public class VistaSolicitud extends JDialog {
 			}
 		});
 		
-		JButton btnConfirmar = new JButton("Confirmar Contrataci\u00F3n");
+		btnConfirmar = new JButton("Confirmar Contrataci\u00F3n");
 		btnConfirmar.setForeground(new Color(0, 128, 128));
 		btnConfirmar.setBackground(Color.WHITE);
 		btnConfirmar.addActionListener(new ActionListener() {
@@ -142,7 +165,7 @@ public class VistaSolicitud extends JDialog {
 						
 				
 		
-		JButton btnNewButton = new JButton("Actualizar");
+		btnNewButton = new JButton("Actualizar");
 		btnNewButton.setForeground(new Color(0, 128, 128));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
