@@ -1,11 +1,9 @@
 package Visual;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.SystemColor;
 
 import javax.swing.ButtonGroup;
@@ -41,14 +39,11 @@ import java.awt.event.WindowEvent;
 import javax.swing.JList;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 public class PerfilUsuarios extends JFrame {
 
@@ -84,8 +79,6 @@ public class PerfilUsuarios extends JFrame {
 	private JRadioButton rbn17_1;
 	private JRadioButton rbn18_1;
 	private JRadioButton rbn19_1;
-	private JRadioButton rbn38;
-	private JRadioButton rbn39;
 	private JRadioButton rdbtnNewRadioButton;
 	private JLabel lb1;
 	private JLabel lb2;
@@ -378,7 +371,25 @@ public class PerfilUsuarios extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBox.getSelectedIndex() == 2) {
+				if(comboBox.getSelectedIndex() == 1) {
+					try {
+						Principal.getInstance().buscarPersonas(persona.getCorreo()).setSesion(true);;
+						JOptionPane.showMessageDialog(null, "Se encuentra Empleado", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					Principal.getInstance().dataSalida();
+					
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				dispose();
+				new Inicio().setVisible(true);
+				}
+					if(comboBox.getSelectedIndex() == 2) {
 					try {
 						Principal.getInstance().buscarPersonas(persona.getCorreo()).setSesion(false);;
 					} catch (ClassNotFoundException | IOException e1) {
@@ -397,7 +408,7 @@ public class PerfilUsuarios extends JFrame {
 			}
 		});
 		comboBox.setForeground(SystemColor.desktop);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Editar Cuenta", "Cerrar Sesion"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Configuracion", "Estado de la Persona", "Cerrar Sesion"}));
 		comboBox.setBackground(Color.WHITE);
 		
 	    BTNGuardar = new JButton("Guardar");
