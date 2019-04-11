@@ -372,7 +372,7 @@ public class Inicio extends JFrame {
 	    LBIncorrecto = new JLabel("Nombre o Contraseña incorrectos");
 	    LBIncorrecto.setVisible(false);
 		LBIncorrecto.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		LBIncorrecto.setForeground(new Color(0, 51, 255));
+		LBIncorrecto.setForeground(Color.CYAN);
 		LBIncorrecto.setBounds(68, 62, 212, 14);
 		panel.add(LBIncorrecto);
 		
