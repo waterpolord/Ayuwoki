@@ -86,10 +86,17 @@ public class ConfiguracionUsuario extends JDialog {
 		JButton btnEstado = new JButton("Estado");
 		btnEstado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEstado.setVisible(false);
-				panelinfo.setVisible(true);
+				if(user.getEstado() == false) {
+					panelEstado.setVisible(true);
+					panelinfo.setVisible(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "Aun no tiene trabajo", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+					
+				}
 			}
+			
 		});
+		
 		btnEstado.setBounds(10, 92, 129, 46);
 		panel.add(btnEstado);
 		
@@ -177,43 +184,37 @@ public class ConfiguracionUsuario extends JDialog {
 		JButton btnAplicarCambios_1 = new JButton("Aplicar Cambios");
 		btnAplicarCambios_1.setBounds(255, 197, 161, 23);
 		panelEstado.add(btnAplicarCambios_1);
-		/*btnAplicarCambios_1.addActionListener(new ActionListener() {
+		btnAplicarCambios_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
-				if () {
-					JOptionPane.showMessageDialog(null, "No ha seleccionado a niguna opcio", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
-					
-				} else {
-					try {
-						
-						Principal.getInstance().dataSalida();
-						
-						if() {
-							
-							JOptionPane.showMessageDialog(null, "Ha ingresado a Buscar Empleo", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+				if ( rdbtnSi.isSelected()) {
+					for(Vacante aux :Principal.getInstance().getTVacantes()) {
+						if(aux.getEstado()==false && aux.VacanteRepite(user.getCorreo())) {
+						aux.setEstado(true);
+						user.setEstado(true);
+						try {
+							Principal.getInstance().dataSalida();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
 						
-						Principal.getInstance().dataSalida();
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						
+						
+						}
 					}
-					
 				}
 			}
-		});*/
+	
+				
+		});
 		
 		grupo.add(rdbtnSi);
 		grupo.add(rdbtnNo);
 	}
 	
 		
-	
-	
 }
