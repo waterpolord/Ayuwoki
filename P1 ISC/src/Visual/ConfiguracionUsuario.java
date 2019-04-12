@@ -3,6 +3,7 @@ package Visual;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.SystemColor;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -70,13 +71,14 @@ public class ConfiguracionUsuario extends JDialog {
 		});
 		setBounds(100, 100, 706, 491);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(230, 230, 250));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		//setUndecorated(true);
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 28, 160, 452);
-		panel.setBackground(new Color(1, 50, 67));
+		panel.setBackground(SystemColor.activeCaption);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
@@ -124,7 +126,7 @@ public class ConfiguracionUsuario extends JDialog {
 		
 		panelinfo = new JPanel();
 		panelinfo.setBounds(235, 28, 395, 250);
-		panelinfo.setBackground(new Color(1, 50, 67));
+		panelinfo.setBackground(new Color(119, 136, 153));
 		contentPanel.add(panelinfo);
 		panelinfo.setLayout(null);
 		
@@ -210,7 +212,7 @@ public class ConfiguracionUsuario extends JDialog {
 		
 		panelEstado = new JPanel();
 		panelEstado.setBounds(178, 47, 452, 235);
-		panelEstado.setBackground(new Color(1, 50, 67));
+		panelEstado.setBackground(new Color(119, 136, 153));
 		contentPanel.add(panelEstado);
 		panelEstado.setLayout(null);
 		
@@ -266,6 +268,7 @@ public class ConfiguracionUsuario extends JDialog {
 		});
 		
 		panelEstadistica = new JPanel();
+		panelEstadistica.setBackground(new Color(230, 230, 250));
 		panelEstadistica.setBounds(166, 47, 542, 394);
 		contentPanel.add(panelEstadistica);
 		

@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class OlvidoContraseñaEmpresa extends JDialog {
 
@@ -35,6 +36,7 @@ public class OlvidoContraseñaEmpresa extends JDialog {
 		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(230, 230, 250));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
