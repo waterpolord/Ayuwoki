@@ -5,10 +5,17 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import Logic.Persona;
 import Logic.Principal;
@@ -28,19 +35,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class ConfiguracionUsuario extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JPasswordField pass;
+	private JPasswordField passConfirm;
 	private JPanel panelEstado;
 	private JPanel panelinfo;
-	JRadioButton rdbtnSi = new JRadioButton("Si");
-	JRadioButton rdbtnNo = new JRadioButton("No");
-	ButtonGroup grupo = new ButtonGroup();
+	private JRadioButton rdbtnSi = new JRadioButton("Si");
+	private JPanel panelEstadistica;
 
 
 
@@ -56,7 +63,7 @@ public class ConfiguracionUsuario extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				grupo= new ButtonGroup();
+				panelEstadistica.setVisible(false);
 				panelEstado.setVisible(false);
 				panelinfo.setVisible(false);
 			}
@@ -76,8 +83,9 @@ public class ConfiguracionUsuario extends JDialog {
 		JButton btnCuenta = new JButton("Informaci\u00F3n");
 		btnCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEstado.setVisible(true);
-				panelinfo.setVisible(false);
+				panelEstado.setVisible(false);
+				panelinfo.setVisible(true);
+				panelEstadistica.setVisible(false);
 			}
 		});
 		btnCuenta.setBounds(10, 11, 129, 34);
@@ -89,6 +97,7 @@ public class ConfiguracionUsuario extends JDialog {
 				if(user.getEstado() == false) {
 					panelEstado.setVisible(true);
 					panelinfo.setVisible(false);
+					panelEstadistica.setVisible(false);
 				}else {
 					JOptionPane.showMessageDialog(null, "Aun no tiene trabajo", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
 					
@@ -99,6 +108,19 @@ public class ConfiguracionUsuario extends JDialog {
 		
 		btnEstado.setBounds(10, 92, 129, 46);
 		panel.add(btnEstado);
+		
+		JButton btnEstadisticas = new JButton("Estadisticas");
+		btnEstadisticas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelEstadistica.setVisible(true);
+				panelEstado.setVisible(false);
+				panelinfo.setVisible(false);
+				setAnalisis(user);
+			}
+			
+		});
+		btnEstadisticas.setBounds(10, 162, 129, 39);
+		panel.add(btnEstadisticas);
 		
 		panelinfo = new JPanel();
 		panelinfo.setBounds(235, 28, 395, 250);
@@ -111,15 +133,17 @@ public class ConfiguracionUsuario extends JDialog {
 		label.setBounds(23, 27, 122, 20);
 		panelinfo.add(label);
 		
-		textField = new JTextField(user.getNombre());
-		textField.setBounds(23, 67, 122, 20);
-		panelinfo.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField(user.getNombre());
+		txtNombre.setEditable(false);
+		txtNombre.setBounds(23, 67, 122, 20);
+		panelinfo.add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		textField_1 = new JTextField(user.getApellido());
-		textField_1.setBounds(188, 67, 116, 20);
-		panelinfo.add(textField_1);
-		textField_1.setColumns(10);
+		txtApellido = new JTextField(user.getApellido());
+		txtApellido.setEditable(false);
+		txtApellido.setBounds(188, 67, 116, 20);
+		panelinfo.add(txtApellido);
+		txtApellido.setColumns(10);
 		
 		JLabel lblCambiarContrase = new JLabel("Cambiar Contrase\u00F1a");
 		lblCambiarContrase.setForeground(Color.WHITE);
@@ -131,17 +155,58 @@ public class ConfiguracionUsuario extends JDialog {
 		lblConfirmarContrase.setBounds(188, 108, 154, 14);
 		panelinfo.add(lblConfirmarContrase);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(23, 133, 122, 20);
-		panelinfo.add(passwordField);
+		pass = new JPasswordField();
+		pass.setBounds(23, 133, 122, 20);
+		panelinfo.add(pass);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(188, 133, 125, 20);
-		panelinfo.add(passwordField_1);
+		passConfirm = new JPasswordField();
+		passConfirm.setBounds(188, 133, 125, 20);
+		panelinfo.add(passConfirm);
 		
 		JButton btnAplicarCambios = new JButton("Aplicar Cambios");
+		btnAplicarCambios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Pass = new String(pass.getPassword()),PassC = new String(passConfirm.getPassword());
+				if(txtApellido.getText().length() > 1 && txtNombre.getText().length() > 1 && Pass.equals(PassC)) {
+					user.setNombre(txtNombre.getText());
+					user.setApellido(txtApellido.getText());
+					if(Pass.length() > 3 && PassC.length() > 3) {
+						user.setClave(Pass);
+					}
+					try {
+						Principal.getInstance().dataSalida();
+						JOptionPane.showMessageDialog(null,"Cambios Guardados","Modificación aceptada",1);
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"Revisa los campos y las contraseñas","Advertencia",0);
+				}
+			}
+		});
 		btnAplicarCambios.setBounds(243, 204, 142, 23);
 		panelinfo.add(btnAplicarCambios);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtNombre.setEditable(true);
+			}
+		});
+		button.setIcon(new ImageIcon(ConfiguracionUsuario.class.getResource("/Imgenes/Edit.png")));
+		button.setBounds(145, 64, 33, 23);
+		panelinfo.add(button);
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtApellido.setEditable(true);
+			}
+		});
+		button_1.setBounds(309, 66, 33, 23);
+		panelinfo.add(button_1);
 		
 		panelEstado = new JPanel();
 		panelEstado.setBounds(178, 47, 452, 235);
@@ -149,7 +214,7 @@ public class ConfiguracionUsuario extends JDialog {
 		contentPanel.add(panelEstado);
 		panelEstado.setLayout(null);
 		
-		JLabel label_1 = new JLabel("Se encuentra desempleado?");
+		JLabel label_1 = new JLabel("¿Se encuentra desempleado?");
 		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(10, 11, 419, 57);
 		panelEstado.add(label_1);
@@ -167,19 +232,6 @@ public class ConfiguracionUsuario extends JDialog {
 		rdbtnSi.setBounds(90, 110, 53, 23);
 		panelEstado.add(rdbtnSi);
 		
-		
-		rdbtnNo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				
-			}
-		});
-		
-		
-		rdbtnNo.setBounds(255, 110, 53, 23);
-		panelEstado.add(rdbtnNo);
-		
 
 		JButton btnAplicarCambios_1 = new JButton("Aplicar Cambios");
 		btnAplicarCambios_1.setBounds(255, 197, 161, 23);
@@ -194,6 +246,7 @@ public class ConfiguracionUsuario extends JDialog {
 						user.setEstado(true);
 						try {
 							Principal.getInstance().dataSalida();
+							JOptionPane.showMessageDialog(null, "Cambios Guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
 						} catch (ClassNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -212,9 +265,29 @@ public class ConfiguracionUsuario extends JDialog {
 				
 		});
 		
-		grupo.add(rdbtnSi);
-		grupo.add(rdbtnNo);
+		panelEstadistica = new JPanel();
+		panelEstadistica.setBounds(166, 47, 542, 394);
+		contentPanel.add(panelEstadistica);
+		
+		
 	}
 	
+	public void setAnalisis(Persona user) {
+		int ind = 0;
+		DefaultCategoryDataset ds = new DefaultCategoryDataset();
+ 		JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "", ds,PlotOrientation.VERTICAL, 
+ 				true,true,true);
+ 		for(Vacante vac:Principal.getInstance().getTVacantes()) {
+ 			if(vac.vacanteEstadistica(user.getCorreo())) {
+ 				ind++;
+ 			}
+ 		}
+ 		ds.addValue(ind,"Vacantes","Tipos");
+			ChartPanel f = new ChartPanel(jf);
+			
+ 		panelEstadistica.removeAll();
+ 		panelEstadistica.add(f,BorderLayout.CENTER);
+ 		panelEstadistica.validate();
+	}
 		
 }

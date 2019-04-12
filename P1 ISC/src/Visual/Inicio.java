@@ -52,6 +52,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import javax.swing.JCheckBox;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
 
 public class Inicio extends JFrame {
 
@@ -123,6 +125,7 @@ public class Inicio extends JFrame {
 	private JPanel panel_3;
 	private JPanel panel_5;
 	private JComboBox<?> cbxGraficas;
+	private JLabel lbContra;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -263,7 +266,7 @@ public class Inicio extends JFrame {
 		PanelLogin.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 648, 517);
+		panel.setBounds(0, 0, 731, 517);
 		panel.setLayout(null);
 		panel.setBackground(new Color(119, 136, 153));
 		PanelLogin.add(panel);
@@ -391,9 +394,49 @@ public class Inicio extends JFrame {
 		
 		checkSesion = new JCheckBox("Mantener sesi\u00F3n iniciada");
 		checkSesion.setBackground(SystemColor.inactiveCaption);
-		checkSesion.setBounds(348, 58, 176, 23);
+		checkSesion.setBounds(330, 58, 176, 23);
 		checkSesion.setSelected(true);
 		panel.add(checkSesion);
+		
+		lbContra = new JLabel("Olvide Mi Contrase\u00F1a");
+		lbContra.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String Correo = JOptionPane.showInputDialog("Introduzca Correo");
+				try {
+					if(Principal.getInstance().existeUser(Correo)) {
+						Persona user = Principal.getInstance().buscarPersonas(Correo);
+						OlvidoContraseñauser nueva = new  OlvidoContraseñauser(user);
+						nueva.setModal(true);
+						nueva.setVisible(true);
+					}
+					else if(Principal.getInstance().existeEmpresa(Correo)) {
+						Empresa empre = Principal.getInstance().buscarEmpresas(Correo);
+						OlvidoContraseñaEmpresa nueva = new  OlvidoContraseñaEmpresa(empre);
+						nueva.setModal(true);
+						nueva.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Correo incorrecto","Advertencia", 0);
+					}
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lbContra.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
+		lbContra.setBounds(519, 62, 137, 14);
+		lbContra.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lbContra.setForeground(Color.CYAN);
+		panel.add(lbContra);
 		
 	    PanelUser = new JPanel();
 	    PanelUser.addKeyListener(new KeyAdapter() {

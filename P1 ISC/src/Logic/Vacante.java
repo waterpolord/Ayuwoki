@@ -41,6 +41,7 @@ public class Vacante implements Serializable{
 	}
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
+		sumCant();
 	}
 
 	public void solicitar(Persona nueva) throws ClassNotFoundException, IOException {
@@ -186,6 +187,15 @@ public class Vacante implements Serializable{
 	public Boolean VacanteRepite(String txt) {
 		for(Persona aux:Solicitantes ) {
 			if(aux.correo.equalsIgnoreCase(txt) && aux.estado == false) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Boolean vacanteEstadistica(String txt) {
+		for(Persona aux:Solicitantes ) {
+			if(aux.correo.equalsIgnoreCase(txt) ) {
 				return true;
 			}
 		}
