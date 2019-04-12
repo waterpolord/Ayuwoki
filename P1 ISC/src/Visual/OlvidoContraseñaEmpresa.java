@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.SystemColor;
 
 public class OlvidoContraseñaEmpresa extends JDialog {
 
@@ -67,6 +68,7 @@ public class OlvidoContraseñaEmpresa extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Confirmar");
+				okButton.setBackground(SystemColor.activeCaption);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String Pass = new String(pass.getPassword()),
@@ -93,6 +95,7 @@ public class OlvidoContraseñaEmpresa extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(SystemColor.activeCaption);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
