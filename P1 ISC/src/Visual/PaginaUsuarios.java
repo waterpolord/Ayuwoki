@@ -1,29 +1,40 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Logic.*;;
+import Logic.Persona;
 
-public class PaginaUsuarios extends JFrame {
-	public PaginaUsuarios() {
-	}
+public class PaginaUsuarios extends JDialog {
 
-	/**
-	 * Launch the application.
-	 */
-	
-	public PaginaUsuarios(Empresa empresa,Persona persona) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private final JPanel contentPanel = new JPanel();
+	public PaginaUsuarios(Persona user) {
 		setBounds(100, 100, 450, 300);
-		JPanel contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setLayout(new FlowLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				JButton okButton = new JButton("OK");
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+			}
+			{
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
 	}
-
 
 }

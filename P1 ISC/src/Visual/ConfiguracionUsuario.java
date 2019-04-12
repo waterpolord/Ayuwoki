@@ -70,7 +70,9 @@ public class ConfiguracionUsuario extends JDialog {
 			}
 		});
 		setBounds(100, 100, 706, 491);
+		setTitle("Modificacion de cuenta");
 		getContentPane().setLayout(new BorderLayout());
+		setLocationRelativeTo(null);
 		contentPanel.setBackground(new Color(230, 230, 250));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -278,14 +280,14 @@ public class ConfiguracionUsuario extends JDialog {
 	public void setAnalisis(Persona user) {
 		int ind = 0;
 		DefaultCategoryDataset ds = new DefaultCategoryDataset();
- 		JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "", ds,PlotOrientation.VERTICAL, 
+ 		JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","Vacantes", "", ds,PlotOrientation.VERTICAL, 
  				true,true,true);
  		for(Vacante vac:Principal.getInstance().getTVacantes()) {
  			if(vac.vacanteEstadistica(user.getCorreo())) {
  				ind++;
  			}
  		}
- 		ds.addValue(ind,"Vacantes","Tipos");
+ 		ds.addValue(ind,"Tipos","Vacantes de empleo con mas de 80% de aceptación ("+ind+")");
 			ChartPanel f = new ChartPanel(jf);
 			
  		panelEstadistica.removeAll();
