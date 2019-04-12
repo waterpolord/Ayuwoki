@@ -47,7 +47,6 @@ import javax.swing.event.ListSelectionEvent;
 public class PerfilEmpresa extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JPanel panelTecnico;
 	private JLabel labelEspecialidad;
 	private JPanel panelObrero;
@@ -758,29 +757,16 @@ public class PerfilEmpresa extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buscar Empresa",
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),empresa.getTipo(),
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(new Color(119, 136, 153));
 		panel.setBounds(5, 35, 333, 83);
 		contentPane.add(panel);
 
-		JLabel label = new JLabel("Nombre");
+		JLabel label = new JLabel(empresa.getNombre()+" "+empresa.getCorreo());
 		label.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 12));
-		label.setBounds(10, 44, 46, 14);
+		label.setBounds(10, 44, 177, 14);
 		panel.add(label);
-
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
-			@Override
-			
-			public void keyReleased(KeyEvent e) {
-				
-			}
-		});
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.text);
-		textField.setBounds(68, 40, 253, 25);
-		panel.add(textField);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setForeground(Color.BLACK);

@@ -361,7 +361,7 @@ public class Inicio extends JFrame {
 					LBIncorrecto.setVisible(true);
 				}
 				else {
-					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "Â¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
 					if(Mensaje == JOptionPane.OK_OPTION) {
 						
 						textNombre.setText("");
@@ -406,13 +406,13 @@ public class Inicio extends JFrame {
 				try {
 					if(Principal.getInstance().existeUser(Correo)) {
 						Persona user = Principal.getInstance().buscarPersonas(Correo);
-						OlvidoContrase�auser nueva = new  OlvidoContrase�auser(user);
+						OlvidoContraseñauser nueva = new  OlvidoContraseñauser(user);
 						nueva.setModal(true);
 						nueva.setVisible(true);
 					}
 					else if(Principal.getInstance().existeEmpresa(Correo)) {
 						Empresa empre = Principal.getInstance().buscarEmpresas(Correo);
-						OlvidoContrase�aEmpresa nueva = new  OlvidoContrase�aEmpresa(empre);
+						OlvidoContraseñaEmpresa nueva = new  OlvidoContraseñaEmpresa(empre);
 						nueva.setModal(true);
 						nueva.setVisible(true);
 					}
@@ -455,7 +455,7 @@ public class Inicio extends JFrame {
 									e1.printStackTrace();
 								}
 							if(esta == true) {
-								JOptionPane.showMessageDialog(null,"Este correo ya estÃ¡ en uso","Correo Repetido", 0);
+								JOptionPane.showMessageDialog(null,"Este correo ya estÃƒÂ¡ en uso","Correo Repetido", 0);
 							}
 							else if(esta == false) {
 								String nom = textNombre.getText();
@@ -509,7 +509,7 @@ public class Inicio extends JFrame {
 						
 					}
 					else {
-								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃ±a sea mayor que 4 caracteres.","Advertencia", 0);
+								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃƒÂ±a sea mayor que 4 caracteres.","Advertencia", 0);
 					}
 	    		}
 	    	}
@@ -543,7 +543,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBNoconfirm.setVisible(false);
 				LBConfirmver.setVisible(true);
-				txtpassconfirm.setEchoChar('.');
+				txtpassconfirm.setEchoChar('●');
 			}
 		});
 		LBNoconfirm.setForeground(Color.CYAN);
@@ -588,7 +588,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBOcultar.setVisible(false);
 				LBver.setVisible(true);
-				passwordContrasena.setEchoChar('s');
+				passwordContrasena.setEchoChar('●');
 			}
 		});
 		LBOcultar.setForeground(Color.CYAN);
@@ -668,7 +668,7 @@ public class Inicio extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				if(passwordContrasena.getPassword().length < 4) {
 					LBClaveCorta.setVisible(true);
-					LBClaveCorta.setText("Esta contraseÃ±a es muy corta");
+					LBClaveCorta.setText("Esta contraseÃƒÂ±a es muy corta");
 					LBClaveCorta.setForeground(Color.ORANGE);
 				}
 				else {
@@ -871,7 +871,7 @@ public class Inicio extends JFrame {
 								}
 								if( !(((Obrero) aux).HabilidadExiste(CBXHabilidad.getSelectedItem().toString()))) {
 									((Obrero) aux).setHabilidades(CBXHabilidad.getSelectedItem().toString());
-									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creÃ³ con exito, pero puedes seguir agregando habilidades","Agregado", 1);
+									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creÃƒÂ³ con exito, pero puedes seguir agregando habilidades","Agregado", 1);
 									
 								}
 								else {
@@ -895,7 +895,7 @@ public class Inicio extends JFrame {
 						}
 					}
 					else {
-						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃ±a sea mayor que 4 caracteres.","Advertencia", 0);
+						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃƒÂ±a sea mayor que 4 caracteres.","Advertencia", 0);
 					}
 			}
 		});
@@ -991,7 +991,7 @@ public class Inicio extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				if(passwordE.getPassword().length < 4) {
 					LBClaveCortaE.setVisible(true);
-					LBClaveCortaE.setText("Esta contraseÃ±a es muy corta");
+					LBClaveCortaE.setText("Esta contraseÃƒÂ±a es muy corta");
 					LBClaveCortaE.setForeground(Color.ORANGE);
 				}
 				else {
@@ -1105,7 +1105,7 @@ public class Inicio extends JFrame {
 								e1.printStackTrace();
 							}
 						if(esta == true) {
-							JOptionPane.showMessageDialog(null,"Este correo ya est� en uso","Correo Repetido", 0);
+							JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = TXTNombre.getText(),pas = new String(passwordE.getPassword());
@@ -1181,7 +1181,7 @@ public class Inicio extends JFrame {
 								e1.printStackTrace();
 							}
 						if(esta == true) {
-							JOptionPane.showMessageDialog(null,"Este correo ya esta¡ en uso","Correo Repetido", 0);
+							JOptionPane.showMessageDialog(null,"Este correo ya estaÂ¡ en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = textNombre.getText();
@@ -1271,7 +1271,7 @@ public class Inicio extends JFrame {
 					
 				}
 				else {
-							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃ±a sea mayor que 4 caracteres.","Advertencia", 0);
+							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃƒÂ±a sea mayor que 4 caracteres.","Advertencia", 0);
 				}
 				
 			}
