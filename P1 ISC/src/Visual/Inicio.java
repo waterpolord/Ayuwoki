@@ -1338,7 +1338,7 @@ public class Inicio extends JFrame {
  				true,true,true);
 
  		if(rbnEmpresasYUsuarios.isSelected()) {
- 			ds.addValue(Principal.getInstance().getCantPerson(),"Persona","");
+ 			ds.addValue(Principal.getInstance().getPersonasDisponibles(),"Personas","");
  	 		ds.addValue(Principal.getInstance().getEmpresas(),"Empresas","");
  			ChartPanel f = new ChartPanel(jf);
  			cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {" "}));

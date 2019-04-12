@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
@@ -24,11 +25,14 @@ public class PaginaEmpresa extends JDialog {
 	private JTextArea textArea;
 	private JButton button;
 	private JLabel label;
+	private JButton btnInfo;
+	private Boolean guard = false;
 	
 
 	public PaginaEmpresa(Empresa empresa) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		setLocationRelativeTo(null);
 		contentPanel.setBackground(new Color(119, 136, 153));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setUndecorated(true);
@@ -45,7 +49,7 @@ public class PaginaEmpresa extends JDialog {
 		}
 		{
 			JButton btnNewButton = new JButton("\u2190");
-			btnNewButton.setBounds(0, -1, 43, 23);
+			btnNewButton.setBounds(0, -1, 68, 23);
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
@@ -63,15 +67,42 @@ public class PaginaEmpresa extends JDialog {
 		lblNewLabel.setBounds(10, 63, 139, 14);
 		contentPanel.add(lblNewLabel);
 		
-		textArea = new JTextArea();
+		textArea = new JTextArea(empresa.getDescripcion());
+		textArea.setEnabled(false);
 		textArea.setBounds(27, 88, 371, 108);
 		contentPanel.add(textArea);
 		
-		JButton btnNewButton_1 = new JButton("A\u00F1adir Informaci\u00F3n");
-		btnNewButton_1.setBackground(SystemColor.activeCaption);
-		btnNewButton_1.setBounds(37, 207, 151, 23);
-		contentPanel.add(btnNewButton_1);
-		getRootPane().setDefaultButton(btnNewButton_1);
+		btnInfo = new JButton("A\u00F1adir Descripci\u00F3n");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(guard == false) {
+					textArea.setEnabled(true);
+					btnInfo.setText("Guardar");
+					guard = true;
+					}
+				else {
+					textArea.setEnabled(false);
+					btnInfo.setText("Añadir Descripción");
+					guard = false;
+					empresa.setDescripcion(textArea.getText());
+					try {
+						Principal.getInstance().dataSalida();
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		btnInfo.setBackground(SystemColor.activeCaption);
+		btnInfo.setBounds(37, 207, 151, 23);
+		contentPanel.add(btnInfo);
+		getRootPane().setDefaultButton(btnInfo);
+		{
+			JLabel label_1 = new JLabel(empresa.getTelefono());
+			label_1.setBounds(298, 63, 100, 14);
+			contentPanel.add(label_1);
+		}
 	
 		
 		{
@@ -79,22 +110,21 @@ public class PaginaEmpresa extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setBackground(new Color(119, 136, 153));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setBackground(new Color(119, 136, 153));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
-		
-				
-		
-		
+
 			}
 		}
+	}
+	public void Quitar() {
+		btnInfo.setVisible(false);
+		textArea.setEditable(false);
 	}
 }

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Logic.Empresa;
 import Logic.Obrero;
 import Logic.Persona;
 import Logic.Principal;
@@ -48,7 +49,7 @@ public class VistaSolicitud extends JDialog {
 	private JButton btnConfirmar;
 	
 
-	public VistaSolicitud(Vacante vacante, String Titulo,String correo) {
+	public VistaSolicitud(Vacante vacante, String Titulo,String correo,Empresa empresa) {
 		setBackground(new Color(119, 136, 153));
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -128,37 +129,58 @@ public class VistaSolicitud extends JDialog {
 		btnConfirmar.setBackground(Color.WHITE);
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selecF = table.getSelectedRow();
-				if (selecF < 0) {
-					JOptionPane.showMessageDialog(null, "No ha seleccionado a niguna persona", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
-					
-				} else {
-					try {
-						vacante.restCant();
-						Principal.getInstance().buscarPersonas(table.getModel().getValueAt(selecF, 3).toString()).setEstado(false);
-						Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).restCant();
-						Principal.getInstance().dataSalida();
-						JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
-						if(Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).getCant() == 0) {
-							vacante.setEstado(false);
-							Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).setEstado(false);
-							JOptionPane.showMessageDialog(null, "La solicitud vacante ha sido completada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+					int selecF = table.getSelectedRow();
+					if(selecF > -1 && !(vacante.VacanteRepite(table.getModel().getValueAt(selecF, 3).toString()))) {
+					if (selecF < 0) {
+						JOptionPane.showMessageDialog(null, "No ha seleccionado a niguna persona", "Advertencia", JOptionPane.INFORMATION_MESSAGE, null);
+						
+					} else {
+						try {
+							//vacante.restCant();
+							Principal.getInstance().buscarPersonas(table.getModel().getValueAt(selecF, 3).toString()).setEstado(false);
+							Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).restCant();
+							Principal.getInstance().dataSalida();
+							JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+							if(Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).getCant() == 0) {
+								vacante.setEstado(false);
+								Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).setEstado(false);
+								JOptionPane.showMessageDialog(null, "La solicitud vacante ha sido completada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+								int ind = 0;
+								for(Vacante vac:empresa.getMisVacantes()) {
+									
+									for(Persona aux:vac.getPersonas()) {
+										if(aux.getEstado() == false && vac.getEstado() && vac.getCodigo() != vacante.getCodigo()) {
+											vac.cancelar(ind);
+											break;
+										}
+										ind++;
+									}
+									ind = 0;
+									
+									
+								}
+							}
+							
+							
+							
+							Principal.getInstance().dataSalida();
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
 						
-						Principal.getInstance().dataSalida();
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						}
 					}
-					
+					else {
+						JOptionPane.showMessageDialog(null, "Esta persona ya esta contratada", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
+					}
 				}
-			}
 		});
 		
 				

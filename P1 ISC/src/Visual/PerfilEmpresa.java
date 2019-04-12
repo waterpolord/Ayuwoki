@@ -154,15 +154,6 @@ public class PerfilEmpresa extends JFrame {
 				list.setSelectionBackground(Color.blue);
 				
 				for(Vacante vac:empresa.getMisVacantes()) {
-					
-					for(Persona aux:vac.getPersonas()) {
-						if(aux.getEstado() == false && vac.getEstado()) {
-							vac.cancelar(ind);
-							break;
-						}
-						ind++;
-					}
-					ind = 0;
 					lista.add(i,"Codigo: "+vac.getCodigo()+" Puesto: "+vac.getPuesto()+" Tipo: "+vac.getTipoPersonal()+" ("+vac.getCant()+")"+"\n\n");
 					i++;
 					
@@ -205,6 +196,12 @@ public class PerfilEmpresa extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(comboBox.getSelectedIndex() == 1) {
+					PaginaEmpresa pag = new PaginaEmpresa(empresa);
+					pag.setModal(true);
+					pag.setVisible(true);
+					
+				}
 				if(comboBox.getSelectedIndex() == 2) {
 					try {
 						Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setSesion(false);;
@@ -974,7 +971,7 @@ public class PerfilEmpresa extends JFrame {
 					String var = list.getSelectedValue().toString().substring(8,12);
 					int code = Integer.parseInt(var);
 					Vacante aux = empresa.BuscarVacantes(code);
-					VistaSolicitud view = new VistaSolicitud(aux,empresa.getNombre(),empresa.getCorreo());
+					VistaSolicitud view = new VistaSolicitud(aux,empresa.getNombre(),empresa.getCorreo(),empresa);
 					view.setModal(true);
 					view.setVisible(true);
 				}

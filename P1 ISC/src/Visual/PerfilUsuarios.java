@@ -43,6 +43,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class PerfilUsuarios extends JFrame {
@@ -328,6 +330,15 @@ public class PerfilUsuarios extends JFrame {
 		modelo1 = new DefaultListModel();
 		
 		Lista = new JList();
+		Lista.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(Lista.getSelectedIndex() > -1) {
+					String selec = Lista.getSelectedValue().toString();
+					
+				}
+			}
+		});
 		Lista.setVisible(false);
 		Lista.setModel(modelo1);
 		

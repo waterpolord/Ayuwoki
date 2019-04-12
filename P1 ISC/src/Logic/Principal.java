@@ -310,6 +310,16 @@ public class Principal implements Serializable{
 		
 		return lista;
 	}
+	
+	public int getPersonasDisponibles() {
+		int cant = 0;
+		for(Persona aux:Tpersonas) {
+			if(aux.getEstado()) {
+				cant++;
+			}
+		}
+		return cant;
+	}
 
 }
 

@@ -185,7 +185,7 @@ public class Vacante implements Serializable{
 	
 	public Boolean VacanteRepite(String txt) {
 		for(Persona aux:Solicitantes ) {
-			if(aux.correo.equalsIgnoreCase(txt)) {
+			if(aux.correo.equalsIgnoreCase(txt) && aux.estado == false) {
 				return true;
 			}
 		}
