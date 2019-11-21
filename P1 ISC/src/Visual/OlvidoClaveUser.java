@@ -8,7 +8,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Logic.Empresa;
 import Logic.Persona;
 import Logic.Principal;
 
@@ -20,9 +19,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.SystemColor;
 
-public class OlvidoContraseñaEmpresa extends JDialog {
+public class OlvidoClaveUser extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPasswordField pass;
@@ -33,7 +31,7 @@ public class OlvidoContraseñaEmpresa extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public OlvidoContraseñaEmpresa(Empresa empre) {
+	public OlvidoClaveUser(Persona user) {
 		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -68,16 +66,15 @@ public class OlvidoContraseñaEmpresa extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Confirmar");
-				okButton.setBackground(SystemColor.activeCaption);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String Pass = new String(pass.getPassword()),
 								PassC = new String(confirm.getPassword());
 						if(Pass.length() > 3 && Pass.equalsIgnoreCase(PassC)) {
-							empre.setClave(Pass);
+							user.setClave(Pass);
 							try {
 								Principal.getInstance().dataSalida();
-								JOptionPane.showMessageDialog(null,"Contraseña guardada con exito","Guardado",1);
+								JOptionPane.showMessageDialog(null,"Contraseï¿½a guardada con exito","Guardado",1);
 								dispose();
 							} catch (ClassNotFoundException | IOException e1) {
 								// TODO Auto-generated catch block
@@ -95,7 +92,6 @@ public class OlvidoContraseñaEmpresa extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setBackground(SystemColor.activeCaption);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

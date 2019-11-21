@@ -406,13 +406,13 @@ public class Inicio extends JFrame {
 				try {
 					if(Principal.getInstance().existeUser(Correo)) {
 						Persona user = Principal.getInstance().buscarPersonas(Correo);
-						OlvidoContraseñauser nueva = new  OlvidoContraseñauser(user);
+						OlvidoClaveUser nueva = new  OlvidoClaveUser(user);
 						nueva.setModal(true);
 						nueva.setVisible(true);
 					}
 					else if(Principal.getInstance().existeEmpresa(Correo)) {
 						Empresa empre = Principal.getInstance().buscarEmpresas(Correo);
-						OlvidoContraseñaEmpresa nueva = new  OlvidoContraseñaEmpresa(empre);
+						OlvidoClaveEmpresa nueva = new  OlvidoClaveEmpresa(empre);
 						nueva.setModal(true);
 						nueva.setVisible(true);
 					}
