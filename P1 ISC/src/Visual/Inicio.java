@@ -430,6 +430,7 @@ public class Inicio extends JFrame {
 			}
 			public void ancestorMoved(AncestorEvent event) {
 			}
+                        @Override
 			public void ancestorRemoved(AncestorEvent event) {
 			}
 		});
