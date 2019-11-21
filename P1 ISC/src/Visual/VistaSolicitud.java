@@ -64,7 +64,7 @@ public class VistaSolicitud extends JDialog {
 							if(aux instanceof Universitario) {
 								encontrado[2] = ((Universitario) aux).getCarrera();
 							}
-							if(aux instanceof Tecnico) {
+							if(aux instanceof Tecnico) { 
 								encontrado[2] = ((Tecnico) aux).getEspecialidad();
 							}
 							if(aux instanceof Obrero) {
