@@ -59,7 +59,7 @@ public class VistaSolicitud extends JDialog {
 					if(vacante.getCantSolicitantes() > 0) {
 						for(Persona aux:vacante.getPersonas()) {
 							encontrado[0] = aux.getNombre();
-							encontrado[1] = aux.getApellido();
+							encontrado[1] = aux.getPrimerApellido();
 							encontrado[3] = aux.getCorreo();
 							if(aux instanceof Universitario) {
 								encontrado[2] = ((Universitario) aux).getCarrera();
@@ -77,7 +77,7 @@ public class VistaSolicitud extends JDialog {
 				else {
 					for(Persona aux:vacante.getPersonas()) {
 						encontrado[0] = aux.getNombre();
-						encontrado[1] = aux.getApellido();
+						encontrado[1] = aux.getPrimerApellido();
 						encontrado[3] = aux.getCorreo();
 						if(aux instanceof Universitario) {
 							encontrado[2] = ((Universitario) aux).getCarrera();
@@ -209,7 +209,7 @@ public class VistaSolicitud extends JDialog {
 									table.removeAll();
 									for(Persona vac:vacante.getPersonas()) {
 										encontrado[0] = vac.getNombre();
-										encontrado[1] = vac.getApellido();
+										encontrado[1] = vac.getPrimerApellido();
 										encontrado[3] = vac.getCorreo();
 										
 										if(aux instanceof Universitario) {
@@ -239,7 +239,7 @@ public class VistaSolicitud extends JDialog {
 								table.removeAll();
 								for(Persona vac:vacante.getPersonas()) {
 									encontrado[0] = vac.getNombre();
-									encontrado[1] = vac.getApellido();
+									encontrado[1] = vac.getPrimerApellido();
 									encontrado[3] = vac.getCorreo();
 									if(aux instanceof Universitario) {
 										encontrado[2] = ((Universitario) aux).getCarrera();
@@ -268,7 +268,7 @@ public class VistaSolicitud extends JDialog {
 								table.removeAll();
 								for(Persona vac:vacante.getPersonas()) {
 									encontrado[0] = vac.getNombre();
-									encontrado[1] = vac.getApellido();
+									encontrado[1] = vac.getPrimerApellido();
 									encontrado[3] = vac.getCorreo();
 									if(aux instanceof Universitario) {
 										encontrado[2] = ((Universitario) aux).getCarrera();

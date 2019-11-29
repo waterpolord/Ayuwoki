@@ -460,13 +460,14 @@ public class Inicio extends JFrame {
                                                                     Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
                                                                     ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
                                                                     ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
+                                                        Date fecha = null;  
+                                                        ArrayList<String> mishab = new ArrayList();
 							if(esta == true) {
 								JOptionPane.showMessageDialog(null,"Este correo ya estÃƒÂ¡ en uso","Correo Repetido", 0);
 							}
 							else if(esta == false) {
 								
-                                                                Date fecha = null;  
-                                                                ArrayList<String> mishab = new ArrayList();
+                                                                
 								if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
 									Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha,txtCorreo.getText(), pass,true,"Pais",mishab);
 									try {
@@ -483,8 +484,8 @@ public class Inicio extends JFrame {
 									JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
 								}
 								if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
-									Tecnico nuevo = new Tecnico(nom1,txtApellido.getText(), 
-											txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+									Tecnico nuevo = new Tecnico(nom1,nom2,ape1,ape2,fecha, 
+											txtCorreo.getText(), pass,true,"Pais",mishab);
 									try {
 										Principal.getInstance().setTpersonas(nuevo);
 									} catch (ClassNotFoundException | IOException e1) {
@@ -498,8 +499,8 @@ public class Inicio extends JFrame {
 									JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
 								}
 								if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
-									Universitario nuevo = new Universitario(nom1,txtApellido.getText(), 
-											txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+									Universitario nuevo = new Universitario(nom1,nom2,ape1,ape2,fecha, 
+											txtCorreo.getText(), pass,true,"Pais",mishab);
 									try {
 										Principal.getInstance().setTpersonas(nuevo);
 									} catch (ClassNotFoundException | IOException e1) {
@@ -551,7 +552,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBNoconfirm.setVisible(false);
 				LBConfirmver.setVisible(true);
-				txtpassconfirm.setEchoChar('●');
+				txtpassconfirm.setEchoChar('?');
 			}
 		});
 		LBNoconfirm.setForeground(Color.CYAN);
@@ -596,7 +597,7 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				LBOcultar.setVisible(false);
 				LBver.setVisible(true);
-				passwordContrasena.setEchoChar('●');
+				passwordContrasena.setEchoChar('?');
 			}
 		});
 		LBOcultar.setForeground(Color.CYAN);
@@ -887,9 +888,14 @@ public class Inicio extends JFrame {
 								}
 							}
 							else {
-                                                            
-								Obrero nuevo = new Obrero(textNombre.getText(),txtApellido.getText(), 
-										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
+                                                                String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 = 
+                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
+                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
+                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
+                                                                Date fecha = null;  
+                                                                ArrayList<String> mishab = new ArrayList();
+								Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha, 
+											txtCorreo.getText(), pass,true,"Pais",mishab);
 								try {
 									Principal.getInstance().setTpersonas(nuevo);
 								} catch (ClassNotFoundException | IOException e1) {
@@ -1189,14 +1195,20 @@ public class Inicio extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+                                                String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 = 
+                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
+                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
+                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
+                                                        Date fecha = null;  
+                                                        ArrayList<String> mishab = new ArrayList();
 						if(esta == true) {
 							JOptionPane.showMessageDialog(null,"Este correo ya estaÂ¡ en uso","Correo Repetido", 0);
 						}
 						else if(esta == false) {
 							String nom = textNombre.getText();
 							if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
-								Obrero nuevo = new Obrero(nom,txtApellido.getText(), 
-										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
+								Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha, 
+											txtCorreo.getText(), pass,true,"Pais",mishab);
 								try {
 									Principal.getInstance().setTpersonas(nuevo);
 								} catch (ClassNotFoundException | IOException e1) {
@@ -1222,8 +1234,8 @@ public class Inicio extends JFrame {
 								JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
 							}
 							if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
-								Tecnico nuevo = new Tecnico(nom,txtApellido.getText(), 
-										txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
+								Tecnico nuevo = new Tecnico(nom1,nom2,ape1,ape2,fecha, 
+											txtCorreo.getText(), pass,true,"Pais",mishab);
 								try {
 									Principal.getInstance().setTpersonas(nuevo);
 								} catch (ClassNotFoundException | IOException e1) {
@@ -1249,8 +1261,8 @@ public class Inicio extends JFrame {
 								JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
 							}
 							if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
-								Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
-										txtCorreo.getText(), pass,true,CBXCarreras.getSelectedItem().toString());
+								Universitario nuevo = new Universitario(nom1,nom2,ape1,ape2,fecha, 
+											txtCorreo.getText(), pass,true,"Pais",mishab);
 								try {
 									Principal.getInstance().setTpersonas(nuevo);
 								} catch (ClassNotFoundException | IOException e1) {
@@ -1385,7 +1397,7 @@ public class Inicio extends JFrame {
  	}
  	
  	public void generarBarras() {
- 		DefaultCategoryDataset ds = new DefaultCategoryDataset();
+ 	/*	DefaultCategoryDataset ds = new DefaultCategoryDataset();
  		JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "Cantidad", ds,PlotOrientation.VERTICAL, 
  				true,true,true);
 
@@ -1402,7 +1414,7 @@ public class Inicio extends JFrame {
  		if(rbnUniversitarios.isSelected()) {
  			int ind = 0;
  			for(Persona aux:Principal.getInstance().getTpersonas()) {
- 				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Universitario) aux).getCarrera())) {
+ 				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Universitario) aux).getCarreras())) {
  					ind++;
  				}
  				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
@@ -1465,10 +1477,9 @@ public class Inicio extends JFrame {
 	 		panel_3.removeAll();
 	 		panel_3.add(f,BorderLayout.CENTER);
 	 		panel_3.validate();	
- 		}
+ 		}*/
 
  		
  	}
 }
-
 
