@@ -46,6 +46,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -55,6 +57,8 @@ import java.sql.Date;
 import javax.swing.JCheckBox;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JList;
 
 public class Inicio extends JFrame {
 
@@ -127,6 +131,16 @@ public class Inicio extends JFrame {
 	private JPanel panel_5;
 	private JComboBox<?> cbxGraficas;
 	private JLabel lbContra;
+	private JList listUniversitario;
+	private DefaultListModel modeloUniversitario = new DefaultListModel();
+	private JList listEspecialidad;
+	private DefaultListModel modeloEspecialidad = new DefaultListModel();
+	private JList listHabilidades;
+	private DefaultListModel modeloHabilidades = new DefaultListModel();
+	private JButton btnQuitarHabilidades;
+	private JButton btnAgregarCarrera;
+	private JButton btnAgregarEspecialidad;
+	private JButton btnAgregarHabilidad;
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
@@ -523,7 +537,7 @@ public class Inicio extends JFrame {
 	    		}
 	    	}
 	    });
-		PanelUser.setBounds(170, 107, 648, 400);
+		PanelUser.setBounds(170, 107, 760, 400);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelUser);
@@ -534,7 +548,7 @@ public class Inicio extends JFrame {
 		panel_1.setForeground(Color.WHITE);
 		
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_1.setBounds(82, 11, 533, 192);
+		panel_1.setBounds(82, 11, 592, 192);
 		panel_1.setBackground(new Color(119, 136, 153));
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
@@ -733,11 +747,21 @@ public class Inicio extends JFrame {
 		LBIgualdad.setVisible(false);
 		panel_1.add(LBIgualdad);
 		
+		JDateChooser jdcFecha = new JDateChooser();
+		jdcFecha.setDateFormatString("dd-MM-yyyy");
+		jdcFecha.setBounds(465, 92, 117, 20);
+		panel_1.add(jdcFecha);
+		
+		JLabel lblFechaNacimiento = new JLabel("Fecha de nacimiento:");
+		lblFechaNacimiento.setForeground(Color.WHITE);
+		lblFechaNacimiento.setBounds(465, 67, 117, 14);
+		panel_1.add(lblFechaNacimiento);
+		
 		panel_2 = new JPanel();
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panel_2.setBounds(82, 204, 533, 47);
+		panel_2.setBounds(82, 204, 592, 47);
 		panel_2.setBackground(new Color(119, 136, 153));
 		PanelUser.add(panel_2);
 		
@@ -796,7 +820,7 @@ public class Inicio extends JFrame {
 		panelUniversitario.setForeground(Color.WHITE);
 		panelUniversitario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Universitario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelUniversitario.setBackground(new Color(119, 136, 153));
-		panelUniversitario.setBounds(82, 248, 533, 81);
+		panelUniversitario.setBounds(82, 248, 592, 81);
 		PanelUser.add(panelUniversitario);
 		
 		labelCarrera = new JLabel("Carrera:");
@@ -813,13 +837,38 @@ public class Inicio extends JFrame {
 		CBXCarreras.setBounds(78, 34, 251, 25);
 		panelUniversitario.add(CBXCarreras);
 		
+		listUniversitario = new JList();
+		listUniversitario.setBounds(339, 21, 159, 49);
+		panelUniversitario.add(listUniversitario);
+		listUniversitario.setModel(modeloUniversitario);
+		
+		btnAgregarCarrera = new JButton("Agregar");
+		btnAgregarCarrera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor = (String) CBXCarreras.getSelectedItem();
+				modeloUniversitario.addElement(valor);
+			}
+		});
+		btnAgregarCarrera.setBounds(508, 17, 74, 23);
+		panelUniversitario.add(btnAgregarCarrera);
+		
+		JButton btnQuitarCarrera = new JButton("Quitar");
+		btnQuitarCarrera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int posicion = listUniversitario.getSelectedIndex();
+				modeloUniversitario.remove(posicion);
+			}
+		});
+		btnQuitarCarrera.setBounds(508, 47, 74, 23);
+		panelUniversitario.add(btnQuitarCarrera);
+		
 		panelTecnico = new JPanel();
 		panelTecnico.setVisible(false);
 		panelTecnico.setLayout(null);
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelTecnico.setBackground(new Color(95, 158, 160));
-		panelTecnico.setBounds(82, 248, 533, 81);
+		panelTecnico.setBounds(82, 248, 592, 81);
 		PanelUser.add(panelTecnico);
 		
 		labelEspecialidad = new JLabel("Especialidad:");
@@ -832,13 +881,38 @@ public class Inicio extends JFrame {
 		CBXEspecialidad.setBounds(78, 34, 251, 25);
 		panelTecnico.add(CBXEspecialidad);
 		
+		listEspecialidad = new JList();
+		listEspecialidad.setBounds(339, 21, 159, 49);
+		panelTecnico.add(listEspecialidad);
+		listEspecialidad.setModel(modeloEspecialidad);
+		
+		btnAgregarEspecialidad = new JButton("Agregar");
+		btnAgregarEspecialidad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor = (String) CBXEspecialidad.getSelectedItem();
+				modeloEspecialidad.addElement(valor);
+			}
+		});
+		btnAgregarEspecialidad.setBounds(508, 17, 74, 23);
+		panelTecnico.add(btnAgregarEspecialidad);
+		
+		JButton btnQuitarEspecialidad = new JButton("Quitar");
+		btnQuitarEspecialidad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int posicion = listEspecialidad.getSelectedIndex();
+				modeloEspecialidad.remove(posicion);
+			}
+		});
+		btnQuitarEspecialidad.setBounds(508, 47, 74, 23);
+		panelTecnico.add(btnQuitarEspecialidad);
+		
 		panelObrero = new JPanel();
 		panelObrero.setVisible(false);
 		panelObrero.setLayout(null);
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
 		panelObrero.setBackground(new Color(95, 158, 160));
-		panelObrero.setBounds(82, 248, 533, 81);
+		panelObrero.setBounds(82, 248, 592, 81);
 		PanelUser.add(panelObrero);
 		
 		labelHabilidad = new JLabel("Habilidades:");
@@ -849,7 +923,7 @@ public class Inicio extends JFrame {
 		
 		CBXHabilidad = new JComboBox();
 		CBXHabilidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Creativo", "Comunicativo", "Adaptable", "Trabajo en Equipo" }));
-		CBXHabilidad.setBounds(78, 34, 251, 25);
+		CBXHabilidad.setBounds(78, 15, 251, 25);
 		panelObrero.add(CBXHabilidad);
 		
 		btnMasHabilidades = new JButton("Agregar");
@@ -914,8 +988,33 @@ public class Inicio extends JFrame {
 					}
 			}
 		});
-		btnMasHabilidades.setBounds(350,34,100,25);
+		btnMasHabilidades.setBounds(80,45,100,25);
 		panelObrero.add(btnMasHabilidades);
+		
+		listHabilidades = new JList();
+		listHabilidades.setBounds(339, 21, 159, 49);
+		panelObrero.add(listHabilidades);
+		listHabilidades.setModel(modeloHabilidades);
+		
+		btnAgregarHabilidad = new JButton("Agregar");
+		btnAgregarHabilidad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valor = (String) CBXHabilidad.getSelectedItem();
+				modeloHabilidades.addElement(valor);
+			}
+		});
+		btnAgregarHabilidad.setBounds(508, 17, 74, 23);
+		panelObrero.add(btnAgregarHabilidad);
+		
+		btnQuitarHabilidades = new JButton("Quitar");
+		btnQuitarHabilidades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int posicion = listHabilidades.getSelectedIndex();
+				modeloHabilidades.remove(posicion);
+			}
+		});
+		btnQuitarHabilidades.setBounds(508, 47, 74, 23);
+		panelObrero.add(btnQuitarHabilidades);
 	
 		
 		JPanel panel_4 = new JPanel();
@@ -1308,7 +1407,7 @@ public class Inicio extends JFrame {
 				setVisible(true);
 			}
 		});
-		btnCancelarUsuario.setBounds(430, 357, 89, 23);
+		btnCancelarUsuario.setBounds(475, 357, 89, 23);
 		PanelUser.add(btnCancelarUsuario);
 		
 		panel_3 = new JPanel();

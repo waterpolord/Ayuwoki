@@ -320,9 +320,9 @@ public class PerfilUsuarios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		modelo1 = new DefaultListModel();
-		String user = "";
+		ArrayList<String> user = null;
 		if(persona instanceof Universitario ) {
-			user = ((Universitario) persona).getCarrera();
+			user = ((Universitario) persona).getCarreras();
 		}
 		if(persona instanceof Tecnico ) {
 			user = ((Tecnico) persona).getEspecialidad();
@@ -517,7 +517,7 @@ public class PerfilUsuarios extends JFrame {
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
 							if(vac.getEstado()) {
 								if(persona instanceof Universitario ) {
-									if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarrera())) {
+									if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarreras())) {
 										if(vac.aplicaHabilidades(persona.getSolicitud())) {
 											if(vac.getCantInicial() != vac.getCantSolicitantes()) {
 												try {

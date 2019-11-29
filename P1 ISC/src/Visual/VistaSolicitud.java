@@ -62,7 +62,7 @@ public class VistaSolicitud extends JDialog {
 							encontrado[1] = aux.getPrimerApellido();
 							encontrado[3] = aux.getCorreo();
 							if(aux instanceof Universitario) {
-								encontrado[2] = ((Universitario) aux).getCarrera();
+								encontrado[2] = ((Universitario) aux).getCarreras();
 							}
 							if(aux instanceof Tecnico) { 
 								encontrado[2] = ((Tecnico) aux).getEspecialidad();
@@ -80,7 +80,7 @@ public class VistaSolicitud extends JDialog {
 						encontrado[1] = aux.getPrimerApellido();
 						encontrado[3] = aux.getCorreo();
 						if(aux instanceof Universitario) {
-							encontrado[2] = ((Universitario) aux).getCarrera();
+							encontrado[2] = ((Universitario) aux).getCarreras();
 						}
 						if(aux instanceof Tecnico) {
 							encontrado[2] = ((Tecnico) aux).getEspecialidad();
@@ -213,7 +213,7 @@ public class VistaSolicitud extends JDialog {
 										encontrado[3] = vac.getCorreo();
 										
 										if(aux instanceof Universitario) {
-											encontrado[2] = ((Universitario) aux).getCarrera();
+											encontrado[2] = ((Universitario) aux).getCarreras();
 										}
 										if(aux instanceof Tecnico) {
 											encontrado[2] = ((Tecnico) aux).getEspecialidad();
@@ -227,7 +227,7 @@ public class VistaSolicitud extends JDialog {
 								}
 							}
 						if(aux instanceof Universitario && vacante.getPuesto().equalsIgnoreCase("Universitario") &&
-								((Universitario) aux).getCarrera().equalsIgnoreCase(vacante.getTipoPersonal())) {
+								((Universitario) aux).getCarreras().equalsIgnoreCase(vacante.getTipoPersonal())) {
 							Object[] encontrado = new Object[4];
 							if(vacante.aplicaHabilidades(aux.getSolicitud()) ) {
 								try {
@@ -242,7 +242,7 @@ public class VistaSolicitud extends JDialog {
 									encontrado[1] = vac.getPrimerApellido();
 									encontrado[3] = vac.getCorreo();
 									if(aux instanceof Universitario) {
-										encontrado[2] = ((Universitario) aux).getCarrera();
+										encontrado[2] = ((Universitario) aux).getCarreras();
 									}
 									if(aux instanceof Tecnico) {
 										encontrado[2] = ((Tecnico) aux).getEspecialidad();
@@ -271,7 +271,7 @@ public class VistaSolicitud extends JDialog {
 									encontrado[1] = vac.getPrimerApellido();
 									encontrado[3] = vac.getCorreo();
 									if(aux instanceof Universitario) {
-										encontrado[2] = ((Universitario) aux).getCarrera();
+										encontrado[2] = ((Universitario) aux).getCarreras();
 									}
 									if(aux instanceof Tecnico) {
 										encontrado[2] = ((Tecnico) aux).getEspecialidad();
