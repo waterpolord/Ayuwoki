@@ -377,7 +377,7 @@ public class Inicio extends JFrame {
 					LBIncorrecto.setVisible(true);
 				}
 				else {
-					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "Â¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
+					int Mensaje = JOptionPane.showConfirmDialog(rootPane, "¿No tienes cuenta?\n Registrate ya!", "No encontrado", 1);
 					if(Mensaje == JOptionPane.OK_OPTION) {
 						
 						textNombre.setText("");
@@ -478,7 +478,7 @@ public class Inicio extends JFrame {
                                                         Date fecha = null;  
                                                         ArrayList<String> mishab = new ArrayList();
 							if(esta == true) {
-								JOptionPane.showMessageDialog(null,"Este correo ya estÃƒÂ¡ en uso","Correo Repetido", 0);
+								JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
 							}
 							else if(esta == false) {
 								
@@ -507,7 +507,7 @@ public class Inicio extends JFrame {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									}
-									JOptionPane.showMessageDialog(null,"Bienvenido "+nom1,"Usuario Creado Con Exito", 1);
+									JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom1,"Usuario Creado Con Exito", 1);
 									new PerfilUsuarios(nuevo).setVisible(true);
 								}
 								else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
@@ -533,7 +533,7 @@ public class Inicio extends JFrame {
 						
 					}
 					else {
-								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃƒÂ±a sea mayor que 4 caracteres.","Advertencia", 0);
+								JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
 					}
 	    		}
 	    	}
@@ -554,7 +554,7 @@ public class Inicio extends JFrame {
 		panel_1.setLayout(null);
 		PanelUser.add(panel_1);
 		
-		labelNombre = new JLabel("Nombre:");
+		labelNombre = new JLabel("Nombres:");
 		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setBounds(10, 11, 97, 14);
 		panel_1.add(labelNombre);
@@ -641,7 +641,7 @@ public class Inicio extends JFrame {
 		textNombre.setBounds(10, 36, 209, 20);
 		panel_1.add(textNombre);
 		
-		labelApellido = new JLabel("Apellido:");
+		labelApellido = new JLabel("Apellidos:");
 		labelApellido.setForeground(Color.WHITE);
 		labelApellido.setBounds(320, 11, 83, 14);
 		panel_1.add(labelApellido);
