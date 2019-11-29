@@ -139,6 +139,7 @@ public abstract class Persona implements Serializable,PersonaDAO{
 
     @Override
     public void Modificar(Persona Nuevo) throws Exception {
+    
     }
 
     @Override

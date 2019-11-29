@@ -3,6 +3,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 import Visual.Inicio;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class Principal implements Serializable{
@@ -41,7 +46,7 @@ public class Principal implements Serializable{
 		
 	}
 	public void dataSalida() throws IOException, ClassNotFoundException{
-    	File salida = new File("Bolsa.dat");
+                File salida = new File("Bolsa.dat");
 		FileOutputStream guardar;
 		guardar = new FileOutputStream(salida);
 		ObjectOutputStream archivoSalida = new ObjectOutputStream(guardar);
@@ -50,7 +55,7 @@ public class Principal implements Serializable{
     }
 	
 	public void dataEntrada() throws IOException, FileNotFoundException, ClassNotFoundException{
-    	File archivoEntrada = new File("Bolsa.dat");
+                File archivoEntrada = new File("Bolsa.dat");
 		if(archivoEntrada.exists()) {
 			FileInputStream file = new FileInputStream(archivoEntrada);
 			ObjectInputStream entrada = new ObjectInputStream(file);
@@ -62,12 +67,71 @@ public class Principal implements Serializable{
 			cantEmpresas = TEmpresas.size();
 			cantPersonas = Tpersonas.size();
 			entrada.close();
-		}
-			
-		
+		}	
     	
     }
-	
+        public void Obtener() throws ClassNotFoundException{
+            ResultSet cn,cn2;
+            int cod_persona = 1;
+            // Agregando personas a singleton
+            try {
+                cn = Conexion.Connect.Consulta("SELECT * FROM Persona");
+                while(cn.next()){
+                    Persona aux = new Persona(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4), cn.getDate(5),cn.getString(6),cn.getString(7), 
+                            cn.getBoolean(8),cn.getString(9)) {
+                        @Override
+                        public void RetornarPersonas() throws Exception {
+                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        }
+                    };
+                    Tpersonas.add(aux);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
+            }
+            try {
+                cn = Conexion.Connect.Consulta("SELECT * FROM Persona");
+                while(cn.next()){
+                    Persona aux = new Persona(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4), cn.getDate(5),cn.getString(6),cn.getString(7), 
+                            cn.getBoolean(8),cn.getString(9)) {
+                        @Override
+                        public void RetornarPersonas() throws Exception {
+                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        }
+                    };
+                    Tpersonas.add(aux);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
+            }
+            try {
+                cn = Conexion.Connect.Consulta("SELECT * FROM Empresa");
+                while(cn.next()){
+                    
+                    cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Empresa ON Empresa.cod_persona = "
+                            + "Persona.cod_persona '"
+                            +cn.getString(4)+"'");
+                    while(cn2.next()){
+                         cod_persona = cn2.getInt(1);
+                    }
+                    
+                    Empresa aux = new Empresa(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4), cn.getDate(5),cn.getString(6),cn.getString(7), 
+                            cn.getBoolean(8),cn.getString(9)) {
+                        @Override
+                        public void RetornarEmpresa() throws Exception {
+                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        }
+                    };
+                    Tpersonas.add(aux);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
+            }
+        }
+
 	public int getCantPerson() {
 		return cantPersonas;
 	}

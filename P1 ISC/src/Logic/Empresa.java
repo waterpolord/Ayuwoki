@@ -1,11 +1,12 @@
 package Logic;
 
+import Interfaces.EmpresaDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa implements Serializable{
+public class Empresa implements Serializable, EmpresaDAO{
 
 	private String Nombre;
 	private String descripcion;
@@ -107,5 +108,24 @@ public class Empresa implements Serializable{
 		}
 		return ind;
 	}
+
+    @Override
+    public void Registrar(Empresa Nuevo) throws Exception {
+    
+    
+    }
+
+    @Override
+    public void Modificar(Empresa Nuevo) throws Exception {
+    }
+
+    @Override
+    public void Eliminar(Empresa Nuevo) throws Exception {
+    }
+
+    @Override
+    public void RetornarEmpresa() throws Exception {
+   
+    }
 
 }

@@ -1329,7 +1329,7 @@ public class Inicio extends JFrame {
 					
 				}
 				else {
-							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃƒÂ±a sea mayor que 4 caracteres.","Advertencia", 0);
+							JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la clave sea mayor que 4 caracteres.","Advertencia", 0);
 				}
 				
 			}
