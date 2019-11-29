@@ -197,7 +197,7 @@ public class VistaSolicitud extends JDialog {
 					if(aux.getEstado()) {
 						if(aux.getSoli() == 1 && !(vacante.VacanteRepite(aux.getCorreo()))) {
 							if(aux instanceof Tecnico && vacante.getPuesto().equalsIgnoreCase("Tecnico") &&
-									((Tecnico) aux).getEspecialidad().equalsIgnoreCase(vacante.getTipoPersonal())) {
+									((Tecnico) aux).getSolicitud().getCualidad().equalsIgnoreCase(vacante.getTipoPersonal())) {
 								Object[] encontrado = new Object[4];
 								if(vacante.aplicaHabilidades(aux.getSolicitud())) {
 									try {
@@ -227,7 +227,7 @@ public class VistaSolicitud extends JDialog {
 								}
 							}
 						if(aux instanceof Universitario && vacante.getPuesto().equalsIgnoreCase("Universitario") &&
-								((Universitario) aux).getCarreras().equalsIgnoreCase(vacante.getTipoPersonal())) {
+								((Universitario) aux).getSolicitud().getCualidad().equalsIgnoreCase(vacante.getTipoPersonal())) {
 							Object[] encontrado = new Object[4];
 							if(vacante.aplicaHabilidades(aux.getSolicitud()) ) {
 								try {

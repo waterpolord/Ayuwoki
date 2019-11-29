@@ -2,6 +2,7 @@ package Visual;
 
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -43,6 +44,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class PerfilUsuarios extends JFrame {
@@ -97,7 +100,7 @@ public class PerfilUsuarios extends JFrame {
 	private ButtonGroup grupo;
 	private JButton BTNGuardar;
 	private ArrayList<Vacante> solicitudesEnTabla = new ArrayList();
-	
+	private JComboBox CBXaptitudes = new JComboBox();
 
 	public PerfilUsuarios(Persona persona) {
 		addWindowListener(new WindowAdapter() {
@@ -280,6 +283,10 @@ public class PerfilUsuarios extends JFrame {
 					lb9.setText("9.¿Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.¿Trabajas bien en equipo?");
 					
+					for (String aux : ((Universitario) persona).getCarreras()) {
+						CBXaptitudes.addItem(aux);
+					}
+	
 				}
 				if(persona instanceof Obrero ) {
 					lb1.setText("1.¿Ha realizado cursos de formación?");
@@ -292,7 +299,9 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.¿Posee Experiencia de trabajos anteriores?");
 					lb9.setText("9.¿Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.¿Trabajas bien en equipo?");
-					
+					for (String aux : ((Obrero) persona).getHabilidades()) {
+						CBXaptitudes.addItem(aux);
+					}
 				}
 				if(persona instanceof Tecnico) {
 					lb1.setText("1.¿Habla otro idioma?");
@@ -305,7 +314,9 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.¿Posee Experiencia de trabajos anteriore?");
 					lb9.setText("9.¿Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.¿Trabajas bien en equipo?");
-					
+					for (String aux : ((Tecnico) persona).getEspecialidad()) {
+						CBXaptitudes.addItem(aux);
+					}
 				}
 			}
 		});
@@ -320,22 +331,22 @@ public class PerfilUsuarios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		modelo1 = new DefaultListModel();
-		ArrayList<String> user = null;
+		String user = null;
 		if(persona instanceof Universitario ) {
-			user = ((Universitario) persona).getCarreras();
+			user = CBXaptitudes.getSelectedItem().toString();
 		}
 		if(persona instanceof Tecnico ) {
-			user = ((Tecnico) persona).getEspecialidad();
+			user = CBXaptitudes.getSelectedItem().toString();
 		}
 		if(persona instanceof Obrero  ) {
-			user = ((Obrero) persona).getHabilidades().get(0);
+			user = CBXaptitudes.getSelectedItem().toString();
 		}
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),user, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(new Color(119, 136, 153));
 		
-		JLabel label = new JLabel(persona.getNombre()+" "+persona.getApellido()+" "+persona.getCorreo());
+		JLabel label = new JLabel(persona.getNombre()+" "+persona.getPrimerApellido()+" "+persona.getCorreo());
 		label.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 13));
 		label.setBounds(10, 44, 299, 14);
 		panel.add(label);
@@ -500,7 +511,7 @@ public class PerfilUsuarios extends JFrame {
 					num = 1;
 				}
 				if(num == 0) {
-					Empleo nuevo = new Empleo(valores,monto);
+					Empleo nuevo = new Empleo(valores,monto,CBXaptitudes.getSelectedItem().toString());
 					try {
 						persona.setSolicitud(nuevo);
 					} catch (FileNotFoundException e2) {
@@ -517,7 +528,7 @@ public class PerfilUsuarios extends JFrame {
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
 							if(vac.getEstado()) {
 								if(persona instanceof Universitario ) {
-									if(vac.getTipoPersonal().equalsIgnoreCase(((Universitario) persona).getCarreras())) {
+									if(vac.getTipoPersonal().equalsIgnoreCase(CBXaptitudes.getSelectedItem().toString())) {
 										if(vac.aplicaHabilidades(persona.getSolicitud())) {
 											if(vac.getCantInicial() != vac.getCantSolicitantes()) {
 												try {
@@ -542,7 +553,7 @@ public class PerfilUsuarios extends JFrame {
 									}
 								}
 								if(persona instanceof Tecnico ) {
-									if(vac.getTipoPersonal().equalsIgnoreCase(((Tecnico) persona).getEspecialidad())) {
+									if(vac.getTipoPersonal().equalsIgnoreCase(CBXaptitudes.getSelectedItem().toString())) {
 										if(vac.aplicaHabilidades(persona.getSolicitud())) {
 											if(vac.getCantSolicitantes() != vac.getCantInicial()) {
 												try {
@@ -843,11 +854,10 @@ public class PerfilUsuarios extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(89)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 							.addGap(35)
@@ -857,6 +867,16 @@ public class PerfilUsuarios extends JFrame {
 						.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))
 					.addGap(139))
 		);
+		
+		
+		CBXaptitudes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		CBXaptitudes.setBounds(10, 141, 100, 20);
+		panel_2.add(CBXaptitudes);
 		contentPane.setLayout(gl_contentPane);
 		if(persona.getSoli() == 1) {
 			setPreguntas(persona.getSolicitud().getHab(),persona.getSolicitud().getMonto());}

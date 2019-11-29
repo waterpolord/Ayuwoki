@@ -358,7 +358,7 @@ public class PerfilEmpresa extends JFrame {
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
 							if(aux.getSoli() == 1 && aux.getEstado())
 								if(nueva.getCantInicial() != nueva.getCantSolicitantes())
-									if(aux instanceof Universitario  && ((Universitario) aux).getCarreras().equalsIgnoreCase(nueva.getTipoPersonal())) {
+									if(aux instanceof Universitario  && ((Universitario) aux).getSolicitud().getCualidad().equalsIgnoreCase(nueva.getTipoPersonal())) {
 										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
 											try {
 												nueva.solicitar(aux);
@@ -543,7 +543,7 @@ public class PerfilEmpresa extends JFrame {
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
 							if(nueva.getCantInicial() != nueva.getCantSolicitantes())
 								if(aux.getSoli() == 1)
-									if(aux instanceof Tecnico && ((Tecnico) aux).getEspecialidad().equalsIgnoreCase(nueva.getTipoPersonal())) {
+									if(aux instanceof Tecnico && ((Tecnico) aux).getSolicitud().getCualidad().equalsIgnoreCase(nueva.getTipoPersonal())) {
 										if(nueva.aplicaHabilidades(aux.getSolicitud())) {
 											try {
 												nueva.solicitar(aux);

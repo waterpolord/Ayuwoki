@@ -58,6 +58,8 @@ import javax.swing.JCheckBox;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+
 import javax.swing.JList;
 
 public class Inicio extends JFrame {
@@ -101,7 +103,6 @@ public class Inicio extends JFrame {
 	private ButtonGroup grupoEstado;
 	private ButtonGroup grupoTipo;
 	private ButtonGroup grupoGraficas;
-	private JButton btnMasHabilidades;
 	private JPanel panelUniversitario;
 	private JLabel labelCarrera;
 	private JPanel panelTecnico;
@@ -748,6 +749,8 @@ public class Inicio extends JFrame {
 		panel_1.add(LBIgualdad);
 		
 		JDateChooser jdcFecha = new JDateChooser();
+		JTextFieldDateEditor editor = (JTextFieldDateEditor) jdcFecha.getDateEditor();
+		editor.setEditable(false);
 		jdcFecha.setDateFormatString("dd-MM-yyyy");
 		jdcFecha.setBounds(465, 92, 117, 20);
 		panel_1.add(jdcFecha);
@@ -838,7 +841,7 @@ public class Inicio extends JFrame {
 		panelUniversitario.add(CBXCarreras);
 		
 		listUniversitario = new JList();
-		listUniversitario.setBounds(339, 21, 159, 49);
+		listUniversitario.setBounds(339, 21, 150, 49);
 		panelUniversitario.add(listUniversitario);
 		listUniversitario.setModel(modeloUniversitario);
 		
@@ -849,7 +852,7 @@ public class Inicio extends JFrame {
 				modeloUniversitario.addElement(valor);
 			}
 		});
-		btnAgregarCarrera.setBounds(508, 17, 74, 23);
+		btnAgregarCarrera.setBounds(496, 17, 86, 23);
 		panelUniversitario.add(btnAgregarCarrera);
 		
 		JButton btnQuitarCarrera = new JButton("Quitar");
@@ -859,7 +862,7 @@ public class Inicio extends JFrame {
 				modeloUniversitario.remove(posicion);
 			}
 		});
-		btnQuitarCarrera.setBounds(508, 47, 74, 23);
+		btnQuitarCarrera.setBounds(496, 47, 86, 23);
 		panelUniversitario.add(btnQuitarCarrera);
 		
 		panelTecnico = new JPanel();
@@ -867,7 +870,7 @@ public class Inicio extends JFrame {
 		panelTecnico.setLayout(null);
 		panelTecnico.setForeground(Color.WHITE);
 		panelTecnico.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tecnico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelTecnico.setBackground(new Color(95, 158, 160));
+		panelTecnico.setBackground(new Color(119, 136, 153));
 		panelTecnico.setBounds(82, 248, 592, 81);
 		PanelUser.add(panelTecnico);
 		
@@ -882,7 +885,7 @@ public class Inicio extends JFrame {
 		panelTecnico.add(CBXEspecialidad);
 		
 		listEspecialidad = new JList();
-		listEspecialidad.setBounds(339, 21, 159, 49);
+		listEspecialidad.setBounds(339, 21, 150, 49);
 		panelTecnico.add(listEspecialidad);
 		listEspecialidad.setModel(modeloEspecialidad);
 		
@@ -893,7 +896,7 @@ public class Inicio extends JFrame {
 				modeloEspecialidad.addElement(valor);
 			}
 		});
-		btnAgregarEspecialidad.setBounds(508, 17, 74, 23);
+		btnAgregarEspecialidad.setBounds(496, 17, 86, 23);
 		panelTecnico.add(btnAgregarEspecialidad);
 		
 		JButton btnQuitarEspecialidad = new JButton("Quitar");
@@ -903,7 +906,7 @@ public class Inicio extends JFrame {
 				modeloEspecialidad.remove(posicion);
 			}
 		});
-		btnQuitarEspecialidad.setBounds(508, 47, 74, 23);
+		btnQuitarEspecialidad.setBounds(496, 47, 86, 23);
 		panelTecnico.add(btnQuitarEspecialidad);
 		
 		panelObrero = new JPanel();
@@ -911,7 +914,7 @@ public class Inicio extends JFrame {
 		panelObrero.setLayout(null);
 		panelObrero.setForeground(Color.WHITE);
 		panelObrero.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Obrero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255,255,255)));
-		panelObrero.setBackground(new Color(95, 158, 160));
+		panelObrero.setBackground(new Color(119, 136, 153));
 		panelObrero.setBounds(82, 248, 592, 81);
 		PanelUser.add(panelObrero);
 		
@@ -923,76 +926,11 @@ public class Inicio extends JFrame {
 		
 		CBXHabilidad = new JComboBox();
 		CBXHabilidad.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Creativo", "Comunicativo", "Adaptable", "Trabajo en Equipo" }));
-		CBXHabilidad.setBounds(78, 15, 251, 25);
+		CBXHabilidad.setBounds(78, 34, 251, 25);
 		panelObrero.add(CBXHabilidad);
 		
-		btnMasHabilidades = new JButton("Agregar");
-		btnMasHabilidades.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-					Boolean esta = false;
-					String passC = new String(txtpassconfirm.getPassword()),
-							pass = new String(passwordContrasena.getPassword());
-					if(textNombre.getText().length() > 2 && txtCorreo.getText().length() > 4 
-							&& txtApellido.getText().length() > 1  && pass.equals(passC) && pass.length() > 3) {
-						if(CBXHabilidad.getSelectedIndex() > 0) {
-							if(Principal.getInstance().getCantPerson() > 0) {
-								try {
-									esta = Principal.getInstance().existeUser(txtCorreo.getText());
-								} catch (ClassNotFoundException | IOException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-							}
-							if(esta == true) {
-								Persona aux = null;
-								try {
-									aux = Principal.getInstance().buscarPersonas(txtCorreo.getText());
-								} catch (ClassNotFoundException | IOException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								if( !(((Obrero) aux).HabilidadExiste(CBXHabilidad.getSelectedItem().toString()))) {
-									((Obrero) aux).setHabilidades(CBXHabilidad.getSelectedItem().toString());
-									JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito y el \n usuario se creÃƒÂ³ con exito, pero puedes seguir agregando habilidades","Agregado", 1);
-									
-								}
-								else {
-									JOptionPane.showMessageDialog(null,"Esta habilidad ya la seleccionaste ","Advertencia", 0);
-								}
-							}
-							else {
-                                                                String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 = 
-                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
-                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
-                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
-                                                                Date fecha = null;  
-                                                                ArrayList<String> mishab = new ArrayList();
-								Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha, 
-											txtCorreo.getText(), pass,true,"Pais",mishab);
-								try {
-									Principal.getInstance().setTpersonas(nuevo);
-								} catch (ClassNotFoundException | IOException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								JOptionPane.showMessageDialog(null,"Habilidad Agregada Con Exito ","Agregado", 1);
-							}
-						}
-						else {
-							JOptionPane.showMessageDialog(null,"Selecciona una Habilidad","Advertencia", 0);
-						}
-					}
-					else {
-						JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseÃƒÂ±a sea mayor que 4 caracteres.","Advertencia", 0);
-					}
-			}
-		});
-		btnMasHabilidades.setBounds(80,45,100,25);
-		panelObrero.add(btnMasHabilidades);
-		
 		listHabilidades = new JList();
-		listHabilidades.setBounds(339, 21, 159, 49);
+		listHabilidades.setBounds(339, 21, 150, 49);
 		panelObrero.add(listHabilidades);
 		listHabilidades.setModel(modeloHabilidades);
 		
@@ -1003,7 +941,7 @@ public class Inicio extends JFrame {
 				modeloHabilidades.addElement(valor);
 			}
 		});
-		btnAgregarHabilidad.setBounds(508, 17, 74, 23);
+		btnAgregarHabilidad.setBounds(496, 17, 86, 23);
 		panelObrero.add(btnAgregarHabilidad);
 		
 		btnQuitarHabilidades = new JButton("Quitar");
@@ -1013,7 +951,7 @@ public class Inicio extends JFrame {
 				modeloHabilidades.remove(posicion);
 			}
 		});
-		btnQuitarHabilidades.setBounds(508, 47, 74, 23);
+		btnQuitarHabilidades.setBounds(496, 47, 86, 23);
 		panelObrero.add(btnQuitarHabilidades);
 	
 		
@@ -1264,7 +1202,7 @@ public class Inicio extends JFrame {
 		btnCancelarEmpresa.setBackground(Color.WHITE);
 		 btnCancelarEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					setVisible(true);
+					PanelEmpresa.setVisible(false);
 				}
 			});
 		btnCancelarEmpresa.setBounds(409, 365, 89, 23);
@@ -1404,7 +1342,7 @@ public class Inicio extends JFrame {
 		btnCancelarUsuario.setBackground(Color.WHITE);
 		 btnCancelarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(true);
+				PanelUser.setVisible(false);
 			}
 		});
 		btnCancelarUsuario.setBounds(475, 357, 89, 23);

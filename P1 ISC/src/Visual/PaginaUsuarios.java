@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Logic.Persona;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PaginaUsuarios extends JDialog {
 
@@ -31,6 +33,10 @@ public class PaginaUsuarios extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
