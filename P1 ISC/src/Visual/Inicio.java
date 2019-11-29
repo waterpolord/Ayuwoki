@@ -456,14 +456,15 @@ public class Inicio extends JFrame {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
+                                                        String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 = 
+                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
+                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
+                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
 							if(esta == true) {
 								JOptionPane.showMessageDialog(null,"Este correo ya estÃƒÂ¡ en uso","Correo Repetido", 0);
 							}
 							else if(esta == false) {
-								String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 = 
-                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
-                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
-                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
+								
                                                                 Date fecha = null;  
                                                                 ArrayList<String> mishab = new ArrayList();
 								if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
@@ -482,7 +483,7 @@ public class Inicio extends JFrame {
 									JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
 								}
 								if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
-									Tecnico nuevo = new Tecnico(nom,txtApellido.getText(), 
+									Tecnico nuevo = new Tecnico(nom1,txtApellido.getText(), 
 											txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
 									try {
 										Principal.getInstance().setTpersonas(nuevo);
@@ -490,14 +491,14 @@ public class Inicio extends JFrame {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									}
-									JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+									JOptionPane.showMessageDialog(null,"Bienvenido "+nom1,"Usuario Creado Con Exito", 1);
 									new PerfilUsuarios(nuevo).setVisible(true);
 								}
 								else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
 									JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
 								}
 								if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
-									Universitario nuevo = new Universitario(nom,txtApellido.getText(), 
+									Universitario nuevo = new Universitario(nom1,txtApellido.getText(), 
 											txtCorreo.getText(), pass,true,CBXEspecialidad.getSelectedItem().toString());
 									try {
 										Principal.getInstance().setTpersonas(nuevo);
@@ -505,7 +506,7 @@ public class Inicio extends JFrame {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									}
-									JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+									JOptionPane.showMessageDialog(null,"Bienvenido "+nom1,"Usuario Creado Con Exito", 1);
 									new PerfilUsuarios(nuevo).setVisible(true);
 								}
 								else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
@@ -886,6 +887,7 @@ public class Inicio extends JFrame {
 								}
 							}
 							else {
+                                                            
 								Obrero nuevo = new Obrero(textNombre.getText(),txtApellido.getText(), 
 										txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
 								try {
