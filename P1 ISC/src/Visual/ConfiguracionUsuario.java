@@ -143,7 +143,7 @@ public class ConfiguracionUsuario extends JDialog {
 		panelinfo.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		txtApellido = new JTextField(user.getApellido());
+		txtApellido = new JTextField(user.getPrimerApellido());
 		txtApellido.setEditable(false);
 		txtApellido.setBounds(188, 67, 116, 20);
 		panelinfo.add(txtApellido);
@@ -172,21 +172,21 @@ public class ConfiguracionUsuario extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String Pass = new String(pass.getPassword()),PassC = new String(passConfirm.getPassword());
 				if(txtApellido.getText().length() > 1 && txtNombre.getText().length() > 1 && Pass.equals(PassC)) {
-					user.setNombre(txtNombre.getText());
-					user.setApellido(txtApellido.getText());
+					user.setPrimerNombre(txtNombre.getText());
+					user.setPrimerApellido(txtApellido.getText());
 					if(Pass.length() > 3 && PassC.length() > 3) {
 						user.setClave(Pass);
 					}
 					try {
 						Principal.getInstance().dataSalida();
-						JOptionPane.showMessageDialog(null,"Cambios Guardados","Modificación aceptada",1);
+						JOptionPane.showMessageDialog(null,"Cambios Guardados","Modificaciï¿½n aceptada",1);
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null,"Revisa los campos y las contraseñas","Advertencia",0);
+					JOptionPane.showMessageDialog(null,"Revisa los campos y las contraseï¿½as","Advertencia",0);
 				}
 			}
 		});
@@ -218,7 +218,7 @@ public class ConfiguracionUsuario extends JDialog {
 		contentPanel.add(panelEstado);
 		panelEstado.setLayout(null);
 		
-		JLabel label_1 = new JLabel("¿Se encuentra desempleado?");
+		JLabel label_1 = new JLabel("ï¿½Se encuentra desempleado?");
 		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(10, 11, 419, 57);
 		panelEstado.add(label_1);
@@ -287,7 +287,7 @@ public class ConfiguracionUsuario extends JDialog {
  				ind++;
  			}
  		}
- 		ds.addValue(ind,"Tipos","Vacantes de empleo con mas de 80% de aceptación ("+ind+")");
+ 		ds.addValue(ind,"Tipos","Vacantes de empleo con mas de 80% de aceptaciï¿½n ("+ind+")");
 			ChartPanel f = new ChartPanel(jf);
 			
  		panelEstadistica.removeAll();

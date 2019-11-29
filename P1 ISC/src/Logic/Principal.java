@@ -16,7 +16,8 @@ public class Principal implements Serializable{
 	
 
 	public static void main(String args[]) {
-		new Inicio().setVisible(true); 
+            DividirSTR("Robert Felix",1);
+            //new Inicio().setVisible(true); 
 	}
 	
 	public Principal() {
@@ -320,6 +321,26 @@ public class Principal implements Serializable{
 		}
 		return cant;
 	}
+        
+        public static String DividirSTR(String cadena, int tipo){
+            String aux = null;
+            char letra;
+            if(tipo == 1){
+                for (int i = 0; i < cadena.length() || cadena.charAt(i) == ' '; i++) {
+
+                    if( cadena.charAt(i) == ' ' ){
+                        aux = cadena.substring(i,cadena.length());
+
+                    }
+
+                }
+            }
+            else{
+                
+            }
+            
+            return aux;
+        }
 
 }
 

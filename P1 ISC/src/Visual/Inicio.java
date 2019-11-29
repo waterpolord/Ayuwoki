@@ -51,6 +51,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
+import java.sql.Date;
 import javax.swing.JCheckBox;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
@@ -459,17 +460,22 @@ public class Inicio extends JFrame {
 								JOptionPane.showMessageDialog(null,"Este correo ya estÃƒÂ¡ en uso","Correo Repetido", 0);
 							}
 							else if(esta == false) {
-								String nom = textNombre.getText();
+								String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 = 
+                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2), 
+                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
+                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
+                                                                Date fecha = null;  
+                                                                ArrayList<String> mishab = new ArrayList();
 								if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
-									Obrero nuevo = new Obrero(nom,txtApellido.getText(), 
-											txtCorreo.getText(), pass,true,CBXHabilidad.getSelectedItem().toString());
+									Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha,txtCorreo.getText(), pass,true,"Pais",mishab);
 									try {
 										Principal.getInstance().setTpersonas(nuevo);
 									} catch (ClassNotFoundException | IOException e1) {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
+                                                                                JOptionPane.showMessageDialog(null,"Error ","No se pudo crear el usuario", 1);
 									}
-									JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
+									JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom1,"Usuario Creado Con Exito", 1);
 									new PerfilUsuarios(nuevo).setVisible(true);
 								}
 								else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
