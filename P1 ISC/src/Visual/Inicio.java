@@ -1503,7 +1503,7 @@ public class Inicio extends JFrame {
 	 		panel_3.add(f,BorderLayout.CENTER);
 	 		panel_3.validate();
  		}
- 		if(rbnUniversitarios.isSelected()) {
+ 		/*if(rbnUniversitarios.isSelected()) {
  			int ind = 0;
  			
  			ds.addValue(ind,"Universitarios Activos","");
@@ -1539,7 +1539,7 @@ public class Inicio extends JFrame {
 	 		panel_3.removeAll();
 	 		panel_3.add(f,BorderLayout.CENTER);
 	 		panel_3.validate();	
- 		}
+ 		}*/
 
  		
  	}
