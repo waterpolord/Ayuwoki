@@ -22,7 +22,7 @@ public class Principal implements Serializable{
 
 	public static void main(String args[]) {
            // DividirSTR("Robert Felix",1);
-            new Inicio().setVisible(true); 
+            new Inicio(); 
 	}
 	
 	public Principal() {

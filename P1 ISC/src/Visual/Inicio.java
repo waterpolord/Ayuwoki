@@ -149,46 +149,25 @@ public class Inicio extends JFrame {
 
  public Inicio() {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
- 	
+ 	this.setVisible(true);
  	addWindowListener(new WindowAdapter() {
  		@Override
  		public void windowOpened(WindowEvent e) {
-	 			PanelEmpresa.setVisible(false);
-	 			PanelLogin.setVisible(false);
-	 			PanelUser.setVisible(false);
-	 			try {
-					Principal.getInstance().dataEntrada();
-				} catch (FileNotFoundException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} catch (ClassNotFoundException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-	 			try {
-	 			;
-				Empresa empre = Principal.getInstance().SesionEmpresa();
-				Persona user = Principal.getInstance().SesionUser();
-				if(empre != null) {
-					new PerfilEmpresa(Principal.getInstance().buscarEmpresas(empre.getCorreo())).setVisible(true);;
-					dispose();
-				}
-				if(user != null) {
-					new PerfilUsuarios(Principal.getInstance().buscarPersonas(user.getCorreo())).setVisible(true);;
-					dispose();
-				}
-                                     try {
-                                         generarBarras();
-                                     } catch (SQLException ex) {
-                                         Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                                     }
-			} catch (ClassNotFoundException | IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+                        PanelEmpresa = new JPanel();
+                        PanelLogin = new JPanel();
+                        PanelUser = new JPanel();
+	 		PanelEmpresa.setVisible(false);
+	 		PanelLogin.setVisible(false);
+	 		PanelUser.setVisible(false);
+                        try {
+                            generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                                     
+
  		}
  	});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -283,9 +262,10 @@ public class Inicio extends JFrame {
 		PanelBotones.add(BTNiniciarSesion);
 		PanelBotones.add(BTNEmpresa);
 		
-	    PanelLogin = new JPanel();
+                PanelLogin = new JPanel();
 		PanelLogin.setBounds(170, 28, 648, 78);
 		PanelLogin.setBackground(new Color(103, 128, 159, 160));
+                PanelLogin.setVisible(false);
 		PanelPrincipal.add(PanelLogin);
 		PanelLogin.setLayout(null);
 		
@@ -549,6 +529,7 @@ public class Inicio extends JFrame {
 		PanelUser.setBounds(170, 107, 760, 400);
 		PanelUser.setLayout(null);
 		PanelUser.setBackground(new Color(108, 122, 137, 160));
+                PanelUser.setVisible(false);
 		PanelPrincipal.add(PanelUser);
 		
 		
@@ -826,6 +807,7 @@ public class Inicio extends JFrame {
 		PanelEmpresa.setBackground(new Color(108, 122, 137, 160));
 		PanelPrincipal.add(PanelEmpresa);
 		PanelEmpresa.setLayout(null);
+                PanelEmpresa.setVisible(false);
 		
 		panelUniversitario = new JPanel();
 		panelUniversitario.setForeground(Color.WHITE);
