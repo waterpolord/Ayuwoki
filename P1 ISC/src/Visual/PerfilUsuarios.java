@@ -272,16 +272,16 @@ public class PerfilUsuarios extends JFrame {
 				
 				
 				if(persona instanceof Universitario) {
-					lb1.setText("1.¿Habla otro idioma?");
-					lb2.setText("2.¿Vehiculo Propio?");
-					lb3.setText("3.¿Disponibilidad de Horario?\r\n");
-					lb4.setText("4.¿Disposicion de Viaje?");
-					lb5.setText("5.¿Dispuesto a Mudarse?");
-					lb6.setText("6.¿Piensa ampliar sus estudios?");
-					lb7.setText("7.¿Trabajaria los fines de semana?");
-					lb8.setText("8.¿Posee Experiencia de trabajos anteriore?");
-					lb9.setText("9.¿Puede realizar mas de una tarea a la vez?");
-					lb10.setText("10.¿Trabajas bien en equipo?");
+					lb1.setText("1.Â¿Habla otro idioma?");
+					lb2.setText("2.Â¿Vehiculo Propio?");
+					lb3.setText("3.Disponibilidad de Horario?\r\n");
+					lb4.setText("4.Disposicion de Viaje?");
+					lb5.setText("5.Dispuesto a Mudarse?");
+					lb6.setText("6.Piensa ampliar sus estudios?");
+					lb7.setText("7.Trabajaria los fines de semana?");
+					lb8.setText("8.Posee Experiencia de trabajos anteriore?");
+					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
+					lb10.setText("10.Trabajas bien en equipo?");
 					
 					for (String aux : ((Universitario) persona).getCarreras()) {
 						CBXaptitudes.addItem(aux);
@@ -289,31 +289,31 @@ public class PerfilUsuarios extends JFrame {
 	
 				}
 				if(persona instanceof Obrero ) {
-					lb1.setText("1.¿Ha realizado cursos de formación?");
-					lb2.setText("2.¿Vehiculo Propio?");
-					lb3.setText("3.¿Disponibilidad de Horario?");
-					lb4.setText("4.¿Tienes disponibilidad para viajar a nivel nacional?");
-					lb5.setText("5.¿Sabe manejar Numeros?");
-					lb6.setText("6.¿Piensa estudiar alguna carreara o tecnico");
-					lb7.setText("7.¿Trabajaria los fines de semana?");
-					lb8.setText("8.¿Posee Experiencia de trabajos anteriores?");
-					lb9.setText("9.¿Puede realizar mas de una tarea a la vez?");
-					lb10.setText("10.¿Trabajas bien en equipo?");
+					lb1.setText("1.Ha realizado cursos de formaciï¿½n?");
+					lb2.setText("2.Vehiculo Propio?");
+					lb3.setText("3.Disponibilidad de Horario?");
+					lb4.setText("4.Tienes disponibilidad para viajar a nivel nacional?");
+					lb5.setText("5.Sabe manejar Numeros?");
+					lb6.setText("6.Piensa estudiar alguna carreara o tecnico");
+					lb7.setText("7.Trabajaria los fines de semana?");
+					lb8.setText("8.Posee Experiencia de trabajos anteriores?");
+					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
+					lb10.setText("10.Trabajas bien en equipo?");
 					for (String aux : ((Obrero) persona).getHabilidades()) {
 						CBXaptitudes.addItem(aux);
 					}
 				}
 				if(persona instanceof Tecnico) {
-					lb1.setText("1.¿Habla otro idioma?");
-					lb2.setText("2.¿Vehiculo Propio?");
-					lb3.setText("3.¿Disponibilidad de Horario?");
-					lb4.setText("4.¿Disposicion de Viaje?");
-					lb5.setText("5.¿Dispuesto a Mudarse?");
-					lb6.setText("6.¿Piensa ampliar sus estudios?");
-					lb7.setText("7.¿Trabajaria los fines de semana?");
-					lb8.setText("8.¿Posee Experiencia de trabajos anteriore?");
-					lb9.setText("9.¿Puede realizar mas de una tarea a la vez?");
-					lb10.setText("10.¿Trabajas bien en equipo?");
+					lb1.setText("1.Habla otro idioma?");
+					lb2.setText("2.Vehiculo Propio?");
+					lb3.setText("3.Disponibilidad de Horario?");
+					lb4.setText("4.Disposicion de Viaje?");
+					lb5.setText("5.Dispuesto a Mudarse?");
+					lb6.setText("6.Piensa ampliar sus estudios?");
+					lb7.setText("7.Trabajaria los fines de semana?");
+					lb8.setText("8.Posee Experiencia de trabajos anteriore?");
+					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
+					lb10.setText("10.Trabajas bien en equipo?");
 					for (String aux : ((Tecnico) persona).getEspecialidad()) {
 						CBXaptitudes.addItem(aux);
 					}

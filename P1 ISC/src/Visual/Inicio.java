@@ -59,6 +59,10 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JList;
 
@@ -176,7 +180,11 @@ public class Inicio extends JFrame {
 					new PerfilUsuarios(Principal.getInstance().buscarPersonas(user.getCorreo())).setVisible(true);;
 					dispose();
 				}
-				generarBarras();
+                                     try {
+                                         generarBarras();
+                                     } catch (SQLException ex) {
+                                         Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                     }
 			} catch (ClassNotFoundException | IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1361,7 +1369,13 @@ public class Inicio extends JFrame {
 		rbnEmpresasYUsuarios = new JRadioButton("Empresas y Usuarios");
 		rbnEmpresasYUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				generarBarras();
+                            try {
+                                generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 		});
 		rbnEmpresasYUsuarios.setBounds(78, 20, 138, 23);
@@ -1373,7 +1387,13 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Administracion", "Derecho", "Economia", "Ingenieria", "Medicina", "Mercadeo"}));
 				cbxGraficas.setEnabled(true);
-				generarBarras();
+                            try {
+                                generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 		});
 		rbnUniversitarios.setBounds(237, 20, 109, 23);
@@ -1384,7 +1404,13 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Informatica", "Mercadeo", "Arte", "Turismo", "Contabilidad", "Enfermeria"}));
 				cbxGraficas.setEnabled(true);
-				generarBarras();
+                            try {
+                                generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 		});
 		rbnTecnicos.setBounds(372, 20, 109, 23);
@@ -1395,7 +1421,13 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Creativo", "Comunicativo", "Adaptable", "Trabajo en Equipo" }));
 				cbxGraficas.setEnabled(true);
-				generarBarras();
+                            try {
+                                generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 		});
 		rbnObreros.setBounds(503, 20, 109, 23);
@@ -1406,7 +1438,13 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todas>", "Salud", "Educacion", "Comercio", "Software", "Turismo", "Industrial"}));
 				cbxGraficas.setEnabled(true);
-				generarBarras();
+                            try {
+                                generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			
 			}
 		});
@@ -1422,7 +1460,13 @@ public class Inicio extends JFrame {
 		cbxGraficas = new JComboBox();
 		cbxGraficas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				generarBarras();
+                            try {
+                                generarBarras();
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 		});
 		cbxGraficas.setBounds(328, 63, 153, 20);
@@ -1433,14 +1477,25 @@ public class Inicio extends JFrame {
  		getRootPane().setDefaultButton(BTN);
  	}
  	
- 	public void generarBarras() {
- 	/*	DefaultCategoryDataset ds = new DefaultCategoryDataset();
+ 	public void generarBarras() throws ClassNotFoundException, SQLException {
+ 		DefaultCategoryDataset ds = new DefaultCategoryDataset();
  		JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "Cantidad", ds,PlotOrientation.VERTICAL, 
  				true,true,true);
-
+            try {
+                Conexion.Connect.getConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
  		if(rbnEmpresasYUsuarios.isSelected()) {
- 			ds.addValue(Principal.getInstance().getPersonasDisponibles(),"Personas","");
- 	 		ds.addValue(Principal.getInstance().getEmpresas(),"Empresas","");
+                        int CEmpresas = 0,CUser = 0;
+                        ResultSet cn;
+                        cn = Conexion.Connect.Consulta("SELECT Empresas,Personas FROM VistaGraficaPrincipal");
+                        while(cn.next()){
+                            CEmpresas = cn.getInt(1);
+                            CUser = cn.getInt(2);
+                        }
+ 			ds.addValue(CUser,"Personas","");
+ 	 		ds.addValue(CEmpresas,"Empresas","");
  			ChartPanel f = new ChartPanel(jf);
  			cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {" "}));
  			cbxGraficas.setEnabled(false);
@@ -1450,14 +1505,7 @@ public class Inicio extends JFrame {
  		}
  		if(rbnUniversitarios.isSelected()) {
  			int ind = 0;
- 			for(Persona aux:Principal.getInstance().getTpersonas()) {
- 				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Universitario) aux).getCarreras())) {
- 					ind++;
- 				}
- 				if(aux instanceof Universitario && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
- 					ind++;
- 				}
- 			}
+ 			
  			ds.addValue(ind,"Universitarios Activos","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
@@ -1466,14 +1514,7 @@ public class Inicio extends JFrame {
  		}
  		if(rbnTecnicos.isSelected()) {
  			int ind = 0;
- 			for(Persona aux:Principal.getInstance().getTpersonas()) {
- 				if(aux instanceof Tecnico && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Tecnico) aux).getEspecialidad())) {
- 					ind++;
- 				}
- 				if(aux instanceof Tecnico && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
- 					ind++;
- 				}
- 			}
+ 			
  			ds.addValue(ind,"Tecnicos Activos","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
@@ -1482,14 +1523,7 @@ public class Inicio extends JFrame {
  		}
  		if(rbnObreros.isSelected()) {
  			int ind = 0;
- 			for(Persona aux:Principal.getInstance().getTpersonas()) {
- 				if(aux instanceof Obrero && aux.getEstado() && cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(((Obrero) aux).getHabilidades().get(0))) {
- 					ind++;
- 				}
- 				if(aux instanceof Obrero && aux.getEstado() && cbxGraficas.getSelectedIndex() == 0) {
- 					ind++;
- 				}
- 			}
+ 			
  			ds.addValue(ind,"Obreros Activos","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
@@ -1498,23 +1532,14 @@ public class Inicio extends JFrame {
  		}
  		if(rbnEmpresas.isSelected()) {
  			int ind = 0,Cvac = 0;
- 			for(Empresa aux:Principal.getInstance().getTEmpresas()) {
- 				if(cbxGraficas.getSelectedItem().toString().equalsIgnoreCase(aux.getTipo())) {
- 					ind++;
- 					Cvac += aux.getVacantesActivas();
- 				}
- 				if(cbxGraficas.getSelectedIndex() == 0 ) {
- 					ind++;
- 					Cvac += aux.getVacantesActivas();
- 				}
- 			}
+ 			
  			ds.addValue(ind,"Empresas Disponibles","");
  			ds.addValue(Cvac,"Vacantes De Empleo Disponibles","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
 	 		panel_3.add(f,BorderLayout.CENTER);
 	 		panel_3.validate();	
- 		}*/
+ 		}
 
  		
  	}

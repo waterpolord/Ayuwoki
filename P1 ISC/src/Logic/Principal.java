@@ -158,7 +158,7 @@ public class Principal implements Serializable{
             int i = 0;
             
             cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[¿Habla otro Idioma?],[¿Vehiculo Propio?]"
-                    + "[¿Disponibilidad de Horario?],[¿Disposicion de Viaje?],[¿Dispuesto a Mudarse?],[¿Piensa ampliar sus conocimientos?]"
+                    + ",[¿Disponibilidad de Horario?],[¿Disposicion de Viaje?],[¿Dispuesto a Mudarse?],[¿Piensa ampliar sus conocimientos?]"
                     + ",[¿Trabajaría los fines de semana?],[¿Posee Experiencia de trabajos anteriores?],[¿Puede realizar más de una tarea a la vez?]"
                     + ",[¿Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicia_puesto_vacante,codigo_vacante_reconocimiento"
                     + " FROM Vacante_Empresa INNER JOIN Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.nombre_empresa = '"+
