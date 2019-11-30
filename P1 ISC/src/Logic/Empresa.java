@@ -1,9 +1,14 @@
 package Logic;
 
 import Interfaces.EmpresaDAO;
+
+import static Conexion.Connect.getConexion;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Empresa implements Serializable, EmpresaDAO{
@@ -110,8 +115,30 @@ public class Empresa implements Serializable, EmpresaDAO{
 
     @Override
     public void Registrar(Empresa Nuevo) throws Exception {
-    
-    
+    	int getCodPersona = 1;
+    	int getCodTipoEmpresa = 1;
+    	CallableStatement entrada  = getConexion().prepareCall("{Call GuardarEmpresa(?,?,?,?,?,?)}");
+        
+        entrada.setString(1, Nuevo.Nombre);
+        entrada.setString(2, Nuevo.telefono);
+        entrada.setString(3, Nuevo.correo);
+        entrada.setString(4, Nuevo.clave);
+        
+        ResultSet cn = Conexion.Connect.Consulta("SELECT cod_persona FROM Persona WHERE primer_nombre = '"
+                +Nuevo.encargado+"'");
+		while(cn.next()){
+			getCodPersona = cn.getInt(1);
+		}
+        entrada.setInt(5, getCodPersona);
+        
+        cn = Conexion.Connect.Consulta("SELECT cod_tipo_empresa FROM Tipo_empresa WHERE nombre = '"
+                +Nuevo.tipo+"'");
+		while(cn.next()){
+			getCodTipoEmpresa = cn.getInt(1);
+		}
+        entrada.setInt(6, getCodTipoEmpresa);
+        
+        entrada.execute();
     }
 
     @Override

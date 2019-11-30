@@ -1,8 +1,13 @@
 package Logic;
 
 import Interfaces.VacanteDAO;
+
+import static Conexion.Connect.getConexion;
+
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Vacante implements Serializable, VacanteDAO{
@@ -219,7 +224,27 @@ public class Vacante implements Serializable, VacanteDAO{
 
     @Override
     public void Registrar(Vacante Nuevo) throws Exception {
+        int getCodEmpresa = 1;
+    	CallableStatement entrada  = getConexion().prepareCall("{Call GuardarVacanteEmpresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         
+        ResultSet cn = Conexion.Connect.Consulta("SELECT cod_empresa FROM Empresa WHERE correo_empresa = '"
+                +Nuevo.empresa.getCorreo().toString()+"'");
+		while(cn.next()){
+			getCodEmpresa = cn.getInt(1);
+		}
+		entrada.setInt(1, getCodEmpresa);
+        entrada.setString(2,Nuevo.puesto);
+        entrada.setString(3,Nuevo.TipoPersonal);
+        for(int i = 4, i2 = 0; i < 14; i++, i2++ ) {
+        	entrada.setBoolean(i,Nuevo.requisitos[i2]);
+        }
+        entrada.setBoolean(14,Nuevo.estado);
+        entrada.setInt(15,Nuevo.cantInicial);
+        entrada.setInt(16,Nuevo.monto);
+        entrada.setInt(17,Nuevo.codigoVacante);
+        entrada.setInt(18,Nuevo.CantPuestos);
+        
+        entrada.execute();
     }
 
     @Override
