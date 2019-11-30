@@ -46,6 +46,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PerfilUsuarios extends JFrame {
@@ -376,7 +379,13 @@ public class PerfilUsuarios extends JFrame {
 						e1.printStackTrace();
 					}
 					dispose();
-					new Inicio().setVisible(true);
+                                    try {
+                                        new Inicio().setVisible(true);
+                                    } catch (ClassNotFoundException ex) {
+                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 				}
 			}
 		});

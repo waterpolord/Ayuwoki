@@ -40,7 +40,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
@@ -215,7 +218,13 @@ public class PerfilEmpresa extends JFrame {
 						e1.printStackTrace();
 					}
 					dispose();
-					new Inicio().setVisible(true);
+                                    try {
+                                        new Inicio().setVisible(true);
+                                    } catch (ClassNotFoundException ex) {
+                                        Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 				}
 			}
 		});
