@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Empresa implements Serializable, EmpresaDAO{
 
 	private String Nombre;
-	private String descripcion;
+	
 	private String telefono;
 	private String correo;
 	private String clave;
@@ -36,12 +36,7 @@ public class Empresa implements Serializable, EmpresaDAO{
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+	
 	public String getTelefono() {
 		return telefono;
 	}

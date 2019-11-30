@@ -73,6 +73,7 @@ public class Principal implements Serializable{
         public void Obtener() throws ClassNotFoundException{
             ResultSet cn,cn2;
             int cod_persona = 1;
+            String Nombre = null,TipoEmpresa = null;
             // Agregando personas a singleton
             try {
                 cn = Conexion.Connect.Consulta("SELECT * FROM Persona");
@@ -106,30 +107,69 @@ public class Principal implements Serializable{
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
             }
+            // Agregando empresas a singleton
             try {
                 cn = Conexion.Connect.Consulta("SELECT * FROM Empresa");
                 while(cn.next()){
                     
-                    cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Empresa ON Empresa.cod_persona = "
-                            + "Persona.cod_persona '"
-                            +cn.getString(4)+"'");
+                    cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Empresa ON Empresa.cod_persona = '"
+                            +cn.getInt(6)+"'");
                     while(cn2.next()){
-                         cod_persona = cn2.getInt(1);
+                         Nombre = cn2.getString(1);
                     }
                     
-                    Empresa aux = new Empresa(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4), cn.getDate(5),cn.getString(6),cn.getString(7), 
-                            cn.getBoolean(8),cn.getString(9)) {
+                    cn2 = Conexion.Connect.Consulta("SELECT Nombre FROM Tipo_empresa INNER JOIN Empresa ON Empresa.cod_tipo_empresa = '"
+                            +cn.getInt(7)+"'");
+                    while(cn2.next()){
+                         TipoEmpresa = cn2.getString(1);
+                    }
+                    
+                    
+                    Empresa aux = new Empresa(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4),Nombre,TipoEmpresa) {
                         @Override
                         public void RetornarEmpresa() throws Exception {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            
                         }
                     };
-                    Tpersonas.add(aux);
+                    TEmpresas.add(aux);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las empresas desde la base de datos","Advertencia", 0);
             }
+            
+            // Agregando Vacantes a singleton
+            
+            try {
+                cn = Conexion.Connect.Consulta("SELECT * FROM Empresa");
+                while(cn.next()){
+                    
+                    cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Empresa ON Empresa.cod_persona = '"
+                            +cn.getInt(6)+"'");
+                    while(cn2.next()){
+                         Nombre = cn2.getString(1);
+                    }
+                    
+                    cn2 = Conexion.Connect.Consulta("SELECT Nombre FROM Tipo_empresa INNER JOIN Empresa ON Empresa.cod_tipo_empresa = '"
+                            +cn.getInt(7)+"'");
+                    while(cn2.next()){
+                         TipoEmpresa = cn2.getString(1);
+                    }
+                    
+                    
+                    Empresa aux = new Empresa(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4),Nombre,TipoEmpresa) {
+                        @Override
+                        public void RetornarEmpresa() throws Exception {
+                            
+                        }
+                    };
+                    TEmpresas.add(aux);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las empresas desde la base de datos","Advertencia", 0);
+            }
+            
         }
 
 	public int getCantPerson() {
