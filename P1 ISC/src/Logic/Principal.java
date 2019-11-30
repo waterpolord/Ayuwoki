@@ -20,9 +20,9 @@ public class Principal implements Serializable{
 	private static Principal principal;
 	
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws ClassNotFoundException, SQLException {
            // DividirSTR("Robert Felix",1);
-            new Inicio(); 
+            new Inicio().setVisible(true); 
 	}
 	
 	public Principal() {
