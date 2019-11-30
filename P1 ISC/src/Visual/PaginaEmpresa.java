@@ -67,7 +67,7 @@ public class PaginaEmpresa extends JDialog {
 		lblNewLabel.setBounds(10, 63, 139, 14);
 		contentPanel.add(lblNewLabel);
 		
-		textArea = new JTextArea(empresa.getDescripcion());
+		textArea = new JTextArea();
 		textArea.setEnabled(false);
 		textArea.setBounds(27, 88, 371, 108);
 		contentPanel.add(textArea);
@@ -82,9 +82,9 @@ public class PaginaEmpresa extends JDialog {
 					}
 				else {
 					textArea.setEnabled(false);
-					btnInfo.setText("Añadir Descripción");
+					btnInfo.setText("Aï¿½adir Descripciï¿½n");
 					guard = false;
-					empresa.setDescripcion(textArea.getText());
+					
 					try {
 						Principal.getInstance().dataSalida();
 					} catch (ClassNotFoundException | IOException e1) {

@@ -70,7 +70,7 @@ public class Principal implements Serializable{
 		}	
     	
     }
-        public void Obtener() throws ClassNotFoundException{
+        public void Obtener() throws ClassNotFoundException, IOException{
             ResultSet cn,cn2;
             int cod_persona = 1;
             String Nombre = null,TipoEmpresa = null;
@@ -131,38 +131,11 @@ public class Principal implements Serializable{
                             
                         }
                     };
-                    TEmpresas.add(aux);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las empresas desde la base de datos","Advertencia", 0);
-            }
-            
-            // Agregando Vacantes a singleton
-            
-            try {
-                cn = Conexion.Connect.Consulta("SELECT * FROM Empresa");
-                while(cn.next()){
-                    
-                    cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Empresa ON Empresa.cod_persona = '"
-                            +cn.getInt(6)+"'");
-                    while(cn2.next()){
-                         Nombre = cn2.getString(1);
-                    }
-                    
-                    cn2 = Conexion.Connect.Consulta("SELECT Nombre FROM Tipo_empresa INNER JOIN Empresa ON Empresa.cod_tipo_empresa = '"
-                            +cn.getInt(7)+"'");
-                    while(cn2.next()){
-                         TipoEmpresa = cn2.getString(1);
-                    }
-                    
-                    
-                    Empresa aux = new Empresa(cn.getString(1), cn.getString(2), cn.getString(3), cn.getString(4),Nombre,TipoEmpresa) {
-                        @Override
-                        public void RetornarEmpresa() throws Exception {
-                            
+                     
+                    aux.setMisVacantes(getVacantesEmpresa(aux.getNombre()));
+                    for(Vacante vaca:aux.getMisVacantes()){
+                        TVacantes.add(vaca);
                         }
-                    };
                     TEmpresas.add(aux);
                 }
             } catch (SQLException ex) {
@@ -170,6 +143,48 @@ public class Principal implements Serializable{
                 JOptionPane.showMessageDialog(null,"No se Pudieron obtener las empresas desde la base de datos","Advertencia", 0);
             }
             
+            // Agregando Vacantes a singleton y a la empresa anterior
+           
+            
+            
+        }
+        
+        public ArrayList<Vacante> getVacantesEmpresa(String Empresa) throws ClassNotFoundException, SQLException, IOException{
+            ArrayList<Vacante> aux = new ArrayList();
+            ArrayList<Persona> perso = new ArrayList();
+            Vacante vaca;
+            ResultSet cn,cn2;
+            Boolean[] bol = new Boolean[10];
+            int i = 0;
+            
+            cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[¿Habla otro Idioma?],[¿Vehiculo Propio?]"
+                    + "[¿Disponibilidad de Horario?],[¿Disposicion de Viaje?],[¿Dispuesto a Mudarse?],[¿Piensa ampliar sus conocimientos?]"
+                    + ",[¿Trabajaría los fines de semana?],[¿Posee Experiencia de trabajos anteriores?],[¿Puede realizar más de una tarea a la vez?]"
+                    + ",[¿Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicia_puesto_vacante,codigo_vacante_reconocimiento"
+                    + " FROM Vacante_Empresa INNER JOIN Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.nombre_empresa = '"+
+                    Empresa+"'");
+            
+            while(cn.next()){
+                for (int j = 0; j < 10; j++) {
+                    bol[j] = cn.getBoolean(j+4);
+                    
+                }
+                
+                vaca = new Vacante(Principal.getInstance().buscarEmpresas(Empresa),cn.getString(2),cn.getString(3), bol,cn.getBoolean(14)
+                        ,cn.getInt(15),cn.getInt(16),
+                        cn.getInt(17),  cn.getInt(18));
+                cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Persona_Vacante"
+                        + "ON Persona.cod_Persona = Persona_Vacante.cod_Persona INNER JOIN Persona_Vacante ON Persona_Vacante.cod_vacante_empresa ='"+
+                    cn.getInt(1)+"'");
+                while(cn2.next()){
+                    perso.add(Principal.getInstance().buscarPersonas(cn2.getString(1)));
+                }
+                vaca.setSolicitantes(perso);
+                aux.add(vaca);
+            }
+            
+            
+            return aux;
         }
 
 	public int getCantPerson() {

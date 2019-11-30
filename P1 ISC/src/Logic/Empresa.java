@@ -16,6 +16,10 @@ public class Empresa implements Serializable, EmpresaDAO{
 	private String encargado;
 	private String tipo;
 	private ArrayList<Vacante> MisVacantes;
+
+    public void setMisVacantes(ArrayList<Vacante> MisVacantes) {
+        this.MisVacantes = MisVacantes;
+    }
 	private Boolean Sesion;
 	private int codigoMisVacantes = 1029;
 	

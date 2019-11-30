@@ -1,10 +1,11 @@
 package Logic;
 
+import Interfaces.VacanteDAO;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Vacante implements Serializable{
+public class Vacante implements Serializable, VacanteDAO{
 	private Empresa empresa;
 	private String puesto;
 	private String TipoPersonal;
@@ -16,7 +17,7 @@ public class Vacante implements Serializable{
 	private ArrayList<Persona> Solicitantes;
 	private int codigoVacante;
 	
-	public Vacante(Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,int CP, int Monto,int codigo) {
+	public Vacante(Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,Boolean estado,int CP, int Monto,int CInicial,int codigo) {
 		
 		this.empresa = empresa;
 		this.puesto = puesto;
@@ -26,7 +27,6 @@ public class Vacante implements Serializable{
 		Solicitantes = new ArrayList();
 		this.monto = Monto;
 		codigoVacante = codigo;
-		this.estado = true;
 		cantInicial = CantPuestos;
 	}
 	
@@ -62,6 +62,8 @@ public class Vacante implements Serializable{
 			CantPuestos = 0;
 		}
 	}
+        
+        
 	
 	// Despues de determinar si el reemplazo aplica se 
 	//usa esta funcion para reemplazar una persona con menos habilidades
@@ -101,6 +103,13 @@ public class Vacante implements Serializable{
 	public ArrayList<Persona> getPersonas(){
 		return Solicitantes;
 	}
+        
+        
+
+    public void setSolicitantes(ArrayList<Persona> Solicitantes) {
+        this.Solicitantes = Solicitantes;
+    }
+        
 	
 	public Empresa getEmpresa() {
 		return empresa;
@@ -207,6 +216,26 @@ public class Vacante implements Serializable{
 	 public int getCantSolicitantes() {
 		return Solicitantes.size();
 	}
+
+    @Override
+    public void Registrar(Vacante Nuevo) throws Exception {
+        
+    }
+
+    @Override
+    public void Modificar(Vacante Nuevo) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Eliminar(Vacante Nuevo) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void RetornarVacantes() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	 
 	
 
