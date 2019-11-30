@@ -1588,15 +1588,17 @@ public class Inicio extends JFrame {
                         ResultSet cn;
  			int ind = 0,Cvac = 0;
  			if(cbxGraficas.getSelectedIndex() == 0){
-                            cn = Conexion.Connect.Consulta("SELECT Empresas FROM VistaGraficaPrincipal");
+                            cn = Conexion.Connect.Consulta("SELECT Empresas,Vacantes FROM VistaGraficaPrincipal");
                             while(cn.next()){
                                 ind = cn.getInt(1);
+                                Cvac = cn.getInt(2);
                             }
                         }
                         else{
-                            cn = Conexion.Connect.Consulta("EXEC	[dbo].[FiltroObrero]\n 	@TipoEmpresa = N'"+cbxGraficas.getSelectedItem().toString()+"'");
+                            cn = Conexion.Connect.Consulta("EXEC	[dbo].[FiltroEmpresa]\n 	@TipoEmpresa = N'"+cbxGraficas.getSelectedItem().toString()+"'");
                             while(cn.next()){
                                 ind = cn.getInt(1);
+                                Cvac = cn.getInt(2);
                             }
                         }
  			ds.addValue(ind,"Empresas Disponibles","");
