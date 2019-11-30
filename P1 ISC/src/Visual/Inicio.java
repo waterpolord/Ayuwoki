@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Logic.*;
+import com.sun.jndi.cosnaming.CNCtx;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -61,6 +62,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -147,7 +149,7 @@ public class Inicio extends JFrame {
 	private JButton btnAgregarEspecialidad;
 	private JButton btnAgregarHabilidad;
 
- public Inicio() {
+ public Inicio() throws ClassNotFoundException, SQLException {
  	setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
  	this.setVisible(true);
  	addWindowListener(new WindowAdapter() {
@@ -1366,10 +1368,21 @@ public class Inicio extends JFrame {
 		
 		rbnUniversitarios = new JRadioButton("Universitarios");
 		rbnUniversitarios.addActionListener(new ActionListener() {
+                        
+                        
 			public void actionPerformed(ActionEvent e) {
-				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Administracion", "Derecho", "Economia", "Ingenieria", "Medicina", "Mercadeo"}));
-				cbxGraficas.setEnabled(true);
+                                 
+				
                             try {
+                                
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT Carreras FROM VistaComboBox");
+                                Vector arr = new Vector();
+                                arr.add("<Todos>");
+                                while(cn.next()){
+                                    arr.add(cn.getString(1));
+                                }
+                                cbxGraficas.setModel(new DefaultComboBoxModel(arr));
+				cbxGraficas.setEnabled(true);
                                 generarBarras();
                             } catch (ClassNotFoundException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1384,9 +1397,16 @@ public class Inicio extends JFrame {
 		rbnTecnicos = new JRadioButton("Tecnicos");
 		rbnTecnicos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Informatica", "Mercadeo", "Arte", "Turismo", "Contabilidad", "Enfermeria"}));
-				cbxGraficas.setEnabled(true);
+				
                             try {
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT Especialidades FROM VistaComboBox");
+                                Vector arr = new Vector();
+                                arr.add("<Todos>");
+                                while(cn.next()){
+                                    arr.add(cn.getString(1));
+                                }
+                                cbxGraficas.setModel(new DefaultComboBoxModel(arr));
+                                cbxGraficas.setEnabled(true);
                                 generarBarras();
                             } catch (ClassNotFoundException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1401,9 +1421,17 @@ public class Inicio extends JFrame {
 		rbnObreros = new JRadioButton("Obreros");
 		rbnObreros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Creativo", "Comunicativo", "Adaptable", "Trabajo en Equipo" }));
-				cbxGraficas.setEnabled(true);
+				
                             try {
+                                
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT Habilidades FROM VistaComboBox");
+                                Vector arr = new Vector();
+                                arr.add("<Todos>");
+                                while(cn.next()){
+                                    arr.add(cn.getString(1));
+                                }
+                                cbxGraficas.setModel(new DefaultComboBoxModel(arr));
+                                cbxGraficas.setEnabled(true);
                                 generarBarras();
                             } catch (ClassNotFoundException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1418,9 +1446,16 @@ public class Inicio extends JFrame {
 		rbnEmpresas = new JRadioButton("Empresas");
 		rbnEmpresas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cbxGraficas.setModel(new DefaultComboBoxModel(new String[] {"<Todas>", "Salud", "Educacion", "Comercio", "Software", "Turismo", "Industrial"}));
-				cbxGraficas.setEnabled(true);
+				
                             try {
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT Empresas FROM VistaComboBox");
+                                Vector arr = new Vector();
+                                arr.add("<Todos>");
+                                while(cn.next()){
+                                    arr.add(cn.getString(1));
+                                }
+                                cbxGraficas.setModel(new DefaultComboBoxModel(arr));
+                                cbxGraficas.setEnabled(true);
                                 generarBarras();
                             } catch (ClassNotFoundException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1485,10 +1520,23 @@ public class Inicio extends JFrame {
 	 		panel_3.add(f,BorderLayout.CENTER);
 	 		panel_3.validate();
  		}
- 		/*if(rbnUniversitarios.isSelected()) {
+ 		if(rbnUniversitarios.isSelected()) {
  			int ind = 0;
- 			
- 			ds.addValue(ind,"Universitarios Activos","");
+ 			ResultSet cn;
+                        if(cbxGraficas.getSelectedIndex() == 0){
+                            cn = Conexion.Connect.Consulta("SELECT UNIVERSITARIO FROM VistaGraficaPrincipal");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
+                        else{
+                            cn = Conexion.Connect.Consulta("EXEC	[dbo].[FiltroUniversitario]\n 	@Carrera = N'"+cbxGraficas.getSelectedItem().toString()+"'");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
+                        
+                        ds.addValue(ind,"Universitarios Activos","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
 	 		panel_3.add(f,BorderLayout.CENTER);
@@ -1496,8 +1544,20 @@ public class Inicio extends JFrame {
  		}
  		if(rbnTecnicos.isSelected()) {
  			int ind = 0;
- 			
- 			ds.addValue(ind,"Tecnicos Activos","");
+ 			ResultSet cn;
+                        if(cbxGraficas.getSelectedIndex() == 0){
+                            cn = Conexion.Connect.Consulta("SELECT TECNICO FROM VistaGraficaPrincipal");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
+                        else{
+                            cn = Conexion.Connect.Consulta("EXEC [dbo].[FiltroTecnico]\n 	@Especialidad = N'"+cbxGraficas.getSelectedItem().toString()+"'");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
+                        ds.addValue(ind,"Tecnicos Activos","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
 	 		panel_3.add(f,BorderLayout.CENTER);
@@ -1505,7 +1565,19 @@ public class Inicio extends JFrame {
  		}
  		if(rbnObreros.isSelected()) {
  			int ind = 0;
- 			
+ 			ResultSet cn;
+                        if(cbxGraficas.getSelectedIndex() == 0){
+                            cn = Conexion.Connect.Consulta("SELECT OBRERO FROM VistaGraficaPrincipal");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
+                        else{
+                            cn = Conexion.Connect.Consulta("EXEC [dbo].[FiltroObrero]\n 	@Habilidad = N'"+cbxGraficas.getSelectedItem().toString()+"'");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
  			ds.addValue(ind,"Obreros Activos","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
@@ -1513,15 +1585,27 @@ public class Inicio extends JFrame {
 	 		panel_3.validate();	
  		}
  		if(rbnEmpresas.isSelected()) {
+                        ResultSet cn;
  			int ind = 0,Cvac = 0;
- 			
+ 			if(cbxGraficas.getSelectedIndex() == 0){
+                            cn = Conexion.Connect.Consulta("SELECT Empresas FROM VistaGraficaPrincipal");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
+                        else{
+                            cn = Conexion.Connect.Consulta("EXEC	[dbo].[FiltroObrero]\n 	@TipoEmpresa = N'"+cbxGraficas.getSelectedItem().toString()+"'");
+                            while(cn.next()){
+                                ind = cn.getInt(1);
+                            }
+                        }
  			ds.addValue(ind,"Empresas Disponibles","");
  			ds.addValue(Cvac,"Vacantes De Empleo Disponibles","");
  			ChartPanel f = new ChartPanel(jf);
 	 		panel_3.removeAll();
 	 		panel_3.add(f,BorderLayout.CENTER);
 	 		panel_3.validate();	
- 		}*/
+ 		}
 
  		
  	}
