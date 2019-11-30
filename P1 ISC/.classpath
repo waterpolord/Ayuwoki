@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/jgoodies-common-1.2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/mssql-jdbc-7.4.1.jre8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
