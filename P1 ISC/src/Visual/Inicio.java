@@ -829,7 +829,7 @@ public class Inicio extends JFrame {
  
         try {
            
-            ResultSet cn = Conexion.Connect.Consulta("SELECT Carreras FROM VistaComboBox");
+            ResultSet cn = Conexion.Connect.Consulta("SELECT CarrerasN FROM VistaComboBox");
             Vector arr = new Vector();
             while(cn.next()){
                 arr.add(cn.getString(1));
@@ -1388,7 +1388,7 @@ public class Inicio extends JFrame {
                
                             try {
                                
-                                ResultSet cn = Conexion.Connect.Consulta("SELECT Carreras FROM VistaComboBox");
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT nombre FROM Carreras");
                                 Vector arr = new Vector();
                                 arr.add("<Todos>");
                                 while(cn.next()){
@@ -1412,7 +1412,7 @@ public class Inicio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                
                             try {
-                                ResultSet cn = Conexion.Connect.Consulta("SELECT Especialidades FROM VistaComboBox");
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT nombre FROM Especialidades");
                                 Vector arr = new Vector();
                                 arr.add("<Todos>");
                                 while(cn.next()){
@@ -1437,7 +1437,7 @@ public class Inicio extends JFrame {
                
                             try {
                                
-                                ResultSet cn = Conexion.Connect.Consulta("SELECT Habilidades FROM VistaComboBox");
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT nombre FROM Habilidades");
                                 Vector arr = new Vector();
                                 arr.add("<Todos>");
                                 while(cn.next()){
@@ -1461,7 +1461,7 @@ public class Inicio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                
                             try {
-                                ResultSet cn = Conexion.Connect.Consulta("SELECT Empresas FROM VistaComboBox");
+                                ResultSet cn = Conexion.Connect.Consulta("SELECT Nombre FROM Tipo_empresa");
                                 Vector arr = new Vector();
                                 arr.add("<Todos>");
                                 while(cn.next()){

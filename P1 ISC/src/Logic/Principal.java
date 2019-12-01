@@ -143,7 +143,7 @@ public class Principal implements Serializable{
                 JOptionPane.showMessageDialog(null,"No se Pudieron obtener las empresas desde la base de datos","Advertencia", 0);
             }
             
-            // Agregando Vacantes a singleton y a la empresa anterior
+            
            
             
             

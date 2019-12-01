@@ -12,7 +12,7 @@ import Logic.*;
 * @author r_rok
 */
 public interface EmpleoDAO {
-	public void Registrar(Empleo Nuevo) throws Exception;
+    public void Registrar(Empleo Nuevo) throws Exception;
     public void Modificar(Empleo Nuevo) throws Exception;
     public void Eliminar(Empleo Nuevo) throws Exception;
     public void RetornarEmpleo() throws Exception;
