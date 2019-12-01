@@ -6,10 +6,11 @@
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
 	<classpathentry kind="lib" path="libreria/jcommon-1.0.9.jar"/>
 	<classpathentry kind="lib" path="libreria/jfreechart-1.0.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/junit-4.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Nelson David/git/Ayuwoki/P1 ISC/libreria/mssql-jdbc-7.4.1.jre8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/r_rok/Ayuwoki/P1 ISC/libreria/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/r_rok/Ayuwoki/P1 ISC/libreria/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/r_rok/Ayuwoki/P1 ISC/libreria/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/r_rok/Ayuwoki/P1 ISC/libreria/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/r_rok/Ayuwoki/P1 ISC/libreria/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/r_rok/Ayuwoki/P1 ISC/libreria/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
