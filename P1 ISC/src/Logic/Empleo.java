@@ -15,6 +15,7 @@ public class Empleo implements Serializable, EmpleoDAO{
 	private int monto;
 	private Boolean[] habilidades = new Boolean[10];
 	private String cualidad;
+	
 	public Empleo( Boolean[] habilidades, int monto, String cualidad) {
 		this.habilidades = habilidades;
 		this.monto = monto;

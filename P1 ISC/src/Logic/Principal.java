@@ -157,10 +157,10 @@ public class Principal implements Serializable{
             Boolean[] bol = new Boolean[10];
             int i = 0;
             
-            cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[Â¿Habla otro Idioma?],[Â¿Vehiculo Propio?]"
-                    + ",[Â¿Disponibilidad de Horario?],[Â¿Disposicion de Viaje?],[Â¿Dispuesto a Mudarse?],[Â¿Piensa ampliar sus conocimientos?]"
-                    + ",[Â¿TrabajarÃ­a los fines de semana?],[Â¿Posee Experiencia de trabajos anteriores?],[Â¿Puede realizar mÃ¡s de una tarea a la vez?]"
-                    + ",[Â¿Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicia_puesto_vacante,codigo_vacante_reconocimiento"
+            cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[¿Habla otro Idioma?],[¿Vehiculo Propio?]"
+                    + ",[¿Disponibilidad de Horario?],[¿Disposicion de Viaje?],[¿Dispuesto a Mudarse?],[¿Piensa ampliar sus conocimientos?]"
+                    + ",[¿Trabajar­a los fines de semana?],[¿Posee Experiencia de trabajos anteriores?],[¿Puede realizar más de una tarea a la vez?]"
+                    + ",[¿Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicia_puesto_vacante,codigo_vacante_reconocimiento"
                     + " FROM Vacante_Empresa INNER JOIN Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.nombre_empresa = '"+
                     Empresa+"'");
             
@@ -184,6 +184,31 @@ public class Principal implements Serializable{
             }
             
             
+            return aux;
+        }
+        
+        public ArrayList<Empleo> getVacantesEmpleo(String correo) throws ClassNotFoundException, SQLException, IOException{
+            ArrayList<Empleo> aux = new ArrayList<Empleo>();
+            Empleo empleo;
+            ResultSet cn;
+            Boolean[] bol = new Boolean[10];
+            
+            cn = Conexion.Connect.Consulta("SELECT cod_persona,[¿Habla otro Idioma?],[¿Vehiculo Propio?]"
+                    + ",[¿Disponibilidad de Horario?],[¿Disposicion de Viaje?],[¿Dispuesto a Mudarse?],[¿Piensa ampliar sus estudios?]"
+                    + ",[¿Trabajaria los fines de semana?],[¿Posee Experiencia de trabajos anteriores?],[¿Puede realizar mas de una tarea a la vez?]"
+                    + ",[¿Trabajas bien en equipo?],[¿Ha realizado cursos de formación? (obrero)],[¿Tienes disponibilidad para viajar a nivel nacional? (obrero)]"
+                    + ",[¿Sabe manejar Numeros? (obrero)], [¿Piensa estudiar alguna carrera o tecnico? (obrero)],area_empleo,monto_empleo"
+                    + " FROM Solicitud_Persona INNER JOIN Persona ON Persona.cod_persona = Solicitud_Persona.cod_persona WHERE Persona.correo_persona = '"
+                    + correo+"'");
+            
+            while(cn.next()){
+                for (int j = 0; j < 14; j++) {
+                    bol[j] = cn.getBoolean(j+2);
+                    
+                }
+                empleo = new Empleo(bol, cn.getInt(15), cn.getString(16));
+                aux.add(empleo);
+            }
             return aux;
         }
 
