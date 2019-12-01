@@ -649,7 +649,7 @@ public class Inicio extends JFrame {
                         } catch (ClassNotFoundException | IOException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
-                        };
+                        }
                     }
                     try {
                         Principal.getInstance().dataSalida();
@@ -750,81 +750,7 @@ public class Inicio extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String passC = new String(txtpassconfirm.getPassword()),
-                            pass = new String(passwordContrasena.getPassword());
-                    Boolean esta = false;
-                    if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
-                           
-                                try {
-                                    esta = Principal.getInstance().existeUser(txtCorreo.getText());
-                                } catch (ClassNotFoundException | IOException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                }
-                                                        String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),
-                                                        		nom2 = Principal.getInstance().DividirSTR(TXTNombre.getText(),2),
-                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
-                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
-                                                        Date fecha = null;  
-                                                        ArrayList<String> mishab = new ArrayList();
-                            if(esta == true) {
-                                JOptionPane.showMessageDialog(null,"Este correo ya está en uso","Correo Repetido", 0);
-                            }
-                            else if(esta == false) {
-                               
-                                                               
-                                if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
-                                    Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha,txtCorreo.getText(), pass,true,"Pais",mishab);
-                                    try {
-                                        Principal.getInstance().setTpersonas(nuevo);
-                                    } catch (ClassNotFoundException | IOException e1) {
-                                        // TODO Auto-generated catch block
-                                        e1.printStackTrace();
-                                                                                JOptionPane.showMessageDialog(null,"Error ","No se pudo crear el usuario", 1);
-                                    }
-                                    JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom1,"Usuario Creado Con Exito", 1);
-                                    new PerfilUsuarios(nuevo).setVisible(true);
-                                }
-                                else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
-                                    JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
-                                }
-                                if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
-                                    Tecnico nuevo = new Tecnico(nom1,nom2,ape1,ape2,fecha,
-                                            txtCorreo.getText(), pass,true,"Pais",mishab);
-                                    try {
-                                        Principal.getInstance().setTpersonas(nuevo);
-                                    } catch (ClassNotFoundException | IOException e1) {
-                                        // TODO Auto-generated catch block
-                                        e1.printStackTrace();
-                                    }
-                                    JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom1,"Usuario Creado Con Exito", 1);
-                                    new PerfilUsuarios(nuevo).setVisible(true);
-                                }
-                                else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
-                                    JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
-                                }
-                                if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
-                                    Universitario nuevo = new Universitario(nom1,nom2,ape1,ape2,fecha,
-                                            txtCorreo.getText(), pass,true,"Pais",mishab);
-                                    try {
-                                        Principal.getInstance().setTpersonas(nuevo);
-                                    } catch (ClassNotFoundException | IOException e1) {
-                                        // TODO Auto-generated catch block
-                                        e1.printStackTrace();
-                                    }
-                                    JOptionPane.showMessageDialog(null,"Bienvenido "+nom1,"Usuario Creado Con Exito", 1);
-                                    new PerfilUsuarios(nuevo).setVisible(true);
-                                }
-                                else if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() <= 0){
-                                    JOptionPane.showMessageDialog(null,"Selecciona una carrera","Advertencia", 0);
-                                }
-                               
-                            }
-                       
-                    }
-                    else {
-                                JOptionPane.showMessageDialog(null,"Debes llenar todos los campos \ny asegurarte de que la contraseña sea mayor que 4 caracteres.","Advertencia", 0);
-                    }
+                    
                 }
             }
         });
@@ -1380,12 +1306,12 @@ public class Inicio extends JFrame {
                                 }
                                 dispose();
                             }
-                            else if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() <= 0){
+                            else if(RBObrero.isSelected() && modeloHabilidades.isEmpty()){
                                 JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
                             }
-                            if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
+                            if(RBTec.isSelected() && !(modeloUniversitario.isEmpty())) {
                                 Tecnico nuevo = new Tecnico(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
-                                            txtCorreo.getText(), pass,true,"Pais",mishab);
+                                            txtCorreo.getText(), pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
                                 } catch (ClassNotFoundException | IOException e1) {
@@ -1407,12 +1333,12 @@ public class Inicio extends JFrame {
                                 }
                                 dispose();
                             }
-                            else if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() <= 0) {
+                            else if(RBTec.isSelected() && modeloEspecialidad.isEmpty()) {
                                 JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
                             }
-                            if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
+                            if(RBUniversitario.isSelected() && !(modeloUniversitario.isEmpty())) {
                                 Universitario nuevo = new Universitario(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
-                                            txtCorreo.getText(), pass,true,"Pais",mishab);
+                                            txtCorreo.getText(), pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
                                 } catch (ClassNotFoundException | IOException e1) {
