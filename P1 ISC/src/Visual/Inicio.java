@@ -479,7 +479,7 @@ public class Inicio extends JFrame {
                                   public void actionPerformed(ActionEvent e) {
                                       String passC = new String(passwordE.getPassword());        
                                       Boolean esta = false;
-                                      if(TXTNombre.getText().length() > 2 && textTelefono.getText().length() == 12  && textCorreoE.getText().length() > 4 && passC.length() > 3 && textEncargado.getText().length() > 2 ) {
+                                      if(TXTNombre.getText().length() > 2 && textTelefono.getText().length() == 12  && textCorreoE.getText().length() > 4 && passC.length() > 3 && textEncargado.getText().length() > 2  ) {
                                              
                                                   try {
                                                       esta = Principal.getInstance().existeEmpresa(textCorreoE.getText());
@@ -1105,12 +1105,13 @@ public class Inicio extends JFrame {
         btnAgregarCarrera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String valor = (String) CBXCarreras.getSelectedItem();
-                if(CBXCarreras.getSelectedIndex() > 0) {
+                if(CBXCarreras.getSelectedIndex() >= 0 && !(RepeatLista(CBXCarreras.getSelectedItem().toString(),modeloUniversitario))) {
                 	modeloUniversitario.addElement(valor);
                 }
-                else {
-                	JOptionPane.showMessageDialog(null,"Debes seleccionar una carrera","Advertencia", 0);
+                else if((RepeatLista(CBXCarreras.getSelectedItem().toString(),modeloUniversitario))) {
+                	JOptionPane.showMessageDialog(null,"No se pueden repetir las carreras","Advertencia", 0);
                 }
+               
             }
         });
         btnAgregarCarrera.setBounds(496, 17, 86, 23);
@@ -1170,8 +1171,17 @@ public class Inicio extends JFrame {
         btnAgregarEspecialidad = new JButton("Agregar");
         btnAgregarEspecialidad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String valor = (String) CBXEspecialidad.getSelectedItem();
-                modeloEspecialidad.addElement(valor);
+                
+                
+                if(CBXEspecialidad.getSelectedIndex() >= 0 &&  !(RepeatLista(CBXEspecialidad.getSelectedItem().toString(),modeloEspecialidad))){
+                    
+                    String valor = (String) CBXEspecialidad.getSelectedItem();
+                    modeloEspecialidad.addElement(valor);
+                }
+                else if((RepeatLista(CBXEspecialidad.getSelectedItem().toString(),modeloEspecialidad))) {
+                	JOptionPane.showMessageDialog(null,"No se pueden repetir las Especialidades","Advertencia", 0);
+                }
+                    
             }
         });
         btnAgregarEspecialidad.setBounds(496, 17, 86, 23);
@@ -1181,7 +1191,12 @@ public class Inicio extends JFrame {
         btnQuitarEspecialidad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int posicion = listEspecialidad.getSelectedIndex();
-                modeloEspecialidad.remove(posicion);
+                if(posicion >= 0){
+                    modeloEspecialidad.remove(posicion);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Debes seleccionar una Especialidad para eliminarla","Advertencia", 0);
+                }
             }
         });
         btnQuitarEspecialidad.setBounds(496, 47, 86, 23);
@@ -1228,8 +1243,14 @@ public class Inicio extends JFrame {
         btnAgregarHabilidad = new JButton("Agregar");
         btnAgregarHabilidad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String valor = (String) CBXHabilidad.getSelectedItem();
-                modeloHabilidades.addElement(valor);
+                if(CBXHabilidad.getSelectedIndex() >= 0 &&  !(RepeatLista(CBXHabilidad.getSelectedItem().toString(),modeloHabilidades))){
+                    
+                    String valor = (String) CBXHabilidad.getSelectedItem();
+                    modeloHabilidades.addElement(valor);
+                }
+                else if((RepeatLista(CBXHabilidad.getSelectedItem().toString(),modeloHabilidades))) {
+                	JOptionPane.showMessageDialog(null,"No se pueden repetir las Habilidades","Advertencia", 0);
+                }
             }
         });
         btnAgregarHabilidad.setBounds(496, 17, 86, 23);
@@ -1239,7 +1260,12 @@ public class Inicio extends JFrame {
         btnQuitarHabilidades.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int posicion = listHabilidades.getSelectedIndex();
+                if(posicion >= 0){
                 modeloHabilidades.remove(posicion);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Debes seleccionar una Habilidad para eliminarla","Advertencia", 0);
+                }
             }
         });
         btnQuitarHabilidades.setBounds(496, 47, 86, 23);
@@ -1262,7 +1288,7 @@ public class Inicio extends JFrame {
                 String passC = new String(txtpassconfirm.getPassword()),
                         pass = new String(passwordContrasena.getPassword());
                 Boolean esta = false;
-                if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3) {
+                if(textNombre.getText().length() > 1 && txtCorreo.getText().length() > 4 && txtApellido.getText().length() > 1 && pass.equals(passC) && pass.length() > 3 && !(jdcFecha.getDate().toString().isEmpty())) {
                        
                             try {
                                 esta = Principal.getInstance().existeUser(txtCorreo.getText());
@@ -1271,20 +1297,33 @@ public class Inicio extends JFrame {
                                 e1.printStackTrace();
                             }
                                                 String[] nombres = textNombre.getText().split(" ");
-												// Principal.DividirSTR(textNombre.getText(),1),  String nom2 = Principal.getInstance().DividirSTR(textNombre.getText(),2),
+                                                String nomb2 = null,ap2 = null;
+						if(nombres.length > 1 ){
+                                                    nomb2 = nombres[1];
+                                                }
+                                                
                                                 String[] apellidos = txtApellido.getText().split(" ");
-                                                //ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
-                                                //ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
-                                                        Date fecha = new Date(jdcFecha.getDate().getTime());  
-                                                        ArrayList<String> mishab = new ArrayList();
+                                                if(apellidos.length > 1){
+                                                    ap2 = apellidos[1];
+                                                }
+                                                
+                                                Date fecha = new Date(jdcFecha.getDate().getTime());  
+                                                ArrayList<String> mishab = new ArrayList();
                         if(esta == true) {
                             JOptionPane.showMessageDialog(null,"Este correo ya esta en uso","Correo Repetido", 0);
                         }
                         else if(esta == false) {
                             String nom = textNombre.getText();
-                            if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
-                                Obrero nuevo = new Obrero(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
-                                            txtCorreo.getText(), pass,true,"Pais",mishab);
+                            if(RBObrero.isSelected() && !(modeloHabilidades.isEmpty()) ) {
+                                mishab = setValores(modeloHabilidades);
+                                Obrero nuevo = new Obrero(nombres[0].toString()
+                                        ,nomb2
+                                        ,apellidos[0].toString()
+                                        ,ap2
+                                        ,fecha
+                                        ,
+                                            txtCorreo.getText()
+                                        , pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
                                 } catch (ClassNotFoundException | IOException e1) {
@@ -1309,8 +1348,9 @@ public class Inicio extends JFrame {
                             else if(RBObrero.isSelected() && modeloHabilidades.isEmpty()){
                                 JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
                             }
-                            if(RBTec.isSelected() && !(modeloUniversitario.isEmpty())) {
-                                Tecnico nuevo = new Tecnico(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
+                            if(RBTec.isSelected() && !(modeloEspecialidad.isEmpty())) {
+                                mishab = setValores(modeloEspecialidad);
+                                Tecnico nuevo = new Tecnico(nombres[0],nomb2,apellidos[0],ap2,fecha,
                                             txtCorreo.getText(), pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
@@ -1337,7 +1377,8 @@ public class Inicio extends JFrame {
                                 JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
                             }
                             if(RBUniversitario.isSelected() && !(modeloUniversitario.isEmpty())) {
-                                Universitario nuevo = new Universitario(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
+                                mishab = setValores(modeloUniversitario);
+                                Universitario nuevo = new Universitario(nombres[0],nomb2,apellidos[0],ap2,fecha,
                                             txtCorreo.getText(), pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
@@ -1540,6 +1581,27 @@ public class Inicio extends JFrame {
     }
     public void setEnter(JButton BTN) {
         getRootPane().setDefaultButton(BTN);
+    }
+    
+    public Boolean RepeatLista(String txt,DefaultListModel lista){
+        ArrayList<String> var = new ArrayList();
+        for (int i = 0; i < lista.getSize(); i++) {
+            var.add(lista.get(i).toString()); 
+            
+        }
+        for(String aux:var ){
+            if(aux.equalsIgnoreCase(txt))
+                return true;
+        }
+        return false;
+    }
+    
+    public ArrayList<String> setValores(DefaultListModel lista){
+        ArrayList<String> var = new ArrayList();
+        for (int i = 0; i < lista.getSize(); i++) {
+            var.add(lista.get(i).toString()); 
+        }
+        return var;
     }
    
     public void generarBarras() throws ClassNotFoundException, SQLException {
