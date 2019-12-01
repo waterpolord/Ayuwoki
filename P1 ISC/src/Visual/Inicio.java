@@ -761,8 +761,8 @@ public class Inicio extends JFrame {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
                                 }
-                                                        String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 =
-                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2),
+                                                        String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),
+                                                        		nom2 = Principal.getInstance().DividirSTR(TXTNombre.getText(),2),
                                                                     ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
                                                                     ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
                                                         Date fecha = null;  
@@ -1344,11 +1344,12 @@ public class Inicio extends JFrame {
                                 // TODO Auto-generated catch block
                                 e1.printStackTrace();
                             }
-                                                String nom1 = Principal.getInstance().DividirSTR(TXTNombre.getText(),1),nom2 =
-                                                                    Principal.getInstance().DividirSTR(TXTNombre.getText(),2),
-                                                                    ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
-                                                                    ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
-                                                        java.sql.Date fecha = (Date) jdcFecha.getDate();  
+                                                String[] nombres = textNombre.getText().split(" ");
+												// Principal.DividirSTR(textNombre.getText(),1),  String nom2 = Principal.getInstance().DividirSTR(textNombre.getText(),2),
+                                                String[] apellidos = txtApellido.getText().split(" ");
+                                                //ape1 = Principal.getInstance().DividirSTR(txtApellido.getText(),1),
+                                                //ape2 = Principal.getInstance().DividirSTR(txtApellido.getText(),2);
+                                                        Date fecha = new Date(jdcFecha.getDate().getTime());  
                                                         ArrayList<String> mishab = new ArrayList();
                         if(esta == true) {
                             JOptionPane.showMessageDialog(null,"Este correo ya esta en uso","Correo Repetido", 0);
@@ -1356,7 +1357,7 @@ public class Inicio extends JFrame {
                         else if(esta == false) {
                             String nom = textNombre.getText();
                             if(RBObrero.isSelected() && CBXHabilidad.getSelectedIndex() > 0) {
-                                Obrero nuevo = new Obrero(nom1,nom2,ape1,ape2,fecha,
+                                Obrero nuevo = new Obrero(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
                                             txtCorreo.getText(), pass,true,"Pais",mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
@@ -1383,7 +1384,7 @@ public class Inicio extends JFrame {
                                 JOptionPane.showMessageDialog(null,"Selecciona al menos una habilidad","Advertencia", 0);
                             }
                             if(RBTec.isSelected() && CBXEspecialidad.getSelectedIndex() > 0) {
-                                Tecnico nuevo = new Tecnico(nom1,nom2,ape1,ape2,fecha,
+                                Tecnico nuevo = new Tecnico(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
                                             txtCorreo.getText(), pass,true,"Pais",mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
@@ -1410,7 +1411,7 @@ public class Inicio extends JFrame {
                                 JOptionPane.showMessageDialog(null,"Selecciona una especialidad","Advertencia", 0);
                             }
                             if(RBUniversitario.isSelected() && CBXCarreras.getSelectedIndex() > 0) {
-                                Universitario nuevo = new Universitario(nom1,nom2,ape1,ape2,fecha,
+                                Universitario nuevo = new Universitario(nombres[0],nombres[1],apellidos[0],apellidos[1],fecha,
                                             txtCorreo.getText(), pass,true,"Pais",mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);

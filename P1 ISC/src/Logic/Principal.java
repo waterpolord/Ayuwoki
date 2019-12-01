@@ -442,19 +442,19 @@ public class Principal implements Serializable{
 	}
         
         public static String DividirSTR(String cadena, int tipo){
-            String aux = null;
+            String aux = "Texto_de_ejemplo";
             char letra;
             if(tipo == 1){
-                for (int i = 0; i < cadena.length() || cadena.charAt(i) == ' '; i++) {
-
+            	System.out.println(cadena);
+            	
+                for (int i = 0; i < cadena.length(); i++) {
                     if( cadena.charAt(i) == ' ' ){
-                        aux = cadena.substring(i,cadena.length());
-
+                        aux = cadena.substring(i+1,cadena.length());
+                        break;
                     }
 
                 }
-            }
-            else{
+            } else{
                 
             }
             
