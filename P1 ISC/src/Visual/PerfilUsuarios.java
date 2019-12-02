@@ -889,6 +889,7 @@ public class PerfilUsuarios extends JFrame {
 						.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))
 					.addGap(139))
 		);
+                vec = new Vector();
                if(persona instanceof Universitario){
                     for (String aux : ((Universitario) persona).getCarreras()) {
                          vec.add(aux);

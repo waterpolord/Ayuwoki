@@ -1347,18 +1347,9 @@ public class Inicio extends JFrame {
                                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
-                                try {
-                                    new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
-                                } catch (FileNotFoundException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                } catch (ClassNotFoundException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                } catch (IOException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                }
+                                
+                                    new PerfilUsuarios(nuevo).setVisible(true);
+                                
                                 dispose();
                             }
                             else if(RBObrero.isSelected() && modeloHabilidades.isEmpty()){
@@ -1378,18 +1369,9 @@ public class Inicio extends JFrame {
                                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
-                                try {
-                                    new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
-                                } catch (FileNotFoundException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                } catch (ClassNotFoundException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                } catch (IOException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                }
+                                
+                                    new PerfilUsuarios(nuevo).setVisible(true);
+                                
                                 dispose();
                             }
                             else if(RBTec.isSelected() && modeloEspecialidad.isEmpty()) {
@@ -1409,18 +1391,9 @@ public class Inicio extends JFrame {
                                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom,"Usuario Creado Con Exito", 1);
-                                try {
-                                    new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
-                                } catch (FileNotFoundException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                } catch (ClassNotFoundException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                } catch (IOException e1) {
-                                    // TODO Auto-generated catch block
-                                    e1.printStackTrace();
-                                }
+                                
+                                    new PerfilUsuarios(nuevo).setVisible(true);
+                                
                                 dispose();
                             }
                             else if(RBUniversitario.isSelected() && modeloUniversitario.isEmpty() ){

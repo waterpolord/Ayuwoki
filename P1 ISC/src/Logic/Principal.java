@@ -82,18 +82,30 @@ public class Principal implements Serializable{
     	
     }
         public void Obtener() throws ClassNotFoundException, IOException{
-            ResultSet cn,cn2;
+            ResultSet cn,cn2,cn3;
             int cod_persona = 1,ind = 1;
             String Nombre = null,TipoEmpresa = null,Pais;
+            ArrayList <String> arr = new ArrayList();
+            Vector vec = new Vector();
             // Agregando personas a singleton
             try {
-                cn = Conexion.Connect.Consulta("SELECT * FROM Persona");
+                cn = Conexion.Connect.Consulta("SELECT * FROM VistaObreros");
                 while(cn.next()){
                    cn2 = Conexion.Connect.Consulta("SELECT Nombre_pais FROM Persona INNER JOIN Pais ON Pais.cod_pais = Persona.cod_pais WHERE Persona.cod_persona = "+cn.getInt(10));
-                   
+                   cn3 = Conexion.Connect.Consulta("SELECT Habilidades.nombre FROM Persona INNER JOIN Obrero ON Persona.cod_persona = Obrero.cod_persona INNER JOIN\n" +
+"Habilidad_De_Obrero ON Obrero.cod_persona = Habilidad_De_Obrero.cod_persona INNER JOIN Habilidades ON Habilidad_De_Obrero.cod_habilidad = Habilidades.cod_habilidad "
+                           + "WHERE Persona.cod_persona = '"+cn.getInt(1)+"'");
+                    while(cn3.next()){
+                        
+                        vec.add(cn3.getString(1));
+                        arr.add(vec.get(ind-1).toString());
+                        arr.add(cn3.getString(1));
+                        ind++;
+                    }
+                    ind = 1;
                    while(cn2.next()){    
-                        Persona aux = new Persona(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5), cn.getDate(6),cn.getString(7),cn.getString(8), 
-                                 cn.getBoolean(9),cn2.getString(1)) {
+                        Obrero aux = new Obrero(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5), cn.getDate(6),cn.getString(7),cn.getString(8), 
+                                 cn.getBoolean(9),cn2.getString(1),arr) {
                              @Override
                              public void RetornarPersonas() throws DAOExeption {
                                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -101,6 +113,75 @@ public class Principal implements Serializable{
                          };
                         
                         Tpersonas.add(aux);
+                        
+                   }
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
+            }
+            
+            try {
+                cn = Conexion.Connect.Consulta("SELECT * FROM VistaTecnicos");
+                while(cn.next()){
+                   cn2 = Conexion.Connect.Consulta("SELECT Nombre_pais FROM Persona INNER JOIN Pais ON Pais.cod_pais = Persona.cod_pais WHERE Persona.cod_persona = "+cn.getInt(10));
+                   cn3 = Conexion.Connect.Consulta("SELECT Especialidades.nombre,Persona.cod_persona FROM Persona INNER JOIN Tecnico ON Persona.cod_persona = Tecnico.cod_persona INNER JOIN\n" +
+"Especialidad_De_Tecnico ON Tecnico.cod_persona = Especialidad_De_Tecnico.cod_persona INNER JOIN\n" +
+"Especialidades ON Especialidad_De_Tecnico.cod_especialidad = Especialidades.cod_especialidad WHERE Persona.cod_persona ='"+cn.getInt(1)+"'");
+                   int num;
+                   while(cn3.next()){
+                       num = cn.getInt(1);
+                        vec.add(cn3.getString(1));
+                        arr.add(vec.get(ind-1).toString());
+                        arr.add(cn3.getString(1));
+                        ind++;                    
+                    }
+                    ind = 1;
+                   while(cn2.next()){    
+                        Tecnico aux = new Tecnico(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5), cn.getDate(6),cn.getString(7),cn.getString(8), 
+                                 cn.getBoolean(9),cn2.getString(1),arr) {
+                             @Override
+                             public void RetornarPersonas() throws DAOExeption {
+                                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
+                         };
+                        
+                        Tpersonas.add(aux);
+                        
+                   }
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"No se Pudieron obtener las personas desde la base de datos","Advertencia", 0);
+            }
+            
+            try {
+                cn = Conexion.Connect.Consulta("SELECT * FROM VistaUniversitarios");
+                while(cn.next()){
+                   cn2 = Conexion.Connect.Consulta("SELECT Nombre_pais FROM Persona INNER JOIN Pais ON Pais.cod_pais = Persona.cod_pais WHERE Persona.cod_persona = "+cn.getInt(10));
+                   cn3 = Conexion.Connect.Consulta("SELECT Carreras.nombre FROM Persona INNER JOIN Estudiante_Universitario ON Persona.cod_persona = Estudiante_Universitario.cod_persona INNER JOIN\n" +
+"Carreras_De_Universitario ON Estudiante_Universitario.cod_persona = Carreras_De_Universitario.cod_persona INNER JOIN\n" +
+"Carreras ON Carreras_De_Universitario.cod_carrera = Carreras.cod_carrera WHERE Persona.cod_persona = '"+cn.getInt(1)+"'");
+                    while(cn3.next()){
+                        vec.add(cn3.getString(1));
+                        arr.add(vec.get(ind-1).toString());
+                        arr.add(cn3.getString(1));
+                        ind++;
+                    }
+                    ind = 1;
+                   while(cn2.next()){    
+                        Universitario aux = new Universitario(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5), cn.getDate(6),cn.getString(7),cn.getString(8), 
+                                 cn.getBoolean(9),cn2.getString(1),arr) {
+                             @Override
+                             public void RetornarPersonas() throws DAOExeption {
+                                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                             }
+                         };
+                        
+                        Tpersonas.add(aux);
+                        
                    }
                     
                 }
