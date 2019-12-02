@@ -48,6 +48,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -121,6 +122,7 @@ public class PerfilUsuarios extends JFrame {
 				GrupoRespuestas9 = new ButtonGroup();
 				GrupoRespuestas10 = new ButtonGroup();
 				CBXaptitudes = new JComboBox();
+                                
 				if(persona.getEstado() == false) {
 					String letra = "Ninguna";
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
@@ -286,10 +288,11 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.Posee Experiencia de trabajos anteriore?");
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
-					
+					Vector vec = new Vector();
 					for (String aux : ((Universitario) persona).getCarreras()) {
-						CBXaptitudes.addItem(aux);
+						vec.add(aux);
 					}
+                                        CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 	
 				}
 				if(persona instanceof Obrero ) {
@@ -303,9 +306,11 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.Posee Experiencia de trabajos anteriores?");
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
+					Vector vec = new Vector();
 					for (String aux : ((Obrero) persona).getHabilidades()) {
-						CBXaptitudes.addItem(aux);
+						vec.add(aux);
 					}
+                                        CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 				}
 				if(persona instanceof Tecnico) {
 					lb1.setText("1.Habla otro idioma?");
@@ -318,9 +323,11 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.Posee Experiencia de trabajos anteriore?");
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
+					Vector vec = new Vector();
 					for (String aux : ((Tecnico) persona).getEspecialidad()) {
-						CBXaptitudes.addItem(aux);
+						vec.add(aux);
 					}
+                                        CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 				}
 			}
 		});
@@ -335,9 +342,9 @@ public class PerfilUsuarios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		modelo1 = new DefaultListModel();
-		String user = null;
+		//String user = null;
                 
-		if(persona instanceof Universitario ) {
+		/*if(persona instanceof Universitario ) {
 			user = CBXaptitudes.getSelectedItem().toString();
 		}
 		if(persona instanceof Tecnico ) {
@@ -345,10 +352,10 @@ public class PerfilUsuarios extends JFrame {
 		}
 		if(persona instanceof Obrero  ) {
 			user = CBXaptitudes.getSelectedItem().toString();
-		}
+		}*/
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),user, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"),null, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(new Color(119, 136, 153));
 		
 		JLabel label = new JLabel(persona.getNombre()+" "+persona.getPrimerApellido()+" "+persona.getCorreo());

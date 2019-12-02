@@ -174,7 +174,7 @@ public class Inicio extends JFrame {
                         PanelLogin.setVisible(false);
                         PanelUser.setVisible(false);
             try {
-                Boolean bol = (Boolean)Principal.getInstance().dataEntrada().get(0);
+                Boolean bol = false;
                 if(bol){
                     String correo = Principal.getInstance().dataEntrada().get(1).toString();
                     bol = Principal.getInstance().existeEmpresa(correo);

@@ -45,12 +45,12 @@ public class Obrero extends Persona {
                 ResultSet cn;
                 CallableStatement entrada  = getConexion().prepareCall("{Call GuardarPersona(?,?,?,?,?,?,?,?,?)}");
                 entrada.setString(1,Nuevo.PrimerNombre);
-                if(!(Nuevo.SegundoNombre.isEmpty())){
+                
                     entrada.setString(2,Nuevo.SegundoNombre);
-                }       entrada.setString(3,Nuevo.PrimerApellido);
-                if(!(Nuevo.SegundoApellido.isEmpty())){
+                       entrada.setString(3,Nuevo.PrimerApellido);
+             
                     entrada.setString(4,Nuevo.SegundoApellido);
-                }       entrada.setDate(5,new Date(Nuevo.FechaNacimiento.getDate()));
+                       entrada.setDate(5,new Date(Nuevo.FechaNacimiento.getDate()));
                 entrada.setString(6, Nuevo.correo);
                 // ENCRYPTBYPASSPHRASE('password', @llave) en el SP para guardar encriptacion
                 entrada.setString(7,Nuevo.clave);

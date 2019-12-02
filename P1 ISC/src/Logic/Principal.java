@@ -48,7 +48,7 @@ public class Principal implements Serializable{
 			principal = carga;
 	}
 	public void dataSalida(Boolean Sesion, String Correo) throws IOException, ClassNotFoundException{
-                File salida = new File("Sesion.txt");
+                /*File salida = new File("Sesion.txt");
 		FileOutputStream guardar;
 		guardar = new FileOutputStream(salida);
 		ObjectOutputStream archivoSalida = new ObjectOutputStream(guardar);
@@ -58,7 +58,7 @@ public class Principal implements Serializable{
 		guardar = new FileOutputStream(salida);
 		archivoSalida = new ObjectOutputStream(guardar);
 		archivoSalida.writeObject(Correo);
-		archivoSalida.close();
+		archivoSalida.close();*/
     }
 	
 	public Vector dataEntrada() throws IOException, FileNotFoundException, ClassNotFoundException{
@@ -66,13 +66,13 @@ public class Principal implements Serializable{
                 File archivoSesion = new File("Sesion.txt");
                 File archivoNombre = new File("Correo.txt");
 		if(archivoSesion.exists() && archivoNombre.exists()) {
-			FileInputStream file = new FileInputStream(archivoSesion);
+			/*FileInputStream file = new FileInputStream(archivoSesion);
 			ObjectInputStream entrada = new ObjectInputStream(file);
 			Sesion.add(entrada.readBoolean());
                         file = new FileInputStream(archivoNombre);
 			entrada = new ObjectInputStream(file);
 			Sesion.add(entrada.readObject().toString());
-			entrada.close();
+			entrada.close();*/
 		}
                 else{
                     Sesion.add(false);
