@@ -105,7 +105,8 @@ public class PerfilUsuarios extends JFrame {
 	private ButtonGroup grupo;
 	private JButton BTNGuardar;
 	private ArrayList<Vacante> solicitudesEnTabla = new ArrayList();
-	private JComboBox CBXaptitudes = new JComboBox();
+	private JComboBox CBXaptitudes;
+	Vector vec = new Vector();
 
 	public PerfilUsuarios(Persona persona) {
 		addWindowListener(new WindowAdapter() {
@@ -288,7 +289,7 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.Posee Experiencia de trabajos anteriore?");
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
-					Vector vec = new Vector();
+					
 					for (String aux : ((Universitario) persona).getCarreras()) {
 						vec.add(aux);
 					}
@@ -306,7 +307,7 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.Posee Experiencia de trabajos anteriores?");
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
-					Vector vec = new Vector();
+					
 					for (String aux : ((Obrero) persona).getHabilidades()) {
 						vec.add(aux);
 					}
@@ -323,7 +324,7 @@ public class PerfilUsuarios extends JFrame {
 					lb8.setText("8.Posee Experiencia de trabajos anteriore?");
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
-					Vector vec = new Vector();
+					
 					for (String aux : ((Tecnico) persona).getEspecialidad()) {
 						vec.add(aux);
 					}
@@ -880,8 +881,8 @@ public class PerfilUsuarios extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+							.addGap(46)
 							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 							.addGap(35)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -890,15 +891,11 @@ public class PerfilUsuarios extends JFrame {
 						.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))
 					.addGap(139))
 		);
+		CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 		
 		
-		CBXaptitudes.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});
-		CBXaptitudes.setBounds(10, 141, 100, 20);
+		
+		CBXaptitudes.setBounds(10, 72, 100, 20);
 		panel_2.add(CBXaptitudes);
 		contentPane.setLayout(gl_contentPane);
 		if(persona.getSoli() == 1) {
