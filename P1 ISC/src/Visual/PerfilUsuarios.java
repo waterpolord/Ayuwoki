@@ -905,6 +905,7 @@ public class PerfilUsuarios extends JFrame {
                         vec.add(aux);
                     }
                }
+               CBXaptitudes = new JComboBox();
 		CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 		
 		

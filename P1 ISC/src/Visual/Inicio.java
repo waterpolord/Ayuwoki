@@ -1339,7 +1339,7 @@ public class Inicio extends JFrame {
                                         , pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                      Principal.getInstance().setTpersonas(nuevo);
-                                     Principal.getInstance().dataSalida(nuevo.getSesion(),nuevo.getCorreo());
+                                     Principal.getInstance().Obtener();
                                 } catch (ClassNotFoundException | IOException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
@@ -1348,7 +1348,13 @@ public class Inicio extends JFrame {
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
                                 
-                                    new PerfilUsuarios(nuevo).setVisible(true);
+                                try {
+                                    new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
+                                } catch (ClassNotFoundException ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 
                                 dispose();
                             }
@@ -1370,7 +1376,14 @@ public class Inicio extends JFrame {
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
                                 
-                                    new PerfilUsuarios(nuevo).setVisible(true);
+                                    try {
+                                    new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
+                                } catch (ClassNotFoundException ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                
                                 
                                 dispose();
                             }
@@ -1392,7 +1405,14 @@ public class Inicio extends JFrame {
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom,"Usuario Creado Con Exito", 1);
                                 
-                                    new PerfilUsuarios(nuevo).setVisible(true);
+                                  try {
+                                    new PerfilUsuarios(Principal.getInstance().buscarPersonas(nuevo.getCorreo())).setVisible(true);
+                                } catch (ClassNotFoundException ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                
                                 
                                 dispose();
                             }
