@@ -1,5 +1,6 @@
 package Visual;
 
+import Interfaces.DAOExeption;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OlvidoClaveEmpresa extends JDialog {
 
@@ -76,13 +79,13 @@ public class OlvidoClaveEmpresa extends JDialog {
 						if(Pass.length() > 3 && Pass.equalsIgnoreCase(PassC)) {
 							empre.setClave(Pass);
 							try {
-								Principal.getInstance().dataSalida();
+								empre.Modificar(empre);
 								JOptionPane.showMessageDialog(null,"Contrase�a guardada con exito","Guardado",1);
 								dispose();
-							} catch (ClassNotFoundException | IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+							
+							} catch (DAOExeption ex) {
+                                                        Logger.getLogger(OlvidoClaveEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                                    }
 						}
 						else {
 							JOptionPane.showMessageDialog(null,"Asegurate de llenar todos los campos y que sean iguales","Advertencia",0);

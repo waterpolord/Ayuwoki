@@ -3,12 +3,16 @@ package Logic;
 import Interfaces.VacanteDAO;
 
 import static Conexion.Connect.getConexion;
+import Interfaces.DAOExeption;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Vacante implements Serializable, VacanteDAO{
 	private Empresa empresa;
@@ -51,7 +55,7 @@ public class Vacante implements Serializable, VacanteDAO{
 
 	public void solicitar(Persona nueva) throws ClassNotFoundException, IOException {
 		Solicitantes.add( nueva);
-		Principal.getInstance().dataSalida();
+		
 	//	Organizar();
 	}
 	
@@ -72,10 +76,10 @@ public class Vacante implements Serializable, VacanteDAO{
 	
 	// Despues de determinar si el reemplazo aplica se 
 	//usa esta funcion para reemplazar una persona con menos habilidades
-	public void Reemplazo(Persona user,int ind) throws ClassNotFoundException, IOException {
+	public void Reemplazo(Persona user,int ind) throws ClassNotFoundException, IOException, DAOExeption {
 		cancelar(ind);
 		Solicitantes.add(ind,user);
-		Principal.getInstance().dataSalida();
+		this.Modificar(this);
 	//	Organizar();
 	}
 	
@@ -223,42 +227,48 @@ public class Vacante implements Serializable, VacanteDAO{
 	}
 
     @Override
-    public void Registrar(Vacante Nuevo) throws Exception {
-        int getCodEmpresa = 1;
-    	CallableStatement entrada  = getConexion().prepareCall("{Call GuardarVacanteEmpresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-        
-        ResultSet cn = Conexion.Connect.Consulta("SELECT cod_empresa FROM Empresa WHERE correo_empresa = '"
-                +Nuevo.empresa.getCorreo().toString()+"'");
-		while(cn.next()){
-			getCodEmpresa = cn.getInt(1);
-		}
-		entrada.setInt(1, getCodEmpresa);
-        entrada.setString(2,Nuevo.puesto);
-        entrada.setString(3,Nuevo.TipoPersonal);
-        for(int i = 4, i2 = 0; i < 14; i++, i2++ ) {
-        	entrada.setBoolean(i,Nuevo.requisitos[i2]);
-        }
-        entrada.setBoolean(14,Nuevo.estado);
-        entrada.setInt(15,Nuevo.cantInicial);
-        entrada.setInt(16,Nuevo.monto);
-        entrada.setInt(17,Nuevo.codigoVacante);
-        entrada.setInt(18,Nuevo.CantPuestos);
-        
-        entrada.execute();
+    public void Registrar(Vacante Nuevo) throws DAOExeption {
+            try {
+                int getCodEmpresa = 1;
+                CallableStatement entrada  = getConexion().prepareCall("{Call GuardarVacanteEmpresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                
+                ResultSet cn = Conexion.Connect.Consulta("SELECT cod_empresa FROM Empresa WHERE correo_empresa = '"
+                        +Nuevo.empresa.getCorreo().toString()+"'");
+                while(cn.next()){
+                    getCodEmpresa = cn.getInt(1);
+                }
+                entrada.setInt(1, getCodEmpresa);
+                entrada.setString(2,Nuevo.puesto);
+                entrada.setString(3,Nuevo.TipoPersonal);
+                for(int i = 4, i2 = 0; i < 14; i++, i2++ ) {
+                    entrada.setBoolean(i,Nuevo.requisitos[i2]);
+                }
+                entrada.setBoolean(14,Nuevo.estado);
+                entrada.setInt(15,Nuevo.cantInicial);
+                entrada.setInt(16,Nuevo.monto);
+                entrada.setInt(17,Nuevo.codigoVacante);
+                entrada.setInt(18,Nuevo.CantPuestos);
+                
+                entrada.execute();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Vacante.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                throw new DAOExeption("Error en SQL",ex);
+            }
     }
 
     @Override
-    public void Modificar(Vacante Nuevo) throws Exception {
+    public void Modificar(Vacante Nuevo) throws DAOExeption {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void Eliminar(Vacante Nuevo) throws Exception {
+    public void Eliminar(Vacante Nuevo) throws DAOExeption {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void RetornarVacantes() throws Exception {
+    public void RetornarVacantes() throws DAOExeption {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	 

@@ -1,5 +1,6 @@
 package Visual;
 
+import Interfaces.DAOExeption;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -206,17 +207,12 @@ public class PerfilEmpresa extends JFrame {
 				}
 				if(comboBox.getSelectedIndex() == 2) {
 					try {
-						Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setSesion(false);;
+						Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setSesion(false,empresa.getCorreo());;
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					try {
-						Principal.getInstance().dataSalida();
-					} catch (ClassNotFoundException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					
 					dispose();
                                     try {
                                         new Inicio().setVisible(true);
@@ -390,10 +386,12 @@ public class PerfilEmpresa extends JFrame {
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 						try {
 						    
-							Principal.getInstance().dataSalida();
+							Principal.getInstance().setTVacantes(nueva);
 							lista.clear();
 							int i = 0;
 							for(Vacante vac:empresa.getMisVacantes()) {
@@ -404,7 +402,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (ClassNotFoundException | IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 					}
 					if(CBXCarrera.getSelectedIndex() <= 0) {
 						JOptionPane.showMessageDialog(null,"Selecciona una carrera","Llena Todos Los Campos",0);
@@ -535,7 +535,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (IOException e2) {
 							// TODO Auto-generated catch block
 							e2.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 						try {
 							empresa.setVacante(nueva);
 						} catch (FileNotFoundException e1) {
@@ -547,7 +549,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
 							if(nueva.getCantInicial() != nueva.getCantSolicitantes())
@@ -565,7 +569,7 @@ public class PerfilEmpresa extends JFrame {
 						}
 						try {
 							Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
-							Principal.getInstance().dataSalida();
+							Principal.getInstance().setTVacantes(nueva);
 							lista.clear();
 							int i = 0;
 							for(Vacante vac:empresa.getMisVacantes()) {
@@ -575,7 +579,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (ClassNotFoundException | IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 					}
 					if(CBXEspecialidad.getSelectedIndex() <= 0) {
 						JOptionPane.showMessageDialog(null,"Selecciona una Especialidad","Llena Todos Los Campos",0);
@@ -706,7 +712,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 						try {
 							empresa.setVacante(nueva);
 						} catch (FileNotFoundException e1) {
@@ -718,7 +726,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
 							if(nueva.getCantInicial() != nueva.getCantSolicitantes())
@@ -736,7 +746,7 @@ public class PerfilEmpresa extends JFrame {
 						}
 						try {
 							Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
-							Principal.getInstance().dataSalida();
+							Principal.getInstance().setTVacantes(nueva);
 							lista.clear();
 							int i = 0;
 							for(Vacante vac:empresa.getMisVacantes()) {
@@ -746,7 +756,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (ClassNotFoundException | IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 					}
 					if(CBXHabilidad.getSelectedIndex() <= 0) {
 						JOptionPane.showMessageDialog(null,"Selecciona una habilidad","Llena Todos Los Campos",0);

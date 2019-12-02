@@ -73,27 +73,7 @@ public class PaginaEmpresa extends JDialog {
 		contentPanel.add(textArea);
 		
 		btnInfo = new JButton("A\u00F1adir Descripci\u00F3n");
-		btnInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(guard == false) {
-					textArea.setEnabled(true);
-					btnInfo.setText("Guardar");
-					guard = true;
-					}
-				else {
-					textArea.setEnabled(false);
-					btnInfo.setText("A�adir Descripci�n");
-					guard = false;
-					
-					try {
-						Principal.getInstance().dataSalida();
-					} catch (ClassNotFoundException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			}
-		});
+		
 		btnInfo.setBackground(SystemColor.activeCaption);
 		btnInfo.setBounds(37, 207, 151, 23);
 		contentPanel.add(btnInfo);

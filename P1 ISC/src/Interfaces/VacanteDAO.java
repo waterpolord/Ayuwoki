@@ -12,8 +12,8 @@ import Logic.*;
  * @author r_rok
  */
 public interface VacanteDAO {
-    public void Registrar(Vacante Nuevo) throws Exception;
-    public void Modificar(Vacante Nuevo) throws Exception;
-    public void Eliminar(Vacante Nuevo) throws Exception;
-    public void RetornarVacantes() throws Exception;
+    public void Registrar(Vacante Nuevo) throws DAOExeption;
+    public void Modificar(Vacante Nuevo) throws DAOExeption;
+    public void Eliminar(Vacante Nuevo) throws DAOExeption;
+    public void RetornarVacantes() throws DAOExeption;
 }

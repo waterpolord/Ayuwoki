@@ -12,8 +12,8 @@ import Logic.*;
  * @author r_rok
  */
 public interface EmpresaDAO {
-    public void Registrar(Empresa Nuevo) throws Exception;
-    public void Modificar(Empresa Nuevo) throws Exception;
-    public void Eliminar(Empresa Nuevo) throws Exception;
-    public void RetornarEmpresa() throws Exception;
+    public void Registrar(Empresa Nuevo) throws DAOExeption;
+    public void Modificar(Empresa Nuevo) throws DAOExeption;
+    public void Eliminar(Empresa Nuevo) throws DAOExeption;
+    public void RetornarEmpresa() throws DAOExeption;
 }

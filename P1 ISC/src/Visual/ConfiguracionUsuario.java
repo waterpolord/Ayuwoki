@@ -1,5 +1,6 @@
 package Visual;
 
+import Interfaces.DAOExeption;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -36,6 +37,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class ConfiguracionUsuario extends JDialog {
@@ -178,12 +181,13 @@ public class ConfiguracionUsuario extends JDialog {
 						user.setClave(Pass);
 					}
 					try {
-						Principal.getInstance().dataSalida();
+						user.Modificar(user);
 						JOptionPane.showMessageDialog(null,"Cambios Guardados","Modificaci�n aceptada",1);
-					} catch (ClassNotFoundException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					}catch (DAOExeption ex) {
+                                        Logger.getLogger(ConfiguracionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    // TODO Auto-generated catch block
+                                    
 				}
 				else {
 					JOptionPane.showMessageDialog(null,"Revisa los campos y las contrase�as","Advertencia",0);
@@ -249,15 +253,15 @@ public class ConfiguracionUsuario extends JDialog {
 						aux.setEstado(true);
 						user.setEstado(true);
 						try {
-							Principal.getInstance().dataSalida();
+							user.Modificar(user);
 							JOptionPane.showMessageDialog(null, "Cambios Guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
 						}
+                                                    // TODO Auto-generated catch block
+                                                       catch (DAOExeption ex) {
+                                                        Logger.getLogger(ConfiguracionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                                                    }
+                                                    // TODO Auto-generated catch block
+                                                    
 						
 						
 						

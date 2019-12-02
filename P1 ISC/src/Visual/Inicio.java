@@ -1,6 +1,7 @@
 package Visual;
  
  
+import Interfaces.DAOExeption;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -172,6 +173,25 @@ public class Inicio extends JFrame {
                         PanelEmpresa.setVisible(false);
                         PanelLogin.setVisible(false);
                         PanelUser.setVisible(false);
+            try {
+                Boolean bol = (Boolean)Principal.getInstance().dataEntrada().get(0);
+                if(bol){
+                    String correo = Principal.getInstance().dataEntrada().get(1).toString();
+                    bol = Principal.getInstance().existeEmpresa(correo);
+                    if(bol){
+                        new PerfilUsuarios(Principal.getInstance().buscarPersonas(correo));
+                        dispose();
+                    }
+                    else{
+                        new PerfilEmpresa(Principal.getInstance().buscarEmpresas(correo));
+                        dispose();
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                        
                                      
  
@@ -323,7 +343,7 @@ public class Inicio extends JFrame {
                    textCorreoE.setBounds(70, 135, 353, 20);
                    panel_4.add(textCorreoE);
                    
-                    JLabel labelConE = new JLabel("Contrase\u00F1a:");
+                    JLabel labelConE = new JLabel("Contraseña:");
                     labelConE.setForeground(Color.WHITE);
                     labelConE.setBounds(10, 181, 125, 14);
                     panel_4.add(labelConE);
@@ -334,7 +354,7 @@ public class Inicio extends JFrame {
                          public void keyReleased(KeyEvent e) {
                              if(passwordE.getPassword().length < 4) {
                                  LBClaveCortaE.setVisible(true);
-                                 LBClaveCortaE.setText("Esta contraseÃƒÂ±a es muy corta");
+                                 LBClaveCortaE.setText("Esta contraseña es muy corta");
                                  LBClaveCortaE.setForeground(Color.ORANGE);
                              }
                              else {
@@ -501,6 +521,8 @@ public class Inicio extends JFrame {
                                                       } catch (ClassNotFoundException | IOException e1) {
                                                           // TODO Auto-generated catch block
                                                           e1.printStackTrace();
+                                                      } catch (DAOExeption ex) {
+                                                          Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                                       }
                                                       new PerfilEmpresa(empresa).setVisible(true);
                                                       dispose();
@@ -620,18 +642,13 @@ public class Inicio extends JFrame {
                     }
                     if(checkSesion.isSelected()) {
                         try {
-                            Principal.getInstance().buscarPersonas(textUsuario.getText()).setSesion(true);
+                            Principal.getInstance().buscarPersonas(textUsuario.getText()).setSesion(true,Principal.getInstance().buscarPersonas(textUsuario.getText()).getCorreo());
                         } catch (ClassNotFoundException | IOException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
                         };
                     }
-                    try {
-                        Principal.getInstance().dataSalida();
-                    } catch (ClassNotFoundException | IOException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
+                    
                     new PerfilUsuarios(login).setVisible(true);
                     dispose();
                 }
@@ -645,18 +662,14 @@ public class Inicio extends JFrame {
                     }
                     if(checkSesion.isSelected()) {
                         try {
-                            Principal.getInstance().buscarEmpresas(textUsuario.getText()).setSesion(true);
+                            Principal.getInstance().buscarEmpresas(textUsuario.getText()).setSesion(true,Principal.getInstance().buscarEmpresas(textUsuario.getText()).getCorreo());
+
                         } catch (ClassNotFoundException | IOException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
                         }
                     }
-                    try {
-                        Principal.getInstance().dataSalida();
-                    } catch (ClassNotFoundException | IOException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
+                    
                     new PerfilEmpresa(empresa).setVisible(true);
                     dispose();
                 }
@@ -1325,10 +1338,13 @@ public class Inicio extends JFrame {
                                             txtCorreo.getText()
                                         , pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
-                                    Principal.getInstance().setTpersonas(nuevo);
+                                     Principal.getInstance().setTpersonas(nuevo);
+                                     Principal.getInstance().dataSalida(nuevo.getSesion(),nuevo.getCorreo());
                                 } catch (ClassNotFoundException | IOException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
+                                } catch (DAOExeption ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
                                 try {
@@ -1354,9 +1370,12 @@ public class Inicio extends JFrame {
                                             txtCorreo.getText(), pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
+                                     Principal.getInstance().dataSalida(nuevo.getSesion(),nuevo.getCorreo());
                                 } catch (ClassNotFoundException | IOException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
+                                } catch (DAOExeption ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenido "+nom,"Usuario Creado Con Exito", 1);
                                 try {
@@ -1382,9 +1401,12 @@ public class Inicio extends JFrame {
                                             txtCorreo.getText(), pass,true,CBXPais.getSelectedItem().toString(),mishab);
                                 try {
                                     Principal.getInstance().setTpersonas(nuevo);
+                                    Principal.getInstance().dataSalida(nuevo.getSesion(),nuevo.getCorreo());
                                 } catch (ClassNotFoundException | IOException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
+                                } catch (DAOExeption ex) {
+                                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                                 JOptionPane.showMessageDialog(null,"Bienvenid@ "+nom,"Usuario Creado Con Exito", 1);
                                 try {
@@ -1605,6 +1627,11 @@ public class Inicio extends JFrame {
     }
    
     public void generarBarras() throws ClassNotFoundException, SQLException {
+        try {
+            Principal.getInstance().Obtener();
+        } catch (IOException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DefaultCategoryDataset ds = new DefaultCategoryDataset();
         JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "Cantidad", ds,PlotOrientation.VERTICAL,
                 true,true,true);

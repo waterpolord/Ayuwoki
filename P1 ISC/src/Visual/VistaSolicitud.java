@@ -1,5 +1,6 @@
 package Visual;
 
+import Interfaces.DAOExeption;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -37,6 +38,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VistaSolicitud extends JDialog {
 
@@ -139,7 +142,7 @@ public class VistaSolicitud extends JDialog {
 							//vacante.restCant();
 							Principal.getInstance().buscarPersonas(table.getModel().getValueAt(selecF, 3).toString()).setEstado(false);
 							Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).restCant();
-							Principal.getInstance().dataSalida();
+							vacante.Modificar(vacante);
 							JOptionPane.showMessageDialog(null, "Ha contratado a una Persona", "Informacion", JOptionPane.INFORMATION_MESSAGE, null);
 							if(Principal.getInstance().buscarEmpresas(correo).BuscarVacantes(vacante.getCodigo()).getCant() == 0) {
 								vacante.setEstado(false);
@@ -163,7 +166,7 @@ public class VistaSolicitud extends JDialog {
 							
 							
 							
-							Principal.getInstance().dataSalida();
+							
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -173,7 +176,9 @@ public class VistaSolicitud extends JDialog {
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
+						} catch (DAOExeption ex) {
+                                                Logger.getLogger(VistaSolicitud.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
 						
 						}
 					}

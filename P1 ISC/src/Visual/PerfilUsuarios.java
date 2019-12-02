@@ -1,6 +1,7 @@
 package Visual;
 
 
+import Interfaces.DAOExeption;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -119,7 +120,7 @@ public class PerfilUsuarios extends JFrame {
 				GrupoRespuestas8 = new ButtonGroup();
 				GrupoRespuestas9 = new ButtonGroup();
 				GrupoRespuestas10 = new ButtonGroup();
-				
+				CBXaptitudes = new JComboBox();
 				if(persona.getEstado() == false) {
 					String letra = "Ninguna";
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
@@ -335,6 +336,7 @@ public class PerfilUsuarios extends JFrame {
 		setContentPane(contentPane);
 		modelo1 = new DefaultListModel();
 		String user = null;
+                
 		if(persona instanceof Universitario ) {
 			user = CBXaptitudes.getSelectedItem().toString();
 		}
@@ -367,17 +369,12 @@ public class PerfilUsuarios extends JFrame {
 				}
 					if(comboBox.getSelectedIndex() == 2) {
 					try {
-						Principal.getInstance().buscarPersonas(persona.getCorreo()).setSesion(false);;
+						Principal.getInstance().buscarPersonas(persona.getCorreo()).setSesion(false,persona.getCorreo());
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					try {
-						Principal.getInstance().dataSalida();
-					} catch (ClassNotFoundException | IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					
 					dispose();
                                     try {
                                         new Inicio().setVisible(true);
@@ -532,7 +529,9 @@ public class PerfilUsuarios extends JFrame {
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
-					}
+					} catch (DAOExeption ex) {
+                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 		
 					for(Vacante vac:Principal.getInstance().getTVacantes()) {
 							if(vac.getEstado()) {
@@ -555,7 +554,9 @@ public class PerfilUsuarios extends JFrame {
 													} catch (ClassNotFoundException | IOException e1) {
 														// TODO Auto-generated catch block
 														e1.printStackTrace();
-													}
+													} catch (DAOExeption ex) {
+                                                                                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                                                                                    }
 												}
 											}
 										}
@@ -580,7 +581,9 @@ public class PerfilUsuarios extends JFrame {
 													} catch (ClassNotFoundException | IOException e1) {
 														// TODO Auto-generated catch block
 														e1.printStackTrace();
-													}
+													} catch (DAOExeption ex) {
+                                                                                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                                                                                    }
 												}
 											}
 										}
@@ -605,7 +608,9 @@ public class PerfilUsuarios extends JFrame {
 													} catch (ClassNotFoundException | IOException e1) {
 														// TODO Auto-generated catch block
 														e1.printStackTrace();
-													}
+													} catch (DAOExeption ex) {
+                                                                                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                                                                                    }
 												}
 											}
 										}
@@ -614,13 +619,15 @@ public class PerfilUsuarios extends JFrame {
 							}
 					}
 					try {
-						Principal.getInstance().dataSalida();
+						Principal.getInstance().setTEmpleos(nuevo);
 						JOptionPane.showMessageDialog(null,"La solicitud se guardo con exito","Confirmado",1);
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null,"No se guardo la solicitud","Advertencia",0);
-					}
+					} catch (DAOExeption ex) {
+                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 					
 					
 				}

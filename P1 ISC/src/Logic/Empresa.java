@@ -3,13 +3,17 @@ package Logic;
 import Interfaces.EmpresaDAO;
 
 import static Conexion.Connect.getConexion;
+import Interfaces.DAOExeption;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Empresa implements Serializable, EmpresaDAO{
 
@@ -78,7 +82,7 @@ public class Empresa implements Serializable, EmpresaDAO{
 		return codigoMisVacantes; 
 	}
 	
-	public void setVacante(Vacante nueva) throws FileNotFoundException, ClassNotFoundException, IOException {
+	public void setVacante(Vacante nueva) throws FileNotFoundException, ClassNotFoundException, IOException, DAOExeption {
 		codigoMisVacantes++;
 		MisVacantes.add(nueva);
 		Principal.getInstance().setTVacantes(nueva);
@@ -87,8 +91,9 @@ public class Empresa implements Serializable, EmpresaDAO{
 	public ArrayList<Vacante> getMisVacantes() {
 		return MisVacantes;	}
 	
-	public void setSesion(Boolean sesion) {
+	public void setSesion(Boolean sesion, String txt) throws IOException, ClassNotFoundException {
 		this.Sesion = sesion;
+                Principal.getInstance().dataSalida(sesion,txt);
 	}
 	public Boolean getSesion() {
 		return this.Sesion;
@@ -114,10 +119,13 @@ public class Empresa implements Serializable, EmpresaDAO{
 	}
 
     @Override
-    public void Registrar(Empresa Nuevo) throws Exception {
+    public void Registrar(Empresa Nuevo) throws DAOExeption {
     	int getCodPersona = 1;
     	int getCodTipoEmpresa = 1;
-    	CallableStatement entrada  = getConexion().prepareCall("{Call GuardarEmpresa(?,?,?,?,?,?)}");
+    	CallableStatement entrada;
+            try {
+                entrada = getConexion().prepareCall("{Call GuardarEmpresa(?,?,?,?,?,?)}");
+            
         
         entrada.setString(1, Nuevo.Nombre);
         entrada.setString(2, Nuevo.telefono);
@@ -139,18 +147,24 @@ public class Empresa implements Serializable, EmpresaDAO{
         entrada.setInt(6, getCodTipoEmpresa);
         
         entrada.execute();
+        entrada.close();
+        } catch (ClassNotFoundException ex) {
+                throw new DAOExeption("No se encuentra la clase Connect: ",ex);
+            } catch (SQLException ex) {
+                throw new DAOExeption("Error en SQL",ex);
+            }
     }
 
     @Override
-    public void Modificar(Empresa Nuevo) throws Exception {
+    public void Modificar(Empresa Nuevo) throws DAOExeption {
     }
 
     @Override
-    public void Eliminar(Empresa Nuevo) throws Exception {
+    public void Eliminar(Empresa Nuevo) throws DAOExeption {
     }
 
     @Override
-    public void RetornarEmpresa() throws Exception {
+    public void RetornarEmpresa() throws DAOExeption {
    
     }
 

@@ -12,8 +12,10 @@ import Logic.Persona;
  * @author r_rok
  */
 public interface PersonaDAO {
-    public void Registrar(Persona Nuevo) throws Exception;
-    public void Modificar(Persona Nuevo) throws Exception;
-    public void Eliminar(Persona Nuevo) throws Exception;
-    public void RetornarPersonas() throws Exception;
+    public void Registrar(Persona Nuevo) throws DAOExeption;
+    public void Modificar(Persona Nuevo) throws DAOExeption;
+    public void Eliminar(Persona Nuevo) throws DAOExeption;
+    public void RetornarPersonas() throws DAOExeption;
+    
+    
 }
