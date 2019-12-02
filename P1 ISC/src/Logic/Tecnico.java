@@ -73,7 +73,7 @@ public class Tecnico extends Persona {
                     en  = getConexion().prepareCall("{Call InsertarEspecialidadDeTecnico(?,?)}");
                     en.setInt(1,cod_persona);
                     en.setInt(2, gethab);
-                    
+                    en.execute();
                     en.close();
                     
                 }

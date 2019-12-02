@@ -86,7 +86,7 @@ public class Obrero extends Persona {
                     en  = getConexion().prepareCall("{Call InsertarHabilidadesDeObrero(?,?)}");
                     en.setInt(1,cod_persona);
                     en.setInt(2, gethab);
-                    
+                    en.execute();
                     en.close();
                 }   } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Obrero.class.getName()).log(Level.SEVERE, null, ex);

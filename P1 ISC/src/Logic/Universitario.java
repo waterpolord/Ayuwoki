@@ -73,7 +73,7 @@ public class Universitario extends Persona {
                     en  = getConexion().prepareCall("{Call InsertarCarrerasDeUniversitario(?,?)}");
                     en.setInt(1,cod_persona);
                     en.setInt(2, gethab);
-                    
+                    en.execute();
                     en.close();
                     
                 }   } catch (ClassNotFoundException ex) {
