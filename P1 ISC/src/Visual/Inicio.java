@@ -1642,11 +1642,12 @@ public class Inicio extends JFrame {
             }
         if(rbnEmpresasYUsuarios.isSelected()) {
                         int CEmpresas = 0,CUser = 0;
-                        ResultSet cn;
-                        cn = Conexion.Connect.Consulta("SELECT Empresas,Personas FROM VistaGraficaPrincipal");
-                        while(cn.next()){
+                        ResultSet cn,cn2;
+                        cn = Conexion.Connect.Consulta("SELECT COUNT(cod_empresa) FROM Empresa");
+                        cn2 = Conexion.Connect.Consulta("SELECT COUNT(cod_persona) FROM Persona");
+                        while(cn.next() && cn2.next()){
                             CEmpresas = cn.getInt(1);
-                            CUser = cn.getInt(2);
+                            CUser = cn2.getInt(1);
                         }
             ds.addValue(CUser,"Personas","");
             ds.addValue(CEmpresas,"Empresas","");
@@ -1661,7 +1662,7 @@ public class Inicio extends JFrame {
             int ind = 0;
             ResultSet cn;
                         if(cbxGraficas.getSelectedIndex() == 0){
-                            cn = Conexion.Connect.Consulta("SELECT UNIVERSITARIO FROM VistaGraficaPrincipal");
+                            cn = Conexion.Connect.Consulta("SELECT COUNT(cod_persona) FROM Estudiante_Universitario");
                             while(cn.next()){
                                 ind = cn.getInt(1);
                             }
@@ -1683,7 +1684,7 @@ public class Inicio extends JFrame {
             int ind = 0;
             ResultSet cn;
                         if(cbxGraficas.getSelectedIndex() == 0){
-                            cn = Conexion.Connect.Consulta("SELECT TECNICO FROM VistaGraficaPrincipal");
+                            cn = Conexion.Connect.Consulta("SELECT COUNT(cod_persona) FROM Tecnico");
                             while(cn.next()){
                                 ind = cn.getInt(1);
                             }
@@ -1704,7 +1705,7 @@ public class Inicio extends JFrame {
             int ind = 0;
             ResultSet cn;
                         if(cbxGraficas.getSelectedIndex() == 0){
-                            cn = Conexion.Connect.Consulta("SELECT OBRERO FROM VistaGraficaPrincipal");
+                            cn = Conexion.Connect.Consulta("SELECT COUNT(cod_persona) FROM Obrero");
                             while(cn.next()){
                                 ind = cn.getInt(1);
                             }
@@ -1725,7 +1726,7 @@ public class Inicio extends JFrame {
                         ResultSet cn;
             int ind = 0,Cvac = 0;
             if(cbxGraficas.getSelectedIndex() == 0){
-                            cn = Conexion.Connect.Consulta("SELECT Empresas,Vacantes FROM VistaGraficaPrincipal");
+                            cn = Conexion.Connect.Consulta("SELECT COUNT(Empresa.cod_empresa),COUNT(Vacante_Empresa.cod_empresa) FROM Empresa INNER JOIN Vacante_Empresa ON Vacante_Empresa.cod_empresa = Empresa.cod_empresa");
                             while(cn.next()){
                                 ind = cn.getInt(1);
                                 Cvac = cn.getInt(2);

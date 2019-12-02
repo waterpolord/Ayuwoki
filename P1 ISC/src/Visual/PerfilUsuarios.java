@@ -290,9 +290,7 @@ public class PerfilUsuarios extends JFrame {
 					lb9.setText("9.Puede realizar mas de una tarea a la vez?");
 					lb10.setText("10.Trabajas bien en equipo?");
 					
-					for (String aux : ((Universitario) persona).getCarreras()) {
-						vec.add(aux);
-					}
+					
                                         CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 	
 				}
@@ -891,6 +889,21 @@ public class PerfilUsuarios extends JFrame {
 						.addComponent(panelReUniversitario, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))
 					.addGap(139))
 		);
+               if(persona instanceof Universitario){
+                    for (String aux : ((Universitario) persona).getCarreras()) {
+                         vec.add(aux);
+                    }
+               }
+               if(persona instanceof Tecnico){
+                   for (String aux : ((Tecnico) persona).getEspecialidad()) {
+                        vec.add(aux);
+                    }
+               }
+               if(persona instanceof Obrero){
+                   for (String aux : ((Obrero) persona).getHabilidades()) {
+                        vec.add(aux);
+                    }
+               }
 		CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 		
 		
