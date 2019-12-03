@@ -1,6 +1,7 @@
 package Visual;
  
  
+import static Conexion.Connect.getConexion;
 import Interfaces.DAOExeption;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -153,12 +154,20 @@ public class Inicio extends JFrame {
     private JLabel lblPais;
  
  public Inicio() throws ClassNotFoundException, SQLException {
+    getConexion();
     setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/Imgenes/FondoPortada.jpg")));
    
     addWindowListener(new WindowAdapter() {
         @Override
         public void windowOpened(WindowEvent e) {
             try {
+                try {
+                    getConexion();
+                    Principal.getInstance().Obtener();
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 generarBarras();
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1651,11 +1660,7 @@ public class Inicio extends JFrame {
     }
    
     public void generarBarras() throws ClassNotFoundException, SQLException, FileNotFoundException, DAOExeption {
-        try {
-            Principal.getInstance().Obtener();
-        } catch (IOException ex) {
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         DefaultCategoryDataset ds = new DefaultCategoryDataset();
         JFreeChart jf = ChartFactory.createBarChart3D("Estadisticas","", "Cantidad", ds,PlotOrientation.VERTICAL,
                 true,true,true);

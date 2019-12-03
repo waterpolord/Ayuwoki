@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author r_rok
  */
 public class Connect {
+    
     static Connection Conexion = null;
     
     public static Connection getConexion() throws ClassNotFoundException, SQLException{
@@ -36,11 +37,13 @@ public class Connect {
         return Conexion;
     }
     public static ResultSet Consulta(String consulta) throws ClassNotFoundException, SQLException{
-        Connection con = getConexion();
+        
+        
         Statement declara;
         try {
-            declara = con.createStatement();
+            declara = Conexion.createStatement();
             ResultSet respuesta = declara.executeQuery(consulta);
+            
             return respuesta;
         }
         catch (SQLException e) {
