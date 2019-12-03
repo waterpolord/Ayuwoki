@@ -239,18 +239,19 @@ public class Principal implements Serializable{
                     }
                     
                     
-                    Empresa aux = new Empresa(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5),Nombre,TipoEmpresa) {
+                        Empresa aux = new Empresa(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5),Nombre,TipoEmpresa) {
                         @Override
                         public void RetornarEmpresa() throws DAOExeption {
                             
                         }
                     };
                      
-                    
-                    aux.setMisVacantes(getVacantesEmpresa(aux));
-                    for(Vacante vaca:aux.getMisVacantes()){
-                        TVacantes.add(vaca);
+                    if(TieneVacantesEmpresa(aux)){
+                        aux.setMisVacantes(getVacantesEmpresa(aux));
+                        for(Vacante vaca:aux.getMisVacantes()){
+                            TVacantes.add(vaca);
                         }
+                    }
                     TEmpresas.add(aux);
                 }
             } catch (SQLException ex) {
@@ -360,12 +361,22 @@ public class Principal implements Serializable{
 		nuevo.Registrar(nuevo);
 		
 	}
+        public void addTEmpleos(Empleo nuevo) throws FileNotFoundException, ClassNotFoundException, IOException, DAOExeption {
+		TEmpleos.add(nuevo);
+		
+		
+	}
 	public ArrayList<Vacante> getTVacantes() {
 		return TVacantes;
 	}
 	public void setTVacantes(Vacante vacante) throws FileNotFoundException, ClassNotFoundException, IOException, DAOExeption {
 		TVacantes.add(vacante);
 		vacante.Registrar(vacante);
+		
+	}
+        public void addTVacantes(Vacante vacante) throws FileNotFoundException, ClassNotFoundException, IOException, DAOExeption {
+		TVacantes.add(vacante);
+		
 		
 	}
 	
@@ -618,6 +629,30 @@ public class Principal implements Serializable{
                 return false;
     }
 
+    public Boolean TieneVacantesEmpresa(Empresa empresa) throws ClassNotFoundException, SQLException, IOException{
+            ArrayList<Vacante> aux = new ArrayList();
+            ArrayList<Persona> perso = new ArrayList();
+            Vacante vaca;
+            ResultSet cn,cn2;
+            Boolean[] bol = new Boolean[10];
+            
+            int i = 0;
+            
+            cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[Habla otro Idioma?],[Vehiculo Propio?]"
+                    + ",[Disponibilidad de Horario?],[Disposicion de Viaje?],[Dispuesto a Mudarse?],[Piensa ampliar sus conocimientos?]"
+                    + ",[Trabajaria los fines de semana?],[Posee Experiencia de trabajos anteriores?],[Puede realizar mas de una tarea a la vez?]"
+                    + ",[Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicial_puesto_vacante,codigo_vacante_reconocimiento"
+                    + " FROM Vacante_Empresa INNER JOIN Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.nombre_empresa = '"+
+                    empresa.getNombre()+"'");
+            
+            while(cn.next()){
+                
+                    return true;
+                    
+                
+            }
+            return false;
+    }
    
 
 }
