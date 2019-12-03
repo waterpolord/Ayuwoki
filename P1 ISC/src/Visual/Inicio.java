@@ -450,6 +450,7 @@ public class Inicio extends JFrame {
                                  
                                  ResultSet cn = Conexion.Connect.Consulta("SELECT Nombre FROM Tipo_empresa");
                                  Vector arr = new Vector();
+                                 arr.add("<Tipo Empresa>");
                                  while(cn.next()){
                                      arr.add(cn.getString(1));
                                      
@@ -623,6 +624,7 @@ public class Inicio extends JFrame {
                         claveEmpresa = new String(passwordContra.getPassword());
                 Boolean user = null, empre = null, userPassword = null, empresaPassword = null;
                 try {
+//                    Principal.getInstance().Obtener();
                     user = Principal.getInstance().existeUser(textUsuario.getText());
                     empre = Principal.getInstance().existeEmpresa(textUsuario.getText());
                     userPassword = Principal.getInstance().ContraUser(claveUser);
@@ -634,6 +636,7 @@ public class Inicio extends JFrame {
                 if(user && userPassword) {
                     Persona login = null;
                     try {
+                        Principal.getInstance().Obtener();
                         login = Principal.getInstance().buscarPersonas(textUsuario.getText());
                        
                     } catch (ClassNotFoundException | IOException e1) {
@@ -911,7 +914,7 @@ public class Inicio extends JFrame {
         txtCorreo.setBounds(10, 92, 311, 20);
         panel_1.add(txtCorreo);
        
-        labelContra = new JLabel("Contrase\u00F1a:");
+        labelContra = new JLabel("Clave:");
         labelContra.setForeground(Color.WHITE);
         labelContra.setBounds(10, 123, 125, 14);
         panel_1.add(labelContra);
@@ -922,7 +925,7 @@ public class Inicio extends JFrame {
             public void keyReleased(KeyEvent e) {
                 if(passwordContrasena.getPassword().length < 4) {
                     LBClaveCorta.setVisible(true);
-                    LBClaveCorta.setText("Esta contraseÃƒÂ±a es muy corta");
+                    LBClaveCorta.setText("Esta clave es muy corta");
                     LBClaveCorta.setForeground(Color.ORANGE);
                 }
                 else {
@@ -939,7 +942,7 @@ public class Inicio extends JFrame {
         passwordContrasena.setBounds(10, 148, 175, 20);
         panel_1.add(passwordContrasena);
        
-        labelConfContra = new JLabel("Confirmar Contrase\u00F1a:");
+        labelConfContra = new JLabel("Confirmar clave:");
         labelConfContra.setForeground(Color.WHITE);
         labelConfContra.setBounds(287, 123, 186, 14);
         panel_1.add(labelConfContra);

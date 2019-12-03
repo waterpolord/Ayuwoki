@@ -376,6 +376,12 @@ public class PerfilEmpresa extends JFrame {
 						}
 						try {
 							empresa.setVacante(nueva);
+                                                        int i = 0;
+                                                        for(Vacante vac:empresa.getMisVacantes()) {
+                                                            lista.add(i,"Codigo: "+vac.getCodigo()+" Puesto: "+vac.getPuesto()+" Tipo: "+vac.getTipoPersonal()+" ("+vac.getCant()+")"+"\n\n");
+                                                            i++;
+					
+                                                        }
 							//Principal.getInstance().buscarEmpresas(empresa.getCorreo()).setVacante(nueva);
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block
@@ -540,6 +546,12 @@ public class PerfilEmpresa extends JFrame {
                                             }
 						try {
 							empresa.setVacante(nueva);
+                                                        int i = 0;
+                                                        for(Vacante vac:empresa.getMisVacantes()) {
+                                                            lista.add(i,"Codigo: "+vac.getCodigo()+" Puesto: "+vac.getPuesto()+" Tipo: "+vac.getTipoPersonal()+" ("+vac.getCant()+")"+"\n\n");
+                                                            i++;
+
+                                                        }
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

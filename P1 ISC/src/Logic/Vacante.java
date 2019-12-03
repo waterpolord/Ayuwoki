@@ -242,6 +242,7 @@ public class Vacante implements Serializable, VacanteDAO{
                 entrada.setString(3,Nuevo.TipoPersonal);
                 for(int i = 4, i2 = 0; i < 14; i++, i2++ ) {
                     entrada.setBoolean(i,Nuevo.requisitos[i2]);
+                 
                 }
                 entrada.setBoolean(14,Nuevo.estado);
                 entrada.setInt(15,Nuevo.cantInicial);

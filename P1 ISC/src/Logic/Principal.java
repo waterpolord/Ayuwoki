@@ -356,7 +356,7 @@ public class Principal implements Serializable{
 	public Boolean existeEmpresa(String txt) throws FileNotFoundException, ClassNotFoundException, IOException {
 		
 		for(Empresa empre:TEmpresas) {
-			if(empre.getCorreo().equalsIgnoreCase(txt)) {
+			if(empre.getCorreo().equalsIgnoreCase(txt) || empre.getNombre().equalsIgnoreCase(txt)) {
 				return true;
 			}
 		}
