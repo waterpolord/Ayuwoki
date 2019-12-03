@@ -16,11 +16,13 @@ import java.util.logging.Logger;
 
 public class Empleo implements Serializable, EmpleoDAO{
 	
+	private int codPersona;
 	private int monto;
 	private Boolean[] habilidades = new Boolean[10];
 	private String cualidad;
 	
-	public Empleo( Boolean[] habilidades, int monto, String cualidad) {
+	public Empleo( int codPersona, Boolean[] habilidades, int monto, String cualidad) {
+		this.codPersona = codPersona;
 		this.habilidades = habilidades;
 		this.monto = monto;
 		this.setCualidad(cualidad);
@@ -48,14 +50,17 @@ public class Empleo implements Serializable, EmpleoDAO{
     public void Registrar(Empleo Nuevo) throws DAOExeption {
     	CallableStatement entrada;
             try {
-                entrada = getConexion().prepareCall("{Call GuardarSolicitudPersona(?,?,?,?,?,?,?,?,?,?,?,?)}");
-        
-                for(int i = 1, i2 = 0; i < 11; i++, i2++ ) {
+                entrada = getConexion().prepareCall("{Call GuardarSolicitudPersona(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                
+                entrada.setInt(1, Nuevo.codPersona);
+                
+                for(int i = 2, i2 = 0; i < 12; i++, i2++ ) {
                         entrada.setBoolean(i,Nuevo.habilidades[i2]);
                 }
                 entrada.setString(11, Nuevo.cualidad);
                 entrada.setInt(12, monto);
                 entrada.execute();
+                entrada.close();
          }  catch (SQLException ex) {
                 throw new DAOExeption("Error en SQL",ex);
             } catch (ClassNotFoundException ex) {
@@ -75,4 +80,14 @@ public class Empleo implements Serializable, EmpleoDAO{
     public void RetornarEmpleo() throws DAOExeption {
    
     }
+
+
+	public int getCodPersona() {
+		return codPersona;
+	}
+
+
+	public void setCodPersona(int codPersona) {
+		this.codPersona = codPersona;
+	}
 }

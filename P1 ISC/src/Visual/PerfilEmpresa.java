@@ -358,7 +358,7 @@ public class PerfilEmpresa extends JFrame {
 						num = 1;
 					}
 					if(num == 0 && CBXCarrera.getSelectedIndex() > 0) {
-						Vacante nueva = new Vacante(empresa,"Universitario",CBXCarrera.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
+						Vacante nueva = new Vacante(CBXCarrera.getSelectedIndex(),empresa,"Universitario",CBXCarrera.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
 						
 						for(Persona aux:Principal.getInstance().getTpersonas()) {
 							if(aux.getSoli() == 1 && aux.getEstado())
@@ -529,7 +529,7 @@ public class PerfilEmpresa extends JFrame {
 						num = 1;
 					}
 					if(num == 0 && CBXEspecialidad.getSelectedIndex() > 0) {
-						Vacante nueva = new Vacante(empresa,"Tecnico",CBXEspecialidad.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
+						Vacante nueva = new Vacante(CBXEspecialidad.getSelectedIndex(),empresa,"Tecnico",CBXEspecialidad.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
 						try {
 							Principal.getInstance().setTVacantes(nueva);
 						} catch (FileNotFoundException e2) {
@@ -712,7 +712,7 @@ public class PerfilEmpresa extends JFrame {
 						num = 1;
 					}
 					if(num == 0 && CBXHabilidad.getSelectedIndex() > 0) {
-						Vacante nueva = new Vacante(empresa,"Obrero",CBXHabilidad.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
+						Vacante nueva = new Vacante(CBXHabilidad.getSelectedIndex(),empresa,"Obrero",CBXHabilidad.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
 						try {
 							Principal.getInstance().setTVacantes(nueva);
 						} catch (FileNotFoundException e1) {

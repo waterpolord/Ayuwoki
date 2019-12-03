@@ -259,7 +259,7 @@ public class Principal implements Serializable{
             cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[Habla otro Idioma?],[Vehiculo Propio?]"
                     + ",[Disponibilidad de Horario?],[Disposicion de Viaje?],[Dispuesto a Mudarse?],[Piensa ampliar sus conocimientos?]"
                     + ",[Trabajaria los fines de semana?],[Posee Experiencia de trabajos anteriores?],[Puede realizar mas de una tarea a la vez?]"
-                    + ",[Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicia_puesto_vacante,codigo_vacante_reconocimiento"
+                    + ",[Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicial_puesto_vacante,codigo_vacante_reconocimiento"
                     + " FROM Vacante_Empresa INNER JOIN Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.nombre_empresa = '"+
                     Empresa+"'");
             
@@ -269,7 +269,7 @@ public class Principal implements Serializable{
                     
                 }
                 
-                vaca = new Vacante(Principal.getInstance().buscarEmpresas(Empresa),cn.getString(2),cn.getString(3), bol,cn.getBoolean(14)
+                vaca = new Vacante(cn.getInt(1),Principal.getInstance().buscarEmpresas(Empresa),cn.getString(2),cn.getString(3), bol,cn.getBoolean(14)
                         ,cn.getInt(15),cn.getInt(16),
                         cn.getInt(17),  cn.getInt(18));
                 cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Persona_Vacante"
@@ -305,7 +305,7 @@ public class Principal implements Serializable{
                     bol[j] = cn.getBoolean(j+2);
                     
                 }
-                empleo = new Empleo(bol, cn.getInt(15), cn.getString(16));
+                empleo = new Empleo(cn.getInt(1),bol, cn.getInt(15), cn.getString(16));
                 aux.add(empleo);
                 TEmpleos.add(empleo);
             }

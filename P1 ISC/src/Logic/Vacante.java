@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Vacante implements Serializable, VacanteDAO{
+	private int codigoVacanteEmpresa;
 	private Empresa empresa;
 	private String puesto;
 	private String TipoPersonal;
@@ -26,8 +27,9 @@ public class Vacante implements Serializable, VacanteDAO{
 	private ArrayList<Persona> Solicitantes;
 	private int codigoVacante;
 	
-	public Vacante(Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,Boolean estado,int CP, int Monto,int CInicial,int codigo) {
+	public Vacante(int codigoVacanteEmpresa, Empresa empresa, String puesto, String tipoPersonal, Boolean[] requisitos,Boolean estado,int CP, int Monto,int CInicial,int codigo) {
 		
+		this.codigoVacanteEmpresa = codigoVacanteEmpresa;
 		this.empresa = empresa;
 		this.puesto = puesto;
 		TipoPersonal = tipoPersonal;
@@ -230,27 +232,29 @@ public class Vacante implements Serializable, VacanteDAO{
     public void Registrar(Vacante Nuevo) throws DAOExeption {
             try {
                 int getCodEmpresa = 1;
-                CallableStatement entrada  = getConexion().prepareCall("{Call GuardarVacanteEmpresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                CallableStatement entrada  = getConexion().prepareCall("{Call GuardarVacanteEmpresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                
+                entrada.setInt(1, Nuevo.codigoVacanteEmpresa);
                 
                 ResultSet cn = Conexion.Connect.Consulta("SELECT cod_empresa FROM Empresa WHERE correo_empresa = '"
                         +Nuevo.empresa.getCorreo().toString()+"'");
                 while(cn.next()){
                     getCodEmpresa = cn.getInt(1);
                 }
-                entrada.setInt(1, getCodEmpresa);
-                entrada.setString(2,Nuevo.puesto);
-                entrada.setString(3,Nuevo.TipoPersonal);
-                for(int i = 4, i2 = 0; i < 14; i++, i2++ ) {
+                entrada.setInt(2, getCodEmpresa);
+                entrada.setString(3,Nuevo.puesto);
+                entrada.setString(4,Nuevo.TipoPersonal);
+                for(int i = 5, i2 = 0; i < 15; i++, i2++ ) {
                     entrada.setBoolean(i,Nuevo.requisitos[i2]);
                  
                 }
-                entrada.setBoolean(14,Nuevo.estado);
-                entrada.setInt(15,Nuevo.cantInicial);
-                entrada.setInt(16,Nuevo.monto);
-                entrada.setInt(17,Nuevo.codigoVacante);
-                entrada.setInt(18,Nuevo.CantPuestos);
-                
+                entrada.setBoolean(15,Nuevo.estado);
+                entrada.setInt(16,Nuevo.cantInicial);
+                entrada.setInt(17,Nuevo.monto);
+                entrada.setInt(18,Nuevo.codigoVacante);
+                entrada.setInt(19,Nuevo.CantPuestos);
                 entrada.execute();
+                entrada.close();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Vacante.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -272,6 +276,14 @@ public class Vacante implements Serializable, VacanteDAO{
     public void RetornarVacantes() throws DAOExeption {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+	public int getCodigoVacanteEmpresa() {
+		return codigoVacanteEmpresa;
+	}
+
+	public void setCodigoVacanteEmpresa(int codigoVacanteEmpresa) {
+		this.codigoVacanteEmpresa = codigoVacanteEmpresa;
+	}
 	 
 	
 

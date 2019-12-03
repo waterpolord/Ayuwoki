@@ -523,7 +523,7 @@ public class PerfilUsuarios extends JFrame {
 					num = 1;
 				}
 				if(num == 0) {
-					Empleo nuevo = new Empleo(valores,monto,CBXaptitudes.getSelectedItem().toString());
+					Empleo nuevo = new Empleo(CBXaptitudes.getSelectedIndex(),valores,monto,CBXaptitudes.getSelectedItem().toString());
 					try {
 						persona.setSolicitud(nuevo);
 					} catch (FileNotFoundException e2) {
