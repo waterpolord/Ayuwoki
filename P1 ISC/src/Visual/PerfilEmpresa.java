@@ -395,9 +395,9 @@ public class PerfilEmpresa extends JFrame {
 						} catch (DAOExeption ex) {
                                                 Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
                                             }
-						try {
+						
 						    
-							Principal.getInstance().setTVacantes(nueva);
+							
 							lista.clear();
 							int i = 0;
 							for(Vacante vac:empresa.getMisVacantes()) {
@@ -405,12 +405,7 @@ public class PerfilEmpresa extends JFrame {
 								
 								i++;
 							}
-						} catch (ClassNotFoundException | IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (DAOExeption ex) {
-                                                Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
+						
 					}
 					if(CBXCarrera.getSelectedIndex() <= 0) {
 						JOptionPane.showMessageDialog(null,"Selecciona una carrera","Llena Todos Los Campos",0);
@@ -530,7 +525,7 @@ public class PerfilEmpresa extends JFrame {
 					}
 					if(num == 0 && CBXEspecialidad.getSelectedIndex() > 0) {
 						Vacante nueva = new Vacante(CBXEspecialidad.getSelectedIndex(),empresa,"Tecnico",CBXEspecialidad.getSelectedItem().toString(),valores,true,(int)Cantidad.getValue(),monto,(int)Cantidad.getValue(),empresa.getCode());
-						try {
+						/*try {
 							Principal.getInstance().setTVacantes(nueva);
 						} catch (FileNotFoundException e2) {
 							// TODO Auto-generated catch block
@@ -543,7 +538,7 @@ public class PerfilEmpresa extends JFrame {
 							e2.printStackTrace();
 						} catch (DAOExeption ex) {
                                                 Logger.getLogger(PerfilEmpresa.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
+                                            }*/
 						try {
 							empresa.setVacante(nueva);
                                                         int i = 0;

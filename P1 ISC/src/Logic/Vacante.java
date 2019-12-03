@@ -39,6 +39,7 @@ public class Vacante implements Serializable, VacanteDAO{
 		this.monto = Monto;
 		codigoVacante = codigo;
 		cantInicial = CantPuestos;
+                this.estado = estado;
 	}
 	
 	public int getMonto() {
@@ -231,28 +232,45 @@ public class Vacante implements Serializable, VacanteDAO{
     @Override
     public void Registrar(Vacante Nuevo) throws DAOExeption {
             try {
-                int getCodEmpresa = 1;
+                int getCodEmpresa = 1,ind;
                 CallableStatement entrada  = getConexion().prepareCall("{Call GuardarVacanteEmpresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-                
+                CallableStatement entrada2 = getConexion().prepareCall("{Call PersonasRelacionadas(?,?)}");
                 entrada.setInt(1, Nuevo.codigoVacanteEmpresa);
                 
                 ResultSet cn = Conexion.Connect.Consulta("SELECT cod_empresa FROM Empresa WHERE correo_empresa = '"
                         +Nuevo.empresa.getCorreo().toString()+"'");
+                ResultSet cn2;
                 while(cn.next()){
                     getCodEmpresa = cn.getInt(1);
                 }
                 entrada.setInt(2, getCodEmpresa);
-                entrada.setString(3,Nuevo.puesto);
-                entrada.setString(4,Nuevo.TipoPersonal);
-                for(int i = 5, i2 = 0; i < 15; i++, i2++ ) {
+                for(int i = 3, i2 = 0; i < 13; i++, i2++ ) {
                     entrada.setBoolean(i,Nuevo.requisitos[i2]);
                  
                 }
-                entrada.setBoolean(15,Nuevo.estado);
-                entrada.setInt(16,Nuevo.cantInicial);
+                entrada.setString(13,Nuevo.puesto);
+                entrada.setInt(14,Nuevo.cantInicial);
+                entrada.setInt(15,Nuevo.CantPuestos);
+                entrada.setString(16,Nuevo.TipoPersonal);
                 entrada.setInt(17,Nuevo.monto);
                 entrada.setInt(18,Nuevo.codigoVacante);
-                entrada.setInt(19,Nuevo.CantPuestos);
+                entrada.setBoolean(19,Nuevo.estado);
+                
+                ind = 0;
+                for(Persona correo:Nuevo.getPersonas()){
+                    cn = Conexion.Connect.Consulta("SELECT cod_persona FROM Persona WHERE correo_persona = '"
+                            +Nuevo.getPersonas().get(ind).correo+"'");
+                    cn2 = Conexion.Connect.Consulta("SELECT cod_vacante_empresa FROM Vacante_Empresa INNER JOIN"
+                            + "Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.cod_empresa = '"+getCodEmpresa+"'");
+                    while(cn.next()){
+                        while(cn2.next()){
+                            entrada2.setInt(cn.getInt(1),cn2.getInt(1));
+                            entrada2.execute();
+                            entrada2.close();
+                        }
+                    }
+                    ind++;
+                }
                 entrada.execute();
                 entrada.close();
             } catch (ClassNotFoundException ex) {

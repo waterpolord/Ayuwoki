@@ -86,7 +86,7 @@ public class Principal implements Serializable{
             int cod_persona = 1,ind = 1;
             String Nombre = null,TipoEmpresa = null,Pais;
             ArrayList <String> arr = new ArrayList();
-            Vector vec = new Vector();
+           // Vector vec = new Vector();
             // Agregando personas a singleton
             try {
                 cn = Conexion.Connect.Consulta("SELECT * FROM VistaObreros");
@@ -97,12 +97,13 @@ public class Principal implements Serializable{
                            + "WHERE Persona.cod_persona = '"+cn.getInt(1)+"'");
                     while(cn3.next()){
                         
-                        vec.add(cn3.getString(1));
-                        arr.add(vec.get(ind-1).toString());
+                      /* vec.add(cn3.getString(1));
+                        arr.add(vec.get(ind-1).toString());*/
                         arr.add(cn3.getString(1));
                         ind++;
                     }
                     ind = 1;
+                    
                    while(cn2.next()){    
                         Obrero aux = new Obrero(cn.getString(2), cn.getString(3), cn.getString(4), cn.getString(5), cn.getDate(6),cn.getString(7),cn.getString(8), 
                                  cn.getBoolean(9),cn2.getString(1),arr) {
@@ -113,7 +114,7 @@ public class Principal implements Serializable{
                          };
                         
                         Tpersonas.add(aux);
-                        
+                        getVacantesEmpleo(aux);
                    }
                     
                 }
@@ -130,12 +131,14 @@ public class Principal implements Serializable{
 "Especialidad_De_Tecnico ON Tecnico.cod_persona = Especialidad_De_Tecnico.cod_persona INNER JOIN\n" +
 "Especialidades ON Especialidad_De_Tecnico.cod_especialidad = Especialidades.cod_especialidad WHERE Persona.cod_persona ='"+cn.getInt(1)+"'");
                    int num;
+                   //vec.clear();
+                   arr.clear();
                    while(cn3.next()){
-                       num = cn.getInt(1);
-                        vec.add(cn3.getString(1));
-                        arr.add(vec.get(ind-1).toString());
+                        num = cn.getInt(1);
+                      /*  vec.add(cn3.getString(1));
+                        arr.add(vec.get(ind-1).toString());*/
                         arr.add(cn3.getString(1));
-                        ind++;                    
+                       // ind++;                    
                     }
                     ind = 1;
                    while(cn2.next()){    
@@ -148,7 +151,7 @@ public class Principal implements Serializable{
                          };
                         
                         Tpersonas.add(aux);
-                        
+                        getVacantesEmpleo(aux);
                    }
                     
                 }
@@ -164,11 +167,13 @@ public class Principal implements Serializable{
                    cn3 = Conexion.Connect.Consulta("SELECT Carreras.nombre FROM Persona INNER JOIN Estudiante_Universitario ON Persona.cod_persona = Estudiante_Universitario.cod_persona INNER JOIN\n" +
 "Carreras_De_Universitario ON Estudiante_Universitario.cod_persona = Carreras_De_Universitario.cod_persona INNER JOIN\n" +
 "Carreras ON Carreras_De_Universitario.cod_carrera = Carreras.cod_carrera WHERE Persona.cod_persona = '"+cn.getInt(1)+"'");
-                    while(cn3.next()){
-                        vec.add(cn3.getString(1));
-                        arr.add(vec.get(ind-1).toString());
+                  // vec.clear();
+                   arr.clear(); 
+                   while(cn3.next()){
+                       /* vec.add(cn3.getString(1));
+                        arr.add(vec.get(ind-1).toString());*/
                         arr.add(cn3.getString(1));
-                        ind++;
+                       // ind++;
                     }
                     ind = 1;
                    while(cn2.next()){    
@@ -181,7 +186,7 @@ public class Principal implements Serializable{
                          };
                         
                         Tpersonas.add(aux);
-                        
+                        getVacantesEmpleo(aux);
                    }
                     
                 }
@@ -231,7 +236,7 @@ public class Principal implements Serializable{
                         }
                     };
                      
-                    aux.setMisVacantes(getVacantesEmpresa(aux.getNombre()));
+                    aux.setMisVacantes(getVacantesEmpresa(aux));
                     for(Vacante vaca:aux.getMisVacantes()){
                         TVacantes.add(vaca);
                         }
@@ -248,12 +253,13 @@ public class Principal implements Serializable{
             
         }
         
-        public ArrayList<Vacante> getVacantesEmpresa(String Empresa) throws ClassNotFoundException, SQLException, IOException{
+        public ArrayList<Vacante> getVacantesEmpresa(Empresa empresa) throws ClassNotFoundException, SQLException, IOException{
             ArrayList<Vacante> aux = new ArrayList();
             ArrayList<Persona> perso = new ArrayList();
             Vacante vaca;
             ResultSet cn,cn2;
             Boolean[] bol = new Boolean[10];
+            
             int i = 0;
             
             cn = Conexion.Connect.Consulta("SELECT cod_vacante_empresa,puesto_vacante,tipo_personal_vacante,[Habla otro Idioma?],[Vehiculo Propio?]"
@@ -261,7 +267,7 @@ public class Principal implements Serializable{
                     + ",[Trabajaria los fines de semana?],[Posee Experiencia de trabajos anteriores?],[Puede realizar mas de una tarea a la vez?]"
                     + ",[Trabajas bien en equipo?],estado_vacante,cantidad_actual_puesto_vacante,monto,cantidad_inicial_puesto_vacante,codigo_vacante_reconocimiento"
                     + " FROM Vacante_Empresa INNER JOIN Empresa ON Empresa.cod_empresa = Vacante_Empresa.cod_empresa WHERE Empresa.nombre_empresa = '"+
-                    Empresa+"'");
+                    empresa.getNombre()+"'");
             
             while(cn.next()){
                 for (int j = 0; j < 10; j++) {
@@ -269,12 +275,11 @@ public class Principal implements Serializable{
                     
                 }
                 
-                vaca = new Vacante(cn.getInt(1),Principal.getInstance().buscarEmpresas(Empresa),cn.getString(2),cn.getString(3), bol,cn.getBoolean(14)
+                vaca = new Vacante(cn.getInt(1),empresa,cn.getString(2),cn.getString(3), bol,cn.getBoolean(14)
                         ,cn.getInt(15),cn.getInt(16),
                         cn.getInt(17),  cn.getInt(18));
-                cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Persona_Vacante"
-                        + "ON Persona.cod_Persona = Persona_Vacante.cod_Persona INNER JOIN Persona_Vacante ON Persona_Vacante.cod_vacante_empresa ='"+
-                    cn.getInt(1)+"'");
+                cn2 = Conexion.Connect.Consulta("SELECT primer_nombre FROM Persona INNER JOIN Persona_Vacante ON Persona.cod_Persona = Persona_Vacante.cod_Persona\n" +
+"WHERE Persona_Vacante.cod_vacante_empresa = '"+cn.getInt(1)+"'");
                 while(cn2.next()){
                     perso.add(Principal.getInstance().buscarPersonas(cn2.getString(1)));
                 }
@@ -286,26 +291,24 @@ public class Principal implements Serializable{
             return aux;
         }
         
-        public ArrayList<Empleo> getVacantesEmpleo(String correo) throws ClassNotFoundException, SQLException, IOException{
+        public ArrayList<Empleo> getVacantesEmpleo(Persona correo) throws ClassNotFoundException, SQLException, IOException{
             ArrayList<Empleo> aux = new ArrayList<Empleo>();
             Empleo empleo;
             ResultSet cn;
             Boolean[] bol = new Boolean[10];
             
-            cn = Conexion.Connect.Consulta("SELECT cod_persona,[Habla otro Idioma?],[Vehiculo Propio?]"
-                    + ",[Disponibilidad de Horario?],[Disposicion de Viaje?],[Dispuesto a Mudarse?],[Piensa ampliar sus estudios?]"
-                    + ",[Trabajaria los fines de semana?],[Posee Experiencia de trabajos anteriores?],[Puede realizar mas de una tarea a la vez?]"
-                    + ",[Trabajas bien en equipo?],[Ha realizado cursos de formacion? (obrero)],[Tienes disponibilidad para viajar a nivel nacional? (obrero)]"
-                    + ",[Sabe manejar Numeros? (obrero)], [Piensa estudiar alguna carrera o tecnico? (obrero)],area_empleo,monto_empleo"
-                    + " FROM Solicitud_Persona INNER JOIN Persona ON Persona.cod_persona = Solicitud_Persona.cod_persona WHERE Persona.correo_persona = '"
-                    + correo+"'");
+            cn = Conexion.Connect.Consulta("SELECT Persona.cod_persona,[Habla otro Idioma?],[Vehiculo Propio?],[Disponibilidad de Horario?],[Disposicion de Viaje?],[Dispuesto a Mudarse?],[Piensa ampliar sus estudios?],\n" +
+"[Trabajaria los fines de semana?],[Posee Experiencia de trabajos anteriores?],[Puede realizar mas de una tarea a la vez?]\n" +
+"                    ,[Trabajas bien en equipo?],area_empleo,monto_empleo\n" +
+"                     FROM Solicitud_Persona INNER JOIN Persona ON Persona.cod_persona = Solicitud_Persona.cod_persona WHERE Persona.correo_persona = '"
+                    +correo.getCorreo()+"'");
             
             while(cn.next()){
-                for (int j = 0; j < 14; j++) {
+                for (int j = 0; j < 10; j++) {
                     bol[j] = cn.getBoolean(j+2);
                     
                 }
-                empleo = new Empleo(cn.getInt(1),bol, cn.getInt(15), cn.getString(16));
+                empleo = new Empleo(cn.getInt(1),bol, cn.getInt(13), cn.getString(12));
                 aux.add(empleo);
                 TEmpleos.add(empleo);
             }

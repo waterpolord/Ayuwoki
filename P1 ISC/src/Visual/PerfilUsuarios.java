@@ -47,6 +47,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -523,7 +524,18 @@ public class PerfilUsuarios extends JFrame {
 					num = 1;
 				}
 				if(num == 0) {
-					Empleo nuevo = new Empleo(CBXaptitudes.getSelectedIndex(),valores,monto,CBXaptitudes.getSelectedItem().toString());
+                                    int codPersona = 1;
+                                    try {
+                                        ResultSet cn = Conexion.Connect.Consulta("SELECT cod_persona FROM Persona WHERE Persona.correo_persona = '"+persona.getCorreo()+"'");
+                                        while(cn.next()){
+                                            codPersona = cn.getInt(1);
+                                        }
+                                    } catch (ClassNotFoundException ex) {
+                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(PerfilUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+					Empleo nuevo = new Empleo(codPersona,valores,monto,CBXaptitudes.getSelectedItem().toString());
 					try {
 						persona.setSolicitud(nuevo);
 					} catch (FileNotFoundException e2) {
@@ -625,8 +637,9 @@ public class PerfilUsuarios extends JFrame {
 							}
 					}
 					try {
+                                                JOptionPane.showMessageDialog(null,"La solicitud se guardo con exito","Confirmado",1);
 						Principal.getInstance().setTEmpleos(nuevo);
-						JOptionPane.showMessageDialog(null,"La solicitud se guardo con exito","Confirmado",1);
+						
 					} catch (ClassNotFoundException | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -906,7 +919,7 @@ public class PerfilUsuarios extends JFrame {
                     }
                }
                CBXaptitudes = new JComboBox();
-		CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
+               CBXaptitudes.setModel(new DefaultComboBoxModel(vec));
 		
 		
 		

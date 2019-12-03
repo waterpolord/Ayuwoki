@@ -605,7 +605,7 @@ public class Inicio extends JFrame {
         labelUsuario.setBounds(20, 21, 147, 14);
         panel.add(labelUsuario);
        
-        JLabel labelContrasena = new JLabel("Contrase\u00F1a:");
+        JLabel labelContrasena = new JLabel("Clave:");
         labelContrasena.setForeground(Color.WHITE);
         labelContrasena.setBounds(274, 21, 105, 14);
         panel.add(labelContrasena);
@@ -636,7 +636,7 @@ public class Inicio extends JFrame {
                 if(user && userPassword) {
                     Persona login = null;
                     try {
-                        Principal.getInstance().Obtener();
+                        
                         login = Principal.getInstance().buscarPersonas(textUsuario.getText());
                        
                     } catch (ClassNotFoundException | IOException e1) {
@@ -705,7 +705,7 @@ public class Inicio extends JFrame {
         passwordContra.setBounds(348, 40, 191, 20);
         panel.add(passwordContra);
        
-        LBIncorrecto = new JLabel("Nombre o Contrase\u00F1a incorrectos");
+        LBIncorrecto = new JLabel("Nombre o Clave incorrectos");
         LBIncorrecto.setVisible(false);
         LBIncorrecto.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
         LBIncorrecto.setForeground(Color.CYAN);
@@ -714,13 +714,13 @@ public class Inicio extends JFrame {
        
  
        
-        checkSesion = new JCheckBox("Mantener sesi\u00F3n iniciada");
+        checkSesion = new JCheckBox("Mantener sesión iniciada");
         checkSesion.setBackground(SystemColor.inactiveCaption);
         checkSesion.setBounds(330, 58, 176, 23);
         checkSesion.setSelected(true);
         panel.add(checkSesion);
        
-        lbContra = new JLabel("Olvide Mi Contrase\u00F1a");
+        lbContra = new JLabel("Olvide Mi Clave");
         lbContra.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
