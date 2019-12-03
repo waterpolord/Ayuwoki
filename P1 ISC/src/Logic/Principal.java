@@ -307,7 +307,9 @@ public class Principal implements Serializable{
                 }
                 empleo = new Empleo(bol, cn.getInt(15), cn.getString(16));
                 aux.add(empleo);
+                TEmpleos.add(empleo);
             }
+            
             return aux;
         }
 
