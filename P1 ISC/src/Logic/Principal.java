@@ -81,7 +81,7 @@ public class Principal implements Serializable{
                 return Sesion;
     	
     }
-        public void Obtener() throws ClassNotFoundException, IOException{
+        public void Obtener() throws ClassNotFoundException, IOException, FileNotFoundException, DAOExeption{
             ResultSet cn,cn2,cn3;
             int cod_persona = 1,ind = 1;
             String Nombre = null,TipoEmpresa = null,Pais;
@@ -113,8 +113,11 @@ public class Principal implements Serializable{
                              }
                          };
                         
-                        Tpersonas.add(aux);
-                        getVacantesEmpleo(aux);
+                        if(TieneVacantesEmpleo(aux)){
+                            aux.setSolicitud(getVacantesEmpleo(aux));
+                        }
+                            Tpersonas.add(aux);
+                        
                    }
                     
                 }
@@ -150,8 +153,11 @@ public class Principal implements Serializable{
                              }
                          };
                         
-                        Tpersonas.add(aux);
-                        getVacantesEmpleo(aux);
+                        if(TieneVacantesEmpleo(aux)){
+                            aux.setSolicitud(getVacantesEmpleo(aux));
+                        }
+                            Tpersonas.add(aux);
+                        
                    }
                     
                 }
@@ -185,8 +191,12 @@ public class Principal implements Serializable{
                              }
                          };
                         
-                        Tpersonas.add(aux);
-                        getVacantesEmpleo(aux);
+                        
+                        if(TieneVacantesEmpleo(aux)){
+                            aux.setSolicitudSola(getVacantesEmpleo(aux));
+                        }
+                            Tpersonas.add(aux);
+                        
                    }
                     
                 }
@@ -236,6 +246,7 @@ public class Principal implements Serializable{
                         }
                     };
                      
+                    
                     aux.setMisVacantes(getVacantesEmpresa(aux));
                     for(Vacante vaca:aux.getMisVacantes()){
                         TVacantes.add(vaca);
@@ -291,9 +302,9 @@ public class Principal implements Serializable{
             return aux;
         }
         
-        public ArrayList<Empleo> getVacantesEmpleo(Persona correo) throws ClassNotFoundException, SQLException, IOException{
-            ArrayList<Empleo> aux = new ArrayList<Empleo>();
-            Empleo empleo;
+        public Empleo getVacantesEmpleo(Persona correo) throws ClassNotFoundException, SQLException, IOException{
+            
+            Empleo empleo = null;
             ResultSet cn;
             Boolean[] bol = new Boolean[10];
             
@@ -309,11 +320,11 @@ public class Principal implements Serializable{
                     
                 }
                 empleo = new Empleo(cn.getInt(1),bol, cn.getInt(13), cn.getString(12));
-                aux.add(empleo);
+                
                 TEmpleos.add(empleo);
             }
             
-            return aux;
+            return empleo;
         }
 
 	public int getCantPerson() {
@@ -589,6 +600,23 @@ public class Principal implements Serializable{
             
             return aux;
         }
+
+    private Boolean TieneVacantesEmpleo(Persona correo) throws ClassNotFoundException, SQLException {
+        
+            ResultSet cn;
+          
+            
+            cn = Conexion.Connect.Consulta("SELECT Persona.cod_persona,[Habla otro Idioma?],[Vehiculo Propio?],[Disponibilidad de Horario?],[Disposicion de Viaje?],[Dispuesto a Mudarse?],[Piensa ampliar sus estudios?],\n" +
+"[Trabajaria los fines de semana?],[Posee Experiencia de trabajos anteriores?],[Puede realizar mas de una tarea a la vez?]\n" +
+"                    ,[Trabajas bien en equipo?],area_empleo,monto_empleo\n" +
+"                     FROM Solicitud_Persona INNER JOIN Persona ON Persona.cod_persona = Solicitud_Persona.cod_persona WHERE Persona.correo_persona = '"
+                    +correo.getCorreo()+"'");
+            
+            while(cn.next()){
+                return true;
+            }
+                return false;
+    }
 
    
 

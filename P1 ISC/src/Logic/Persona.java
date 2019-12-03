@@ -51,6 +51,12 @@ public abstract class Persona implements Serializable,PersonaDAO{
 		tieneSolicitud = 1;
 		Principal.getInstance().setTEmpleos(guardar);
 	}
+        
+        public void setSolicitudSola(Empleo guardar) throws FileNotFoundException, ClassNotFoundException, IOException, DAOExeption {
+		Solicitud = guardar;
+		tieneSolicitud = 1;
+		
+	}
 	
 	public int getSoli() {
 		return tieneSolicitud;

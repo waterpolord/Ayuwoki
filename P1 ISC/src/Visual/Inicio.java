@@ -164,7 +164,11 @@ public class Inicio extends JFrame {
                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (FileNotFoundException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DAOExeption ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
                         panel_5 = new JPanel();
                         panel_5.setVisible(true);
                         //PanelEmpresa = new JPanel();
@@ -1466,7 +1470,11 @@ public class Inicio extends JFrame {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOExeption ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         rbnEmpresasYUsuarios.setBounds(78, 20, 138, 23);
@@ -1495,7 +1503,11 @@ public class Inicio extends JFrame {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOExeption ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         rbnUniversitarios.setBounds(237, 20, 109, 23);
@@ -1519,7 +1531,11 @@ public class Inicio extends JFrame {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOExeption ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         rbnTecnicos.setBounds(372, 20, 109, 23);
@@ -1544,7 +1560,11 @@ public class Inicio extends JFrame {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOExeption ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         rbnObreros.setBounds(503, 20, 109, 23);
@@ -1568,7 +1588,11 @@ public class Inicio extends JFrame {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOExeption ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
            
             }
         });
@@ -1590,7 +1614,11 @@ public class Inicio extends JFrame {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
                                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DAOExeption ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         cbxGraficas.setBounds(328, 63, 153, 20);
@@ -1622,7 +1650,7 @@ public class Inicio extends JFrame {
         return var;
     }
    
-    public void generarBarras() throws ClassNotFoundException, SQLException {
+    public void generarBarras() throws ClassNotFoundException, SQLException, FileNotFoundException, DAOExeption {
         try {
             Principal.getInstance().Obtener();
         } catch (IOException ex) {
